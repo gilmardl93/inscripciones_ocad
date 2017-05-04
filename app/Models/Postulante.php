@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Postulante extends Model
 {
     protected $table = 'postulante';
-    protected $fillable = ['idevaluacion', 'codigo','paterno','materno','nombres','dni','telefono','email','foto','idsexo','fecha_nacimiento','pago','anulado','idusuario','idgrado','foto_rechazo','foto_estado','fecha_foto','fecha_registro','mensaje','datos_ok','idaula','idsede','idespecialidad','idubigeo','direccion','idcolegio'];
+    protected $fillable = ['idevaluacion', 'codigo','paterno','materno','nombres','dni','telefono_celular','telefono_fijo','telefono_varios','telefono_provincia','email','foto_cargada','foto_editada','foto_rechazo','foto_estado','idsexo','fecha_nacimiento','pago','pago_prospecto','anulado','idusuario','idgrado','fecha_foto','fecha_registro','mensaje','datos_ok','idaula','idsede','idespecialidad','idubigeo','direccion','idubigeonacimiento','direccion_nacimiento','idcolegio'];
 
     /**
     * Atributos Ha Pagado

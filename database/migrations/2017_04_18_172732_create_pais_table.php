@@ -18,7 +18,6 @@ class CreatePaisTable extends Migration
             $table->string('codigo')->nullable();
             $table->string('nombre')->nullable();
             $table->boolean('activo')->nullable();
-            $table->timestamps();
         });
     }
 

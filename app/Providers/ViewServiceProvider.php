@@ -7,7 +7,6 @@ use App\Http\ViewComposers\ControlSelectData;
 use App\Http\ViewComposers\EspecialidadSelectData;
 use App\Http\ViewComposers\PaisSelectData;
 use App\Http\ViewComposers\RoleSelectData;
-use App\Http\ViewComposers\SedeSelectData;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
@@ -20,15 +19,11 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->make('view')->composer(
-            ['datos.index','datos.edit'],
+            ['datos.personal.index','datos.personal.edit'],
             ControlSelectData::class
             );
         $this->app->make('view')->composer(
-            ['datos.index','datos.edit'],
-            SedeSelectData::class
-            );
-        $this->app->make('view')->composer(
-            ['datos.index','datos.edit'],
+            ['datos.personal.index','datos.personal.edit'],
             EspecialidadSelectData::class
             );
         $this->app->make('view')->composer(

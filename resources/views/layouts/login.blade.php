@@ -39,9 +39,9 @@
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('assets/pages/img/banner600px.jpg') }}"
-                srcset="{{ asset('assets/pages/img/banner600px.jpg') }} 768w,
-                        {{ asset('assets/pages/img/banner600px.jpg') }} 1200w
+                <img src="{{ asset('assets/pages/img/banner600.png') }}"
+                srcset="{{ asset('assets/pages/img/banner768.png') }} 768w,
+                        {{ asset('assets/pages/img/banner600.png') }} 1200w
                         "
                           alt="Simulacro de Admision"  /> </a>
         </div>

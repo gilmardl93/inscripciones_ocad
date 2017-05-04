@@ -17,7 +17,7 @@ class CatalogoTableSeeder extends Seeder
         Catalogo::create(['idtable' => 0,'iditem' => 2, 'codigo' => 'SEXO','nombre' => 'SEXO','descripcion'=>'SEXO','valor'=> null,'activo'=>true]);
         Catalogo::create(['idtable' => 0,'iditem' => 3, 'codigo' => 'GRADO','nombre' => 'GRADO','descripcion'=>'GRADOS','valor'=> null,'activo'=>true]);
         Catalogo::create(['idtable' => 0,'iditem' => 4, 'codigo' => 'SERVICIO','nombre' => 'SERVICIO','descripcion'=>'SERVICIO DE BANCO','valor'=> null,'activo'=>true]);
-        Catalogo::create(['idtable' => 0,'iditem' => 5, 'codigo' => 'SEDES','nombre' => 'SEDES','descripcion'=>'SEDES','valor'=> null,'activo'=>true]);
+        Catalogo::create(['idtable' => 0,'iditem' => 5, 'codigo' => 'TIPO IDENTIFICACION','nombre' => 'TIPO DE IDENTIFICACION','descripcion'=>'SEDES','valor'=> null,'activo'=>true]);
         /**
          * sub tablas
          */
@@ -47,10 +47,8 @@ class CatalogoTableSeeder extends Seeder
          */
         Catalogo::create(['idtable' => 4,'iditem' => 1, 'codigo' => '520','nombre' => '520','descripcion'=>'INSCRIP. SIMULACRO','valor'=> 50,'activo'=>true]);
         /**
-         * Sedes
+         * Tipo de Identificacion
          */
-        Catalogo::create(['idtable' => 5,'iditem' => 1, 'codigo' => 'L','nombre' => 'Lima','descripcion'=>'Lima','valor'=> null,'activo'=>true]);
-        Catalogo::create(['idtable' => 5,'iditem' => 2, 'codigo' => 'H','nombre' => 'Huancayo','descripcion'=>'Huancayo','valor'=> null,'activo'=>true]);
 
 
     }
