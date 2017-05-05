@@ -37,7 +37,6 @@ class DatosController extends Controller
         Postulante::create($data);
         Alert::success('se registro sus datos con exito');
         return redirect()->route('home.index');
-
     }
     public function update(UpdateDatosRequest $request,$id)
     {
@@ -60,6 +59,5 @@ class DatosController extends Controller
 
         Alert::success('se actualizo sus datos con exito');
         return redirect()->route('home.index');
-
     }
 }

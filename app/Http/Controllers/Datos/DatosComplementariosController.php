@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Datos;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class DatosEncuestaController extends Controller
+use App\Models\Postulante;
+use Auth;
+use Illuminate\Http\Request;
+class DatosComplementariosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,12 @@ class DatosEncuestaController extends Controller
      */
     public function index()
     {
-        //
+        $dni = Auth::user()->dni;
+        $id = Auth::user()->id;
+        $postulante = Postulante::where('idusuario',$id)->first();
+
+        if(is_null($postulante))return view('datos.complementarios.index',compact('dni'));
+        else return view('datos.complementarios.edit',compact('postulante'));
     }
 
     /**

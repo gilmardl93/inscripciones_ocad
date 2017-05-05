@@ -17,7 +17,7 @@ class CatalogoTableSeeder extends Seeder
         Catalogo::create(['idtable' => 0,'iditem' => 2, 'codigo' => 'SEXO','nombre' => 'SEXO','descripcion'=>'SEXO','valor'=> null,'activo'=>true]);
         Catalogo::create(['idtable' => 0,'iditem' => 3, 'codigo' => 'GRADO','nombre' => 'GRADO','descripcion'=>'GRADOS','valor'=> null,'activo'=>true]);
         Catalogo::create(['idtable' => 0,'iditem' => 4, 'codigo' => 'SERVICIO','nombre' => 'SERVICIO','descripcion'=>'SERVICIO DE BANCO','valor'=> null,'activo'=>true]);
-        Catalogo::create(['idtable' => 0,'iditem' => 5, 'codigo' => 'TIPO IDENTIFICACION','nombre' => 'TIPO DE IDENTIFICACION','descripcion'=>'SEDES','valor'=> null,'activo'=>true]);
+        Catalogo::create(['idtable' => 0,'iditem' => 5, 'codigo' => 'IDENTIFICACION','nombre' => 'IDENTIFICACION','descripcion'=>'SEDES','valor'=> null,'activo'=>true]);
         /**
          * sub tablas
          */
@@ -49,6 +49,12 @@ class CatalogoTableSeeder extends Seeder
         /**
          * Tipo de Identificacion
          */
+        Catalogo::create(['idtable' => 5,'iditem' => 1, 'codigo' => 'DNI','nombre' => 'DNI','descripcion'=>'Documento Nacional de identidad','valor'=> null,'activo'=>true]);
+        Catalogo::create(['idtable' => 5,'iditem' => 2, 'codigo' => 'PART','nombre' => 'PARTIDA DE NACIMIENTO','descripcion'=>'PARTIDA DE NACIMIENTO','valor'=> null,'activo'=>true]);
+        Catalogo::create(['idtable' => 5,'iditem' => 3, 'codigo' => 'LM','nombre' => 'LIBRETA MILITAR','descripcion'=>'LIBRETA MILITAR','valor'=> null,'activo'=>true]);
+        Catalogo::create(['idtable' => 5,'iditem' => 4, 'codigo' => 'BM','nombre' => 'BOLETA MILITAR','descripcion'=>'BOLETA MILITAR','valor'=> null,'activo'=>true]);
+        Catalogo::create(['idtable' => 5,'iditem' => 4, 'codigo' => 'EXT','nombre' => 'CARNE DE EXTRANJERIA','descripcion'=>'CARNE DE EXTRANJERIA','valor'=> null,'activo'=>true]);
+        Catalogo::create(['idtable' => 5,'iditem' => 4, 'codigo' => 'OTROS','nombre' => 'OTROS','descripcion'=>'OTROS','valor'=> null,'activo'=>true]);
 
 
     }

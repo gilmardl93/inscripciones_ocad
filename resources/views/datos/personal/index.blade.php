@@ -35,7 +35,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">DATOS PESONALES DEL PARTICIPANTE (NO DEL APODERADO)</span>
+                <span class="caption-subject theme-font bold uppercase">DATOS PERSONALES DEL PARTICIPANTE (NO DEL APODERADO)</span>
             </div>
             <div class="actions">
                 {!!Form::back(route('datos.index'))!!}
@@ -45,16 +45,9 @@
         Tus nombres y apellidos deben coincidir con el de tu DNI, los campos con asterisco son obligatorios
         <p></p>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            {!!Form::label('lblDNI', 'DNI');!!}
-                            {!!Form::text('dni', $dni , ['class'=>'form-control','placeholder'=>'Numero DNI']);!!}
-                        </div>
-                    </div><!--span-->
-                </div><!--row-->
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            {!!Form::hidden('dni', $dni );!!}
                             {!!Form::label('lblPaterno', 'Apellido Paterno del participante *');!!}
                             {!!Form::text('paterno', null , ['class'=>'form-control','placeholder'=>'Apellido Paterno']);!!}
                         </div>
@@ -67,10 +60,16 @@
                     </div><!--span-->
                 </div><!--row-->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             {!!Form::label('lblNombres', 'Nombres del participante *');!!}
-                            {!!Form::text('nombres', null , ['class'=>'form-control','placeholder'=>'Nombres del participante']);!!}
+                            {!!Form::text('nombres', null , ['class'=>'form-control','placeholder'=>'Pais del participante']);!!}
+                        </div>
+                    </div><!--span-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {!!Form::label('lblPais', 'Pais donde vive el participante *');!!}
+                            {!!Form::select('idpais', $pais,[] , ['class'=>'form-control','placeholder'=>'Pais del participante']);!!}
                         </div>
                     </div><!--span-->
                 </div><!--row-->
@@ -86,15 +85,35 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {!!Form::label('lblDistrito', 'Distrito del participante *');!!}
-                            {!!Form::select('idubigeo',[] ,null , ['id'=>'Ubigeo','class'=>'form-control']);!!}
+                            {!!Form::select('idubigeo',[] ,null , ['class'=>'form-control Ubigeo']);!!}
                         </div>
                     </div><!--span-->
                 </div><!--row-->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            {!!Form::label('lblColegio', 'Colegio del participante *');!!}
-                            {!!Form::select('idcolegio',[] ,null , ['id'=>'Colegio','class'=>'form-control']);!!}
+                            {!!Form::label('lblTelefono', 'Telefono Celular');!!}
+                            {!!Form::text('telefono_celular', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
+                        </div>
+                    </div><!--span-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {!!Form::label('lblTelefono', 'Telefono fijo');!!}
+                            {!!Form::text('telefono_fijo', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
+                        </div>
+                    </div><!--span-->
+                </div><!--row-->
+                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {!!Form::label('lblTelefono', 'Telefono de contacto');!!}
+                            {!!Form::text('telefono_varios', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
+                        </div>
+                    </div><!--span-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {!!Form::label('lblEmail', 'Email del participante');!!}
+                            {!!Form::email('email', null , ['class'=>'form-control','placeholder'=>'Email del participante']);!!}
                         </div>
                     </div><!--span-->
                 </div><!--row-->
@@ -105,34 +124,8 @@
 </div>
 <div class="col-md-12">
     <!-- BEGIN PORTLET-->
-    <div class="portlet light tasks-widget widget-comments">
+    <div class="portlet light ">
         <div class="form-body ">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        {!!Form::label('lblTelefono', 'Telefono Celular');!!}
-                        {!!Form::text('telefono_celular', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
-                    </div>
-                </div><!--span-->
-                <div class="col-md-3">
-                    <div class="form-group">
-                        {!!Form::label('lblTelefono', 'Telefono fijo');!!}
-                        {!!Form::text('telefono_fijo', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
-                    </div>
-                </div><!--span-->
-                <div class="col-md-3">
-                    <div class="form-group">
-                        {!!Form::label('lblTelefono', 'Telefono de contacto');!!}
-                        {!!Form::text('telefono_varios', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
-                    </div>
-                </div><!--span-->
-                <div class="col-md-3">
-                    <div class="form-group">
-                        {!!Form::label('lblEmail', 'Email del participante');!!}
-                        {!!Form::email('email', null , ['class'=>'form-control','placeholder'=>'Email del participante']);!!}
-                    </div>
-                </div><!--span-->
-            </div><!--row-->
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -140,6 +133,20 @@
                         {!!Form::select('idsexo', $sexo ,null , ['class'=>'form-control','placeholder'=>'Seleccionar']);!!}
                     </div>
                 </div><!--span-->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {!!Form::label('lblTalla', 'Talla ');!!}
+                        {!!Form::text('talla' ,null , ['class'=>'form-control','placeholder'=>'Ingresar talla del participante']);!!}
+                    </div>
+                </div><!--span-->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {!!Form::label('lblPeso', 'Peso ');!!}
+                        {!!Form::text('peso' ,null , ['class'=>'form-control','placeholder'=>'Ingresar peso del participante']);!!}
+                    </div>
+                </div><!--span-->
+            </div><!--row-->
+            <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         {!! Form::label('lblFecha', 'Fecha de nacimiento (año-mes-dia) *', ['class'=>'control-label']) !!}
@@ -152,33 +159,37 @@
                             </span>
                         </div>
                     </div>
-
                 </div><!--span-->
-
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {!!Form::label('lblPais', 'Pais de nacimiento del participante *');!!}
+                        {!!Form::select('idpaisnacimiento',$pais ,null , ['class'=>'form-control']);!!}
+                    </div>
+                </div><!--span-->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {!!Form::label('lblDistrito', 'Distrito de nacimiento del participante *');!!}
+                        {!!Form::select('idubigeonacimiento',[] ,null , ['class'=>'form-control Ubigeo']);!!}
+                    </div>
+                </div><!--span-->
             </div><!--row-->
             <div class="row">
             </div><!--row-->
-        <div class="row">
+            <h4 class="text-info">Llenar estos campos si el participante vive en provincia</h4>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        {!!Form::label('lblGrado', 'Nivel Educativo *');!!}
-                        {!!Form::select('idgrado', $grado ,null , ['class'=>'form-control','placeholder'=>'Seleccionar']);!!}
+                        {!!Form::label('lblDistritoProvincia', 'Distrito de Provincia');!!}
+                        {!!Form::select('idubigeonacimientoprovincia',[] ,null , ['class'=>'form-control Ubigeo']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-6">
                     <div class="form-group">
-                        {!!Form::label('lblSede', 'Sede *');!!}
-                        {!!Form::select('idsede', [] ,null , ['class'=>'form-control','placeholder'=>'Seleccionar']);!!}
-                    </div>
-                </div><!--span-->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {!!Form::label('lblEspecialidad', 'Especialidad de Preferencia Tentativa*');!!}
-                        {!!Form::select('idespecialidad', $especialidad ,null , ['class'=>'form-control','placeholder'=>'Seleccionar']);!!}
+                        {!!Form::label('lblDireccionProvincia', 'Direccion de Provincia del participante ');!!}
+                        {!!Form::text('direccion_provincia', null , ['class'=>'form-control','placeholder'=>'Direccion del participante']);!!}
                     </div>
                 </div><!--span-->
             </div><!--row-->
-
             {!!Form::enviar('Guardar')!!}
         </div>
     </div>
@@ -222,7 +233,7 @@
 <script>
 $(document).ready(function() {
 
-    $("#Ubigeo").select2({
+    $(".Ubigeo").select2({
         width:'auto',
         ajax: {
             url: '{{ url("ubigeo") }}',
@@ -256,53 +267,7 @@ $(document).ready(function() {
         return markup;
 
     }
-    $("#Colegio").select2({
-        width:'auto',
-        ajax: {
-            url: '{{ url("colegio") }}',
-            dataType: 'json',
-            delay: 250,
-            data: function(params) {
-                return {
-                    varschool: params.term // search term
-                };
-            },
-            processResults: function(data) {
-                // parse the results into the format expected by Select2.
-                // since we are using custom formatting functions we do not need to
-                // alter the remote JSON data
-                return {
-                    results: data
-                };
-            },
-            cache: true
-        },
-        placeholder : 'Seleccione su colegio',
-        minimumInputLength: 3,
-        templateResult: formatSchool,
-        templateSelection: formatSchoolSelection,
-        escapeMarkup: function(markup) {
-            return markup;
-        } // let our custom formatter work
-    });
-    function formatSchool(school){
-        if (school.loading) return school.text; //Sin esta columna no carga los items dentro de los campo array
 
-        var markup="<div class='select2-result-repository clearfix'>" +
-        "<div class='select2-result-repository__title'>" + school.text + "</div>" +
-        "<div class='select2-result-repository__description'> Distrito : " + school.distrito.descripcion + "</div>" +
-        "<div class='select2-result-repository__description'> Gestion : " + school.gestion + "</div>" +
-        "<div class='select2-result-repository__statistics'>" +
-        "</div>"+
-        "</div>";
-        return markup;
-
-    }
-    function formatSchoolSelection(school){
-        var markup =  school.text;
-        return markup;
-    }
-    $("#idsede").select2();
 
 });
 
@@ -315,16 +280,12 @@ $("#fecha").inputmask("y-m-d", {
 
 @section('plugins-styles')
 {!! Html::style(asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')) !!}
-{!! Html::style(asset('assets/global/plugins/select2/css/select2.min.css')) !!}
-{!! Html::style(asset('assets/global/plugins/select2/css/select2-bootstrap.min.css')) !!}
 {!! Html::style(asset('assets/global/plugins/icheck/skins/all.css')) !!}
 {!! Html::style(asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')) !!}
 @stop
 @section('plugins-js')
 {!! Html::script(asset('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')) !!}
 {!! Html::script(asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')) !!}
-{!! Html::script(asset('assets/global/plugins/select2/js/select2.full.min.js')) !!}
-{!! Html::script(asset('assets/global/plugins/select2/js/i18n/es.js')) !!}
 {!! Html::script(asset('assets/global/plugins/icheck/icheck.min.js')) !!}
 {!! Html::script(asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')) !!}
 @stop

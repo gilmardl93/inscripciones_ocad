@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Datos;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Postulante;
+use Auth;
+use Illuminate\Http\Request;
 
 class DatosFamiliaresController extends Controller
 {
@@ -14,7 +16,12 @@ class DatosFamiliaresController extends Controller
      */
     public function index()
     {
-        //
+        $dni = Auth::user()->dni;
+        $id = Auth::user()->id;
+        $postulante = Postulante::where('idusuario',$id)->first();
+
+        if(is_null($postulante))return view('datos.familiar.index',compact('dni'));
+        else return view('datos.familiar.edit',compact('postulante'));
     }
 
     /**

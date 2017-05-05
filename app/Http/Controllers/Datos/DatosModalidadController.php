@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Datos;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class DatosVariosController extends Controller
+use App\Models\Postulante;
+use Auth;
+use Illuminate\Http\Request;
+class DatosModalidadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,12 @@ class DatosVariosController extends Controller
      */
     public function index()
     {
-        //
+        $dni = Auth::user()->dni;
+        $id = Auth::user()->id;
+        $postulante = Postulante::where('idusuario',$id)->first();
+
+        if(is_null($postulante))return view('datos.modalidad.index',compact('dni'));
+        else return view('datos.modalidad.edit',compact('postulante'));
     }
 
     /**

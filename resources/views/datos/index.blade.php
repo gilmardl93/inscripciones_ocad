@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="form-body ">
-        Tus nombres y apellidos deben coincidir con el de tu DNI, los campos con asterisco son obligatorios
+        Debe ingresar la siguiente información
         <p></p>
         <div class="col-md-3">
             <a class="dashboard-stat dashboard-stat-v2 blue" href="{{ route('datos.potulante.index') }}">
@@ -30,7 +30,7 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+            <a class="dashboard-stat dashboard-stat-v2 red" href="{{ route('datos.familiares.index') }}">
                 <div class="visual">
                     <i class="fa fa-comments"></i>
                 </div>
@@ -43,7 +43,7 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+            <a class="dashboard-stat dashboard-stat-v2 purple" href="{{ route('datos.modalidad.index') }}">
                 <div class="visual">
                     <i class="fa fa-comments"></i>
                 </div>
@@ -56,13 +56,13 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+            <a class="dashboard-stat dashboard-stat-v2 green" href="{{ route('datos.complementarios.index') }}">
                 <div class="visual">
                     <i class="fa fa-comments"></i>
                 </div>
                 <div class="details">
                     <div class="number">
-                        <span>Varios</span>
+                        <span>Complementario</span>
                     </div>
                     <div class="desc"> Datos complementarios del postulante </div>
                 </div>

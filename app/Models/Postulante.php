@@ -10,7 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 class Postulante extends Model
 {
     protected $table = 'postulante';
-    protected $fillable = ['idevaluacion', 'codigo','paterno','materno','nombres','dni','telefono_celular','telefono_fijo','telefono_varios','telefono_provincia','email','foto_cargada','foto_editada','foto_rechazo','foto_estado','idsexo','fecha_nacimiento','pago','pago_prospecto','anulado','idusuario','idgrado','fecha_foto','fecha_registro','mensaje','datos_ok','idaula','idsede','idespecialidad','idubigeo','direccion','idubigeonacimiento','direccion_nacimiento','idcolegio'];
+    protected $fillable = ['idevaluacion', 'codigo','codigo_verificacion','paterno','materno','nombres','dni','telefono_celular',
+            'telefono_fijo','telefono_varios','telefono_provincia','email','foto_cargada','foto_editada',
+            'foto_rechazo','foto_estado','idsexo','fecha_nacimiento','pago','pago_prospecto','anulado',
+            'idusuario','idgrado','fecha_foto','fecha_registro','mensaje','datos_ok','idaula','idsede',
+            'idespecialidad','idubigeo','direccion','idubigeonacimiento','idcolegio','talla','peso','idpais','idpaisnacimiento',
+            'idubigeoprovincia','direccion_provincia'];
 
     /**
     * Atributos Ha Pagado

@@ -22,6 +22,8 @@
         <link href="{{ asset('assets/layouts/layout7/css/layout.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/layouts/layout7/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
+        <link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         @include('layouts.partials.styles-plugins')
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
@@ -134,6 +136,8 @@
         @include('layouts.partials.js-core')
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src={{asset("assets/global/plugins/select2/js/select2.full.min.js")}} type="text/javascript"></script>
+        <script src={{asset("assets/global/plugins/select2/js/i18n/es.js")}} type="text/javascript"></script>
         @yield('plugins-js')
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
@@ -150,6 +154,7 @@
             $('.Pulsear').pulsate({
                 color: "#bf1c56"
             });
+            $(" .Select2").select2();
         </script>
         @yield('js-scripts')
     </body>

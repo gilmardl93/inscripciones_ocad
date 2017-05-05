@@ -116,6 +116,8 @@ return [
         'idubigeo'=>'Distrito',
         'idcolegio'=>'Colegio',
         'direccion'=>'Direccion',
+        'idubigeonacimiento'=>'Distrito de nacimiento',
+
 
     ],
 
