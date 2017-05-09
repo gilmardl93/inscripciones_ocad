@@ -9,7 +9,7 @@ class Especialidad extends Model
     protected $table = 'especialidad';
     protected $fillable = ['idfacultad','codigo','nombre','canal','activo'];
     public $timestamps = false;
-
+    protected $connection = 'recursos';
     /**
     * Devuelve los valores Activos
     * @param  [type]  [description]
