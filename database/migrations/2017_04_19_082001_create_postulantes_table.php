@@ -53,14 +53,8 @@ class CreatePostulantesTable extends Migration
             $table->integer('idusuario')->nullable();
             $table->timestamps();
             $table->foreign('idevaluacion')->references('id')->on('evaluacion');
-            $table->foreign('idpais')->references('id')->on('pais');
-            $table->foreign('idpaisnacimiento')->references('id')->on('pais');
-            $table->foreign('idubigeo')->references('id')->on('ubigeo');
-            $table->foreign('idubigeonacimiento')->references('id')->on('ubigeo');
-            $table->foreign('idubigeoprovincia')->references('id')->on('ubigeo');
             $table->foreign('idusuario')->references('id')->on('users');
             $table->foreign('idsexo')->references('id')->on('catalogo');
-            $table->foreign('idgrado')->references('id')->on('catalogo');
             $table->foreign('idaula')->references('id')->on('aula');
             $table->unique(['idevaluacion','codigo','dni']);
         });
