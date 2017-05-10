@@ -8,4 +8,5 @@ class Secuencia extends Model
 {
     protected $table = 'secuencia';
     protected $fillable = ['nombre'];
+    public $timestamps = false;
 }

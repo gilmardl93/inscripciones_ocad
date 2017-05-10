@@ -12,7 +12,13 @@ class SecuenciaTableSeeder extends Seeder
      */
     public function run()
     {
-        Secuencia::create(['nombre' => 'numero_inscripcion']);
+        Secuencia::create(['nombre' => 'canal_i']);
+        Secuencia::create(['nombre' => 'canal_ii']);
+        Secuencia::create(['nombre' => 'canal_iii']);
+        Secuencia::create(['nombre' => 'canal_iv']);
+        Secuencia::create(['nombre' => 'canal_v']);
+        Secuencia::create(['nombre' => 'canal_vi']);
+        Secuencia::create(['nombre' => 'canal_vii']);
 
     }
 }
