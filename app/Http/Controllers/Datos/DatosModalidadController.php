@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Datos;
 
 use App\Http\Controllers\Controller;
+use App\Models\Modalidad;
 use App\Models\Postulante;
 use Auth;
 use Illuminate\Http\Request;
@@ -22,7 +23,17 @@ class DatosModalidadController extends Controller
         if(is_null($postulante))return view('datos.modalidad.index',compact('dni'));
         else return view('datos.modalidad.edit',compact('postulante'));
     }
+    /**
+     * Devuelve los datos de la modalidad
+     * @return [type] [description]
+     */
+    public function infomodalidad(Request $request)
+    {
+        $idmodalidad = $request->idmodalidad ?:'';
 
+        $modalidad = Modalidad::findOrfail($idmodalidad);
+        return $modalidad;
+    }
     /**
      * Show the form for creating a new resource.
      *

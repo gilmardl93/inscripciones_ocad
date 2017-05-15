@@ -2,35 +2,8 @@
 
 @section('content')
 @include('alerts.errors')
-{!! Form::open(['route'=>'datos.store','method'=>'POST','files'=>true]) !!}
-<div class="col-md-4">
-    <!-- BEGIN PORTLET-->
-    <div class="portlet light tasks-widget widget-comments">
-        <div class="portlet-title margin-bottom-20">
-            <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">FOTO DEL PARTICIPANTE TAMAÑO PASAPORTE</span>
-            </div>
-        </div>
-        <div class="portlet-body overflow-h">
-            <div class="fileinput fileinput-new" data-provides="fileinput">
-                <div class="fileinput-new thumbnail" style="width: 300px; height: 400px;">
-                    <img src="http://www.placehold.it/300x400/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
-                </div>
-                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-                <div>
-                    <span class="btn green btn-file">
-                        <span class="fileinput-new"> Seleccionar Imagen </span>
-                        <span class="fileinput-exists"> Cambiar </span>
-                        {{ Form::file('file', []) }}
-                    </span>
-                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Quitar </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END PORTLET-->
-</div>
-<div class="col-md-8">
+{!! Form::open(['route'=>'datos.postulante.store','method'=>'POST','files'=>true]) !!}
+<div class="col-md-12">
     <!-- BEGIN PORTLET-->
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
@@ -42,186 +15,63 @@
             </div>
         </div>
         <div class="form-body ">
-        Tus nombres y apellidos deben coincidir con el de tu DNI, los campos con asterisco son obligatorios
-        <p></p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!!Form::hidden('dni', $dni );!!}
-                            {!!Form::label('lblPaterno', 'Apellido Paterno del participante *');!!}
-                            {!!Form::text('paterno', null , ['class'=>'form-control','placeholder'=>'Apellido Paterno']);!!}
-                        </div>
-                    </div><!--span-->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!!Form::label('lblMaterno', 'Apellido Materno del participante *');!!}
-                            {!!Form::text('materno', null , ['class'=>'form-control','placeholder'=>'Apellido Materno']);!!}
-                        </div>
-                    </div><!--span-->
-                </div><!--row-->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!!Form::label('lblNombres', 'Nombres del participante *');!!}
-                            {!!Form::text('nombres', null , ['class'=>'form-control','placeholder'=>'Pais del participante']);!!}
-                        </div>
-                    </div><!--span-->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!!Form::label('lblPais', 'Pais donde vive el participante *');!!}
-                            {!!Form::select('idpais', $pais,[] , ['class'=>'form-control','placeholder'=>'Pais del participante']);!!}
-                        </div>
-                    </div><!--span-->
-                </div><!--row-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            {!!Form::label('lblDireccion', 'Direccion del participante *');!!}
-                            {!!Form::text('direccion', null , ['class'=>'form-control','placeholder'=>'Direccion del participante']);!!}
-                        </div>
-                    </div><!--span-->
-                </div><!--row-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            {!!Form::label('lblDistrito', 'Distrito del participante *');!!}
-                            {!!Form::select('idubigeo',[] ,null , ['class'=>'form-control Ubigeo']);!!}
-                        </div>
-                    </div><!--span-->
-                </div><!--row-->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!!Form::label('lblTelefono', 'Telefono Celular');!!}
-                            {!!Form::text('telefono_celular', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
-                        </div>
-                    </div><!--span-->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!!Form::label('lblTelefono', 'Telefono fijo');!!}
-                            {!!Form::text('telefono_fijo', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
-                        </div>
-                    </div><!--span-->
-                </div><!--row-->
-                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!!Form::label('lblTelefono', 'Telefono de contacto');!!}
-                            {!!Form::text('telefono_varios', null , ['class'=>'form-control','placeholder'=>'Telefono']);!!}
-                        </div>
-                    </div><!--span-->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!!Form::label('lblEmail', 'Email del participante');!!}
-                            {!!Form::email('email', null , ['class'=>'form-control','placeholder'=>'Email del participante']);!!}
-                        </div>
-                    </div><!--span-->
-                </div><!--row-->
-
-        </div>
-    </div>
-    <!-- END PORTLET-->
-</div>
-<div class="col-md-12">
-    <!-- BEGIN PORTLET-->
-    <div class="portlet light ">
-        <div class="form-body ">
+            <dl>
+                <dt>Observacion</dt>
+                <dd>Tus nombres y apellidos deben coincidir con el DNI del postulante, los campos con asterisco son obligatorios.</dd>
+            </dl>
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!!Form::label('lblSexo', 'Sexo *');!!}
-                        {!!Form::select('idsexo', $sexo ,null , ['class'=>'form-control','placeholder'=>'Seleccionar']);!!}
+                        {!!Form::hidden('idtipoidentificacion', IdTCCodigo('IDENTIFICACION','DNI') );!!}
+                        {!!Form::hidden('numero_identificacion', Auth::user()->dni );!!}
+                        {!!Field::text('paterno', null , ['label'=>'Apellido Paterno del participante *','placeholder'=>'Apellido Paterno del postulante']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!!Form::label('lblTalla', 'Talla ');!!}
-                        {!!Form::text('talla' ,null , ['class'=>'form-control','placeholder'=>'Ingresar talla del participante']);!!}
+                        {!!Field::text('materno', null , ['label'=>'Apellido Materno del participante *','placeholder'=>'Apellido Materno del postulante']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!!Form::label('lblPeso', 'Peso ');!!}
-                        {!!Form::text('peso' ,null , ['class'=>'form-control','placeholder'=>'Ingresar peso del participante']);!!}
+                        {!!Field::text('nombres', null , ['label'=>'Nombres del participante *','placeholder'=>'Nombre el postulante']);!!}
                     </div>
                 </div><!--span-->
             </div><!--row-->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        {!! Form::label('lblFecha', 'Fecha de nacimiento (año-mes-dia) *', ['class'=>'control-label']) !!}
-                        <div class="input-group ">
-                            {!!Form::text('fecha_nacimiento', null , ['id'=>'fecha','class'=>'form-control','placeholder'=>'Fecha de Nacimiento']);!!}
-                            <span class="input-group-btn ">
-                                <button class="btn " type="button">
-                                    <i class="fa fa-calendar"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div><!--span-->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        {!!Form::label('lblPais', 'Pais de nacimiento del participante *');!!}
-                        {!!Form::select('idpaisnacimiento',$pais ,null , ['class'=>'form-control']);!!}
-                    </div>
-                </div><!--span-->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        {!!Form::label('lblDistrito', 'Distrito de nacimiento del participante *');!!}
-                        {!!Form::select('idubigeonacimiento',[] ,null , ['class'=>'form-control Ubigeo']);!!}
-                    </div>
-                </div><!--span-->
-            </div><!--row-->
-            <div class="row">
-            </div><!--row-->
-            <h4 class="text-info">Llenar estos campos si el participante vive en provincia</h4>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {!!Form::label('lblDistritoProvincia', 'Distrito de Provincia');!!}
-                        {!!Form::select('idubigeonacimientoprovincia',[] ,null , ['class'=>'form-control Ubigeo']);!!}
-                    </div>
-                </div><!--span-->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {!!Form::label('lblDireccionProvincia', 'Direccion de Provincia del participante ');!!}
-                        {!!Form::text('direccion_provincia', null , ['class'=>'form-control','placeholder'=>'Direccion del participante']);!!}
-                    </div>
-                </div><!--span-->
-            </div><!--row-->
+            <h3>Modalidad de Postulación segun el reglamento</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        {!!Field::select('idmodalidad',$modalidad,['label'=>'Escoger Modalidad','empty'=>'Escoger modalidad de postulacion']);!!}
+                    </div><!--span-->
+                    <div class="col-md-6">
+                        {!!Field::select('idespecialidad',$especialidad,['label'=>'Escoger Especialidad','empty'=>'Escoger especialidad de postulacion']);!!}
+                    </div><!--span-->
+                </div><!--row-->
+                <div class="widget-thumb bordered bg-green cepreuni">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            {!!Field::text('codigo_verificacion',null,['label'=>'Ingresar codigo de CEPRE-UNI','placeholder'=>'Ingresar codigo de CEPRE-UNI']);!!}
+                        </div><!--span-->
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!!Field::select('idmodalidad2',$segunda_modalidad_cepre,['label'=>'Escoger segunda Modalidad (Solo para alumnos de CEPRE-UNI)','empty'=>'Escoger segunda modalidad de postulacion (Solo para alumnos de CEPRE-UNI)']);!!}
+                        </div><!--span-->
+                        <div class="col-md-6">
+                            {!!Field::select('idespecialidad2',$especialidad,['label'=>'Escoger segunda Especialidad (Solo para alumnos de CEPRE-UNI)','empty'=>'Escoger segunda especialidad de postulacion (Solo para alumnos de CEPRE-UNI)']);!!}
+                        </div><!--span-->
+                    </div><!--row-->
+                </div>
+            <h3>Institucion de educativa del postulante</h3>
+                <div class="row">
+                    <div class="col-md-6 Colegio">
+                            {!!Field::select('idcolegio',null,['label'=>'Escoger Colegio']);!!}
+                    </div><!--span-->
+                    <div class="col-md-6 Universidad">
+                        {!!Field::select('iduniversidad',null,['label'=>'Escoger Universidad']);!!}
+                    </div><!--span-->
+                </div><!--row-->
             {!!Form::enviar('Guardar')!!}
-        </div>
-    </div>
-    <!-- END PORTLET-->
-</div>
-<div class="col-md-12">
-    <!-- BEGIN PORTLET-->
-    <div class="portlet light tasks-widget widget-comments">
-        <div class="portlet-title margin-bottom-20">
-            <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase Pulsear">Observacion</span>
-            </div>
-            <div class="actions">
-                {!!Form::back(route('home.index'))!!}
-            </div>
-        </div>
-        <div class="form-body ">
-        <div class="note note-info">
-            <h4 class="block">Informacion importante!</h4>
-            <p> Tu fotografia tiene que ser nitida como la que te mostramos aquí, en fondo blanco y sin lentes, de lo contrario tendras problemas para finalizar tu inscripción </p>
-        </div>
-
-        <p></p>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <div class="fileinput-new thumbnail" style="width: 300px; height: 400px;">
-                            <img src="{{ asset('/assets/pages/img/unnamed.jpg') }}" width="300px" height="400px" />
-                        </div>
-                    </div>
-                </div><!--span-->
-            </div><!--row-->
         </div>
     </div>
     <!-- END PORTLET-->
@@ -231,17 +81,68 @@
 
 @section('js-scripts')
 <script>
-$(document).ready(function() {
+$(function() {
+$(".Colegio").hide();
+$(".Universidad").hide();
+$(".cepreuni").hide();
 
-    $(".Ubigeo").select2({
+    $("#idmodalidad").click(function(event) {
+        var idmodalidad = $(this).val();
+        $.ajax({
+            url: 'info-modalidad',
+            dataType: 'json',
+            data: {idmodalidad: idmodalidad},
+        })
+        .done(function(modalidad) {
+            /*Muestra Colegio o universidad segun la modalidad correspondiente*/
+            if (modalidad.colegio) {
+                $(".Colegio").show();
+                $(".Universidad").hide();
+            }else{
+                $(".Colegio").hide();
+                $(".Universidad").show();
+            }
+            /*Muestra la segunda opcion del cepre UNI*/
+            if (modalidad.codigo == 'ID-CEPRE') {
+                $(".cepreuni").show();
+            }else{
+                $(".cepreuni").hide();
+            }
+
+
+        });
+
+    });
+    $("#idmodalidad2").click(function(event) {
+        var idmodalidad = $(this).val();
+        $.ajax({
+            url: 'info-modalidad',
+            dataType: 'json',
+            data: {idmodalidad: idmodalidad},
+        })
+        .done(function(modalidad) {
+            /*Muestra Colegio o universidad segun la modalidad correspondiente*/
+            if (modalidad.colegio) {
+                $(".Colegio").show();
+                $(".Universidad").hide();
+            }else{
+                $(".Colegio").hide();
+                $(".Universidad").show();
+            }
+
+        });
+
+    });
+
+    $("#idcolegio").select2({
         width:'auto',
         ajax: {
-            url: '{{ url("ubigeo") }}',
+            url: '{{ url("colegio") }}',
             dataType: 'json',
             delay: 250,
             data: function(params) {
                 return {
-                    varsearch: params.term // search term
+                    varschool: params.term // search term
                 };
             },
             processResults: function(data) {
@@ -254,38 +155,87 @@ $(document).ready(function() {
             },
             cache: true
         },
-        placeholder : 'Seleccione el distrito del participante: ejemplo LIMA',
+        placeholder : 'Seleccione su colegio',
         minimumInputLength: 3,
-        templateResult: format,
-        templateSelection: format,
+        templateResult: formatSchool,
+        templateSelection: formatSchoolSelection,
         escapeMarkup: function(markup) {
             return markup;
         } // let our custom formatter work
     });
-    function format(res){
-        var markup=res.text;
+
+    $("#iduniversidad").select2({
+        width:'auto',
+        ajax: {
+            url: '{{ url("universidad") }}',
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                var idmodalidad = $('#idmodalidad').val();
+                return {
+                    varuni: params.term, // search term
+                    varidmodalidad: idmodalidad,
+                };
+            },
+            processResults: function(data) {
+                // parse the results into the format expected by Select2.
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        placeholder : 'Seleccione su universidad',
+        minimumInputLength: 3,
+        templateResult: formatUni,
+        templateSelection: formatSchoolSelection,
+        escapeMarkup: function(markup) {
+            return markup;
+        } // let our custom formatter work
+    });
+    function formatSchool(school){
+        if (school.loading) return school.text; //Sin esta columna no carga los items dentro de los campo array
+
+        var markup="<div class='select2-result-repository clearfix'>" +
+        "<div class='select2-result-repository__title'>" + school.text + "</div>" +
+        "<div class='select2-result-repository__description'> Distrito : " + school.distrito.descripcion + "</div>" +
+        "<div class='select2-result-repository__description'> Gestion : " + school.gestion + "</div>" +
+        "<div class='select2-result-repository__statistics'>" +
+        "</div>"+
+        "</div>";
         return markup;
 
     }
+    function formatUni(school){
+        if (school.loading) return school.text; //Sin esta columna no carga los items dentro de los campo array
 
+        var localidad = school.distrito;
+        if (localidad != null) {
+            var lbl_ubigeo = 'Distrito';
+            var descripcion_ubigeo = localidad.descripcion;
+        }else{
+            var lbl_ubigeo = 'Pais';
+            var descripcion_ubigeo = school.paises.nombre;
+        }
+        var markup="<div class='select2-result-repository clearfix'>" +
+        "<div class='select2-result-repository__title'>" + school.text + "</div>" +
+        "<div class='select2-result-repository__description'> " + lbl_ubigeo + " : " + descripcion_ubigeo + "</div>" +
+        "<div class='select2-result-repository__description'> Gestion : " + school.gestion + "</div>" +
+        "<div class='select2-result-repository__statistics'>" +
+        "</div>"+
+        "</div>";
+        return markup;
+
+    }
+    function formatSchoolSelection(school){
+        var markup =  school.text;
+        return markup;
+    }
 
 });
 
-
-$("#fecha").inputmask("y-m-d", {
-    "placeholder": "yyyy-mm-dd"
-});
 </script>
 @stop
 
-@section('plugins-styles')
-{!! Html::style(asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')) !!}
-{!! Html::style(asset('assets/global/plugins/icheck/skins/all.css')) !!}
-{!! Html::style(asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')) !!}
-@stop
-@section('plugins-js')
-{!! Html::script(asset('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')) !!}
-{!! Html::script(asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')) !!}
-{!! Html::script(asset('assets/global/plugins/icheck/icheck.min.js')) !!}
-{!! Html::script(asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')) !!}
-@stop

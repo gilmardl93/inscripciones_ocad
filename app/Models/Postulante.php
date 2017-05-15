@@ -12,7 +12,7 @@ class Postulante extends Model
     protected $table = 'postulante';
     protected $fillable = ['idevaluacion', 'codigo','codigo_verificacion','paterno','materno','nombres','idtipoidentificacion',
             'numero_identificacion','email','talla','peso','idsexo','telefono_celular','telefono_fijo','telefono_varios',
-            'idespecialidad','idpais','idubigeo','direccion','idcolegio',
+            'idmodalidad','idespecialidad','idmodalidad2','idespecialidad2','idpais','idubigeo','direccion','idcolegio','iduniversidad',
             'fecha_nacimiento','idpaisnacimiento','idubigeonacimiento',
             'idubigeoprovincia','direccion_provincia','telefono_provincia',
             'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha',

@@ -29,6 +29,13 @@ class Catalogo extends Model
 						 ->where('nombre',$NameSubTable)
 						 ->where('activo',1)->lists('id')[0];
 	}
+	#--------------------------------------------------------------------
+	public function scopeIdCatalogoCodigo($cadenaSQL,$NameTable,$codigo){
+		$idtable=$this->Maestro($NameTable);
+		return $cadenaSQL->where('idtable',$idtable)
+						 ->where('codigo',$codigo)
+						 ->where('activo',1)->pluck('id')[0];
+	}
 	 #--------------------------------------------------------------------
     public function scopeTable($cadenaSQL,$NameTable){
         $NameTable = strtoupper($NameTable);

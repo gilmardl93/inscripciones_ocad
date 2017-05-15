@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\ViewComposers\AulasActivasSelectData;
 use App\Http\ViewComposers\ControlSelectData;
 use App\Http\ViewComposers\EspecialidadSelectData;
+use App\Http\ViewComposers\ModalidadSelectData;
 use App\Http\ViewComposers\PaisSelectData;
 use App\Http\ViewComposers\RoleSelectData;
 use Illuminate\Support\ServiceProvider;
@@ -21,6 +22,10 @@ class ViewServiceProvider extends ServiceProvider
         $this->app->make('view')->composer(
             ['datos.personal.index','datos.personal.edit'],
             ControlSelectData::class
+            );
+        $this->app->make('view')->composer(
+            ['datos.personal.index','datos.personal.edit'],
+            ModalidadSelectData::class
             );
         $this->app->make('view')->composer(
             ['datos.personal.index','datos.personal.edit'],

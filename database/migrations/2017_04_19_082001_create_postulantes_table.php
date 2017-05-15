@@ -30,11 +30,15 @@ class CreatePostulantesTable extends Migration
             $table->string('telefono_celular',30)->nullable();
             $table->string('telefono_fijo',30)->nullable();
             $table->string('telefono_varios',30)->nullable();
+            $table->integer('idmodalidad')->nullable();
             $table->integer('idespecialidad')->nullable();
+            $table->integer('idmodalidad2')->nullable();
+            $table->integer('idespecialidad2')->nullable();
             $table->integer('idpais')->nullable();
             $table->integer('idubigeo')->nullable();
             $table->string('direccion')->nullable();
             $table->integer('idcolegio')->nullable();
+            $table->integer('iduniversidad')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->integer('idpaisnacimiento')->nullable();
             $table->integer('idubigeonacimiento')->nullable();

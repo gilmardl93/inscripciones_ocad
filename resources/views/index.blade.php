@@ -13,11 +13,11 @@
             </div>
         </div>
         <div class="portlet-body overflow-h">
-            Inicia tu Inscripción ahora:
+            Para realizar tu inscripción deberas seguir los siguientes pasos:
             <ol>
                 <li>Datos: Registrar datos del participante (no del apoderado)</li>
                 <li>Pagos: imprimir tu formato de pago para realizar el pago en el banco Scotiabak</li>
-                <li>Ficha: imprimri tu ficha de inscripción despues de realizar el pago</li>
+                <li>Ficha: imprimir tu ficha de inscripción despues de realizar el pago</li>
             </ol>
         </div>
     </div>

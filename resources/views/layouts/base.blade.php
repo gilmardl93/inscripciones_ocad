@@ -24,6 +24,8 @@
         <!-- END THEME LAYOUT STYLES -->
         <link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+
+
         @include('layouts.partials.styles-plugins')
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
