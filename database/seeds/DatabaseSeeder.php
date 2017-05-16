@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EvaluacionTableSeeder::class);
         $this->call(AulaTableSeeder::class);
         $this->call(SecuenciaTableSeeder::class);
+        $this->call(ModalidadTableSeeder::class);
 
         Model::reguard();
     }

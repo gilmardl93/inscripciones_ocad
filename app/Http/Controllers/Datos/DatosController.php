@@ -14,12 +14,7 @@ class DatosController extends Controller
 {
     public function index()
     {
-    	$dni = Auth::user()->dni;
-    	$id = Auth::user()->id;
-    	$postulante = Postulante::where('idusuario',$id)->first();
-
-    	if(is_null($postulante))return view('datos.index',compact('dni'));
-    	else return view('datos.edit',compact('postulante'));
+        return view('datos.index');
     }
     public function store(UpdateDatosRequest $request)
     {

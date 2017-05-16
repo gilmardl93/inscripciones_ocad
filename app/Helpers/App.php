@@ -40,6 +40,16 @@ if (! function_exists('NameCatalogo')) {
         return $role->nombres;
     }
 }
+if (! function_exists('IdTCCodigo')) {
+    /**
+     * Funcion que retorna el prefijo para nombres de archivos
+     * @return [type] [description]
+     */
+    function IdTCCodigo($table,$codigo)
+    {
+        return Catalogo::IdCatalogoCodigo($table,$codigo);
+    }
+}
 
 if (! function_exists('SiNo')) {
     /**
