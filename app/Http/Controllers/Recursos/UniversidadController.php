@@ -35,6 +35,9 @@ class UniversidadController extends Controller
         #Valido la modalidad para restringir la UNI a los Titulado o Graduado en la UNI
         $idmodalidad = $request->varidmodalidad;
         $modalidad = Modalidad::find($idmodalidad);
+
+        $cond = '<>';
+        $coduni = 'TODAS';
         if ($modalidad->codigo == 'E1TG') { $coduni= 'UNI'; $cond = '<>';}
         if ($modalidad->codigo == 'E1TGU') { $coduni= 'UNI'; $cond = '='; $name = '';}
 

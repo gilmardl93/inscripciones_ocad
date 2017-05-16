@@ -192,6 +192,11 @@ return [
          * Macros para formularios
          */
         App\Providers\MacroServiceProvider::class,
+        /**
+         * Reglas de validacion personalizadas
+         */
+        App\Providers\RulesServiceProvider::class,
+
     ],
 
     /*
