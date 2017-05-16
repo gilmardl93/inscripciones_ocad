@@ -117,6 +117,7 @@ return [
         'iduniversidad'=>'Universidad',
         'direccion'=>'Direccion',
         'idubigeonacimiento'=>'Distrito de nacimiento',
+        'codigo_verificacion'=>'codigo de verificacion',
 
 
     ],

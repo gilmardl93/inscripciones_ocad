@@ -26,13 +26,20 @@ class DatosPersonalesRequest extends FormRequest
     {
         $swco = $request->input('idcolegio');
         $swun = $request->input('iduniversidad');
-
+        $idmodalidad = $request->input('idmodalidad');
+        $idmodalidad2 = $request->input('idmodalidad2');
+        $especialidad2 = $request->input('idespecialidad2');
+        $codigo = $request->input('codigo_verificacion');
         return [
             'paterno'=>'required',
             'materno'=>'required',
             'nombres'=>'required',
-            'idmodalidad'=>'required|required_ie:'.$swco.','.$swun,
+            'idmodalidad'=>'required|required_ie:'.$swco.','.$swun.
+                           '|required_mod_cepre:'.$idmodalidad2.
+                           '|required_cod_cepre:'.$codigo.
+                           '|required_esp_cepre:'.$especialidad2,
             'idespecialidad'=>'required',
+            'codigo_verificacion'=>'max:10|valida_cod_cepre:'.$idmodalidad,
         ];
     }
 }

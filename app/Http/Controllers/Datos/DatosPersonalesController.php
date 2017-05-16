@@ -50,8 +50,8 @@ class DatosPersonalesController extends Controller
         $data['fecha_registro'] = $date;
 
         Postulante::create($data);
-        Alert::success('se registro sus datos con exito');
-        return redirect()->route('datos.index');
+        Alert::success('se registro sus datos con exito, puede proceder a imprimir su formato de pago');
+        return redirect()->route('home.index');
     }
 
     /**
@@ -83,7 +83,7 @@ class DatosPersonalesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DatosPersonalesRequest $request, $id)
     {
         $data = $this->AnulaModalidad2($request);
 

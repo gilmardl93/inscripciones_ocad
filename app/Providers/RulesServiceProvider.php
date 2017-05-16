@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Modalidad;
+use App\Models\Validacion;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +17,10 @@ class RulesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->RequiredSchool();
+        $this->RequiredCodCepre();
+        $this->RequiredModCepre();
+        $this->RequiredEspCepre();
+        $this->ValidaCodeCepre();
     }
 
     /**
@@ -48,4 +53,90 @@ class RulesServiceProvider extends ServiceProvider
             return $retval;
         },"No escogio institución educativa $retmsj");
     }
+    /**
+     * Valido la institucion educativa que requiere la modalidad
+     */
+    public function ValidaCodeCepre()
+    {
+
+        Validator::extend('valida_cod_cepre', function ($attribute, $value, $parameters, $validator)  {
+
+            $modalidad = Modalidad::find($parameters[0]);
+            if ($modalidad->codigo =='ID-CEPRE') {
+                $cepre = Validacion::where('codigo',$value)->Activos()->first();
+                return !is_null($cepre);
+            } else {
+                return true;
+            }
+
+
+        },"No existe este codigo de cepreuni");
+    }
+    /**
+     * Valido si se ha escogido la segunda modalidad
+     */
+    public function RequiredModCepre()
+    {
+
+        Validator::extend('required_mod_cepre', function ($attribute, $value, $parameters, $validator)  {
+
+            $modalidad1 = Modalidad::find($value);
+            $modalidad2 = Modalidad::find($parameters[0]);
+
+            $retVal = true;
+            if ($modalidad1->codigo =='ID-CEPRE') {
+                return !is_null($modalidad2);
+            } else {
+                $retVal = true;
+            }
+
+            return $retVal;
+
+        },"No escogio su segunda modalidad");
+    }
+    /**
+     * Valido si ha ingresado el codigo
+     */
+    public function RequiredCodCepre()
+    {
+
+        Validator::extend('required_cod_cepre', function ($attribute, $value, $parameters, $validator)  {
+
+            $modalidad1 = Modalidad::find($value);
+
+            $retVal = true;
+            if ($modalidad1->codigo =='ID-CEPRE') {
+                return !is_null($parameters[0]);
+            } else {
+                $retVal = true;
+            }
+
+            return $retVal;
+
+        },"El codigo de cepre UNI es obligatorio");
+    }
+    /**
+     * Valido si ha ingresado la segunda especialidad
+     */
+    public function RequiredEspCepre()
+    {
+
+        Validator::extend('required_esp_cepre', function ($attribute, $value, $parameters, $validator)  {
+
+            $modalidad1 = Modalidad::find($value);
+
+            $retVal = true;
+            if ($modalidad1->codigo =='ID-CEPRE') {
+                return !is_null($parameters[0]);
+            } else {
+                $retVal = true;
+            }
+
+            return $retVal;
+
+        },"No escogio su segunda especialidad");
+    }
+
+
+
 }
