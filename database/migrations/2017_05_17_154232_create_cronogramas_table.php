@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEvaluacionsTable extends Migration
+class CreateCronogramasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class CreateEvaluacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('evaluacion', function (Blueprint $table) {
+        Schema::create('cronograma', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo',6)->nullable();
-            $table->string('nombre',50)->nullable();
-            $table->string('descripcion',100)->nullable();
+            $table->string('codigo',4)->nullable();
+            $table->string('nombre')->nullable();
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
-            $table->date('fecha_inicio_extemporaneo')->nullable();
-            $table->date('fecha_fin_extemporaneo')->nullable();
             $table->boolean('activo')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -34,6 +30,6 @@ class CreateEvaluacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluacion');
+        Schema::dropIfExists('cronograma');
     }
 }

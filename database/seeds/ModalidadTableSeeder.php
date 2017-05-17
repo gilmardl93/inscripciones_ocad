@@ -28,7 +28,7 @@ class ModalidadTableSeeder extends Seeder
         Modalidad::create(['codigo' => 'E1PDC','nombre'=>'EXTRAORDINARIO1 - PERSONAS CON DISCAPACIDAD (continuar estudios)','modalidad2'=>'ID-CEPRE','colegio'=>false]);
         Modalidad::create(['codigo' => 'E1TI','nombre'=>'EXTRAORDINARIO1 - TRASLADO INTERNO','modalidad2'=>'ID-CEPRE','colegio'=>false]);
         Modalidad::create(['codigo' => 'ID-CEPRE','nombre'=>'EXTRAORDINARIO2 – INGRESO DIRECTO CEPRE','colegio'=>true]);
-        Modalidad::create(['codigo' => 'IEN-UNI','nombre'=>'EXTRAORDINARIO2 – INGRESO ESCOLAR NACIONAL','colegio'=>true]);
+        Modalidad::create(['codigo' => 'IEN-UNI','nombre'=>'EXTRAORDINARIO2 – INGRESO ESCOLAR NACIONAL','colegio'=>false]);
 
 
     }

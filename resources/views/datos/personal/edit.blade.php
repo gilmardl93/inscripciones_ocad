@@ -63,12 +63,16 @@
                     </div><!--row-->
                 </div>
             <h3>Institucion de educativa del postulante</h3>
+                <dl>
+                    <dt>Observación</dt>
+                    <dd>Queda bajo responsabilidad del postulante seleccionar la institución educativa de donde procede, todo cambio de colegio incurrira en un nuevo pago si lugar a reembolso Art. 13 reglamento de admisión</dd>
+                </dl>
                 <div class="row">
                     <div class="col-md-6 Colegio">
-                            {!!Field::select('idcolegio',ColegioPersonal($postulante->idcolegio),['label'=>'Escoger Colegio']);!!}
+                            {!!Field::select('idcolegio',null,['label'=>'Escoger Colegio']);!!}
                     </div><!--span-->
                     <div class="col-md-6 Universidad">
-                        {!!Field::select('iduniversidad',null,['label'=>'Escoger Universisad']);!!}
+                        {!!Field::select('iduniversidad',null,['label'=>'Escoger Universidad']);!!}
                     </div><!--span-->
                 </div><!--row-->
             {!!Form::enviar('Guardar')!!}
@@ -82,7 +86,7 @@
 @section('js-scripts')
 <script>
 $(function() {
-
+$(".Colegio").hide();
 $(".Universidad").hide();
 $(".cepreuni").hide();
 
@@ -171,8 +175,10 @@ $(".cepreuni").hide();
             dataType: 'json',
             delay: 250,
             data: function(params) {
+                var idmodalidad = $('#idmodalidad').val();
                 return {
-                    varuni: params.term // search term
+                    varuni: params.term, // search term
+                    varidmodalidad: idmodalidad,
                 };
             },
             processResults: function(data) {

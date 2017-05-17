@@ -12,7 +12,15 @@ class EvaluacionTableSeeder extends Seeder
      */
     public function run()
     {
-        Evaluacion::create(['codigo' => '2017-2','nombre' => 'CONCURSO DE ADMISION 2017-2', 'descripcion' => 'CONCURSO DE ADMISION 2017-2','fecha_inicio'=>'2017-04-17','fecha_fin'=>'2017-05-31','activo'=>true]);
+        Evaluacion::create([
+        	'codigo' => '2017-2',
+        	'nombre' => 'CONCURSO DE ADMISION 2017-2',
+        	'descripcion' => 'CONCURSO DE ADMISION 2017-2',
+        	'fecha_inicio'=>'2017-04-17',
+        	'fecha_fin'=>'2017-08-01',
+        	'fecha_inicio_extemporaneo'=>'2017-08-02',
+        	'fecha_fin_extemporaneo'=>'2017-08-03',
+        	'activo'=>true]);
 
     }
 }

@@ -63,6 +63,10 @@
                     </div><!--row-->
                 </div>
             <h3>Institucion de educativa del postulante</h3>
+                <dl>
+                    <dt>Observación</dt>
+                    <dd>Queda bajo responsabilidad del postulante seleccionar la institución educativa de donde procede, todo cambio de colegio incurrira en un nuevo pago si lugar a reembolso Art. 13 reglamento de admisión</dd>
+                </dl>
                 <div class="row">
                     <div class="col-md-6 Colegio">
                             {!!Field::select('idcolegio',null,['label'=>'Escoger Colegio']);!!}

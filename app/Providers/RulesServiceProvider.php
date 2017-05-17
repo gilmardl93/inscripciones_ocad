@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Cronograma;
 use App\Models\Modalidad;
 use App\Models\Validacion;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
-
 class RulesServiceProvider extends ServiceProvider
 {
     /**
@@ -21,6 +22,7 @@ class RulesServiceProvider extends ServiceProvider
         $this->RequiredModCepre();
         $this->RequiredEspCepre();
         $this->ValidaCodeCepre();
+        $this->ValidaFechaInscripcion();
     }
 
     /**
@@ -31,6 +33,20 @@ class RulesServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+    /**
+     * Valido la institucion educativa que requiere la modalidad
+     */
+    public function ValidaFechaInscripcion()
+    {
+        Validator::extend('fecha_ins', function ($attribute, $value, $parameters, $validator) {
+            $date = Carbon::now()->toDateString();
+            $fecha_inicio = Cronograma::FechaInicio('INSC');
+            $fecha_fin = Cronograma::FechaFin('INEX');
+
+            if($date>=$fecha_inicio && $date<=$fecha_fin) return true;
+            return false;
+        },"No esta habilitada la inscripción");
     }
     /**
      * Valido la institucion educativa que requiere la modalidad

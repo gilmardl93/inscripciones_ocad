@@ -2,7 +2,8 @@
 Route::group(['middleware'=>'auth','namespace'=>'Pago'], function() {
 
 	Route::get('pagos/{id?}','PagoController@index')->name('pagos.index');
-	Route::get('pagos-pdf/{id?}','PagoController@pdf')->name('pagos.pdf');
+	Route::get('formato/{servicio}/{id?}','PagoController@formato')->name('pagos.formato');
+	Route::get('pagos-pdf/{servicio}/{id?}','PagoController@pdf')->name('pagos.pdf');
 
 });
 

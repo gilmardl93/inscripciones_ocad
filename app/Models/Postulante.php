@@ -17,7 +17,25 @@ class Postulante extends Model
             'idubigeoprovincia','direccion_provincia','telefono_provincia',
             'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha',
             'idaula','anulado','datos_ok','fecha_registro','idusuario'];
+    /**
+    * Atributos Gestion IE
+    */
+    public function getGestionIeAttribute()
+    {
+        $modalidad = Modalidad::find($this->idmodalidad);
+        if ($modalidad->colegio) $ie = Colegio::find($this->idcolegio);
+        else $ie = Universidad::find($this->iduniversidad);
 
+        return $ie->gestion;
+    }
+    /**
+    * Atributos Codigo Modalidad
+    */
+    public function getCodigoModalidadAttribute()
+    {
+        $modalidad = Modalidad::find($this->idmodalidad);
+        return $modalidad->codigo;
+    }
     /**
     * Atributos Ha Pagado
     */
@@ -59,6 +77,29 @@ class Postulante extends Model
     public function getCodigoEspecialidadAttribute()
     {
         $especialidad = Especialidad::find($this->idespecialidad);
+        return $especialidad->codigo;
+    }
+    /**
+    * Atributos Nombre Segunda Especialidad
+    */
+    public function getNombreEspecialidad2Attribute()
+    {
+        $especialidad = Especialidad::find($this->idespecialidad2);
+        if(!isset($especialidad)){
+            $especialidad = new Especialidad(['nombre'=>'---']);
+        }
+
+        return $especialidad->nombre;
+    }
+    /**
+    * Atributos Codigo Segunda Especialidad
+    */
+    public function getCodigoEspecialidad2Attribute()
+    {
+        $especialidad = Especialidad::find($this->idespecialidad2);
+        if(!isset($especialidad)){
+            $especialidad = new Especialidad(['codigo'=>'---']);
+        }
         return $especialidad->codigo;
     }
     /**
