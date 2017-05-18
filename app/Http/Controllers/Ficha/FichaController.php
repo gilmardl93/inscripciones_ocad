@@ -13,8 +13,8 @@ class FichaController extends Controller
     public function index($id = null)
     {
         $postulante = Postulante::Usuario()->first();
-        if(isset($postulante) && $postulante->foto_estado!='ACEPTADO')
-            Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
+        #if(isset($postulante) && $postulante->foto_estado!='ACEPTADO')
+        #    Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
 
     	return view('ficha.index',compact('id'));
     }
@@ -27,7 +27,8 @@ class FichaController extends Controller
         }
 
         $evaluacion = Evaluacion::Activo()->first();
-        if(isset($postulante) && $postulante->foto_estado=='ACEPTADO'){
+        #if(isset($postulante) && $postulante->foto_estado=='ACEPTADO'){
+        if(true){
 
             PDF::SetTitle('FICHA DE INSCRIPCION');
             PDF::AddPage('U','A4');
