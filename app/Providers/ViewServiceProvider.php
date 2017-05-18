@@ -8,6 +8,7 @@ use App\Http\ViewComposers\EspecialidadSelectData;
 use App\Http\ViewComposers\ModalidadSelectData;
 use App\Http\ViewComposers\PaisSelectData;
 use App\Http\ViewComposers\RoleSelectData;
+use App\Http\ViewComposers\SexoSelectData;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
@@ -36,11 +37,15 @@ class ViewServiceProvider extends ServiceProvider
             RoleSelectData::class
             );
         $this->app->make('view')->composer(
+            ['datos.secundarios.index'],
+            SexoSelectData::class
+            );
+        $this->app->make('view')->composer(
             ['admin.aulas.activas'],
             AulasActivasSelectData::class
             );
         $this->app->make('view')->composer(
-            ['admin.colegio.index','datos.personal.index','datos.personal.edit'],
+            ['admin.colegio.index','datos.personal.index','datos.personal.edit','datos.secundarios.index'],
             PaisSelectData::class
             );
     }

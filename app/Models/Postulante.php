@@ -18,6 +18,14 @@ class Postulante extends Model
             'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha',
             'idaula','anulado','datos_ok','fecha_registro','idusuario'];
     /**
+    * Atributos Foto
+    */
+    public function getFotoAttribute()
+    {
+        if(is_null($this->foto_editada)) return $this->foto_cargada;
+        else return $this->foto_editada;
+    }
+    /**
     * Atributos Gestion IE
     */
     public function getGestionIeAttribute()
@@ -243,9 +251,9 @@ class Postulante extends Model
     /**
      * Atributos Foto
      */
-    public function setFotoAttribute($value)
+    public function setFotoCargadaAttribute($value)
     {
-        $this->attributes['foto'] = $value;
+        $this->attributes['foto_cargada'] = $value;
         if (Auth::user()->idrole == IdRole('alum')) {
             User::where('id',Auth::user()->id)->update(['foto'=>$value]);
         }

@@ -8,7 +8,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">DATOS PERSONALES DEL PARTICIPANTE (NO DEL APODERADO)</span>
+                <span class="caption-subject theme-font bold uppercase">DATOS PERSONALES DEL PARTICIPANTE </span>
             </div>
             <div class="actions">
                 {!!Form::back(route('home.index'))!!}
@@ -24,9 +24,24 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <span>Datos</span>
+                        <span>Preinscripción</span>
                     </div>
-                    <div class="desc"> Datos del postulante </div>
+                    <div class="desc"> Datos, modalidad del postulante </div>
+                </div>
+            </a>
+        </div>
+        @if ($swp)
+
+        <div class="col-md-3">
+            <a class="dashboard-stat dashboard-stat-v2 purple" href="{{ route('datos.secundarios.index') }}">
+                <div class="visual">
+                    <i class="fa fa-comments"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span>Datos personales</span>
+                    </div>
+                    <div class="desc"> Datos personales del postulante </div>
                 </div>
             </a>
         </div>
@@ -44,19 +59,6 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a class="dashboard-stat dashboard-stat-v2 purple" href="{{ route('datos.modalidad.index') }}">
-                <div class="visual">
-                    <i class="fa fa-comments"></i>
-                </div>
-                <div class="details">
-                    <div class="number">
-                        <span>Modalidad</span>
-                    </div>
-                    <div class="desc"> Modalidad y colegio del postulante </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-3">
             <a class="dashboard-stat dashboard-stat-v2 green" href="{{ route('datos.complementarios.index') }}">
                 <div class="visual">
                     <i class="fa fa-comments"></i>
@@ -69,6 +71,7 @@
                 </div>
             </a>
         </div>
+        @endif
 
         </div>
     </div>

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
+use App\Models\Postulante;
+use App\Models\Proceso;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,8 +15,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\AfterUpdatingDataPersonal' => [
+            'App\Listeners\RecordSecondaryData'
+        ],
+        'App\Events\AfterUpdatingDataFamily' => [
+            'App\Listeners\RecordFamilyData'
+        ],
+        'App\Events\AfterUpdatingDataQuiz' => [
+            'App\Listeners\RecordQuizData'
         ],
     ];
 
@@ -27,6 +35,15 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        /**
+         * Indica al sistema que se lleno los datos de preinscripcion
+         */
+        Postulante::created(function($postulante){
+            $proceso = new Proceso;
+            $proceso->idpostulante = $postulante->id;
+            $proceso->preinscripcion = true;
+            $proceso->save();
+        });
+
     }
 }

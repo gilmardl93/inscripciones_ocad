@@ -14,7 +14,9 @@ class DatosController extends Controller
 {
     public function index()
     {
-        return view('datos.index');
+        $postulante = Postulante::Usuario()->first();
+        $swp = !is_null($postulante);
+        return view('datos.index',compact('swp'));
     }
     public function store(UpdateDatosRequest $request)
     {
