@@ -118,7 +118,14 @@ return [
         'direccion'=>'Direccion',
         'idubigeonacimiento'=>'Distrito de nacimiento',
         'codigo_verificacion'=>'codigo de verificacion',
-
+        'idrazon'=>'razon principal',
+        'idtipopreparacion'=>'tipo de preparacion',
+        'mes'=>'mes',
+        'idacademia'=>'academia',
+        'numeroveces'=>'numero de veces',
+        'idrenuncia'=>'renuncia',
+        'idingresoeconomico'=>'ingreso economico',
+        'idpublicidad'=>'publicidad',
 
     ],
 

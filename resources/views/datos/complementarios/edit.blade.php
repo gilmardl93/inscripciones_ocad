@@ -2,7 +2,7 @@
 
 @section('content')
 @include('alerts.errors')
-{!! Form::open(['route'=>'datos.complementarios.store','method'=>'POST','files'=>true]) !!}
+{!! Form::model($complementarios,['route'=>['datos.complementarios.update',$complementarios],'method'=>'PUT','files'=>true]) !!}
 <div class="col-md-12">
     <!-- BEGIN PORTLET-->
     <div class="portlet light tasks-widget widget-comments">
@@ -16,7 +16,6 @@
         </div>
         <div class="form-body ">
             <div class="row">
-                {!!Form::hidden('idpostulante', $postulante->id );!!}
                 <div class="col-md-12">
                     {!!Field::select('idrazon',$razon, ['label'=>'¿Cual de las siguientes alternativas fue la razon principal en la eleccion de la especialidad de su primera prioridad de ingreso?','empty'=>'Selecionar']);!!}
                 </div><!--span-->

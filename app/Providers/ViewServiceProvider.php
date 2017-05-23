@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\ViewComposers\AulasActivasSelectData;
+use App\Http\ViewComposers\ComplementarioSelectData;
 use App\Http\ViewComposers\ControlSelectData;
 use App\Http\ViewComposers\EspecialidadSelectData;
 use App\Http\ViewComposers\ModalidadSelectData;
@@ -29,16 +30,20 @@ class ViewServiceProvider extends ServiceProvider
             ModalidadSelectData::class
             );
         $this->app->make('view')->composer(
-            ['datos.personal.index','datos.personal.edit'],
+            ['datos.personal.index','datos.personal.edit','datos.complementarios.index','datos.complementarios.edit'],
             EspecialidadSelectData::class
-            );
-        $this->app->make('view')->composer(
-            ['admin.users.index','admin.users.edit','admin.users.delete'],
-            RoleSelectData::class
             );
         $this->app->make('view')->composer(
             ['datos.secundarios.index'],
             SexoSelectData::class
+            );
+        $this->app->make('view')->composer(
+            ['datos.complementarios.index','datos.complementarios.edit'],
+            ComplementarioSelectData::class
+            );
+        $this->app->make('view')->composer(
+            ['admin.users.index','admin.users.edit','admin.users.delete'],
+            RoleSelectData::class
             );
         $this->app->make('view')->composer(
             ['admin.aulas.activas'],
