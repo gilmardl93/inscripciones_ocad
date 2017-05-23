@@ -38,7 +38,7 @@ class UniversidadController extends Controller
 
         $cond = '<>';
         $coduni = 'TODAS';
-        if ($modalidad->codigo == 'E1TG') { $coduni= 'UNI'; $cond = '<>';}
+        if (str_contains($modalidad->codigo,['E1TG','E1TE'])) { $coduni= 'UNI'; $cond = '<>';}
         if ($modalidad->codigo == 'E1TGU') { $coduni= 'UNI'; $cond = '='; $name = '';}
 
 

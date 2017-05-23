@@ -69,10 +69,10 @@
                 </dl>
                 <div class="row">
                     <div class="col-md-6 Colegio">
-                            {!!Field::select('idcolegio',null,['label'=>'Escoger Colegio']);!!}
+                            {!!Field::select('idcolegio',ColegioPersonal($postulante->idcolegio),['label'=>'Escoger Colegio']);!!}
                     </div><!--span-->
                     <div class="col-md-6 Universidad">
-                        {!!Field::select('iduniversidad',null,['label'=>'Escoger Universidad']);!!}
+                        {!!Field::select('iduniversidad',UniversidadPersonal($postulante->idcolegio),['label'=>'Escoger Universidad']);!!}
                     </div><!--span-->
                 </div><!--row-->
             {!!Form::enviar('Guardar')!!}
@@ -90,8 +90,22 @@ $(".Colegio").hide();
 $(".Universidad").hide();
 $(".cepreuni").hide();
 
+    SelectModalidad($('#idmodalidad').val());
+
+
+
     $("#idmodalidad").click(function(event) {
         var idmodalidad = $(this).val();
+        SelectModalidad(idmodalidad);
+
+    });
+    $("#idmodalidad2").click(function(event) {
+        var idmodalidad = $(this).val();
+        SelectModalidad(idmodalidad);
+
+    });
+
+    function SelectModalidad(idmodalidad) {
         $.ajax({
             url: 'info-modalidad',
             dataType: 'json',
@@ -115,28 +129,7 @@ $(".cepreuni").hide();
 
 
         });
-
-    });
-    $("#idmodalidad2").click(function(event) {
-        var idmodalidad = $(this).val();
-        $.ajax({
-            url: 'info-modalidad',
-            dataType: 'json',
-            data: {idmodalidad: idmodalidad},
-        })
-        .done(function(modalidad) {
-            /*Muestra Colegio o universidad segun la modalidad correspondiente*/
-            if (modalidad.colegio) {
-                $(".Colegio").show();
-                $(".Universidad").hide();
-            }else{
-                $(".Colegio").hide();
-                $(".Universidad").show();
-            }
-
-        });
-
-    });
+    }
 
     $("#idcolegio").select2({
         width:'auto',
