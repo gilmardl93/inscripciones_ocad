@@ -3,18 +3,12 @@
 namespace App\Http\Controllers\Recursos;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pais;
 use App\Models\Ubigeo;
 use Illuminate\Http\Request;
 
 class UbigeoController extends Controller
 {
-    public function index()
-    {
-
-    	$ubigeo = Ubigeo::where('descripcion','like','%LIMA%')->get();
-    	dd($ubigeo->toArray());
-
-    }
     /**
      * Devuelve el Ubigeo
      * @return [type] [description]
@@ -24,7 +18,16 @@ class UbigeoController extends Controller
         $name = $request->varsearch ?:'';
         $name = trim(strtoupper($name));
 
-        $ubigeo = Ubigeo::Obtener($name)->get();
-        return $ubigeo;
+        return Ubigeo::Obtener($name)->get();
+    }
+    /**
+     * Devuelve datos de Pais
+     * @return [type] [description]
+     */
+    public function pais(Request $request)
+    {
+        $idpais = $request->varsearch ?:'1';
+
+        return Pais::find($idpais);
     }
 }

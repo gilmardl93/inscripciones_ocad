@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\AfterUpdatingDataFamily;
+use App\Models\Proceso;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 

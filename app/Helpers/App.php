@@ -4,8 +4,20 @@ use App\Models\Catalogo;
 use App\Models\Colegio;
 use App\Models\Evaluacion;
 use App\Models\Mensaje;
+use App\Models\Postulante;
 use App\Models\Ubigeo;
 use App\Models\Universidad;
+if (! function_exists('IdPostulante')) {
+    /**
+     * Funcion que retorna el prefijo para nombres de archivos
+     * @return [type] [description]
+     */
+    function IdPostulante()
+    {
+        $postulante = Postulante::Usuario()->first();
+        return $postulante->id;
+    }
+}
 if (! function_exists('IdEvaluacion')) {
 	/**
 	 * Funcion que retorna el prefijo para nombres de archivos

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Datos;
 
+use App\Events\AfterUpdatingDataQuiz;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateComplementarioRequest;
 use App\Models\Complementario;
@@ -18,15 +19,17 @@ class DatosComplementariosController extends Controller
      */
     public function index()
     {
-        $postulante = Postulante::Usuario()->first();
-        $complementarios = Complementario::where('idpostulante',$postulante->id)->first();
-
-        if($complementarios->count()<1)return view('datos.complementarios.index',compact('postulante'));
+        $complementarios = Complementario::where('idpostulante',IdPostulante())->first();
+        if(is_null($complementarios))return view('datos.complementarios.index',compact('postulante'));
         return view('datos.complementarios.edit',compact('complementarios'));
     }
     public function store(CreateComplementarioRequest $request)
     {
-        Complementario::create($request->all());
+        $sw = Complementario::create($request->all());
+        if ($sw) {
+            $postulante = Postulante::find(IdPostulante());
+            event(new AfterUpdatingDataQuiz($postulante));
+        }
         Alert::success('Se registro sus datos con exito');
         return redirect()->route('datos.index');
     }

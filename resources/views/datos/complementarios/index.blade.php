@@ -16,7 +16,7 @@
         </div>
         <div class="form-body ">
             <div class="row">
-                {!!Form::hidden('idpostulante', $postulante->id );!!}
+                {!!Form::hidden('idpostulante', IdPostulante() );!!}
                 <div class="col-md-12">
                     {!!Field::select('idrazon',$razon, ['label'=>'¿Cual de las siguientes alternativas fue la razon principal en la eleccion de la especialidad de su primera prioridad de ingreso?','empty'=>'Selecionar']);!!}
                 </div><!--span-->
@@ -36,7 +36,7 @@
                             {!!Form::label('lblEnc2', 'Tiempo Preparación (meses):',['class'=>'pull-right']);!!}
                             </div><!--span-->
                             <div class="col-md-2">
-                            {!!Form::text('mes', null , ['class'=>'form-control','placeholder'=>'Meses']);!!}
+                            {!!Form::text('mes', 0 , ['class'=>'form-control','placeholder'=>'Meses']);!!}
                             </div><!--span-->
                         </div><!--row-->
                         <div class="row">

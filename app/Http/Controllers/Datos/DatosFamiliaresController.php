@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Datos;
 
+use App\Events\AfterUpdatingDataFamily;
 use App\Http\Controllers\Controller;
 use App\Models\Familiar;
 use App\Models\Postulante;
@@ -26,16 +27,6 @@ class DatosFamiliaresController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -44,7 +35,8 @@ class DatosFamiliaresController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        Familiar::insert([
+
+        $sw = Familiar::insert([
                 [
                 'idpostulante'=>$data['idpostulante'],
                 'paterno'=>$data['paterno'][0],
@@ -82,6 +74,10 @@ class DatosFamiliaresController extends Controller
                 'orden'=>$data['orden'][2]
                 ]
             ]);
+        if ($sw) {
+        $postulante = Postulante::find($data['idpostulante']);
+            event(new AfterUpdatingDataFamily($postulante));
+        }
         Alert::success('Se actualizaron sus datos con exito');
         return redirect()->route('datos.index');
     }

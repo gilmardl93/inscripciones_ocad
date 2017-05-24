@@ -2,15 +2,18 @@
 
 namespace App\Events;
 
+use App\Models\Postulante;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Queue\SerializesModels;
 
 class AfterUpdatingDataQuiz
 {
+    public $Postulante;
+
     use InteractsWithSockets, SerializesModels;
 
     /**
@@ -18,9 +21,10 @@ class AfterUpdatingDataQuiz
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Postulante $postulante)
     {
         //
+        $this->Postulante = $postulante;
     }
 
     /**

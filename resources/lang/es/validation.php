@@ -112,6 +112,7 @@ return [
         'idmodalidad'=>'Modalidad',
         'idespecialidad'=>'Especialidad',
         'idpais'=>'Pais',
+        'idpaisnacimiento'=>'Pais nacimiento',
         'idubigeo'=>'Distrito',
         'idcolegio'=>'Colegio',
         'iduniversidad'=>'Universidad',
