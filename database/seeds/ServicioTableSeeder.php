@@ -48,7 +48,5 @@ class ServicioTableSeeder extends Seeder
         Servicio::create(['codigo' => '532','descripcion'=>'ING.DIR.ESC.PRI.LIMA-CALL.SEMIB','banco'=>'ScotiaBank','monto'=>275,'activo'=>true]);
         Servicio::create(['codigo' => '533','descripcion'=>'ING.DIR.ESC.EST.PROV.SEMIB','banco'=>'ScotiaBank','monto'=>150,'activo'=>true]);
         Servicio::create(['codigo' => '534','descripcion'=>'ING.DIR.ESC.PRI.PROV.SEMIB','banco'=>'ScotiaBank','monto'=>200,'activo'=>true]);
-
-
     }
 }

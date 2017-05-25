@@ -91,7 +91,7 @@ class PagoController extends Controller
         PDF::SetXY(18,78);
         PDF::Cell(123,0,"2. Verificar que el nombre sea del participante no del apoderado o de quien pague.",0,0,'L');
 
-        PDF::Output(public_path('storage/tmp/').'FormatoPago'.$postulante->dni.'.pdf','FI');
+        PDF::Output(public_path('storage/tmp/').'FormatoPago_'.$servicio->codigo.'_'.$postulante->numero_identificacion.'.pdf','FI');
         }//fin if
     }
     public function CalculoServicios($id = null)

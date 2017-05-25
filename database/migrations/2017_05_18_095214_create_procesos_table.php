@@ -16,10 +16,10 @@ class CreateProcesosTable extends Migration
         Schema::create('proceso', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idpostulante')->nullable();
-            $table->boolean('preinscripcion')->nullable();
-            $table->boolean('datos_personales')->nullable();
-            $table->boolean('datos_familiares')->nullable();
-            $table->boolean('encuesta')->nullable();
+            $table->boolean('preinscripcion')->default(false);
+            $table->boolean('datos_personales')->default(false);
+            $table->boolean('datos_familiares')->default(false);
+            $table->boolean('encuesta')->default(false);
             $table->foreign('idpostulante')->references('id')->on('postulante');
         });
     }

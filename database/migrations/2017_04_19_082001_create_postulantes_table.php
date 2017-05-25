@@ -50,7 +50,10 @@ class CreatePostulantesTable extends Migration
             $table->string('foto_rechazada',200)->nullable();
             $table->string('foto_estado',200)->default('SIN FOTO');
             $table->date('foto_fecha')->nullable();
-            $table->integer('idaula')->nullable();
+            $table->integer('idaula1')->nullable();
+            $table->integer('idaula2')->nullable();
+            $table->integer('idaula3')->nullable();
+            $table->integer('idaulavoca')->nullable();
             $table->boolean('anulado')->default(false);
             $table->boolean('datos_ok')->default(false);
             $table->date('fecha_registro')->nullable();
@@ -59,7 +62,10 @@ class CreatePostulantesTable extends Migration
             $table->foreign('idevaluacion')->references('id')->on('evaluacion');
             $table->foreign('idusuario')->references('id')->on('users');
             $table->foreign('idsexo')->references('id')->on('catalogo');
-            $table->foreign('idaula')->references('id')->on('aula');
+            $table->foreign('idaula1')->references('id')->on('aula');
+            $table->foreign('idaula2')->references('id')->on('aula');
+            $table->foreign('idaula3')->references('id')->on('aula');
+            $table->foreign('idaulavoca')->references('id')->on('aula');
             $table->unique(['idevaluacion','codigo','numero_identificacion','anulado']);
         });
     }

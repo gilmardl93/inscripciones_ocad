@@ -16,7 +16,7 @@ class Postulante extends Model
             'fecha_nacimiento','idpaisnacimiento','idubigeonacimiento',
             'idubigeoprovincia','direccion_provincia','telefono_provincia',
             'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha',
-            'idaula','anulado','datos_ok','fecha_registro','idusuario'];
+            'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario'];
     /**
     * Atributos Foto
     */
@@ -53,11 +53,44 @@ class Postulante extends Model
         else return 'NO';
     }
     /**
-    * Atributos Datos Aula
+    * Atributos Datos Aula para el dia 1 del examen
     */
-    public function getDatosAulaAttribute()
+    public function getDatosAulaUnoAttribute()
     {
-        $aula = Aula::find($this->idaula);
+        $aula = Aula::find($this->idaula1);
+        if(!isset($aula)){
+            $aula = new Aula(['codigo'=>'--','sector'=>'--']);
+        }
+        return $aula;
+    }
+    /**
+    * Atributos Datos Aula para el dia 2 del examen
+    */
+    public function getDatosAulaDosAttribute()
+    {
+        $aula = Aula::find($this->idaula2);
+        if(!isset($aula)){
+            $aula = new Aula(['codigo'=>'--','sector'=>'--']);
+        }
+        return $aula;
+    }
+    /**
+    * Atributos Datos Aula para el dia 3 del examen
+    */
+    public function getDatosAulaTresAttribute()
+    {
+        $aula = Aula::find($this->idaula3);
+        if(!isset($aula)){
+            $aula = new Aula(['codigo'=>'--','sector'=>'--']);
+        }
+        return $aula;
+    }
+    /**
+    * Atributos Datos Aula para el vocacional
+    */
+    public function getDatosAulaVocaAttribute()
+    {
+        $aula = Aula::find($this->idaulavoca);
         if(!isset($aula)){
             $aula = new Aula(['codigo'=>'--','sector'=>'--']);
         }
@@ -132,6 +165,7 @@ class Postulante extends Model
     public function getSedeAttribute()
     {
         $sede = Catalogo::find($this->idsede);
+        if(is_null($sede))$sede = New Catalogo(['nombre'=>'---']);
         return strtoupper($sede->nombre);
     }
     /**
@@ -147,18 +181,8 @@ class Postulante extends Model
     */
     public function getMostrarFotoEditadaAttribute()
     {
-        $foto = asset('/storage/fotosok/'.$this->dni.extension($this->foto));
+        $foto = asset('/storage/'.$this->foto_editada);
         return $foto;
-    }
-    /**
-    * Atributos Aula
-    */
-    public function getAulaAttribute()
-    {
-        if (isset($this->idaula)) {
-            $aula = Aula::find($this->idaula);
-            return $aula->codigo;
-        }else return ' ';
     }
     /**
     * Atributos Grado
@@ -360,17 +384,33 @@ class Postulante extends Model
      * Establecemos el la relacion con aula
      * @return [type] [description]
      */
-    public function Aulas()
+    public function AulasD1()
     {
-        return $this->hasOne(Aula::class,'id','idaula');
+        return $this->hasOne(Aula::class,'id','idaula1');
     }
     /**
      * Establecemos el la relacion con aula
      * @return [type] [description]
      */
-    public function Sedes()
+    public function AulasD2()
     {
-        return $this->hasOne(Catalogo::class,'id','idsede');
+        return $this->hasOne(Aula::class,'id','idaula2');
+    }
+    /**
+     * Establecemos el la relacion con aula
+     * @return [type] [description]
+     */
+    public function AulasD3()
+    {
+        return $this->hasOne(Aula::class,'id','idaula3');
+    }
+    /**
+     * Establecemos el la relacion con aula
+     * @return [type] [description]
+     */
+    public function AulasVoca()
+    {
+        return $this->hasOne(Aula::class,'id','idaulavoca');
     }
     /**
      * Establecemos el la relacion con catalogo

@@ -26,6 +26,7 @@ class CreateFamiliarsTable extends Migration
             $table->enum('parentesco',['Papá','Mamá','Apoderado'])->nullable();
             $table->integer('orden')->nullable();
             $table->foreign('idpostulante')->references('id')->on('postulante');
+
         });
     }
 

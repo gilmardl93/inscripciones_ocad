@@ -5,18 +5,79 @@ namespace App\Http\Controllers\Ficha;
 use App\Http\Controllers\Controller;
 use App\Models\Evaluacion;
 use App\Models\Postulante;
+use App\Models\Proceso;
+use App\Models\Recaudacion;
 use Illuminate\Http\Request;
 use PDF;
 use Styde\Html\Facades\Alert;
 class FichaController extends Controller
 {
+    /**
+     * Mostrar la ficha
+     * 1.- La foto debe estar editada y aprobada
+     * 2.- Debe haber pagado
+     * 3.- Debe haber llenado todos sus datos
+     * @return view
+     */
     public function index($id = null)
     {
         $postulante = Postulante::Usuario()->first();
-        #if(isset($postulante) && $postulante->foto_estado!='ACEPTADO')
-        #    Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
+        if (isset($postulante)) {
+            $correcto = false;
+            $msj = collect([]);
 
-    	return view('ficha.index',compact('id'));
+            #Valida Foto Editada
+            if(isset($postulante) && $postulante->foto_estado == 'ACEPTADO')$correcto = true;
+            else{
+                $correcto = false;
+                $msj->push(['titulo'=>'Error de Foto','mensaje'=>'Su foto ha sido rechazado']);
+            }
+
+            #Valida datos adicionales----------------------------------------
+            $proceso = Proceso::where('idpostulante',$postulante->id)->first();
+            if ($proceso->datos_personales)$correcto = true;
+            else {
+                $correcto = false;
+                $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado sus datos personales']);
+            }
+
+            if ($proceso->datos_familiares)$correcto = true;
+            else {
+                $correcto = false;
+                $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado sus datos familiares']);
+            }
+
+            if ($proceso->encuesta)$correcto = true;
+            else {
+                $correcto = false;
+                $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado los datos complementarios']);
+            }
+
+            #Valida Pagos-------------------------------------------------------
+            $recaudacion = Recaudacion::select('servicio','monto')->where('idpostulante',$postulante->id)->get();
+            foreach ($recaudacion as $key => $item) {
+                if($item->servicio == 475 && $item->monto == 90){
+                    $correcto = true;
+                    break;
+                }else{
+                    $correcto = false;
+                    $msj->push(['titulo'=>'Error de pago','mensaje'=>'Usted no ha realizado el pago de Prospecto por 90 soles']);
+                }
+
+            }
+
+            #if(isset($postulante) && $postulante->foto_estado!='ACEPTADO')
+            #    Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
+
+
+            if($correcto)return view('ficha.index',compact('id'));
+            else return view('ficha.bloqueo',compact('msj'));
+
+
+        }else{
+            return view('ficha.bloqueo');
+        }
+
     }
      public function pdf($id = null)
     {
@@ -35,7 +96,7 @@ class FichaController extends Controller
             PDF::SetAutoPageBreak(false);
             PDF::Rect(15,15, 180,170);
             #FONDO
-            PDF::Image(asset('assets/pages/img/ficha2.jpg'),0,0,210,297,'', '', '', false, 300, '', false, false, 0);
+            PDF::Image(asset('assets/pages/img/ficha.png'),0,0,210,297,'', '', '', false, 300, '', false, false, 0);
             #CCOLOR DEL TEXTO
             PDF::SetTextColor(0);
             #TITULO
@@ -135,9 +196,9 @@ class FichaController extends Controller
             PDF::SetFont('helvetica','',11);
             PDF::Cell(70,5,'DNI del '.$persona.':','B',0,'L');
             #FOTO
-            PDF::Image($postulante->mostrar_foto_editada,169,42,34);
+            PDF::Image($postulante->mostrar_foto_editada,166,42,28);
 
-            PDF::Output(public_path('storage/tmp/').'FichaPostulante'.$postulante->dni.'.pdf','FI');
+            PDF::Output(public_path('storage/tmp/').'Ficha_'.$postulante->numero_identificacion.'.pdf','FI');
         }else{
             Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
         }//fin if
