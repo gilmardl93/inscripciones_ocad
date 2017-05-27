@@ -18,6 +18,26 @@ class Postulante extends Model
             'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha',
             'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario'];
     /**
+    * Atributos Telefonos
+    */
+    public function getTelefonosAttribute()
+    {
+        $telefonos = '';
+        if(!is_null($this->telefono_celular))$telefonos .=$this->telefono_celular;
+        if(!is_null($this->telefono_fijo))$telefonos .= ' - '.$this->telefono_fijo;
+        if(!is_null($this->telefono_varios))$telefonos .= ' - '.$this->telefono_varios;
+
+        return $telefonos;
+    }
+    /**
+    * Atributos Tipo de identificacion
+    */
+    public function getIdentificacionAttribute()
+    {
+        $tipo = Catalogo::find($this->idtipoidentificacion);
+        return $tipo->nombre.' N° '.$this->numero_identificacion;
+    }
+    /**
     * Atributos Foto
     */
     public function getFotoAttribute()
@@ -43,6 +63,25 @@ class Postulante extends Model
     {
         $modalidad = Modalidad::find($this->idmodalidad);
         return $modalidad->codigo;
+    }
+    /**
+    * Atributos Nombre Modalidad
+    */
+    public function getNombreModalidadAttribute()
+    {
+        $modalidad = Modalidad::find($this->idmodalidad);
+        return $modalidad->nombre;
+    }
+    /**
+    * Atributos Nombre Modalidad 2
+    */
+    public function getNombreModalidad2Attribute()
+    {
+        $modalidad = Modalidad::find($this->idmodalidad2);
+        if(!isset($modalidad)){
+            $modalidad = new Modalidad(['nombre'=>'---']);
+        }
+        return $modalidad->nombre;
     }
     /**
     * Atributos Ha Pagado
@@ -148,8 +187,38 @@ class Postulante extends Model
     */
     public function getDescripcionUbigeoAttribute()
     {
+        $pais = Pais::find($this->idpais);
         $ubigeo = Ubigeo::find($this->idubigeo);
-        return $ubigeo->descripcion;
+        $lugar = '';
+        if(is_null($ubigeo)){
+            $ubigeo = New Ubigeo(['descripcion'=>'']);
+            $lugar = $pais->nombre;
+        }else{
+
+            $lugar = $pais->nombre.'/'.$ubigeo->descripcion;
+            $lugar = str_replace('/',' / ',$lugar);
+        }
+
+        return $lugar;
+    }
+    /**
+    * Atributos Ubigeo
+    */
+    public function getDescripcionUbigeoNacimientoAttribute()
+    {
+        $pais = Pais::find($this->idpaisnacimiento);
+        $ubigeo = Ubigeo::find($this->idubigeonacimiento);
+        $lugar = '';
+        if(is_null($ubigeo)){
+            $ubigeo = New Ubigeo(['descripcion'=>'']);
+            $lugar = $pais->nombre;
+        }else{
+
+            $lugar = $pais->nombre.'/'.$ubigeo->descripcion;
+            $lugar = str_replace('/',' / ',$lugar);
+        }
+
+        return $lugar;
     }
     /**
     * Atributos Datos Evaluacion

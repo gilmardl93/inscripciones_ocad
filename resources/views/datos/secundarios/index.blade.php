@@ -44,6 +44,14 @@
         <div class="form-body ">
             <div class="row">
                 <div class="col-md-6">
+                    {!!Field::select('idtipoidentificacion',$identificacion,['label'=>'Escoger Tipo de identificación','empty'=>'Escoger tipo de identificacion']);!!}
+                </div><!--span-->
+                <div class="col-md-6">
+                    {!!Field::text('numero_identificacion',null,['label'=>'Ingresar numero de identificación','placeholder'=>'Ingresar numero de identificacion']);!!}
+                </div><!--span-->
+            </div><!--row-->
+            <div class="row">
+                <div class="col-md-6">
                     {!!Field::text('email', null, ['label'=>'Email del postulante *','placeholder'=>'Email del postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-3">

@@ -29,6 +29,13 @@
                 </div><!--span-->
                 <div class="col-md-4">
                     <div class="form-group">
+                        {!!Form::hidden('idtipoidentificacion', IdTCCodigo('IDENTIFICACION','DNI') );!!}
+                        {!!Form::hidden('numero_identificacion', Auth::user()->dni );!!}
+                        {!!Field::text('paterno', null , ['label'=>'Apellido Paterno del participante *','placeholder'=>'Apellido Paterno del postulante']);!!}
+                    </div>
+                </div><!--span-->
+                <div class="col-md-4">
+                    <div class="form-group">
                         {!!Field::text('materno', null , ['label'=>'Apellido Materno del participante *','placeholder'=>'Apellido Materno del postulante']);!!}
                     </div>
                 </div><!--span-->
