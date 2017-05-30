@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Ficha;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Pago\PagoController;
 use App\Models\Evaluacion;
 use App\Models\Postulante;
 use App\Models\Proceso;
 use App\Models\Recaudacion;
+use App\Models\Servicio;
 use Illuminate\Http\Request;
 use PDF;
 use Styde\Html\Facades\Alert;
@@ -56,21 +58,21 @@ class FichaController extends Controller
             }
 
             #Valida Pagos-------------------------------------------------------
+            $pagos = new PagoController();
+            $pagos = $pagos->CalculoServicios();
             $recaudacion = Recaudacion::select('servicio','monto')->where('idpostulante',$postulante->id)->get();
-            foreach ($recaudacion as $key => $item) {
-                if($item->servicio == 475 && $item->monto == 90){
-                    $correcto_pagos = true;
-                    break;
-                }else{
-                    $correcto_pagos = false;
-                    $msj->push(['titulo'=>'Error de pago','mensaje'=>'Usted no ha realizado el pago de Prospecto por 90 soles']);
-                }
+            $pagos_realizados = $recaudacion->implode('servicio', ', ');
 
+            foreach ($pagos as $key => $item) {
+                if(str_contains($pagos_realizados,$item))$correcto_pagos = true;
+                else{
+                    $correcto_pagos = false;
+                    $servicio = Servicio::where('codigo',$item)->first();
+                    $msj->push(['titulo'=>'Error de pago','mensaje'=>'Usted no ha realizado el pago de '.$servicio->descripcion.' por S/ '.$servicio->monto.' soles']);
+                }
             }
 
-            #if(isset($postulante) && $postulante->foto_estado!='ACEPTADO')
-            #    Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
-
+            Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
 
             if($correcto_foto && $correcto_datos && $correcto_pagos)return view('ficha.index',compact('id'));
             else return view('ficha.bloqueo',compact('msj'));
