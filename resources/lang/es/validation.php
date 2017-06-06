@@ -129,6 +129,7 @@ return [
         'idrenuncia'=>'renuncia',
         'idingresoeconomico'=>'ingreso economico',
         'idpublicidad'=>'publicidad',
+        'file'=>'Foto',
 
     ],
 

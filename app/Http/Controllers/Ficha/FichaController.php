@@ -26,7 +26,9 @@ class FichaController extends Controller
         $postulante = Postulante::Usuario()->first();
         if (isset($postulante)) {
             $correcto_foto = false;
-            $correcto_datos = false;
+            $correcto_datos_p = false;
+            $correcto_datos_f = false;
+            $correcto_datos_e = false;
             $correcto_pagos = false;
             $msj = collect([]);
 
@@ -39,21 +41,21 @@ class FichaController extends Controller
 
             #Valida datos adicionales----------------------------------------
             $proceso = Proceso::where('idpostulante',$postulante->id)->first();
-            if ($proceso->datos_personales)$correcto_datos = true;
+            if ($proceso->datos_personales)$correcto_datos_p = true;
             else {
-                $correcto_datos = false;
+                $correcto_datos_p = false;
                 $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado sus datos personales']);
             }
 
-            if ($proceso->datos_familiares)$correcto_datos = true;
+            if ($proceso->datos_familiares)$correcto_datos_f = true;
             else {
-                $correcto_datos = false;
+                $correcto_datos_f = false;
                 $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado sus datos familiares']);
             }
 
-            if ($proceso->encuesta)$correcto_datos = true;
+            if ($proceso->encuesta)$correcto_datos_e = true;
             else {
-                $correcto_datos = false;
+                $correcto_datos_e = false;
                 $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado los datos complementarios']);
             }
 
@@ -74,7 +76,11 @@ class FichaController extends Controller
 
             Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
 
-            if($correcto_foto && $correcto_datos && $correcto_pagos)return view('ficha.index',compact('id'));
+            if($correcto_foto &&
+                $correcto_datos_p &&
+                $correcto_datos_f &&
+                $correcto_datos_e &&
+                $correcto_pagos)return view('ficha.index',compact('id'));
             else return view('ficha.bloqueo',compact('msj'));
 
 
