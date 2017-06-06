@@ -313,3 +313,20 @@ if (! function_exists('UniversidadPersonal')) {
         return $universidad;
     }
 }
+/**
+ * Pregunta si pago el prospecto
+ */
+if (! function_exists('PagoProspecto')) {
+    /**
+     * funcion que retorna el prefijo para nombres de archivos
+     * @return [type] [description]
+     */
+    function PagoProspecto()
+    {
+        $postulante = Postulante::with('Recaudaciones')->Usuario()->first();
+        $pagos = $postulante->recaudaciones->implode('servicio', ',');
+
+        if(str_contains($pagos,'475'))return true;
+        else return false;
+    }
+}

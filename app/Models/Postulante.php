@@ -522,6 +522,14 @@ class Postulante extends Model
         return $this->hasOne(Evaluacion::class,'id','idevaluacion');
     }
     /**
+     * Relacion de one to many
+     * Obtener la dependencia que tiene esta persona
+     */
+    public function Recaudaciones()
+    {
+        return $this->hasmany(Recaudacion::class, 'idpostulante', 'id');
+    }
+    /**
      * Operaciones estaticas
      * @param [type] $data [description]
      */

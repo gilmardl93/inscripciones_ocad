@@ -15,10 +15,11 @@
         <div class="portlet-body overflow-h">
             Para realizar tu inscripción deberas seguir los siguientes pasos:
             <ol>
-                <li>Datos: Registrar datos del participante (no del apoderado)</li>
-                <li>Pagos: imprimir tu formato de pago para realizar el pago en el banco Scotiabak</li>
-                <li>Ficha: imprimir tu ficha de inscripción despues de realizar el pago</li>
+                <li>Datos: Deberá registrar los datos del postulante (no del apoderado), donde ingresara sus nombres, modalidad, especialidad e institución educativa donde estudio el postulante</li>
+                <li>Pagos: Imprimirá los formatos de pago que el sistema genera segun la modalidad que ha escogido para realizar el pago en el banco Scotiabak</li>
+                <li>Ficha: imprimir tu ficha de inscripción despues de realizar el pago y que su foto haya sido verificada por la Oficina de admisión</li>
             </ol>
+            Si tuviese alguna duda puede hacer click al boton &nbsp<span class="label label-danger"> Ayuda </span>&nbsp que se encuentra a la derecha de su ventana y le aparecerá indicaciones para poder realizar su inscripción
         </div>
     </div>
     <!-- END PORTLET-->
@@ -55,19 +56,13 @@
 </div><!--row-->
 <p></p>
 <div class="row widget-row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <a href="{{ route('reglamento.index') }}" class="list-group-item">
-            <h4 class="list-group-item-heading">Reglamento</h4>
-            <p class="list-group-item-text"> Reglamento del simulacro de admisión. </p>
+            <h4 class="list-group-item-heading">Descarga</h4>
+            <p class="list-group-item-text"> Prospecto, reglamento, especialidades. </p>
         </a>
     </div>
-    <div class="col-md-4">
-        <a href="{{ route('resultados.index') }}" class="list-group-item">
-            <h4 class="list-group-item-heading">Resultados</h4>
-            <p class="list-group-item-text"> Aquí podrás ver los resultados de tu evaluación. </p>
-        </a>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <a href="{{ route('contacto.index') }}" class="list-group-item">
             <h4 class="list-group-item-heading">Contactanos</h4>
             <p class="list-group-item-text"> Si tienes dificultades con tu inscripcion. </p>

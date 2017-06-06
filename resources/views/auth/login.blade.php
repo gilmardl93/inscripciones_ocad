@@ -37,7 +37,7 @@
 {!! Form::open(['url'=>'register','method'=>'POST','id'=>'form-register']) !!}
     <h3 class="form-title font-green">Crear Cuenta</h3>
     <div class="form-group">
-            {!! Form::label('lblDNI', 'Ingrese su numero de DNI', []) !!}
+            {!! Form::label('lblDNI', 'Ingrese el numero de DNI del postulante no del apoderado', []) !!}
             <div class="input-icon right ">
             <i class="fa fa-envelope"></i>
             {!!Form::text('dni',old('dni'), ['class'=>'form-control','placeholder'=>'dni','maxlength'=>'8'])!!}
