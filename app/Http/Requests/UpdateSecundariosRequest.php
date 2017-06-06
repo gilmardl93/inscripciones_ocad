@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Http\Request;
 class UpdateSecundariosRequest extends FormRequest
 {
     /**
@@ -23,6 +23,7 @@ class UpdateSecundariosRequest extends FormRequest
      */
     public function rules()
     {
+        $data = Request::all();
         return [
             'email'=> 'required',
             'talla'=> 'required',
@@ -33,6 +34,10 @@ class UpdateSecundariosRequest extends FormRequest
             'telefono_varios'=> 'required',
             'idpais'=> 'required',
             'idpaisnacimiento'=> 'required',
+            'idtipoidentificacion'=> 'required',
+            'numero_identificacion'=> 'required|unique:postulante,numero_identificacion,'.$data['id'].
+                                      '|num_ide_max:'.$data['idtipoidentificacion'].'|num_ide_usu',
+
         ];
     }
 }

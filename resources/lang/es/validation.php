@@ -108,6 +108,8 @@ return [
     'attributes' => [
         'password'=>'contraseña',
         'email'=>'correo electronico',
+        'idtipoidentificacion'=>'Tipo de Identificacion',
+        'numero_identificacion'=>'Numero de Identificacion',
         'idsexo'=>'Sexo',
         'idmodalidad'=>'Modalidad',
         'idespecialidad'=>'Especialidad',

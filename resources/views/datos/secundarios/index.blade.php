@@ -3,6 +3,7 @@
 @section('content')
 @include('alerts.errors')
 {!! Form::model($postulante,['route'=>['datos.secundarios.update',$postulante],'method'=>'PUT','files'=>true]) !!}
+{!!Form::hidden('id', $postulante->id );!!}
 <div class="col-md-4">
     <!-- BEGIN PORTLET-->
     <div class="portlet light tasks-widget widget-comments">
@@ -26,6 +27,11 @@
                     <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Quitar </a>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Foto Formato JPG, Tamaño pasaporte a color, a partir de los hombros y con fondo blanco. No se permitirá otro tipo de imagen.
+                </div><!--span-->
+            </div><!--row-->
         </div>
     </div>
     <!-- END PORTLET-->

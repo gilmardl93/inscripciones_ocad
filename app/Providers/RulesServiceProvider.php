@@ -2,14 +2,18 @@
 
 namespace App\Providers;
 
+use App\Models\Catalogo;
 use App\Models\Cronograma;
 use App\Models\Modalidad;
+use App\Models\Postulante;
 use App\Models\Validacion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Auth;
 class RulesServiceProvider extends ServiceProvider
 {
+    public $Mensaje;
     /**
      * Bootstrap the application services.
      *
@@ -23,6 +27,8 @@ class RulesServiceProvider extends ServiceProvider
         $this->RequiredEspCepre();
         $this->ValidaCodeCepre();
         $this->ValidaFechaInscripcion();
+        $this->ValidaNumeroIdentificacion();
+        $this->ValidaNumIdenUsuario();
     }
 
     /**
@@ -33,6 +39,31 @@ class RulesServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+    /**
+     * Valido la institucion educativa que requiere la modalidad
+     */
+    public function ValidaNumIdenUsuario()
+    {
+        Validator::extend('num_ide_usu', function ($attribute, $value, $parameters, $validator) {
+
+            if (Auth::user()->dni !=$value) return false;
+            return true;
+
+        },"El DNI Ingresado es diferente al DNI que usted creo al inicio");
+    }
+    /**
+     * Valido la institucion educativa que requiere la modalidad
+     */
+    public function ValidaNumeroIdentificacion()
+    {
+        Validator::extend('num_ide_max', function ($attribute, $value, $parameters, $validator) {
+
+            $tipo = Catalogo::find($parameters[0]);
+            if ($tipo->nombre == 'DNI' && strlen($value)!=8) return false;
+            return true;
+
+        },"El DNI ingresado debe contener 8 digitos");
     }
     /**
      * Valido la institucion educativa que requiere la modalidad

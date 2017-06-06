@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Datos;
 
 use App\Events\AfterUpdatingDataPersonal;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateSecundariosRequest;
 use App\Models\Postulante;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class DatosSecundariosController extends Controller
     	return view('datos.secundarios.index',compact('postulante'));
 
     }
-    public function update(Request $request,$id)
+    public function update(UpdateSecundariosRequest $request,$id)
     {
         $data = $request->all();
         $date = Carbon::now();
