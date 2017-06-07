@@ -95,9 +95,12 @@
                     {!!Field::text('direccion', null, ['label'=>'Direccion donde vive el postulante','placeholder'=>'Direccion donde vive el postulante']);!!}
                 </div><!--span-->
             </div><!--row-->
-            <div class="row Distrito">
-                <div class="col-md-6">
-                    {!!Field::text('fecha_nacimiento', null, ['label'=>'Fecha de nacimiento de postulante (año-mes-día)','placeholder'=>'fecha de nacimiento del postulante']);!!}
+            <div class="row ">
+                <div class="col-md-3">
+                    {!!Field::text('inicio_estudios', null, ['label'=>'Año de inicio de la secundaria','placeholder'=>'Otros telefonos de contacto']);!!}
+                </div><!--span-->
+                <div class="col-md-3">
+                    {!!Field::text('fin_estudios', null, ['label'=>'Año de fin de la secundaria','placeholder'=>'Otros telefonos de contacto']);!!}
                 </div><!--span-->
                 <div class="col-md-6">
                     {!!Field::text('telefono_varios', null, ['label'=>'Otros telefonos de contacto','placeholder'=>'Otros telefonos de contacto']);!!}
@@ -114,21 +117,23 @@
                     </div>
                 </div><!--span-->
             </div><!--row-->
-            <h4>Completar solo si el postulante es de provincia</h4>
-            <div class="row">
-                <div class="col-md-6 DistritoProvincia">
-                    <div class="form-group">
-                        {!!Form::label('lblDistrito', 'Distrito de provincia del postulante');!!}
-                        {!!Form::select('idubigeoprovincia',UbigeoPersonal($postulante->idubigeoprovincia) ,null , ['class'=>'form-control Ubigeo']);!!}
-                    </div>
-                </div><!--span-->
-                <div class="col-md-6">
-                    {!!Field::text('direccion_provincia', ['label'=>'Direccion de provincia del postulante ','placeholder'=>'Direccion de provincia del postulante']);!!}
-                </div><!--span-->
-                <div class="col-md-6">
-                    {!!Field::text('telefono_provincia', ['label'=>'Telefono de provincia del postulante ','placeholder'=>'Telefono de provincia del postulante']);!!}
-                </div><!--span-->
-            </div><!--row-->
+            <div class="widget-thumb bordered bg-green cepreuni">
+                <h4>Completar solo si el postulante es de provincia</h4>
+                <div class="row">
+                    <div class="col-md-6 DistritoProvincia">
+                        <div class="form-group">
+                            {!!Form::label('lblDistrito', 'Distrito de provincia del postulante');!!}
+                            {!!Form::select('idubigeoprovincia',UbigeoPersonal($postulante->idubigeoprovincia) ,null , ['class'=>'form-control Ubigeo']);!!}
+                        </div>
+                    </div><!--span-->
+                    <div class="col-md-6">
+                        {!!Field::text('direccion_provincia', ['label'=>'Direccion de provincia del postulante ','placeholder'=>'Direccion de provincia del postulante']);!!}
+                    </div><!--span-->
+                    <div class="col-md-6">
+                        {!!Field::text('telefono_provincia', ['label'=>'Telefono de provincia del postulante ','placeholder'=>'Telefono de provincia del postulante']);!!}
+                    </div><!--span-->
+                </div><!--row-->
+            </div>
 
 
         {!!Form::enviar('Guardar')!!}

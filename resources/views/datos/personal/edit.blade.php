@@ -38,6 +38,11 @@
                     </div>
                 </div><!--span-->
             </div><!--row-->
+            <div class="row">
+                <div class="col-md-6">
+                    {!!Field::text('fecha_nacimiento', null, ['label'=>'Fecha de nacimiento de postulante (año-mes-día)','placeholder'=>'fecha de nacimiento del postulante']);!!}
+                </div><!--span-->
+            </div><!--row-->
             <h3>Modalidad de Postulación segun el reglamento</h3>
                 <div class="row">
                     <div class="col-md-6">

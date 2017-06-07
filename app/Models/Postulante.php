@@ -16,7 +16,7 @@ class Postulante extends Model
             'fecha_nacimiento','idpaisnacimiento','idubigeonacimiento',
             'idubigeoprovincia','direccion_provincia','telefono_provincia',
             'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha',
-            'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario'];
+            'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario','inicio_estudios','fin_estudios'];
     /**
     * Atributos Telefonos
     */
