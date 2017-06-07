@@ -24,10 +24,6 @@ class ViewServiceProvider extends ServiceProvider
     {
         $this->app->make('view')->composer(
             ['datos.personal.index','datos.personal.edit'],
-            ControlSelectData::class
-            );
-        $this->app->make('view')->composer(
-            ['datos.personal.index','datos.personal.edit'],
             ModalidadSelectData::class
             );
         $this->app->make('view')->composer(

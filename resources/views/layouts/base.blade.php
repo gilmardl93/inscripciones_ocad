@@ -45,18 +45,6 @@
                                 <li>
                                     <a href="{{ route('home.index') }}">Inicio</a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('pagos.index') }}">Pagos</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('datos.index') }}">Templates</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('ficha.index') }}">Ficha</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('resultados.index') }}">Settings</a>
-                                </li>
                             </ul>
                         </div>
                     </div>

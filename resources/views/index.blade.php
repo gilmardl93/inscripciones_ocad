@@ -17,7 +17,7 @@
             <ol>
                 <li>Datos: Deberá registrar los datos del postulante (no del apoderado), donde ingresara sus nombres, modalidad, especialidad e institución educativa donde estudio el postulante</li>
                 <li>Pagos: Imprimirá los formatos de pago que el sistema genera segun la modalidad que ha escogido para realizar el pago en el banco Scotiabak</li>
-                <li>Ficha: imprimir tu ficha de inscripción despues de realizar el pago y que su foto haya sido verificada por la Oficina de admisión</li>
+                <li>Ficha: imprimir tu ficha de inscripción despues de realizar el pago y que su foto haya sido verificada por la Oficina Central de admisión</li>
             </ol>
             Si tuviese alguna duda puede hacer click al boton &nbsp<span class="label label-danger"> Ayuda </span>&nbsp que se encuentra a la derecha de su ventana y le aparecerá indicaciones para poder realizar su inscripción
         </div>

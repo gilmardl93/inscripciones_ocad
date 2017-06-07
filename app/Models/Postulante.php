@@ -15,8 +15,31 @@ class Postulante extends Model
             'idmodalidad','idespecialidad','idmodalidad2','idespecialidad2','idpais','idubigeo','direccion','idcolegio','iduniversidad',
             'fecha_nacimiento','idpaisnacimiento','idubigeonacimiento',
             'idubigeoprovincia','direccion_provincia','telefono_provincia',
-            'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha',
+            'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha_carga','foto_fecha_rechazo','foto_fecha_edicion',
             'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario','inicio_estudios','fin_estudios'];
+
+    /**
+     * Opciones del select de Inicio de secundaria
+     * @return [type] [description]
+     */
+    public function getInicioEstudiosOptions()
+    {
+        for ($i=1980; $i < 2012; $i++) {
+            $data[$i]= $i;
+        }
+        return $data;
+    }
+    /**
+     * Opciones del select de fin de secundaria
+     * @return [type] [description]
+     */
+    public function getFinEstudiosOptions()
+    {
+        for ($i=1980; $i < 2016; $i++) {
+            $data[$i]= $i;
+        }
+        return $data;
+    }
     /**
     * Atributos Telefonos
     */

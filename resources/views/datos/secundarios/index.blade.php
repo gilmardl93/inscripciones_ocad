@@ -80,7 +80,7 @@
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::select('idpais', $pais, ['label'=>'Pais donde vive el postulante *','empty'=>'Pais donde vive el postulante']);!!}
+                    {!!Field::select('idpais', $pais, 1, ['label'=>'Pais donde vive el postulante *','empty'=>'Pais donde vive el postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-6 Distrito">
                     <div class="form-group">
@@ -90,25 +90,30 @@
                 </div><!--span-->
 
             </div><!--row-->
+            <div class="row">
+                <div class="col-md-6">
+                    {!!Field::text('fecha_nacimiento', null, ['class'=>'Fecha','label'=>'Fecha de nacimiento de postulante (día-mes-año)','placeholder'=>'fecha de nacimiento del postulante']);!!}
+                </div><!--span-->
+                <div class="col-md-6">
+                    {!!Field::text('telefono_varios', null, ['label'=>'Otros telefonos de contacto','placeholder'=>'Otros telefonos de contacto']);!!}
+                </div><!--span-->
+            </div><!--row-->
             <div class="row Distrito">
                 <div class="col-md-12">
                     {!!Field::text('direccion', null, ['label'=>'Direccion donde vive el postulante','placeholder'=>'Direccion donde vive el postulante']);!!}
                 </div><!--span-->
             </div><!--row-->
             <div class="row ">
-                <div class="col-md-3">
-                    {!!Field::text('inicio_estudios', null, ['label'=>'Año de inicio de la secundaria','placeholder'=>'Otros telefonos de contacto']);!!}
-                </div><!--span-->
-                <div class="col-md-3">
-                    {!!Field::text('fin_estudios', null, ['label'=>'Año de fin de la secundaria','placeholder'=>'Otros telefonos de contacto']);!!}
+                <div class="col-md-6">
+                    {!!Field::select('inicio_estudios', null, ['label'=>'Año de inicio de la secundaria','empty'=>'Inicio de la secundaria']);!!}
                 </div><!--span-->
                 <div class="col-md-6">
-                    {!!Field::text('telefono_varios', null, ['label'=>'Otros telefonos de contacto','placeholder'=>'Otros telefonos de contacto']);!!}
+                    {!!Field::select('fin_estudios', null, ['label'=>'Año de fin de la secundaria','empty'=>'Fin de la secundaria']);!!}
                 </div><!--span-->
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::select('idpaisnacimiento', $pais, ['label'=>'Pais donde nacio el postulante *','empty'=>'Pais donde nacio el postulante']);!!}
+                    {!!Field::select('idpaisnacimiento', $pais, 1, ['label'=>'Pais donde nacio el postulante *','empty'=>'Pais donde nacio el postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-6 DistritoNacimiento">
                     <div class="form-group">
@@ -238,7 +243,7 @@ $(document).ready(function() {
 });
 
 
-$("#fecha_nacimiento").inputmask("y-m-d", {
+$(".Fecha").inputmask("y-m-d", {
     "placeholder": "yyyy-mm-dd"
 });
 </script>

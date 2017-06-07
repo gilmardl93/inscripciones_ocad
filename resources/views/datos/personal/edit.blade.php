@@ -40,7 +40,7 @@
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::text('fecha_nacimiento', null, ['label'=>'Fecha de nacimiento de postulante (año-mes-día)','placeholder'=>'fecha de nacimiento del postulante']);!!}
+                    {!!Field::text('fecha_nacimiento', null, ['label'=>'Fecha de nacimiento de postulante (día-mes-año)','placeholder'=>'fecha de nacimiento del postulante']);!!}
                 </div><!--span-->
             </div><!--row-->
             <h3>Modalidad de Postulación segun el reglamento</h3>
@@ -238,6 +238,16 @@ $(".cepreuni").hide();
 
 });
 
+$("#fecha_nacimiento").inputmask("y-m-d", {
+    "placeholder": "yyyy-mm-dd"
+});
 </script>
+@stop
+
+@section('plugins-styles')
+{!! Html::style(asset('assets/global/plugins/icheck/skins/all.css')) !!}
+@stop
+@section('plugins-js')
+{!! Html::script(asset('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')) !!}
 @stop
 

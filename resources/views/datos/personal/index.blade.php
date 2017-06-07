@@ -29,13 +29,6 @@
                 </div><!--span-->
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!!Form::hidden('idtipoidentificacion', IdTCCodigo('IDENTIFICACION','DNI') );!!}
-                        {!!Form::hidden('numero_identificacion', Auth::user()->dni );!!}
-                        {!!Field::text('paterno', null , ['label'=>'Apellido Paterno del participante *','placeholder'=>'Apellido Paterno del postulante']);!!}
-                    </div>
-                </div><!--span-->
-                <div class="col-md-4">
-                    <div class="form-group">
                         {!!Field::text('materno', null , ['label'=>'Apellido Materno del participante *','placeholder'=>'Apellido Materno del postulante']);!!}
                     </div>
                 </div><!--span-->
@@ -45,11 +38,7 @@
                     </div>
                 </div><!--span-->
             </div><!--row-->
-            <div class="row">
-                <div class="col-md-6">
-                    {!!Field::text('fecha_nacimiento', null, ['label'=>'Fecha de nacimiento de postulante (año-mes-día)','placeholder'=>'fecha de nacimiento del postulante']);!!}
-                </div><!--span-->
-            </div><!--row-->
+
             <h3>Modalidad de Postulación segun el reglamento</h3>
                 <div class="row">
                     <div class="col-md-6">
@@ -252,6 +241,16 @@ $(".cepreuni").hide();
 
 });
 
+$("#fecha_nacimiento").inputmask("d-m-y", {
+    "placeholder": "dd-mm-yyyy"
+});
 </script>
+@stop
+
+@section('plugins-styles')
+{!! Html::style(asset('assets/global/plugins/icheck/skins/all.css')) !!}
+@stop
+@section('plugins-js')
+{!! Html::script(asset('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')) !!}
 @stop
 

@@ -39,8 +39,8 @@ class CreatePostulantesTable extends Migration
             $table->string('direccion')->nullable();
             $table->integer('idcolegio')->nullable();
             $table->integer('iduniversidad')->nullable();
-            $table->string('inicio_estudios',5)->nullable();
-            $table->string('fin_estudios',5)->nullable();
+            $table->bigInteger('inicio_estudios')->nullable();
+            $table->bigInteger('fin_estudios')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->integer('idpaisnacimiento')->nullable();
             $table->integer('idubigeonacimiento')->nullable();
@@ -51,7 +51,9 @@ class CreatePostulantesTable extends Migration
             $table->string('foto_editada',200)->nullable();
             $table->string('foto_rechazada',200)->nullable();
             $table->string('foto_estado',200)->default('SIN FOTO');
-            $table->date('foto_fecha')->nullable();
+            $table->date('foto_fecha_carga')->nullable();
+            $table->date('foto_fecha_rechazo')->nullable();
+            $table->date('foto_fecha_edicion')->nullable();
             $table->integer('idaula1')->nullable();
             $table->integer('idaula2')->nullable();
             $table->integer('idaula3')->nullable();

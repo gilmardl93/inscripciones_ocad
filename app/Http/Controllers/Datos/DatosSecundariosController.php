@@ -31,7 +31,7 @@ class DatosSecundariosController extends Controller
 
             $data['foto_cargada'] = $request->file('file')->store('fotos','public');
             $data['foto_estado']='CARGADO';
-            $data['foto_fecha']=$date;
+            $data['foto_fecha_carga']=$date;
         }
 
         $postulante->fill($data);

@@ -42,4 +42,10 @@ class DatosPersonalesRequest extends FormRequest
             'codigo_verificacion'=>'max:10|valida_cod_cepre:'.$idmodalidad,
         ];
     }
+    public function messages()
+    {
+        return[
+            'fecha_nacimiento.before'=>''
+        ];
+    }
 }
