@@ -35,11 +35,11 @@ class AdminAccessPolicy
     }
     public function admin(User $user)
     {
-        if ($user->idrole == IdRole('admin') ||
-            $user->idrole == IdRole('root') ||
-            $user->idrole == IdRole('jefe') ||
-            $user->idrole == IdRole('informes')) {
+        if (str_contains($user->codigo_rol,['root','admin'])) {
             return true;
+        }else{
+            abort(423);
+            return false;
         }
     }
 }

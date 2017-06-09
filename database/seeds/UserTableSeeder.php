@@ -20,6 +20,13 @@ class UserTableSeeder extends Seeder
             'menu' => 'menu.sider-admin',
             'email' => 'lmayta@admisionuni.edu.pe',
             ]);
+        factory(App\User::class)->create([
+            'dni' => 'gmoreno',
+            'password' => 'gmoreno',
+            'idrole' =>$role->id,
+            'menu' => 'menu.sider-admin',
+            'email' => 'gmoreno@admisionuni.edu.pe',
+            ]);
         $role = Catalogo::Table('ROLES')->where('codigo','jefe')->first();
         factory(App\User::class)->create([
             'dni' => 'cponce',

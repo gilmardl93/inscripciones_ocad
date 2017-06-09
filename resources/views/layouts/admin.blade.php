@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>@yield('title','SIMULACRO DE ADMISION | Administracion')</title>
+    <title>@yield('title','Inscripciones | Administracion')</title>
     <!-- BEGIN PAGE FIRST SCRIPTS -->
     @yield('js-plugins-first')
     <!-- END PAGE FIRST SCRIPTS -->

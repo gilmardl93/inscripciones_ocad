@@ -9,7 +9,6 @@
         </li>
         <!-- END SIDEBAR TOGGLER BUTTON -->
         {!!Form::menu('Escritorio',route('home.index'),'icon-home','start')!!}
-        @can('root',Auth::user())
             <li class="heading">
                 <h3 class="uppercase">Sistema</h3>
             </li>
@@ -22,21 +21,17 @@
                 </ul>
             </li>
             {!!Form::menu('Aulas',route('admin.aulas.index'),'fa fa-cubes')!!}
-        @endcan
-        @can('informes',Auth::user())
             <li class="heading">
                 <h3 class="uppercase">Modulos</h3>
             </li>
+            {!!Form::menu('Estadistica',route('admin.users.index'),'icon-users')!!}
             {!!Form::menu('Usuarios',route('admin.users.index'),'icon-users')!!}
             {!!Form::menu('Participante',route('admin.pos.index'),'fa fa-users')!!}
-            @can('administrador',Auth::user())
                 {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
                 {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
                 {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
                 {!!Form::menu('Mensajes',route('admin.mensajes.index'),'fa fa-at')!!}
                 {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
-            @endcan
-        @endcan
     </ul>
     <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->

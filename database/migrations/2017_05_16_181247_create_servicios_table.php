@@ -17,6 +17,7 @@ class CreateServiciosTable extends Migration
             $table->increments('id');
             $table->string('codigo',5)->nullable();
             $table->mediumtext('descripcion')->nullable();
+            $table->string('partida',10)->nullable();
             $table->string('banco',50)->nullable();
             $table->decimal('monto','10','3')->nullable();
             $table->boolean('activo')->default(true);

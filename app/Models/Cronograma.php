@@ -10,6 +10,21 @@ class Cronograma extends Model
     public $timestamps = false;
 
     /**
+    * Atributos Fecha de inicio sin caracter de separacion
+    */
+    public function getBeginDateAttribute()
+    {
+        return str_replace('-', '', $this->fecha_inicio);
+    }
+    /**
+    * Atributos Fecha de fin sin caracter de separacion
+    */
+    public function getEndDateAttribute()
+    {
+        return str_replace('-', '', $this->fecha_fin);
+    }
+
+    /**
      * Devuelve la fecha de inicio de la actividad
      * @param  string $cadenaSQL el codigo de la actividad
      * @param  strin $codigo

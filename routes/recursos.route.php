@@ -1,6 +1,10 @@
 <?php
 Route::group(['middleware'=>'auth','namespace'=>'Recursos'], function() {
 	/**
+	 * Busquedas
+	 */
+	Route::post('buscar','BusquedaController@buscar')->name('admin.buscar');
+	/**
 	 * Ubigeo
 	 */
 	Route::get('ubigeo','UbigeoController@ubigeo')->name('ubigeo.index');

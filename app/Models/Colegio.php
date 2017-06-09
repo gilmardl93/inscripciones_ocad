@@ -38,6 +38,4 @@ class Colegio extends Model
     {
         return $this->hasOne(Pais::class,'id','idpais');
     }
-
-
 }

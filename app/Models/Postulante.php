@@ -457,6 +457,53 @@ class Postulante extends Model
         return $cadenaSQL->orderBy('paterno')->orderBy('materno')->orderBy('nombres');
     }
     /**
+    * Devuelve los postulantes que deben pagar prospecto
+    * @param  [type]  [description]
+    * @return [type]            [description]
+    */
+    public function scopeProspecto($cadenaSQL){
+        return $cadenaSQL->select('postulante.*')
+                         ->join('proceso as r','r.idpostulante','=','postulante.id')
+                         ->where('r.pago_prospecto',0);
+    }
+    /**
+    * Devuelve relacion de postulantes de un tipo de colegio y gestion
+    * @param  [type]  [description]
+    * @return [type]            [description]
+    */
+    public function scopePagoGestion($cadenaSQL,$ie=null,$gestion=null,$modalidad = null,$codesp=null)
+    {
+        if($ie=='Colegio'){
+            return $cadenaSQL->join('colegio as c','c.id','=','postulante.idcolegio')
+                             ->join('modalidad as m','m.id','=','postulante.idmodalidad')
+                             ->whereIn('m.codigo',$modalidad)
+                             ->where('c.gestion',$gestion)
+                             ->where('postulante.anulado',0);
+        }elseif ($ie=='Universidad' && isset($modalidad)) {
+            return $cadenaSQL->join('universidad as u','u.id','=','postulante.iduniversidad')
+                             ->join('modalidad as m','m.id','=','postulante.idmodalidad')
+                             ->whereIn('m.codigo',$modalidad)
+                             ->whereIn('u.gestion',$gestion)
+                             ->where('postulante.anulado',0);
+        }elseif (!isset($ie) && isset($modalidad)) {
+            return $cadenaSQL->join('modalidad as m','m.id','=','postulante.idmodalidad')
+                             ->whereIn('m.codigo',$modalidad)
+                             ->where('postulante.anulado',0);
+        }elseif (isset($codesp)) {
+            return $cadenaSQL->join('especialidad as e',function($join){
+                                $join->on('postulante.idespecialidad','=','e.id')
+                                     ->orOn('postulante.idespecialidad2','=','e.id');
+                            })->where('e.codigo',$codesp)
+                             ->where('postulante.anulado',0);
+        }elseif (isset($codesp) && $modalidad=='ID-CEPRE') {
+            return $cadenaSQL->join('especialidad as e',function($join){
+                                $join->on('postulante.idespecialidad','=','e.id')
+                                     ->orOn('postulante.idespecialidad2','=','e.id');
+                            })->where('e.codigo',$codesp)
+                             ->where('postulante.anulado',0);
+        };
+    }
+    /**
      * Establecemos el la relacion con catalogo
      * @return [type] [description]
      */

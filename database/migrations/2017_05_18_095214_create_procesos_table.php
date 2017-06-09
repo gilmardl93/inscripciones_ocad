@@ -20,6 +20,9 @@ class CreateProcesosTable extends Migration
             $table->boolean('datos_personales')->default(false);
             $table->boolean('datos_familiares')->default(false);
             $table->boolean('encuesta')->default(false);
+            $table->boolean('pago_prospecto')->default(false);
+            $table->boolean('pago_examen')->default(false);
+            $table->boolean('pago_vocacional')->default(false);
             $table->foreign('idpostulante')->references('id')->on('postulante');
         });
     }

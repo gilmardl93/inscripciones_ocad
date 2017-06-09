@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ModalidadTableSeeder::class);
         $this->call(ServicioTableSeeder::class);
         $this->call(CronogramaTableSeeder::class);
+        $this->call(UbigeoTableSeeder::class);
+        $this->call(PaisTableSeeder::class);
+        $this->call(FacultadTableSeeder::class);
+        $this->call(EspecialidadTableSeeder::class);
 
         Model::reguard();
     }

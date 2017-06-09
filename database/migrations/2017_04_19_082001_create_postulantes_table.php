@@ -70,7 +70,7 @@ class CreatePostulantesTable extends Migration
             $table->foreign('idaula2')->references('id')->on('aula');
             $table->foreign('idaula3')->references('id')->on('aula');
             $table->foreign('idaulavoca')->references('id')->on('aula');
-            $table->unique(['idevaluacion','codigo','numero_identificacion','anulado']);
+            $table->unique(['numero_identificacion']);
         });
     }
 

@@ -19,8 +19,14 @@ class CreateAulasTable extends Migration
             $table->string('sector',10)->nullable();
             $table->string('codigo',10)->nullable();
             $table->integer('capacidad')->default(0);
-            $table->integer('disponible')->default(0);
-            $table->integer('asignado')->default(0);
+            $table->integer('disponible_01')->default(0);
+            $table->integer('asignado_01')->default(0);
+            $table->integer('disponible_02')->default(0);
+            $table->integer('asignado_02')->default(0);
+            $table->integer('disponible_03')->default(0);
+            $table->integer('asignado_03')->default(0);
+            $table->integer('disponible_voca')->default(0);
+            $table->integer('asignado_voca')->default(0);
             $table->boolean('activo')->default(false);
             $table->boolean('habilitado')->default(false);
         });
