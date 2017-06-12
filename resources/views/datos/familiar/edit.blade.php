@@ -2,6 +2,7 @@
 
 @section('content')
 @include('alerts.errors')
+{{ Alert::render() }}
 {!! Form::open(['route'=>['datos.familiares.update'],'method'=>'POST','files'=>true]) !!}
 <div class="col-md-12">
     <!-- BEGIN PORTLET-->
@@ -32,7 +33,7 @@
                 </div><!--row-->
                 <div class="row">
                     <div class="col-md-4">
-                        {!!Field::text('dni[0]', $familiar[0]->dni , ['label'=>'DNI del padre','placeholder'=>'DNI del Padre'])!!}
+                        {!!Field::text('dni[0]', $familiar[0]->dni , ['label'=>'DNI del padre','placeholder'=>'DNI del Padre','maxlength'=>8])!!}
                     </div><!--span-->
                     <div class="col-md-4">
                         {!!Field::text('direccion[0]', $familiar[0]->direccion , ['label'=>'Direccion del padre','placeholder'=>'Direccion del Padre'])!!}
@@ -59,7 +60,7 @@
                 </div><!--row-->
                 <div class="row">
                     <div class="col-md-4">
-                        {!!Field::text('dni[1]', $familiar[1]->dni , ['label'=>'DNI de la Madre','placeholder'=>'DNI de la Madre'])!!}
+                        {!!Field::text('dni[1]', $familiar[1]->dni , ['label'=>'DNI de la Madre','placeholder'=>'DNI de la Madre','maxlength'=>8])!!}
                     </div><!--span-->
                     <div class="col-md-4">
                         {!!Field::text('direccion[1]', $familiar[1]->direccion , ['label'=>'Direccion de la Madre','placeholder'=>'Direccion de la Madre'])!!}
@@ -86,7 +87,7 @@
                 </div><!--row-->
                 <div class="row">
                     <div class="col-md-4">
-                        {!!Field::text('dni[2]', $familiar[2]->dni , ['label'=>'DNI del apoderado','placeholder'=>'DNI del apoderado'])!!}
+                        {!!Field::text('dni[2]', $familiar[2]->dni , ['label'=>'DNI del apoderado','placeholder'=>'DNI del apoderado','maxlength'=>8])!!}
                     </div><!--span-->
                     <div class="col-md-4">
                         {!!Field::text('direccion[2]', $familiar[2]->direccion , ['label'=>'Direccion del apoderado','placeholder'=>'Direccion del apoderado'])!!}
