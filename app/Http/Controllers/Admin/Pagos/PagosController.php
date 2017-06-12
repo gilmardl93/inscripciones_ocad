@@ -132,7 +132,7 @@ class PagosController extends Controller
             }
 
             Alert::success(count($data).' Pagos Nuevos se han registrado');
-            Recaudacion::insert($data)
+            Recaudacion::insert($data);
     	}
     	return back();
     }
