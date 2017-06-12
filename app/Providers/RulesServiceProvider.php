@@ -50,7 +50,7 @@ class RulesServiceProvider extends ServiceProvider
         Validator::extend('dni_size', function ($attribute, $value, $parameters, $validator) {
             $correcto = true;
             foreach ($value as $key => $item) {
-                if(strlen($item)==0){
+                if(strlen($item)<8){
                     $correcto = false;
                     break;
                 }
