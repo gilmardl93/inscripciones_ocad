@@ -215,7 +215,7 @@ class PagosController extends Controller
 	    	$Cuenta = pad($this->cuentaUNI,14,' '),
 			$Concepto = $servicio->codigo,
 			$TotalAlumnos = pad($postulantes->count(),7,'0','L'),
-			$TotalSoles = pad(pad($servicio->valor*$postulantes->count(),15,'0','L'),17,'0'),
+			$TotalSoles = pad(pad($servicio->valor_entero*$postulantes->count(),15,'0','L'),17,'0'),
 			$TotalDolares = pad(0,17,'0','L'),
 			$RucEmpresa = '02016900400',
 			$FechaEnvio = Carbon::now()->format('Ymd'),
