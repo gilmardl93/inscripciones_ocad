@@ -25,7 +25,10 @@ class DatosComplementariosController extends Controller
     }
     public function store(CreateComplementarioRequest $request)
     {
-        $sw = Complementario::create($request->all());
+        $data = $request->all();
+        if(!$request->has('idrenuncia'))$data['idrenuncia']=null;
+
+        $sw = Complementario::create($data);
         if ($sw) {
             $postulante = Postulante::find(IdPostulante());
             event(new AfterUpdatingDataQuiz($postulante));
@@ -43,7 +46,10 @@ class DatosComplementariosController extends Controller
     public function update(Request $request, $id)
     {
         $complementarios = Complementario::find($id);
-        $complementarios->fill($request->all());
+        $data = $request->all();
+        if(!$request->has('idrenuncia'))$data['idrenuncia']=null;
+
+        $complementarios->fill($data);
         $complementarios->save();
         Alert::success('Se actualizaron sus datos con exito');
         return redirect()->route('datos.index');

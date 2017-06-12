@@ -2,6 +2,7 @@
 
 @section('content')
 @include('alerts.errors')
+{{ Alert::render() }}
 {!! Form::open(['route'=>'datos.familiares.store','method'=>'POST','files'=>true]) !!}
 <div class="col-md-12">
     <!-- BEGIN PORTLET-->

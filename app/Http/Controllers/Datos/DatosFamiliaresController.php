@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Datos;
 
 use App\Events\AfterUpdatingDataFamily;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateFamiliarRequest;
 use App\Models\Familiar;
 use App\Models\Postulante;
 use Auth;
@@ -32,7 +33,7 @@ class DatosFamiliaresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateFamiliarRequest $request)
     {
         $data = $request->all();
 
@@ -111,7 +112,7 @@ class DatosFamiliaresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(CreateFamiliarRequest $request)
     {
         $data = $request->all();
         Familiar::Actualizar($data);

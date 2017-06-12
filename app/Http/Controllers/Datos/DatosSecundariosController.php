@@ -33,7 +33,6 @@ class DatosSecundariosController extends Controller
             $data['foto_estado']='CARGADO';
             $data['foto_fecha_carga']=$date;
         }
-
         $postulante->fill($data);
 
         if ($postulante->save()) {
