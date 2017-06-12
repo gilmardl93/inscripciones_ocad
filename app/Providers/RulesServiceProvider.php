@@ -29,6 +29,7 @@ class RulesServiceProvider extends ServiceProvider
         $this->ValidaFechaInscripcion();
         $this->ValidaNumeroIdentificacion();
         $this->ValidaNumIdenUsuario();
+        $this->ValidaCodigoUsuarioPago();
     }
 
     /**
@@ -39,6 +40,11 @@ class RulesServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    public function ValidaCodigoUsuarioPago()
+    {
+        # code...
     }
     /**
      * Valido la institucion educativa que requiere la modalidad

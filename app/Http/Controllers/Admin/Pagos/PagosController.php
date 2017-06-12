@@ -146,7 +146,6 @@ class PagosController extends Controller
         Storage::disk('carteras')->delete($name);
 
         $servicios = Servicio::where('activo',1)->get();
-
         foreach ($servicios as $key => $servicio) {
 
             $postulantes = $this->PostulantesAPagar($servicio->codigo);
