@@ -9,7 +9,6 @@ class Ubigeo extends Model
     protected $table = 'ubigeo';
     protected $fillable = ['codigo','nombre','descripcion','activo'];
     public $timestamps = false;
-
     /**
     * Devuelve los valores Activos
     * @param  [type]  [description]

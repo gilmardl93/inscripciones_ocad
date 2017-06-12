@@ -2,7 +2,7 @@
 
 @section('content')
 @include('alerts.errors')
-{!! Form::open(['route'=>'datos.store','method'=>'POST','files'=>true]) !!}
+{!! Form::open(['route'=>'datos.complementarios.store','method'=>'POST','files'=>true]) !!}
 <div class="col-md-12">
     <!-- BEGIN PORTLET-->
     <div class="portlet light tasks-widget widget-comments">
@@ -16,12 +16,9 @@
         </div>
         <div class="form-body ">
             <div class="row">
-                        {!!Form::hidden('dni', $dni );!!}
+                {!!Form::hidden('idpostulante', IdPostulante() );!!}
                 <div class="col-md-12">
-                    <div class="form-group">
-                        {!!Form::label('lblEnc1', '¿Cual de las siguientes alternativas fue la razon principal en la eleccion de la especialidad de su primera prioridad de ingreso?');!!}
-                        {!!Form::select('idenc1',[], null , ['class'=>'form-control col-md-','placeholder'=>'Modalidad']);!!}
-                    </div>
+                    {!!Field::select('idrazon',$razon, ['label'=>'¿Cual de las siguientes alternativas fue la razon principal en la eleccion de la especialidad de su primera prioridad de ingreso?','empty'=>'Selecionar']);!!}
                 </div><!--span-->
                 <div class="col-md-12">
                     <div class="form-group">
@@ -31,7 +28,7 @@
                             {!!Form::label('lblEnc2', 'Tipo de preparacion:',['class'=>'pull-right']);!!}
                             </div><!--span-->
                             <div class="col-md-2">
-                            {!!Form::select('idmodalidad',[], null , ['class'=>'form-control col-md-','placeholder'=>'Modalidad']);!!}
+                            {!!Form::select('idtipopreparacion',$preparacion, null , ['class'=>'form-control col-md-','placeholder'=>'Tipo de preparacion']);!!}
                             </div><!--span-->
                         </div><!--row-->
                         <div class="row">
@@ -39,7 +36,7 @@
                             {!!Form::label('lblEnc2', 'Tiempo Preparación (meses):',['class'=>'pull-right']);!!}
                             </div><!--span-->
                             <div class="col-md-2">
-                            {!!Form::text('idmodalidad', null , ['class'=>'form-control col-md-','placeholder'=>'Modalidad']);!!}
+                            {!!Form::text('mes', 0 , ['class'=>'form-control','placeholder'=>'Meses']);!!}
                             </div><!--span-->
                         </div><!--row-->
                         <div class="row">
@@ -47,7 +44,7 @@
                             {!!Form::label('lblEnc2', 'Academia:',['class'=>'pull-right']);!!}
                             </div><!--span-->
                             <div class="col-md-2">
-                            {!!Form::select('idmodalidad',[], null , ['class'=>'form-control col-md-','placeholder'=>'Modalidad']);!!}
+                            {!!Form::select('idacademia',$academia, null , ['class'=>'form-control col-md-','placeholder'=>'Selecionar Academia']);!!}
                             </div><!--span-->
                         </div><!--row-->
                     </div>
@@ -60,7 +57,7 @@
                             {!!Form::label('lblEnc2', 'Número de veces:',['class'=>'pull-right']);!!}
                             </div><!--span-->
                             <div class="col-md-2">
-                            {!!Form::select('idmodalidad',[], null , ['class'=>'form-control col-md-','placeholder'=>'Modalidad']);!!}
+                            {!!Form::select('numeroveces',$veces, null , ['class'=>'form-control col-md-','placeholder'=>'Numero de veces']);!!}
                             </div><!--span-->
                         </div><!--row-->
                         <div class="row">
@@ -68,20 +65,20 @@
                             {!!Form::label('lblEnc2', 'Ingrese y renuncie:',['class'=>'pull-right']);!!}
                             </div><!--span-->
                             <div class="col-md-2">
-                            {!!Form::select('idmodalidad',[], null , ['class'=>'form-control col-md-','placeholder'=>'Modalidad']);!!}
+                            {!!Form::select('idrenuncia',$especialidad, null , ['class'=>'form-control col-md-','placeholder'=>'Especialidad']);!!}
                             </div><!--span-->
                         </div>
                 </div><!--span-->
                 <div class="col-md-12">
                     <div class="form-group">
                         {!!Form::label('lblEnc2', 'Indique el ingreso económico familiar aproximadamente en nuevos soles');!!}
-                        {!!Form::select('idmodalidad',[], null , ['class'=>'form-control col-md-','placeholder'=>'Modalidad']);!!}
+                        {!!Form::select('idingresoeconomico',$ingreso, null , ['class'=>'form-control col-md-','placeholder'=>'Ingreso economico']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-12">
                     <div class="form-group">
                         {!!Form::label('lblEnc2', '¿Porque medio se informó del Concurso de ADmision 2017-2?');!!}
-                        {!!Form::select('idmodalidad',[], null , ['class'=>'form-control col-md-','placeholder'=>'Modalidad']);!!}
+                        {!!Form::select('idpublicidad',$publicidad, null , ['class'=>'form-control col-md-','placeholder'=>'Publicidad']);!!}
                     </div>
                 </div><!--span-->
             </div><!--row-->

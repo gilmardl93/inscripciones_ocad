@@ -55,6 +55,6 @@ class SecuenciaController extends Controller
     			Alert::success('Secuencia creada con exito');
     			return redirect()->route('admin.secuencia.index');
     		}
-    	dd($id);
+
     }
 }

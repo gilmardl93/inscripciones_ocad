@@ -10,6 +10,18 @@
             </div>
         </div>
         <!-- END LOGO -->
+        <!-- BEGIN HEADER SEARCH BOX -->
+{!! Form::open(['route'=>'admin.buscar','method'=>'POST','class'=>'search-form search-form-expanded']) !!}
+            <div class="input-group">
+                {!!Form::text('name', null , ['class'=>'form-control','placeholder'=>'Buscar....']);!!}
+                <span class="input-group-btn">
+                    <a href="javascript:;" class="btn submit">
+                        <i class="icon-magnifier"></i>
+                    </a>
+                </span>
+            </div>
+{!! Form::close() !!}
+        <!-- END HEADER SEARCH BOX -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
         <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
             <span></span>
@@ -20,38 +32,6 @@
             <ul class="nav navbar-nav pull-right">
                 <!-- BEGIN INBOX DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
-                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <i class="icon-envelope-open"></i>
-                        <span class="badge badge-default"> {{ PorAtender()->count() }} </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="external">
-                            <h3>Tiene
-                                <span class="bold">{{ PorAtender()->count() }} Nuevos</span> Mensajes</h3>
-                            <a href="{{ route('admin.mensajes.index') }}">Ver Todos</a>
-                        </li>
-                        <li>
-                            <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                @foreach (PorAtender() as $mensaje)
-                                    @if(isset($mensaje))
-                                    <li>
-                                        <a href="{{ route('admin.mensajes.show',$mensaje->id) }}">
-                                            <span class="photo">
-                                                <img src="{{ $mensaje->postulante_foto }}" class="img-circle" alt=""> </span>
-                                            <span class="subject">
-                                                <span class="from"> {{ $mensaje->postulante }} </span>
-                                            </span>
-                                            <span class="message"> {{ $mensaje->asunto }} </span>
-                                        </a>
-                                    </li>
-                                    @endif
-                                @endforeach
-
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
                 <!-- END INBOX DROPDOWN -->
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->

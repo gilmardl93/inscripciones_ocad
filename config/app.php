@@ -192,6 +192,19 @@ return [
          * Macros para formularios
          */
         App\Providers\MacroServiceProvider::class,
+        /**
+         * Reglas de validacion personalizadas
+         */
+        App\Providers\RulesServiceProvider::class,
+        /**
+         * Barra de depuracion
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+        /**
+         * Laravel Log Viewer
+         */
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+
     ],
 
     /*
@@ -239,7 +252,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'PDF' => Elibyy\TCPDF\Facades\TCPDF::class
+        'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

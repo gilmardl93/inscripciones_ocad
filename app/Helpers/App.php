@@ -4,7 +4,20 @@ use App\Models\Catalogo;
 use App\Models\Colegio;
 use App\Models\Evaluacion;
 use App\Models\Mensaje;
+use App\Models\Postulante;
 use App\Models\Ubigeo;
+use App\Models\Universidad;
+if (! function_exists('IdPostulante')) {
+    /**
+     * Funcion que retorna el prefijo para nombres de archivos
+     * @return [type] [description]
+     */
+    function IdPostulante()
+    {
+        $postulante = Postulante::Usuario()->first();
+        return $postulante->id;
+    }
+}
 if (! function_exists('IdEvaluacion')) {
 	/**
 	 * Funcion que retorna el prefijo para nombres de archivos
@@ -38,6 +51,16 @@ if (! function_exists('NameCatalogo')) {
     {
         $role = Catalogo::select('nombres')->where('id',$id)->first();
         return $role->nombres;
+    }
+}
+if (! function_exists('IdTCCodigo')) {
+    /**
+     * Funcion que retorna el prefijo para nombres de archivos
+     * @return [type] [description]
+     */
+    function IdTCCodigo($table,$codigo)
+    {
+        return Catalogo::IdCatalogoCodigo($table,$codigo);
     }
 }
 
@@ -270,5 +293,40 @@ if (! function_exists('ColegioPersonal')) {
             $colegio=[];
         }
         return $colegio;
+    }
+}
+/**
+ * devuelve el id estado de catalogo
+ */
+if (! function_exists('UniversidadPersonal')) {
+    /**
+     * funcion que retorna el prefijo para nombres de archivos
+     * @return [type] [description]
+     */
+    function UniversidadPersonal($id)
+    {
+        if (isset($id)) {
+            $universidad = Universidad::where('id',$id)->pluck('nombre','id')->toarray();
+        } else {
+            $universidad=[];
+        }
+        return $universidad;
+    }
+}
+/**
+ * Pregunta si pago el prospecto
+ */
+if (! function_exists('PagoProspecto')) {
+    /**
+     * funcion que retorna el prefijo para nombres de archivos
+     * @return [type] [description]
+     */
+    function PagoProspecto()
+    {
+        $postulante = Postulante::with('Recaudaciones')->Usuario()->first();
+        $pagos = $postulante->recaudaciones->implode('servicio', ',');
+
+        if(str_contains($pagos,'475'))return true;
+        else return false;
     }
 }

@@ -20,6 +20,8 @@ class CreateEvaluacionsTable extends Migration
             $table->string('descripcion',100)->nullable();
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
+            $table->date('fecha_inicio_extemporaneo')->nullable();
+            $table->date('fecha_fin_extemporaneo')->nullable();
             $table->boolean('activo')->nullable();
             $table->timestamps();
         });

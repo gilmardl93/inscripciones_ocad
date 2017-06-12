@@ -10,6 +10,8 @@
     {!! Form::open(['url'=>'/password/email','method'=>'POST','id'=>'form-login']) !!}
         <h3 class="form-title font-green">Cambiar Contraseña</h3>
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <b class="text:"> Esta recuperación solo funciona si ha registrado su email si no lo ha ingresado escriba a informes@admisionuni.edu.pe</b>
+            <p></p>
             <label for="email" class="col-md-12 control-label">Ingresa tu Correo</label>
 
             <div class="col-md-12">

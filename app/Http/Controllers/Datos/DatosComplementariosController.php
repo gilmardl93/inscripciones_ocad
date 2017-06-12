@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Datos;
 
+use App\Events\AfterUpdatingDataQuiz;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateComplementarioRequest;
+use App\Models\Complementario;
 use App\Models\Postulante;
 use Auth;
 use Illuminate\Http\Request;
+use Styde\Html\Facades\Alert;
 class DatosComplementariosController extends Controller
 {
     /**
@@ -15,57 +19,20 @@ class DatosComplementariosController extends Controller
      */
     public function index()
     {
-        $dni = Auth::user()->dni;
-        $id = Auth::user()->id;
-        $postulante = Postulante::where('idusuario',$id)->first();
-
-        if(is_null($postulante))return view('datos.complementarios.index',compact('dni'));
-        else return view('datos.complementarios.edit',compact('postulante'));
+        $complementarios = Complementario::where('idpostulante',IdPostulante())->first();
+        if(is_null($complementarios))return view('datos.complementarios.index',compact('postulante'));
+        return view('datos.complementarios.edit',compact('complementarios'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(CreateComplementarioRequest $request)
     {
-        //
+        $sw = Complementario::create($request->all());
+        if ($sw) {
+            $postulante = Postulante::find(IdPostulante());
+            event(new AfterUpdatingDataQuiz($postulante));
+        }
+        Alert::success('Se registro sus datos con exito');
+        return redirect()->route('datos.index');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -75,17 +42,11 @@ class DatosComplementariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $complementarios = Complementario::find($id);
+        $complementarios->fill($request->all());
+        $complementarios->save();
+        Alert::success('Se actualizaron sus datos con exito');
+        return redirect()->route('datos.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

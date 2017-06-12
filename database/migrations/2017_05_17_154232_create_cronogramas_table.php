@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacultadsTable extends Migration
+class CreateCronogramasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateFacultadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('facultad', function (Blueprint $table) {
+        Schema::create('cronograma', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo',1)->nullable();
+            $table->string('codigo',4)->nullable();
             $table->string('nombre')->nullable();
-            $table->string('sigla',5)->nullable();
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_fin')->nullable();
+            $table->boolean('activo')->nullable();
         });
     }
 
@@ -28,6 +30,6 @@ class CreateFacultadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facultad');
+        Schema::dropIfExists('cronograma');
     }
 }

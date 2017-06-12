@@ -3,16 +3,24 @@
 namespace App\Http\Controllers\Pago;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cronograma;
 use App\Models\Postulante;
+use App\Models\Servicio;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
 class PagoController extends Controller
 {
     public function index($id = null)
     {
-    	return view('pagos.index',compact('id'));
+        $pagos = $this->CalculoServicios();
+        return view('pagos.list',compact('id','pagos'));
     }
-    public function pdf($id = null)
+    public function formato($servicio,$id = null)
+    {
+    	return view('pagos.index',compact('id','servicio'));
+    }
+    public function pdf($servicio,$id = null)
     {
         if (isset($id)) {
            $postulante = Postulante::find($id);
@@ -21,6 +29,7 @@ class PagoController extends Controller
         }
 
         if(isset($postulante)){
+        $servicio = Servicio::where('codigo',$servicio)->first();
 
         PDF::SetTitle('RECIBO DE PAGO');
         PDF::AddPage('L','A5');
@@ -47,14 +56,14 @@ class PagoController extends Controller
         PDF::Cell(60,5,'Concepto :',1,0,'R');
         PDF::SetXY(78,45);
         PDF::SetFont('helvetica','',11);
-        PDF::Cell(110,5,'620 - INSCRIPCION SIMULACRO',1,0,'L');
+        PDF::Cell(110,5,($servicio->codigo+100).' - '.$servicio->descripcion,1,0,'L');
         #CODIGO CNE
         PDF::SetXY(18,50);
         PDF::SetFont('helvetica','B',11);
         PDF::Cell(60,5,'DNI :',1,0,'R');
         PDF::SetXY(78,50);
         PDF::SetFont('helvetica','',11);
-        PDF::Cell(110,5,$postulante->dni,1,0,'L');
+        PDF::Cell(110,5,$postulante->numero_identificacion,1,0,'L');
         #ETIQUETA NOMBRE DEL ALUMNO
         PDF::SetXY(18,55);
         PDF::SetFont('helvetica','B',11);
@@ -68,7 +77,7 @@ class PagoController extends Controller
         PDF::Cell(60,5,"Importe :",1,0,'R');
         PDF::SetXY(78,60);
         PDF::SetFont('helvetica','',11);
-        PDF::Cell(110,5,"S/. 80.00 ",1,0,'L');
+        PDF::Cell(110,5,"S/. $servicio->monto ",1,0,'L');
         #TITULO INSTRUCCIONES
         PDF::SetXY(18,65);
         PDF::SetFont('helvetica','',15);
@@ -82,7 +91,60 @@ class PagoController extends Controller
         PDF::SetXY(18,78);
         PDF::Cell(123,0,"2. Verificar que el nombre sea del participante no del apoderado o de quien pague.",0,0,'L');
 
-        PDF::Output(public_path('storage/tmp/').'FormatoPago'.$postulante->dni.'.pdf','FI');
+        PDF::Output(public_path('storage/tmp/').'FormatoPago_'.$servicio->codigo.'_'.$postulante->numero_identificacion.'.pdf','FI');
         }//fin if
+    }
+    public function CalculoServicios($id = null)
+    {
+        $postulante = Postulante::Usuario()->first();
+        #Pago de Prospecto-----------------------------------------------------------------------------------------------
+        $pagos = collect(['prospecto'=>475]);
+        #Pago por derecho de examen---------------------------------------------------------------------------------------
+
+        #Modalidad Ordinario, Dos primeros alumnos, Deportisca calificado (Iniciar),Cepre Uni
+        if (str_contains($postulante->codigo_modalidad, ['O','E1DPA','E1DCAN','E1PDI','ID-CEPRE'])
+            && str_contains($postulante->gestion_ie,'Pública'))
+            $pagos->put('examen',464);
+        elseif (str_contains($postulante->codigo_modalidad, ['O','E1DPA','E1DCAN','E1PDI','ID-CEPRE'])
+            && str_contains($postulante->gestion_ie,'Privada')) {
+            $pagos->put('examen',465);
+         }
+
+        #Diplomado con bachillerato, Andres bello (Continuar), convenio diplomatico
+        if (str_contains($postulante->codigo_modalidad, ['E1DB','E1CABC','E1CD']))
+            $pagos->put('examen',473);
+
+        #Traslado Externo
+        if (str_contains($postulante->codigo_modalidad, 'E1TE')
+            && str_contains($postulante->gestion_ie,'Pública'))
+            $pagos->put('examen',469);
+        elseif (str_contains($postulante->codigo_modalidad, 'E1TE')
+            && str_contains($postulante->gestion_ie,'Privada')) {
+             $pagos->put('examen',470);
+         }
+
+        #Titulado o graduado
+        if (str_contains($postulante->codigo_modalidad, ['E1TG','E1TGU']))
+            $pagos->put('examen',468);
+
+        #Pago por examen vocacional---------------------------------------------------------------------------------------
+        if (str_contains($postulante->codigo_modalidad, 'ID-CEPRE') && str_contains($postulante->codigo_especialidad, 'A1')){
+            $pagos->put('vocacepre',516);
+        }
+
+        if (!str_contains($postulante->codigo_modalidad, 'ID-CEPRE') && str_contains($postulante->codigo_especialidad, 'A1')){
+            $pagos->put('voca',474);
+        }
+
+        if (str_contains($postulante->codigo_especialidad2, 'A1')){
+            $pagos->put('voca',474);
+        }
+        #Pago extemporaneo---------------------------------------------------------------------------------------------------
+        $date = Carbon::now()->toDateString();
+        $fecha_inicio = Cronograma::FechaInicio('INEX');
+        $fecha_fin = Cronograma::FechaFin('INEX');
+        if ($date>=$fecha_inicio && $date<=$fecha_fin)$pagos->put('extemporaneo',507);
+
+        return $pagos;
     }
 }

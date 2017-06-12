@@ -9,7 +9,7 @@ class Colegio extends Model
     protected $table = 'colegio';
     protected $fillable = ['codigo_modular', 'anexo', 'nombre','nivel','forma','area','gestion','direccion','director','email','telefonos','idubigeo','idpais','activo'];
     public $timestamps = false;
-
+    protected $connection = 'recursos';
     /**
     * Atributos Descripcion Ubigeo
     */
@@ -38,6 +38,4 @@ class Colegio extends Model
     {
         return $this->hasOne(Pais::class,'id','idpais');
     }
-
-
 }

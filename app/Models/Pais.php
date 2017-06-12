@@ -9,6 +9,7 @@ class Pais extends Model
     protected $table = 'pais';
     protected $fillable = ['codigo','nombre','activo'];
     public $timestamps = false;
+
     /**
     * Devuelve los valores Activos
     * @param  [type]  [description]

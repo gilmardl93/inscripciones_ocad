@@ -14,7 +14,7 @@
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <div class="dropdown-user-inner">
                     <span class="username username-hide-on-mobile"> {{ Auth::user()->dni }} </span>
-                    <img alt="" src="{{ asset('/storage/'.Auth::user()->foto) }}" /> </div>
+                    <img alt="" src="{{ Auth::user()->mostrar_foto }}" /> </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-default">
                 <li>

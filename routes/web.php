@@ -24,4 +24,5 @@ require __DIR__.'/contacto.route.php';
 require __DIR__.'/recursos.route.php';
 
 Auth::routes();
+Route::get('logitos', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

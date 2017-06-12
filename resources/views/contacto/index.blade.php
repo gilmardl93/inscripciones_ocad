@@ -20,70 +20,24 @@
         <!-- END WIDGET THUMB -->
     </div>
 </div>
-<div class="row widget-row">
-    <div class="col-md-3">
-        <!-- BEGIN PORTLET-->
-        <div class="portlet light tasks-widget widget-comments">
-            <div class="portlet-title margin-bottom-20">
-                <div class="caption caption-md font-red-sunglo">
-                    <span class="caption-subject theme-font bold uppercase">Envianos un mensaje</span>
-                </div>
-            </div>
-            <div class="portlet-body overflow-h">
-                {!! Form::open(['route'=>'contacto.store','method'=>'POST']) !!}
-                    {!! Form::text('asunto', null, ['class'=>'form-control margin-bottom-20','placeholder'=>'Asunto']) !!}
-                    {!! Form::textarea('contenido', null, ['class'=>'form-control margin-bottom-20','rows'=>'5','placeholder'=>'Mensaje']) !!}
-                    {!!Form::enviar('Enviar','red-sunglo pull-right')!!}
-                    {!!Form::back(route('home.index'))!!}
-                {!! Form::close() !!}
+<div class="row">
+    <div class="col-md-6">
+        <div class="portlet-body overflow-h">
+            <div class="fb-page " data-href="https://www.facebook.com/admision.uni/" data-tabs="messages" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/admision.uni/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/admision.uni/">Admisión UNI</a></blockquote>
             </div>
         </div>
-        <!-- END PORTLET-->
-    </div>
-    <div class="col-md-9">
-        <!-- BEGIN PORTLET-->
-        <div class="portlet light tasks-widget widget-comments">
-            <div class="portlet-title margin-bottom-20">
-                <div class="caption caption-md font-red-sunglo">
-                    <span class="caption-subject theme-font bold uppercase">Mensajes</span>
-                </div>
-            </div>
-
-            <div class="portlet-body overflow-h">
-                <div class="tab-content scroller" style="height: 350px;" >
-                    <div id="contenido">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END PORTLET-->
-    </div>
-</div>
-
+    </div><!--span-->
+</div><!--row-->
 @stop
 @section('js-scripts')
-<script>
-$(function(){
-    function Recarga(){
-        $('.tab-content').load('listar');
-    }
-    setInterval(Recarga, 1000);
-})
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
-@stop
 
-@section('plugins-styles')
-{!! Html::style(asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')) !!}
-{!! Html::style(asset('assets/global/plugins/select2/css/select2.min.css')) !!}
-{!! Html::style(asset('assets/global/plugins/select2/css/select2-bootstrap.min.css')) !!}
-{!! Html::style(asset('assets/global/plugins/icheck/skins/all.css')) !!}
-{!! Html::style(asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')) !!}
-@stop
-@section('plugins-js')
-{!! Html::script(asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')) !!}
-{!! Html::script(asset('assets/global/plugins/select2/js/select2.full.min.js')) !!}
-{!! Html::script(asset('assets/global/plugins/select2/js/i18n/es.js')) !!}
-{!! Html::script(asset('assets/global/plugins/icheck/icheck.min.js')) !!}
-{!! Html::script(asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')) !!}
 @stop

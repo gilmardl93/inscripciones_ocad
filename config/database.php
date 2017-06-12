@@ -81,7 +81,7 @@ return [
 
         'recursos' => [
             'driver' => 'pgsql',
-            'host' => '172.20.68.230',
+            'host' => '192.168.1.3',
             'port' => env('DB_PORT', '5432'),
             'database' => 'RECURSOS',
             'username' => 'postgres',

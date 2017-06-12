@@ -19,7 +19,7 @@ class ContactoController extends Controller
             $mensajes = Mensaje::where('idpostulante',$postulante->id)->orderBy('created_at')->get();
     	   return view('contacto.index',compact('mensajes'));
         }else{
-            Alert::warning('Debe registrar sus datos para acceder a esta opción');
+            Alert::warning('Debe realizar su Preinscripción para acceder a esta opción');
             return back();
         }
     }

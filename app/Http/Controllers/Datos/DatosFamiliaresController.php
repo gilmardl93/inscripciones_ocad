@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Datos;
 
+use App\Events\AfterUpdatingDataFamily;
 use App\Http\Controllers\Controller;
+use App\Models\Familiar;
 use App\Models\Postulante;
 use Auth;
 use Illuminate\Http\Request;
+use Styde\Html\Facades\Alert;
 
 class DatosFamiliaresController extends Controller
 {
@@ -16,22 +19,11 @@ class DatosFamiliaresController extends Controller
      */
     public function index()
     {
-        $dni = Auth::user()->dni;
-        $id = Auth::user()->id;
-        $postulante = Postulante::where('idusuario',$id)->first();
+        $postulante = Postulante::Usuario()->first();
+        $familiar = Familiar::where('idpostulante',$postulante->id)->orderBy('orden')->get();
 
-        if(is_null($postulante))return view('datos.familiar.index',compact('dni'));
-        else return view('datos.familiar.edit',compact('postulante'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        if($familiar->isEmpty())return view('datos.familiar.index',compact('postulante'));
+        return view('datos.familiar.edit',compact('familiar'));
     }
 
     /**
@@ -42,7 +34,52 @@ class DatosFamiliaresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $sw = Familiar::insert([
+                [
+                'idpostulante'=>$data['idpostulante'],
+                'paterno'=>$data['paterno'][0],
+                'materno'=>$data['materno'][0],
+                'nombres'=>$data['nombres'][0],
+                'dni'=>$data['dni'][0],
+                'email'=>$data['email'][0],
+                'direccion'=>$data['direccion'][0],
+                'telefonos'=>$data['telefonos'][0],
+                'parentesco'=>$data['parentesco'][0],
+                'orden'=>$data['orden'][0]
+                ],
+                [
+                'idpostulante'=>$data['idpostulante'],
+                'paterno'=>$data['paterno'][1],
+                'materno'=>$data['materno'][1],
+                'nombres'=>$data['nombres'][1],
+                'dni'=>$data['dni'][1],
+                'email'=>$data['email'][1],
+                'direccion'=>$data['direccion'][1],
+                'telefonos'=>$data['telefonos'][1],
+                'parentesco'=>$data['parentesco'][1],
+                'orden'=>$data['orden'][1]
+                ],
+                [
+                'idpostulante'=>$data['idpostulante'],
+                'paterno'=>$data['paterno'][2],
+                'materno'=>$data['materno'][2],
+                'nombres'=>$data['nombres'][2],
+                'dni'=>$data['dni'][2],
+                'email'=>$data['email'][2],
+                'direccion'=>$data['direccion'][2],
+                'telefonos'=>$data['telefonos'][2],
+                'parentesco'=>$data['parentesco'][2],
+                'orden'=>$data['orden'][2]
+                ]
+            ]);
+        if ($sw) {
+        $postulante = Postulante::find($data['idpostulante']);
+            event(new AfterUpdatingDataFamily($postulante));
+        }
+        Alert::success('Se actualizaron sus datos con exito');
+        return redirect()->route('datos.index');
     }
 
     /**
@@ -74,9 +111,13 @@ class DatosFamiliaresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = $request->all();
+        Familiar::Actualizar($data);
+
+        Alert::success('Se actualizaron sus datos con exito');
+        return redirect()->route('datos.index');
     }
 
     /**

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Catalogo;
-use App\Models\Evaluacion;
+use App\Models\Cronograma;
 use App\User;
-use Carbon\Carbon;
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Styde\Html\Facades\Alert;
 use Validator;
@@ -51,20 +51,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $date = Carbon::now()->toDateString();
-        $evaluacion = Evaluacion::whereDate('fecha_inicio','<=',$date)->whereDate('fecha_fin','>=',$date)->get();
-        if ($evaluacion->count()>0) {
-            return Validator::make($data, [
-                'dni' => 'required|max:8|unique:users,dni',
+        return Validator::make($data, [
+                'dni' => 'required|max:8|unique:users,dni|fecha_ins',
                 'password' => 'required|min:6|confirmed',
             ]);
-        }else{
-            return Validator::make($data, [
-                'dni' => 'accepted',
-            ],[
-                'dni.accepted'=>'La inscripcion no esta habilitada'
-            ]);
-        }
     }
 
     /**
