@@ -30,8 +30,10 @@ class DatosModalidadController extends Controller
     public function infomodalidad(Request $request)
     {
         $idmodalidad = $request->idmodalidad ?:'';
-
-        $modalidad = Modalidad::findOrfail($idmodalidad);
+        if($request->idmodalidad > 0)$modalidad = Modalidad::findOrfail($idmodalidad);
+        else{
+            $modalidad = new Modalidad(['colegio'=>true]);
+        }
         return $modalidad;
     }
     /**
