@@ -25,7 +25,7 @@ class UpdateSecundariosRequest extends FormRequest
     {
         $data = Request::all();
         return [
-            'email'=> 'required',
+            'email'=> 'required|email',
             'talla'=> 'required',
             'peso'=> 'required',
             'idsexo'=> 'required',
