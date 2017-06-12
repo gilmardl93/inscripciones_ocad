@@ -37,7 +37,9 @@ class UpdateSecundariosRequest extends FormRequest
             'idtipoidentificacion'=> 'required',
             'numero_identificacion'=> 'required|unique:postulante,numero_identificacion,'.$data['id'].
                                       '|num_ide_max:'.$data['idtipoidentificacion'].'|num_ide_usu',
-            'file'=> 'image'
+            'file'=> 'image',
+            'talla'=>'numeric',
+            'peso'=>'numeric',
 
         ];
     }
