@@ -40,6 +40,10 @@ class UpdateSecundariosRequest extends FormRequest
             'file'=> 'image',
             'talla'=>'numeric',
             'peso'=>'numeric',
+            'direccion'=>'required',
+            'fecha_nacimiento'=>'required',
+            'inicio_estudios'=>'required',
+            'fin_estudios'=>'required',
 
         ];
     }
