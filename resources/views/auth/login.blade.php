@@ -4,7 +4,7 @@
 @include('alerts.errors')
 {!! Alert::render() !!}
     <div id="form-opcion">
-    Bienvenido al Simulacro de admisión de la UNI, para ingresar debe crear una cuenta, si ya la creo haga click al boton ya tengo cuenta
+    Bienvenido al Examen de admisión de la UNI, para ingresar debe crear una cuenta, si ya la creo haga click al boton ya tengo cuenta
     <p></p>
     {!!Form::boton('Crear cuenta','javascript:;','green','fa fa-plus','',['id'=>'registrar'])!!}
     {!!Form::boton('Ya tengo cuenta','javascript:;','green','fa fa-send','',['id'=>'logear'])!!}
