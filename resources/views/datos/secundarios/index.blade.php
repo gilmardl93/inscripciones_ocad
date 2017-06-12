@@ -92,7 +92,7 @@
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::text('fecha_nacimiento', null, ['class'=>'Fecha','label'=>'Fecha de nacimiento de postulante (día-mes-año)','placeholder'=>'fecha de nacimiento del postulante']);!!}
+                    {!!Field::text('fecha_nacimiento', null, ['class'=>'Fecha','label'=>'Fecha de nacimiento de postulante (día-mes-año)*','placeholder'=>'fecha de nacimiento del postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-6">
                     {!!Field::text('telefono_varios', null, ['label'=>'Otros telefonos de contacto','placeholder'=>'Otros telefonos de contacto']);!!}
