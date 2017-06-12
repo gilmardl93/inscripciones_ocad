@@ -32,9 +32,9 @@
             {!!Form::menu('Mensajes',route('admin.mensajes.index'),'fa fa-at')!!}
             {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
             {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
+            {!!Form::menu('Estadistica',route('admin.users.index'),'icon-users')!!}
 @endif
 @if (str_contains(Auth::user()->codigo_rol,['jefe']))
-            {!!Form::menu('Estadistica',route('admin.users.index'),'icon-users')!!}
 @endif
 
     </ul>
