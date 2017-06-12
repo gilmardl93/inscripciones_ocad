@@ -9,12 +9,22 @@ use App\Models\Servicio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
+use Auth;
+use Alert;
 class PagoController extends Controller
 {
     public function index($id = null)
     {
-        $pagos = $this->CalculoServicios();
-        return view('pagos.list',compact('id','pagos'));
+        $existe = Postulante::where('idusuario',Auth::user()->id)->count();
+        if($existe==0){
+            Alert::warning('No registro su preinscripcion')
+                    ->details('Debes ingresar a la opcion Datos y llenar el formularo de preinscripcion')
+                    ->button('Lo puedes hacer haciendo clic aqui',route('datos.index'),'primary');
+            return back();
+        }else{
+            $pagos = $this->CalculoServicios();
+            return view('pagos.list',compact('id','pagos'));
+        }
     }
     public function formato($servicio,$id = null)
     {
