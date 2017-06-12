@@ -30,6 +30,9 @@ class RulesServiceProvider extends ServiceProvider
         $this->ValidaNumeroIdentificacion();
         $this->ValidaNumIdenUsuario();
         $this->ValidaCodigoUsuarioPago();
+        #Validacion de datos de familiares
+        $this->DniSize();
+        $this->DniNumeric();
     }
 
     /**
@@ -42,6 +45,35 @@ class RulesServiceProvider extends ServiceProvider
         //
     }
 
+    public function DniSize()
+    {
+        Validator::extend('dni_size', function ($attribute, $value, $parameters, $validator) {
+            $correcto = true;
+            foreach ($value as $key => $item) {
+                if(strlen($item)==0){
+                    $correcto = false;
+                    break;
+                }
+            }
+            return $correcto;
+
+        },"Uno de los DNI Ingresado no tiene 8 digitos");
+    }
+    public function DniNumeric()
+    {
+        Validator::extend('dni_numeric', function ($attribute, $value, $parameters, $validator) {
+            $correcto = true;
+            foreach ($value as $key => $item) {
+                if(!is_numeric($item)){
+                    $correcto = false;
+                    break;
+                }
+            }
+            return $correcto;
+
+
+        },"Uno de los DNI Ingresado contiene un caracter que no es numerico");
+    }
     public function ValidaCodigoUsuarioPago()
     {
         # code...
