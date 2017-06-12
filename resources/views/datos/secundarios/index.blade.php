@@ -58,7 +58,7 @@
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::text('email', null, ['label'=>'Email del postulante *','placeholder'=>'Email del postulante']);!!}
+                    {!!Field::email('email', null, ['label'=>'Email del postulante *','placeholder'=>'Email del postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-3">
                     {!!Field::text('talla', null, ['label'=>'Talla del postulante *','placeholder'=>'Talla del postulante']);!!}
