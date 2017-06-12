@@ -23,4 +23,11 @@ class Servicio extends Model
     {
         return str_replace('.','',$this->monto);
     }
+    /**
+    * Atributos Monto sin signo de separacion
+    */
+    public function getValorEnteroAttribute()
+    {
+        return (int)$this->monto;
+    }
 }
