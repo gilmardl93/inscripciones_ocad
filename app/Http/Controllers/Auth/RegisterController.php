@@ -52,7 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-                'dni' => 'required|numeric|size:8|unique:users,dni|fecha_ins',
+                'dni' => 'required|numeric|max:8|min:8|unique:users,dni|fecha_ins',
                 'password' => 'required|min:6|confirmed',
             ]);
     }
