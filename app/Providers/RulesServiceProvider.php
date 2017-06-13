@@ -49,12 +49,15 @@ class RulesServiceProvider extends ServiceProvider
     {
         Validator::extend('dni_size', function ($attribute, $value, $parameters, $validator) {
             $correcto = true;
-            foreach ($value as $key => $item) {
-                if(strlen($item)<8){
-                    $correcto = false;
-                    break;
+            if (is_array($value)) {
+                foreach ($value as $key => $item) {
+                    if(strlen($item)<8){
+                        $correcto = false;
+                        break;
+                    }
                 }
-            }
+            } else if(strlen($value)<8)$correcto = false;
+
             return $correcto;
 
         },"Uno de los DNI Ingresado no tiene 8 digitos");
