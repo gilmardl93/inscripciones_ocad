@@ -88,26 +88,19 @@ class PagosController extends Controller
             $banco = 'scotiabank';
     	}
         #Preparo la data antes de subir
-    	$i = 0;
-    	$pagos = Recaudacion::select('recibo')->get();
-    	$date = Carbon::now();
-    	$data = [];
-    	foreach ($archivo as $key => $value) {
-    		if (substr($value, 0 ,1) == 'D' && substr($value, 33 ,3)=='INS') {
-    			$data[$i]['recibo'] = substr($value, 15 ,11);
-    			$data[$i]['servicio'] = substr($value, 15 ,3);
-    			$data[$i]['descripcion'] = substr($value, 157 ,22);
-    			$data[$i]['monto'] = (float)substr($value, 77 ,2);
-    			$data[$i]['fecha'] = substr($value, 134 ,4).'-'.substr($value, 138 ,2).'-'.substr($value, 140 ,2);
-    			$data[$i]['codigo'] = substr($value, 40 ,8);
-                $data[$i]['nombrecliente'] = substr($value, 48 ,20);
-    			$data[$i]['banco'] = $banco;
-    			$data[$i]['created_at'] = $date;
-    			$data[$i]['updated_at'] = $date;
-    			$i++;
-    		}
-    	}
+
+        switch ($banco) {
+            case 'financiero':
+                # code...
+                break;
+
+            default:
+                $this->DataScotiabank($banco);
+                break;
+        }
+
         #valido pagos
+    	$pagos = Recaudacion::select('recibo')->get();
 		$recibos = $pagos->implode('recibo',',');
 		$data = array_where($data, function ($value, $key) use($recibos) {
 			if (!str_contains($recibos,$value['recibo']))
@@ -135,6 +128,26 @@ class PagosController extends Controller
             Recaudacion::insert($data);
     	}
     	return back();
+    }
+    public function DataScotiabank($banco)
+    {
+        $i = 0;
+        $data = [];
+        foreach ($archivo as $key => $value) {
+            if (substr($value, 0 ,1) == 'D' && substr($value, 33 ,3)=='INS') {
+                $data[$i]['recibo'] = substr($value, 15 ,11);
+                $data[$i]['servicio'] = substr($value, 15 ,3);
+                $data[$i]['descripcion'] = substr($value, 157 ,22);
+                $data[$i]['monto'] = (float)substr($value, 77 ,2);
+                $data[$i]['fecha'] = substr($value, 134 ,4).'-'.substr($value, 138 ,2).'-'.substr($value, 140 ,2);
+                $data[$i]['codigo'] = substr($value, 40 ,8);
+                $data[$i]['nombrecliente'] = substr($value, 48 ,20);
+                $data[$i]['banco'] = $banco;
+                $data[$i]['created_at'] = Carbon::now();
+                $data[$i]['updated_at'] = Carbon::now();
+                $i++;
+            }
+        }
     }
     /**
      * Crea el archivo que se envia al banco
