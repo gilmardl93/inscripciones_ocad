@@ -16,7 +16,7 @@ class UbigeoController extends Controller
     public function ubigeo(Request $request)
     {
         $name = $request->varsearch ?:'';
-        $name = trim(strtoupper($name));
+        $name = trim(mb_strtoupper($name,"UTF-8"));
 
         return Ubigeo::Obtener($name)->get();
     }
