@@ -26,8 +26,6 @@ class UpdateSecundariosRequest extends FormRequest
         $data = Request::all();
         return [
             'email'=> 'required|email',
-            'talla'=> 'required',
-            'peso'=> 'required',
             'idsexo'=> 'required',
             'telefono_celular'=> 'required',
             'telefono_fijo'=> 'required',
@@ -38,8 +36,8 @@ class UpdateSecundariosRequest extends FormRequest
             'numero_identificacion'=> 'required|unique:postulante,numero_identificacion,'.$data['id'].
                                       '|num_ide_max:'.$data['idtipoidentificacion'].'|num_ide_usu',
             'file'=> 'image',
-            'talla'=>'numeric',
-            'peso'=>'numeric',
+            'talla'=>'required|numeric',
+            'peso'=>'required|numeric',
             'direccion'=>'required',
             'fecha_nacimiento'=>'required',
             'inicio_estudios'=>'required',
