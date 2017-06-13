@@ -130,7 +130,7 @@ class PagosController extends Controller
         $postulantes = Postulante::select('numero_identificacion as codigo')
                                  ->whereIn('numero_identificacion',array_pluck($data,'codigo'))->IsNull(0)->pluck('codigo');
         $codigo = array_diff(array_pluck($data,'codigo'),$postulantes->toArray());
-        if(count($codigo)>0 && isset($codigo[0])){
+        if(count($codigo)>0){
             $collection = collect(['correcto'=>false,'data'=>$codigo]);
         }else{
             $collection = collect(['correcto'=>true,'data'=>$data]);
