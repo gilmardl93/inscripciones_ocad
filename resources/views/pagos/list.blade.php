@@ -6,7 +6,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">FORMATOs DE PAGO AL NOMBRE DEL PARTICIPANTE</span>
+                <span class="caption-subject theme-font bold uppercase">FORMATOs DE PAGO AL NOMBRE DEL POSTULANTE</span>
             </div>
             <div class="actions">
                 {!!Form::back(route('home.index'))!!}
@@ -17,7 +17,7 @@
             <div class="list-group">
                 <a href="{{ route('pagos.formato',$pagos['prospecto']) }}" class="list-group-item active">
                     <h4 class="list-group-item-heading">Prospecto de Admisión virtual</h4>
-                    <p class="list-group-item-text"> El prospecto de admisión virtual comprende los siguientes documentos (Reglamento, Solucionario del examen de admisión 2017-1,Catalogo de carreras). </p>
+                    <p class="list-group-item-text"> El prospecto de admisión virtual comprende los siguientes documentos (Reglamento, Solucionario del examen de admisión 2017-1,Catalogo de carreras, guía de Admision). </p>
                 </a>
                 @if (isset($pagos['examen']))
                 <a href="{{ route('pagos.formato',$pagos['examen']) }}" class="list-group-item">

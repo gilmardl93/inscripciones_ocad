@@ -6,7 +6,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">FORMATO DE PAGO AL NOMBRE DEL PARTICIPANTE</span>
+                <span class="caption-subject theme-font bold uppercase">FORMATO DE PAGO AL NOMBRE DEL POSUTLANTE</span>
             </div>
             <div class="actions">
                 {!!Form::back(route('pagos.index'))!!}

@@ -33,6 +33,7 @@ class RulesServiceProvider extends ServiceProvider
         #Validacion de datos de familiares
         $this->DniSize();
         $this->DniNumeric();
+        #Valido datos para pagos
     }
 
     /**
@@ -45,6 +46,23 @@ class RulesServiceProvider extends ServiceProvider
         //
     }
 
+    public function CodigoExist()
+    {
+        Validator::extend('codigo_exist', function ($attribute, $value, $parameters, $validator) {
+            $correcto = true;
+            if (is_array($value)) {
+                foreach ($value as $key => $item) {
+                    if(strlen($item)<8){
+                        $correcto = false;
+                        break;
+                    }
+                }
+            } else if(strlen($value)<8)$correcto = false;
+
+            return $correcto;
+
+        },"Uno de los DNI Ingresado no tiene 8 digitos");
+    }
     public function DniSize()
     {
         Validator::extend('dni_size', function ($attribute, $value, $parameters, $validator) {
@@ -99,10 +117,12 @@ class RulesServiceProvider extends ServiceProvider
     public function ValidaNumeroIdentificacion()
     {
         Validator::extend('num_ide_max', function ($attribute, $value, $parameters, $validator) {
+            if (isset($parameters[0])) {
+                $tipo = Catalogo::find($parameters[0]);
+                if ($tipo->nombre == 'DNI' && strlen($value)!=8) return false;
+                return true;
+            } else return false;
 
-            $tipo = Catalogo::find($parameters[0]);
-            if ($tipo->nombre == 'DNI' && strlen($value)!=8) return false;
-            return true;
 
         },"El DNI ingresado debe contener 8 digitos");
     }

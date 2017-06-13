@@ -21,6 +21,7 @@ Route::group(['namespace'=>'Pagos'], function() {
 	Route::get('download','PagosController@descarga')->name('admin.cartera.download');
 	Route::get('pagos-lista','PagosController@lista')->name('admin.pagos.list');
 	Route::post('pago-create','PagosController@pagocreate')->name('admin.pagos.create');
+	Route::get('recaudacion','PagosController@show')->name('admin.recaudacion');
 
 });
 /**

@@ -77,7 +77,7 @@ class PagoController extends Controller
         #ETIQUETA NOMBRE DEL ALUMNO
         PDF::SetXY(18,55);
         PDF::SetFont('helvetica','B',11);
-        PDF::Cell(60,5,'Nombre del Participante :',1,0,'R');
+        PDF::Cell(60,5,'Nombre del postulante :',1,0,'R');
         PDF::SetXY(78,55);
         PDF::SetFont('helvetica','',11);
         PDF::Cell(110,5,$postulante->nombre_completo,1,0,'L');
@@ -92,14 +92,14 @@ class PagoController extends Controller
         PDF::SetXY(18,65);
         PDF::SetFont('helvetica','',15);
         PDF::SetTextColor(255,0,0);
-        PDF::Cell(123,5,"Instrucciones para el Participante",0,0,'L');
+        PDF::Cell(123,5,"Instrucciones para el postulante",0,0,'L');
         #INSTRUCCIONES
         PDF::SetXY(18,73);
         PDF::SetFont('helvetica','',11);
         PDF::SetTextColor(0);
         PDF::Cell(123,0,"1. Verificar que los datos registrados en la parte superior sean los correctos.",0,0,'L');
         PDF::SetXY(18,78);
-        PDF::Cell(123,0,"2. Verificar que el nombre sea del participante no del apoderado o de quien pague.",0,0,'L');
+        PDF::Cell(123,0,"2. Verificar que el nombre sea del postulante no del apoderado o de quien pague.",0,0,'L');
 
         PDF::Output(public_path('storage/tmp/').'FormatoPago_'.$servicio->codigo.'_'.$postulante->numero_identificacion.'.pdf','FI');
         }//fin if

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Postulante;
 use App\Models\Proceso;
+use App\Models\Recaudacion;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
@@ -43,6 +44,13 @@ class EventServiceProvider extends ServiceProvider
             $proceso->idpostulante = $postulante->id;
             $proceso->preinscripcion = true;
             $proceso->save();
+        });
+        /**
+         * Inserta el id de postulante a pago registrado
+         */
+        Recaudacion::created(function($recaudacion){
+            $postulante = Postulante::where('numero_identificacion',$recaudacion->codigo)->first();
+            Recaudacion::where('id',$recaudacion->id)->update(['idpostulante'=>$postulante->id]);
         });
 
     }
