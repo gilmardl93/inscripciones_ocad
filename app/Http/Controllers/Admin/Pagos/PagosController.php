@@ -152,7 +152,7 @@ class PagosController extends Controller
                         $data[$i]['recibo'] = substr($value, 15 ,11);
                         $data[$i]['servicio'] = substr($value, 15 ,3);
                         $data[$i]['descripcion'] = substr($value, 157 ,22);
-                        $data[$i]['monto'] = (float)substr($value, 77 ,2);
+                        $data[$i]['monto'] = (float)substr($value, 77 ,3);
                         $data[$i]['fecha'] = substr($value, 134 ,4).'-'.substr($value, 138 ,2).'-'.substr($value, 140 ,2);
                         $data[$i]['codigo'] = substr($value, 40 ,8);
                         $data[$i]['nombrecliente'] = substr($value, 48 ,20);
