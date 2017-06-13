@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Storage;
 use Styde\Html\Facades\Alert;
 use DB;
+use Validator;
 class PagosController extends Controller
 {
 	private $cuentaUNI;
@@ -29,6 +30,10 @@ class PagosController extends Controller
     public function index()
     {
     	return view('admin.pagos.index');
+    }
+    public function show()
+    {
+        return view('admin.pagos.show');
     }
     public function lista()
     {
@@ -65,6 +70,7 @@ class PagosController extends Controller
     }
     public function store(PagosRequest $request)
     {
+        #Guardo el archivo
     	$file = $request->file('file');
     	$nombre = $file->getClientOriginalName();
     	$archivo = '';
@@ -87,67 +93,85 @@ class PagosController extends Controller
             $archivo = file($archivo);
             $banco = 'scotiabank';
     	}
-        #Preparo la data antes de subir
+        #Preparo la data antes de subir a la DB
+        $data = $this->PreparaData($archivo,$banco);
+        #valido pagos
+        #Si los datos son correctos ejecuto la subida de datos
+        $error = $this->ValidoPagos($data);
+        if ($error['correcto']) {
+            if (count($data)>0) {
+                Alert::success(count($data).' Pagos Nuevos se han registrado');
+                foreach ($data as $key => $item) {
+                    Recaudacion::create([
+                        'recibo'=>$item['recibo'],
+                        'servicio'=>$item['servicio'],
+                        'descripcion'=>$item['descripcion'],
+                        'monto'=>$item['monto'],
+                        'fecha'=>$item['fecha'],
+                        'codigo'=>$item['codigo'],
+                        'nombrecliente'=>$item['nombrecliente'],
+                        'banco'=>$item['banco'],
+                        ]);
+                }
+            } else {
+                Alert::success('No hay Pagos Nuevos');
+            }
+            return back();
 
+        } else {
+            Alert::danger('Error de Codigos')->items($error['data']);
+            return back();
+        }
+
+    }
+    public function ValidoPagos($data)
+    {
+        #Valido existencia de codigo
+        $postulantes = Postulante::select('numero_identificacion as codigo')
+                                 ->whereIn('numero_identificacion',array_pluck($data,'codigo'))->IsNull(0)->pluck('codigo');
+        $codigo = array_diff(array_pluck($data,'codigo'),$postulantes->toArray());
+        if(count($codigo)>0 && isset($codigo[0])){
+            $collection = collect(['correcto'=>false,'data'=>$codigo]);
+        }else{
+            $collection = collect(['correcto'=>true,'data'=>$data]);
+        }
+        return $collection;
+    }
+    public function PreparaData($archivo,$banco)
+    {
+        $i = 0;
+        $data = [];
         switch ($banco) {
             case 'financiero':
                 # code...
                 break;
 
             default:
-                $this->DataScotiabank($banco);
+                foreach ($archivo as $key => $value) {
+                    if (substr($value, 0 ,1) == 'D' && substr($value, 33 ,3)=='INS') {
+                        $data[$i]['recibo'] = substr($value, 15 ,11);
+                        $data[$i]['servicio'] = substr($value, 15 ,3);
+                        $data[$i]['descripcion'] = substr($value, 157 ,22);
+                        $data[$i]['monto'] = (float)substr($value, 77 ,2);
+                        $data[$i]['fecha'] = substr($value, 134 ,4).'-'.substr($value, 138 ,2).'-'.substr($value, 140 ,2);
+                        $data[$i]['codigo'] = substr($value, 40 ,8);
+                        $data[$i]['nombrecliente'] = substr($value, 48 ,20);
+                        $data[$i]['banco'] = $banco;
+                        $i++;
+                    }
+                }
                 break;
         }
 
-        #valido pagos
-    	$pagos = Recaudacion::select('recibo')->get();
-		$recibos = $pagos->implode('recibo',',');
-		$data = array_where($data, function ($value, $key) use($recibos) {
-			if (!str_contains($recibos,$value['recibo']))
-		    return $value;
-		});
+        $recaudacion = Recaudacion::select('recibo')->pluck('recibo')->toArray();
+        $diferencia = array_diff(array_pluck($data,'recibo'),$recaudacion);
+        $diferencia = implode(",", $diferencia);
+        $data = array_where($data, function ($value, $key) use($diferencia) {
+            if (str_contains($diferencia,$value['recibo']))
+            return $value;
+        });
 
-		$postulantes = Postulante::Pagantes()->get()->toArray();
-
-
-    	if (count($data)==0) {
-    		Alert::success('No hay Pagos Nuevos');
-    	}else{
-
-    		foreach ($data as $key => $value) {
-    				$id = search_in_array($postulantes,'dni',$value['codigo'],'id');
-                if ($id != 0) {
-   			      $data[$key]['idpostulante'] = $id;
-                }else{
-                    Alert::warning('Este codigo no existe '.$value['codigo']. ' posicion :'.($key+1));
-                    return back();
-                }
-            }
-
-            Alert::success(count($data).' Pagos Nuevos se han registrado');
-            Recaudacion::insert($data);
-    	}
-    	return back();
-    }
-    public function DataScotiabank($banco)
-    {
-        $i = 0;
-        $data = [];
-        foreach ($archivo as $key => $value) {
-            if (substr($value, 0 ,1) == 'D' && substr($value, 33 ,3)=='INS') {
-                $data[$i]['recibo'] = substr($value, 15 ,11);
-                $data[$i]['servicio'] = substr($value, 15 ,3);
-                $data[$i]['descripcion'] = substr($value, 157 ,22);
-                $data[$i]['monto'] = (float)substr($value, 77 ,2);
-                $data[$i]['fecha'] = substr($value, 134 ,4).'-'.substr($value, 138 ,2).'-'.substr($value, 140 ,2);
-                $data[$i]['codigo'] = substr($value, 40 ,8);
-                $data[$i]['nombrecliente'] = substr($value, 48 ,20);
-                $data[$i]['banco'] = $banco;
-                $data[$i]['created_at'] = Carbon::now();
-                $data[$i]['updated_at'] = Carbon::now();
-                $i++;
-            }
-        }
+        return $data;
     }
     /**
      * Crea el archivo que se envia al banco
