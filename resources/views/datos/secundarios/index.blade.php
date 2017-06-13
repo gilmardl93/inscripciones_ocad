@@ -61,7 +61,7 @@
                     {!!Field::email('email', null, ['label'=>'Email del postulante *','placeholder'=>'Email del postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-3">
-                    {!!Field::text('talla', null, ['label'=>'Talla del postulante(metros) *','placeholder'=>'Talla del postulante']);!!}
+                    {!!Field::text('talla', null, ['label'=>'Talla del postulante(en metros) *','placeholder'=>'Talla del postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-3">
                     {!!Field::text('peso', null, ['label'=>'Peso del postulante (en kilogramos) *','placeholder'=>'Peso del postulante']);!!}
