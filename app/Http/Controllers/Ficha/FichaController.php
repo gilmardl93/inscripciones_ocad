@@ -169,16 +169,16 @@ class FichaController extends Controller
             PDF::SetFont('helvetica','B',10);
             PDF::SetXY(78,120);
             PDF::SetFillColor(0, 0, 0, 12);
-            PDF::Cell(30,7,'LU 22: S4-201',0,0,'C',1,'',1);
+            PDF::Cell(30,7,$postulante->datos_aula_uno->codigo,0,0,'C',1,'',1);
             #
             PDF::SetXY(110,120);
-            PDF::Cell(30,7,'MI 24: COPRESA 45666',0,0,'C',1,'',1);
+            PDF::Cell(30,7,$postulante->datos_aula_dos->codigo,0,0,'C',1,'',1);
             #
             PDF::SetXY(142,120);
-            PDF::Cell(30,7,'VI 26: Q1-302',0,0,'C',1,'',1);
+            PDF::Cell(30,7,$postulante->datos_aula_tres->codigo,0,0,'C',1,'',1);
             #
             PDF::SetXY(174,120);
-            PDF::Cell(30,7,'VOCA 26: Q1-302',0,0,'C',1,'',1);
+            PDF::Cell(30,7,$postulante->datos_aula_voca->codigo,0,0,'C',1,'',1);
             #MENSAJE
             PDF::SetFillColor(255);
             PDF::SetTextColor(255);
