@@ -8,7 +8,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">DATOS PERSONALES DEL PARTICIPANTE </span>
+                <span class="caption-subject theme-font bold uppercase">DATOS PERSONALES DEL postulante </span>
             </div>
             <div class="actions">
                 {!!Form::back(route('home.index'))!!}
@@ -18,7 +18,7 @@
         Debe ingresar la siguiente información
             <ol>
                 <li>Datos: Deberá registrar los datos del postulante (no del apoderado), donde ingresara sus nombres, modalidad, especialidad e institución educativa donde estudio el postulante</li>
-                <li>Pagos: Imprimirá los formatos de pago que el sistema genera segun la modalidad que ha escogido para realizar el pago en el banco Scotiabak</li>
+                <li>Pagos: Imprimirá los formatos de pago que el sistema genera segun la modalidad que ha escogido para realizar el pago en el banco Scotiabank, Financiero y BCP</li>
                 <li>Ficha: imprimir tu ficha de inscripción despues de realizar el pago y que su foto haya sido verificada por la Oficina de admisión</li>
             </ol>
             Si tuviese alguna duda puede hacer click al boton &nbsp<span class="label label-danger"> Ayuda </span>&nbsp que se encuentra a la derecha de su ventana y le aparecerá indicaciones para poder realizar su inscripción
