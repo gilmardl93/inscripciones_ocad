@@ -279,6 +279,14 @@ class Postulante extends Model
         return $foto;
     }
     /**
+    * Atributos Foto
+    */
+    public function getMostrarFotoCargadaAttribute()
+    {
+        $foto = asset('/storage/'.$this->foto_cargada);
+        return $foto;
+    }
+    /**
     * Atributos Grado
     */
     public function getGradoAttribute()

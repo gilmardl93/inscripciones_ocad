@@ -39,6 +39,9 @@ class FichaController extends Controller
             }elseif (isset($postulante) && $postulante->foto_estado == 'SIN FOTO') {
                 $correcto_foto = false;
                 $msj->push(['titulo'=>'Error de Foto','mensaje'=>'Usted no ha cargado su foto']);
+            }elseif (isset($postulante) && $postulante->foto_estado == 'RECHAZADO') {
+                $correcto_foto = false;
+                $msj->push(['titulo'=>'Error de Foto','mensaje'=>'La foto que usted ha cargado en el sistema ha sido rechazada, vuelva a cargar una foto mas nitida con fondo blanco sin lentes, si tiene problemas puede enviar su foto al correo informes@admisionuni.edu.pe']);
             }elseif(isset($postulante) && $postulante->foto_estado == 'CARGADO') {
                 $correcto_foto = false;
                 $msj->push(['titulo'=>'Edicion de Foto','mensaje'=>'En estos momentos estamos editando su foto']);

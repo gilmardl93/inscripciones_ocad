@@ -41,7 +41,7 @@
             @if (isset($postulante))
                 {!!Form::boton('Aceptar',route('admin.fotos.update',[$postulante->id,1]),'blue','fa fa-check')!!}
                 {!!Form::boton('Rechazar',route('admin.fotos.update',[$postulante->id,0]),'red','fa fa-times')!!}
-                {!!Form::boton('Editar','#','dark','fa fa-edit','',['onclick'=>"return launchEditor('editableimage1','$postulante->mostrar_foto')"])!!}
+                {!!Form::boton('Editar','#','dark','fa fa-edit','',['onclick'=>"return launchEditor('editableimage1','$postulante->mostrar_foto_cargada')"])!!}
             @endif
                 </div>
             </div><!--row-->
@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <a href="javascript:;" class="thumbnail">
-                        <img id="editableimage1" src="{{ $postulante->mostrar_foto }}" style="height: 400px; width: 300px; display: block;">
+                        <img id="editableimage1" src="{{ $postulante->mostrar_foto_cargada }}" style="height: 400px; width: 300px; display: block;">
                     </a>
                 </div><!--span-->
                 <div class="col-md-9">
@@ -91,24 +91,23 @@
 
 @section('js-scripts')
 <script>
+
 var featherEditor = new Aviary.Feather({
         apiKey: '1234567',
-        languages : 'es',
-        rows : 'crop',
+        language : 'es',
+        tools : ['orientation','crop','lighting','color','sharpness'],
         onSave: function(imageID, newURL) {
             var img = document.getElementById(imageID);
             img.src = newURL;
             var nueva_imagen = newURL;
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $("input[name='_token']").val()
-                },
-                type : "POST",
+                type : "GET",
                 url : "cargar-editado",
                 data : { nueva_imagen : nueva_imagen,idpostulante: {{ $postulante->id }} },
                 cache : false,
                 success : function()
                 {
+                    location.reload();
                     console.log("imagen cargada");
                 }
             });
