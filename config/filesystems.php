@@ -63,6 +63,10 @@ return [
             'root' => storage_path('app/pagos'),
             'visibility' => 'public',
         ],
+        'documentos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/documentos'),
+        ],
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',
