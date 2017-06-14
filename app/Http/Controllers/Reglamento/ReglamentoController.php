@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Reglamento;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\Postulante;
 use Illuminate\Http\Request;
-use Alert;
+use Illuminate\Support\Facades\Storage;
 class ReglamentoController extends Controller
 {
     public function index()
@@ -20,11 +21,17 @@ class ReglamentoController extends Controller
     }
     public function documento($doc)
     {
-    	$headers = [];
-    	return response()->download(
-    			storage_path('app/documentos/'.$doc.'.pdf'),
-    			null,
-    			$headers
-    		);
+        $exists = Storage::disk('documentos')->exists($doc.'.pdf');
+        if ($exists) {
+        	$headers = [];
+        	return response()->download(
+        			storage_path('app/documentos/'.$doc.'.pdf'),
+        			null,
+        			$headers
+        		);
+        } else {
+            Alert::info('Lo sentimos en este momento no podemos mostrarle este documento');
+            return back();
+        }
     }
 }

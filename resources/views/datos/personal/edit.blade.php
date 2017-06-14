@@ -8,7 +8,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">DATOS PERSONALES DEL PARTICIPANTE (NO DEL APODERADO)</span>
+                <span class="caption-subject theme-font bold uppercase">DATOS PERSONALES DEL postulante (NO DEL APODERADO)</span>
             </div>
             <div class="actions">
                 {!!Form::back(route('datos.index'))!!}
@@ -24,17 +24,17 @@
                     <div class="form-group">
                         {!!Form::hidden('idtipoidentificacion', IdTCCodigo('IDENTIFICACION','DNI') );!!}
                         {!!Form::hidden('numero_identificacion', Auth::user()->dni );!!}
-                        {!!Field::text('paterno', null , ['label'=>'Apellido Paterno del participante *','placeholder'=>'Apellido Paterno del postulante']);!!}
+                        {!!Field::text('paterno', null , ['label'=>'Apellido Paterno del postulante *','placeholder'=>'Apellido Paterno del postulante']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!!Field::text('materno', null , ['label'=>'Apellido Materno del participante *','placeholder'=>'Apellido Materno del postulante']);!!}
+                        {!!Field::text('materno', null , ['label'=>'Apellido Materno del postulante *','placeholder'=>'Apellido Materno del postulante']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!!Field::text('nombres', null , ['label'=>'Nombres del participante *','placeholder'=>'Nombre el postulante']);!!}
+                        {!!Field::text('nombres', null , ['label'=>'Nombres del postulante *','placeholder'=>'Nombre el postulante']);!!}
                     </div>
                 </div><!--span-->
             </div><!--row-->

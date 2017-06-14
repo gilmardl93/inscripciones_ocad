@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
+{!! Alert::render() !!}
 <div class="col-md-12">
     <!-- BEGIN PORTLET-->
     <div class="portlet light tasks-widget widget-comments">
