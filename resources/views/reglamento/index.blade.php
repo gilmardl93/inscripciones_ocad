@@ -22,6 +22,7 @@
                         <a href="{{ route('document.download','solucionario') }}" class="list-group-item"> Solucionario </a>
                         <a href="{{ route('document.download','temario') }}" class="list-group-item">Temario</a>
                         <a href="{{ route('document.download','guia') }}" class="list-group-item"> Guía de Inscripción </a>
+                        <a href="{{ route('document.download','catalogo') }}" class="list-group-item"> Catalogo de Carreras </a>
                     </div>
                     @else
                         <div class="note note-danger">
