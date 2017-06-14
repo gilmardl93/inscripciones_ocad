@@ -4,9 +4,10 @@ namespace App\Models;
 
 use App\User;
 use Auth;
-use DB;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 class Postulante extends Model
 {
     protected $table = 'postulante';
@@ -265,17 +266,12 @@ class Postulante extends Model
     /**
     * Atributos Foto
     */
-    public function getMostrarFotoAttribute()
-    {
-        $foto = asset('/storage/'.$this->foto);
-        return $foto;
-    }
-    /**
-    * Atributos Foto
-    */
     public function getMostrarFotoEditadaAttribute()
     {
+        if(Storage::exists('public/'.$this->foto_editada) && isset($this->foto_editada))
         $foto = asset('/storage/'.$this->foto_editada);
+        else $foto = false;
+
         return $foto;
     }
     /**
@@ -283,7 +279,21 @@ class Postulante extends Model
     */
     public function getMostrarFotoCargadaAttribute()
     {
+        if(Storage::exists('public/'.$this->foto_cargada) && isset($this->foto_cargada))
         $foto = asset('/storage/'.$this->foto_cargada);
+        else $foto = false;
+
+        return $foto;
+    }
+    /**
+    * Atributos Foto
+    */
+    public function getMostrarFotoRechazadaAttribute()
+    {
+        if(Storage::exists('public/'.$this->foto_rechazada) && isset($this->foto_rechazada))
+        $foto = asset('/storage/'.$this->foto_rechazada);
+        else $foto = false;
+
         return $foto;
     }
     /**
@@ -608,6 +618,14 @@ class Postulante extends Model
     public function Recaudaciones()
     {
         return $this->hasmany(Recaudacion::class, 'idpostulante', 'id');
+    }
+    /**
+     * Relacion de one to many
+     * Obtener la dependencia que tiene esta persona
+     */
+    public function Usuarios()
+    {
+        return $this->hasOne(User::class, 'id', 'idusuario');
     }
     /**
      * Operaciones estaticas
