@@ -33,10 +33,15 @@ class FichaController extends Controller
             $msj = collect([]);
 
             #Valida Foto Editada
-            if(isset($postulante) && $postulante->foto_estado == 'ACEPTADO')$correcto_foto = true;
-            else{
+
+            if(isset($postulante) && $postulante->foto_estado == 'ACEPTADO'){
+                $correcto_foto = true;
+            }elseif (isset($postulante) && $postulante->foto_estado == 'SIN FOTO') {
                 $correcto_foto = false;
-                $msj->push(['titulo'=>'Error de Foto','mensaje'=>'Su foto ha sido rechazado']);
+                $msj->push(['titulo'=>'Error de Foto','mensaje'=>'Usted no ha cargado su foto']);
+            }elseif(isset($postulante) && $postulante->foto_estado == 'CARGADO') {
+                $correcto_foto = false;
+                $msj->push(['titulo'=>'Edicion de Foto','mensaje'=>'En estos momentos estamos editando su foto']);
             }
 
             #Valida datos adicionales----------------------------------------
@@ -73,8 +78,6 @@ class FichaController extends Controller
                     $msj->push(['titulo'=>'Error de pago','mensaje'=>'Usted no ha realizado el pago de '.$servicio->descripcion.' por S/ '.$servicio->monto.' soles']);
                 }
             }
-
-            Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
 
             if($correcto_foto &&
                 $correcto_datos_p &&
