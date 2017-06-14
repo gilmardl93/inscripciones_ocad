@@ -37,24 +37,12 @@
 			            <td> {{ $item->paterno }} </td>
 			            <td> {{ $item->materno }} </td>
 			            <td> {{ $item->nombres }} </td>
-			            <td>
-			            	<div class="btn-group">
-                                <button class="btn btn-xs green-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Opciones
-                                    <i class="fa fa-angle-down"></i>
-                                </button>
-                                <ul class="dropdown-menu pull-left" role="menu">
-                                    <li>
-                                        <a href="{{-- route('admin.matricula.edit',$item->id) --}}">
-                                            <i class="fa fa-edit"></i> Edit </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
+			            <td>{!!Form::boton('Ver',route('admin.pos.show',$item->id),'green-dark','fa fa-eye','btn-xs')!!}</td>
 			        </tr>
 				@endforeach
 			    </tbody>
 			</table>
-
+            {!! $postulantes->links() !!}
         </div>
     </div>
     <!-- END Portlet PORTLET-->

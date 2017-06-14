@@ -11,7 +11,7 @@
         </div>
         <!-- END LOGO -->
         <!-- BEGIN HEADER SEARCH BOX -->
-{!! Form::open(['route'=>'admin.buscar','method'=>'POST','class'=>'search-form search-form-expanded']) !!}
+{!! Form::open(['route'=>'admin.pos.buscar','method'=>'POST','class'=>'search-form search-form-expanded']) !!}
             <div class="input-group">
                 {!!Form::text('name', null , ['class'=>'form-control','placeholder'=>'Buscar....']);!!}
                 <span class="input-group-btn">

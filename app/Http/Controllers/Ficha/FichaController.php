@@ -38,10 +38,10 @@ class FichaController extends Controller
                 $correcto_foto = true;
             }elseif (isset($postulante) && $postulante->foto_estado == 'SIN FOTO') {
                 $correcto_foto = false;
-                $msj->push(['titulo'=>'Error de Foto','mensaje'=>'Usted no ha cargado su foto']);
+                $msj->push(['titulo'=>'Falta Foto','mensaje'=>'Usted no ha cargado su foto']);
             }elseif (isset($postulante) && $postulante->foto_estado == 'RECHAZADO') {
                 $correcto_foto = false;
-                $msj->push(['titulo'=>'Error de Foto','mensaje'=>'La foto que usted ha cargado en el sistema ha sido rechazada, vuelva a cargar una foto mas nitida con fondo blanco sin lentes, si tiene problemas puede enviar su foto al correo informes@admisionuni.edu.pe']);
+                $msj->push(['titulo'=>'Foto Rechazada','mensaje'=>'La foto que usted ha cargado en el sistema ha sido rechazada, vuelva a cargar una foto mas nitida con fondo blanco sin lentes, si tiene problemas puede enviar su foto al correo informes@admisionuni.edu.pe']);
             }elseif(isset($postulante) && $postulante->foto_estado == 'CARGADO') {
                 $correcto_foto = false;
                 $msj->push(['titulo'=>'Edicion de Foto','mensaje'=>'En estos momentos estamos editando su foto']);
@@ -52,19 +52,19 @@ class FichaController extends Controller
             if ($proceso->datos_personales)$correcto_datos_p = true;
             else {
                 $correcto_datos_p = false;
-                $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado sus datos personales']);
+                $msj->push(['titulo'=>'Faltan datos','mensaje'=>'Usted no ha ingresado sus datos personales']);
             }
 
             if ($proceso->datos_familiares)$correcto_datos_f = true;
             else {
                 $correcto_datos_f = false;
-                $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado sus datos familiares']);
+                $msj->push(['titulo'=>'Faltan datos','mensaje'=>'Usted no ha ingresado sus datos familiares']);
             }
 
             if ($proceso->encuesta)$correcto_datos_e = true;
             else {
                 $correcto_datos_e = false;
-                $msj->push(['titulo'=>'Error de datos','mensaje'=>'Usted no ha ingresado los datos complementarios']);
+                $msj->push(['titulo'=>'Faltan datos','mensaje'=>'Usted no ha ingresado los datos complementarios']);
             }
 
             #Valida Pagos-------------------------------------------------------
@@ -78,7 +78,7 @@ class FichaController extends Controller
                 else{
                     $correcto_pagos = false;
                     $servicio = Servicio::where('codigo',$item)->first();
-                    $msj->push(['titulo'=>'Error de pago','mensaje'=>'Usted no ha realizado el pago de '.$servicio->descripcion.' por S/ '.$servicio->monto.' soles']);
+                    $msj->push(['titulo'=>'Falta pago (Los pagos realizado el fin de semana se cargaran el primer día habil)','mensaje'=>'No esta registrado el pago de '.$servicio->descripcion.' por S/ '.$servicio->monto.' soles, si usted acaba de realizar el pago el sistema se actualizara en 2 horas, de lo contrario comuniquese con nosotros al correo informes@admisionuni.edu.pe']);
                 }
             }
 
