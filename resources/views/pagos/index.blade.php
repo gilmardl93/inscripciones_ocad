@@ -14,7 +14,7 @@
         </div>
         <div class="form-body ">
             <div class="Pulsear">
-                Después de 2 horas de realizado el pago en el banco y/o en la OCAD, podrá imprimir su ficha del postulante </br>
+               una vez realizado el pago en el banco y/o en la OCAD esperar a que este sea validado por nuestro sistema este proceso durar 120 minutos </br>
             </div>
             <p></p>
             <iframe src="{{route('pagos.pdf',$servicio)}}" width="100%" height="600px" scrolling="auto"></iframe>
