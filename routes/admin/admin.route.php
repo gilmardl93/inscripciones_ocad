@@ -30,7 +30,7 @@ Route::group(['namespace'=>'Pagos'], function() {
 Route::group(['namespace'=>'Fotos'], function() {
 	Route::resource('fotos','FotosController',['names'=>'admin.fotos','only'=>['index','store','update']]);
 	Route::get('update/{postulante}/{estado}','FotosController@update')->name('admin.fotos.update');
-	Route::post('cargar-editado','FotosController@cargareditado')->name('admin.fotos.cargar');
+	Route::get('cargar-editado','FotosController@cargareditado')->name('admin.fotos.cargar');
 
 });
 

@@ -13,7 +13,8 @@ class FotosController extends Controller
 {
     public function index()
     {
-    	$postulante = Postulante::where('foto_estado','CARGADO')->orderBy('fecha_foto')->first();
+
+    	$postulante = Postulante::where('foto_estado','CARGADO')->orderBy('foto_fecha_carga')->first();
         $resumen = Postulante::select('foto_estado',DB::raw('count(*) as cantidad'))->Activos()->groupBy('foto_estado')->get();
     	if(isset($postulante)){
            return view('admin.fotos.index',compact('postulante','resumen'));
@@ -26,24 +27,34 @@ class FotosController extends Controller
     {
     	$postulante = Postulante::find($id);
     	$archivo = 'public/'.$postulante->foto;
-        $nuevo_archivo = 'public/fotosok/'.$postulante->dni.extension($archivo);
-    	$nuevo_archivo_tmp = 'public/fotosok/tmp/'.$postulante->dni.extension($archivo);
+        $nuevo_archivo = 'public/fotosok/'.$postulante->numero_identificacion.extension($archivo);
+        $nuevo_archivo_tmp = 'public/fotosok/tmp/'.$postulante->numero_identificacion.extension($archivo);
+        $nuevo_archivo_rechazo = 'public/fotos_rechazadas/'.$postulante->foto;
+    	$nuevo_archivo_rechazo = str_replace('fotos/','',$nuevo_archivo_rechazo);
+        switch ($estado) {
+            case '1':
+                if(!Storage::exists($nuevo_archivo))Storage::copy($archivo, $nuevo_archivo);
+                if(!Storage::exists($nuevo_archivo_tmp))Storage::copy($archivo, $nuevo_archivo_tmp);
 
-    	switch ($estado) {
-    		case '1':
+                chmod(storage_path('app/'.$nuevo_archivo),0777);
+                chmod(storage_path('app/'.$nuevo_archivo_tmp),0777);
+
                 $postulante->foto_estado = 'ACEPTADO';
-    			$postulante->mensaje = null;
-    			$postulante->save();
-                Storage::copy($archivo, $nuevo_archivo);
-                Storage::copy($archivo, $nuevo_archivo_tmp);
-    			break;
+                $nuevo_archivo = str_replace('public/','',$nuevo_archivo);
+                $postulante->foto_editada = $nuevo_archivo;
+                $postulante->foto_fecha_edicion = Carbon::now();
 
-    		case '0':
+                $postulante->save();
+                break;
+
+            case '0':
+                if(!Storage::exists($nuevo_archivo_rechazo))Storage::copy($archivo, $nuevo_archivo_rechazo);
                 $postulante->foto_estado = 'RECHAZADO';
-                $postulante->foto_rechazo = $postulante->foto;
-                $postulante->foto = 'avatar/nofoto.jpg';
-    			$postulante->mensaje = 'Su foto ha sido rechazada';
-    			$postulante->save();
+                $postulante->foto_rechazada = $postulante->foto;
+                $postulante->foto_cargada = 'avatar/nofoto.jpg';
+                $postulante->foto_fecha_rechazo = Carbon::now();
+
+                $postulante->save();
     			break;
     	}
     	return redirect()->route('admin.fotos.index');
@@ -52,13 +63,13 @@ class FotosController extends Controller
     {
         $postulante = Postulante::find($request->idpostulante);
         $postulante->foto_estado = 'ACEPTADO';
-        $postulante->foto_rechazo = null;
-        $postulante->mensaje = null;
 
         $fileContents = file_get_contents($request->nueva_imagen);
-        $nuevo_archivo = 'fotosok/'.$postulante->dni.extension($postulante->foto);
-        Storage::disk('public')->put($nuevo_archivo,$fileContents);
-        $postulante->foto = $nuevo_archivo;
+        $nuevo_archivo = 'public/fotosok/'.$postulante->numero_identificacion.extension($postulante->foto);
+        Storage::put($nuevo_archivo,$fileContents);
+        chmod(storage_path('app/'.$nuevo_archivo),0777);
+        $postulante->foto_editada = $nuevo_archivo;
+        $postulante->foto_fecha_edicion = Carbon::now();
         $postulante->save();
     }
 
