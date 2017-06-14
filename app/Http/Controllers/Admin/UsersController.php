@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        switch (Auth::user()->rol) {
+        switch (Auth::user()->codigo_rol) {
             case 'root':
                 $Lista = User::all();
                 break;
