@@ -24,7 +24,8 @@ class Postulante extends Model
      */
     public function getInicioEstudiosOptions()
     {
-        for ($i=1980; $i < 2012; $i++) {
+        $date = Carbon::now()->subYear(4);
+        for ($i=1980; $i < $date->year; $i++) {
             $data[$i]= $i;
         }
         return $data;
@@ -35,7 +36,8 @@ class Postulante extends Model
      */
     public function getFinEstudiosOptions()
     {
-        for ($i=1980; $i < 2016; $i++) {
+        $date = Carbon::now();
+        for ($i=1980; $i < $date->year; $i++) {
             $data[$i]= $i;
         }
         return $data;
