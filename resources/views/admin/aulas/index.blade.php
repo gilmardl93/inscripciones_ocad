@@ -48,12 +48,12 @@
                 <div class="row">
                     <div class="col-md-12">
                     {!! Form::open(['route'=>'admin.activar.aulas','method'=>'POST']) !!}
-                        <table class="table table-bordered table-hover Aulas" >
+                        <table class="table table-bordered table-hover" id="Aulas">
                             <thead>
                                 <tr>
                                     <th>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                            <input type="checkbox" class="group-checkable" data-set="#Aulas .checkboxes" />
                                             <span></span>
                                         </label>
                                     </th>
@@ -83,7 +83,8 @@
 
 @section('js-scripts')
 <script>
-$('.Aulas').dataTable({
+var table = $('#Aulas');
+table.dataTable({
     "language": {
         "emptyTable": "No hay datos disponibles",
         "info": "Mostrando _START_ a _END_ de _TOTAL_ filas",
@@ -102,7 +103,7 @@ $('.Aulas').dataTable({
                     'targets':0,
                     'render': function ( data, type, row ) {
                         return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> \
-                                    <input name="idaulas[]" type="checkbox" class="group-checkable" value="'+data+'" /> \
+                                    <input name="idaulas[]" type="checkbox" class="checkboxes" value="'+data+'" /> \
                                     <span></span> \
                                 </label>';
                     }
@@ -139,27 +140,50 @@ $('.Aulas').dataTable({
             { "data": "id","defaultContent": "" },
 
         ],
-        "order": [[2,"asc"],[1,"asc"],[3,"asc"]]
+        "order": [[2,"asc"],[1,"asc"],[3,"asc"]],
+        stateSave: true,
+        "initComplete": function() {
+                // Sector
+                this.api().column(2).every(function(){
+                    var column = this;
+                    var select = $('<select class="form-control input-sm"><option value="">Sector</option></select>')
+                        .appendTo( $(column.footer()).empty() )
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    } );
+                });
+            }
 
 
 });
 
-$('.Aulas').find('.group-checkable').change(function () {
-    var set = jQuery(this).attr("data-set");
-    var checked = jQuery(this).is(":checked");
-    jQuery(set).each(function () {
-        if (checked) {
-            $(this).prop("checked", true);
-            $(this).parents('tr').addClass("active");
-        } else {
-            $(this).prop("checked", false);
-            $(this).parents('tr').removeClass("active");
-        }
+
+table.find('.group-checkable').change(function () {
+        var set = jQuery(this).attr("data-set");
+        var checked = jQuery(this).is(":checked");
+        jQuery(set).each(function () {
+            if (checked) {
+                $(this).prop("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).prop("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
     });
-});
-$('.Aulas').on('change', 'tbody tr .checkboxes', function () {
-    $(this).parents('tr').toggleClass("active");
-})
+
+table.on('change', 'tbody tr .checkboxes', function () {
+        $(this).parents('tr').toggleClass("active");
+    });
 
 
 </script>

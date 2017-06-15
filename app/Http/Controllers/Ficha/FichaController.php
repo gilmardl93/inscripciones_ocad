@@ -82,12 +82,13 @@ class FichaController extends Controller
                 }
             }
 
-            if($correcto_foto &&
-                $correcto_datos_p &&
-                $correcto_datos_f &&
-                $correcto_datos_e &&
-                $correcto_pagos)return view('ficha.index',compact('id'));
-            else return view('ficha.bloqueo',compact('msj'));
+            if($correcto_foto && $correcto_datos_p && $correcto_datos_f && $correcto_datos_e && $correcto_pagos){
+                #Si los datos son correctos muestro l aficha
+                #Asigno Aulas
+                #Asigno codigo
+
+                return view('ficha.index',compact('id'))
+            }else return view('ficha.bloqueo',compact('msj'));
 
 
         }else{
@@ -189,7 +190,7 @@ class FichaController extends Controller
             PDF::SetFillColor(255);
             PDF::SetTextColor(255);
             PDF::SetXY(0,134);
-            $texto = 'El ingreso al campus de la UNI para rendir las tres pruebas del Exámen de Admisión es de 7h00 a 8h00';
+            $texto = 'El ingreso al campus de la UNI para rendir las tres pruebas del Examen de Admisión es de 7h00 a 8h00';
             PDF::Cell(210,7,$texto,0,0,'C');
             PDF::SetTextColor(0);
             #NUMERO DE DNI
@@ -209,7 +210,7 @@ class FichaController extends Controller
             #DOCUMENTO DE IDENTIDAD
             PDF::SetXY(18,160);
             PDF::SetFont('helvetica','B',11);
-            PDF::Cell(60,5,'Documento de identidad :',0,0,'R');
+            PDF::Cell(60,5,'Documento de Identidad :',0,0,'R');
             PDF::SetXY(78,160);
             PDF::SetFont('helvetica','',10);
             PDF::Cell(110,5,$postulante->identificacion,0,0,'L');
@@ -244,7 +245,7 @@ class FichaController extends Controller
             #DECLARACION JURADA
             PDF::SetXY(18,192);
             PDF::SetFont('helvetica','',20);
-            PDF::Cell(170,5,'DECLARACION JURADA',0,0,'C');
+            PDF::Cell(170,5,'DECLARACIÓN JURADA',0,0,'C');
             PDF::SetXY(5,203);
             PDF::SetFont('helvetica','',11);
             $texto = "Declaro bajo juramento que toda la información registrada es auténtica, y que la imagen subida al sistema es mi foto actual. En caso de faltar a la verdad perderé mis derechos de participante sometiéndome a las sanciones reglamentarias y legales que correspondan. Asimismo, declaro no tener antecedentes policiales, autorizando a la Oficina Central de Admisión OCAD-UNI el uso de mis datos personales que libremente proporciono, para los fines que involucran las actividades propias de la OCAD-UNI, y la publicación de los resultados de la prueba rendida en todo medio de comunicación. Declaro haber leído y conocer el reglamento del $evaluacion->nombre.";

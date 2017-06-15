@@ -14,7 +14,8 @@
         </div>
         <div class="form-body ">
             <div class="Pulsear">
-               una vez realizado el pago en el banco y/o en la OCAD esperar a que este sea validado por nuestro sistema este proceso durar 120 minutos </br>
+               <h1>una vez realizado el pago en el banco y/o en la OCAD esperar a que este sea validado por nuestro sistema este proceso puede durar 120 minutos </br>
+               </h1>
             </div>
             <p></p>
             <iframe src="{{route('pagos.pdf',$servicio)}}" width="100%" height="600px" scrolling="auto"></iframe>

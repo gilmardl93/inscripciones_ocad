@@ -24,17 +24,17 @@
                     <div class="form-group">
                         {!!Form::hidden('idtipoidentificacion', IdTCCodigo('IDENTIFICACION','DNI') );!!}
                         {!!Form::hidden('numero_identificacion', Auth::user()->dni );!!}
-                        {!!Field::text('paterno', null , ['label'=>'Apellido Paterno del postulante *','placeholder'=>'Apellido Paterno del postulante']);!!}
+                        {!!Field::text('paterno', null , ['label'=>'Apellido Paterno del postulante (*)','placeholder'=>'Apellido Paterno del postulante']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!!Field::text('materno', null , ['label'=>'Apellido Materno del postulante *','placeholder'=>'Apellido Materno del postulante']);!!}
+                        {!!Field::text('materno', null , ['label'=>'Apellido Materno del postulante (*)','placeholder'=>'Apellido Materno del postulante']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-4">
                     <div class="form-group">
-                        {!!Field::text('nombres', null , ['label'=>'Nombres del postulante *','placeholder'=>'Nombre el postulante']);!!}
+                        {!!Field::text('nombres', null , ['label'=>'Nombres del postulante (*)','placeholder'=>'Nombre el postulante']);!!}
                     </div>
                 </div><!--span-->
             </div><!--row-->
@@ -62,10 +62,10 @@
                         </div><!--span-->
                     </div><!--row-->
                 </div>
-            <h3>Institucion de educativa del postulante</h3>
+            <h3>Institución de educativa del postulante</h3>
                 <dl>
                     <dt>Observación</dt>
-                    <dd>Queda bajo responsabilidad del postulante seleccionar la institución educativa de donde procede, todo cambio de colegio incurrira en un nuevo pago si lugar a reembolso Art. 13 reglamento de admisión</dd>
+                    <dd>Queda bajo responsabilidad del postulante seleccionar la institución educativa de donde procede, todo cambio de colegio incurrirá en un nuevo pago sin lugar a reembolso Art. 13 Reglamento de Admisión</dd>
                 </dl>
                 <div class="row">
                     <div class="col-md-6 Colegio">
@@ -112,7 +112,7 @@ $(".cepreuni").hide();
             data: {idmodalidad: idmodalidad},
         })
         .done(function(modalidad) {
-            /*Muestra Colegio o universidad segun la modalidad correspondiente*/
+            /(*)Muestra Colegio o universidad segun la modalidad correspondiente(*)/
             if (modalidad.colegio) {
                 $(".Colegio").show();
                 $(".Universidad").hide();
@@ -120,7 +120,7 @@ $(".cepreuni").hide();
                 $(".Colegio").hide();
                 $(".Universidad").show();
             }
-            /*Muestra la segunda opcion del cepre UNI*/
+            /(*)Muestra la segunda opcion del cepre UNI(*)/
             if (modalidad.codigo == 'ID-CEPRE') {
                 $(".cepreuni").show();
             }else{
