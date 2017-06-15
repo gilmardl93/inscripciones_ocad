@@ -8,7 +8,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">DATOS DE complementarios del PARTICIPANTE</span>
+                <span class="caption-subject theme-font bold uppercase">DATOS DE complementarios del postulante</span>
             </div>
             <div class="actions">
                 {!!Form::back(route('datos.index'))!!}
@@ -17,11 +17,11 @@
         <div class="form-body ">
             <div class="row">
                 <div class="col-md-12">
-                    {!!Field::select('idrazon',$razon, ['label'=>'¿Cual de las siguientes alternativas fue la razon principal en la eleccion de la especialidad de su primera prioridad de ingreso?','empty'=>'Selecionar']);!!}
+                    {!!Field::select('idrazon',$razon, ['label'=>'¿Cual de las siguientes alternativas fue la razón principal en la elección de la especialidad de ingreso?','empty'=>'Selecionar']);!!}
                 </div><!--span-->
                 <div class="col-md-12">
                     <div class="form-group">
-                        {!!Form::label('lblEnc2', 'Tipo de preparacion para postular a la universidad de Ingeniería');!!}
+                        {!!Form::label('lblEnc2', 'Tipo de preparacion para postular a la Universidad Nacional de Ingeniería');!!}
                         <div class="row">
                             <div class="col-md-2">
                             {!!Form::label('lblEnc2', 'Tipo de preparacion:',['class'=>'pull-right']);!!}
@@ -50,7 +50,7 @@
                 </div><!--span-->
                 <div class="col-md-12">
                     <div class="form-group">
-                        {!!Form::label('lblEnc2', 'Numero de Veces que postulo a la Universidad Nacional de Ingenieria y especialidad a la que ingreso y renuncio');!!}
+                        {!!Form::label('lblEnc2', 'Número de veces que postula a la Universidad Nacional de Ingeniería y especialidad a la que ingresó y renunció');!!}
                         <div class="row">
                             <div class="col-md-2">
                             {!!Form::label('lblEnc2', 'Número de veces:',['class'=>'pull-right']);!!}
@@ -61,7 +61,7 @@
                         </div><!--row-->
                         <div class="row">
                             <div class="col-md-2">
-                            {!!Form::label('lblEnc2', 'Ingrese y renuncie:',['class'=>'pull-right']);!!}
+                            {!!Form::label('lblEnc2', 'Ingresé y renuncié:',['class'=>'pull-right']);!!}
                             </div><!--span-->
                             <div class="col-md-2">
                             {!!Form::select('idrenuncia',$especialidad, null , ['class'=>'form-control col-md-','placeholder'=>'Especialidad']);!!}
@@ -71,12 +71,12 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         {!!Form::label('lblEnc2', 'Indique el ingreso económico familiar aproximadamente en nuevos soles');!!}
-                        {!!Form::select('idingresoeconomico',$ingreso, null , ['class'=>'form-control col-md-','placeholder'=>'Ingreso economico']);!!}
+                        {!!Form::select('idingresoeconomico',$ingreso, null , ['class'=>'form-control col-md-','placeholder'=>'Ingreso económico']);!!}
                     </div>
                 </div><!--span-->
                 <div class="col-md-12">
                     <div class="form-group">
-                        {!!Form::label('lblEnc2', '¿Porque medio se informó del Concurso de ADmision 2017-2?');!!}
+                        {!!Form::label('lblEnc2', '¿Por qué medio se informó del Concurso de Admisión 2017-2?');!!}
                         {!!Form::select('idpublicidad',$publicidad, null , ['class'=>'form-control col-md-','placeholder'=>'Publicidad']);!!}
                     </div>
                 </div><!--span-->

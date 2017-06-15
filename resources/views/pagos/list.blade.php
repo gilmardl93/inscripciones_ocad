@@ -13,11 +13,11 @@
             </div>
         </div>
         <div class="form-body ">
-        <h4><b>Estos son los pagos de que debe realizar</b></h4>
+        <h4><b>Estos son los pagos que se deben realizar</b></h4>
             <div class="list-group">
                 <a href="{{ route('pagos.formato',$pagos['prospecto']) }}" class="list-group-item active">
                     <h4 class="list-group-item-heading">Prospecto de Admisión virtual</h4>
-                    <p class="list-group-item-text"> El prospecto de admisión virtual comprende los siguientes documentos (Reglamento, Solucionario del examen de admisión 2017-1,Catalogo de carreras, guía de Admision). </p>
+                    <p class="list-group-item-text"> El prospecto de admisión virtual comprende los siguientes documentos (Reglamento, Solucionario del Examen de Admisión 2017-1,Catálogo de Carreras, Guía de Admision). </p>
                 </a>
                 @if (isset($pagos['examen']))
                 <a href="{{ route('pagos.formato',$pagos['examen']) }}" class="list-group-item">

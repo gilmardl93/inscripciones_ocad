@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <!-- BEGIN WIDGET THUMB -->
         <div class="widget-thumb widget-bg-color-white margin-bottom-20 ">
-            <h4 class="widget-thumb-heading">Contactanos</h4>
+            <h4 class="widget-thumb-heading">Contáctanos</h4>
             <div class="widget-thumb-wrap">
                 <div class="widget-thumb-body">
                     Oficina Central de Admisión

@@ -44,7 +44,7 @@
             </div>
     </div>
     <div class="form-group">
-            {!! Form::label('lblPassword', 'Ingrese su Clave (minimo de 6 digitos)', []) !!}
+            {!! Form::label('lblPassword', 'Genere su Clave (minimo de 6 digitos)', []) !!}
         <div class="input-icon right ">
             <i class="fa fa-lock"></i>
             {!!Form::password('password', ['class'=>'form-control','placeholder'=>'Clave'])!!}

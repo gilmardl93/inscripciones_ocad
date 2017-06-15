@@ -67,7 +67,7 @@ class FotosController extends Controller
         $fileContents = file_get_contents($request->nueva_imagen);
         $nuevo_archivo = 'fotosok/'.$postulante->numero_identificacion.extension($postulante->foto);
         Storage::put('public/'.$nuevo_archivo,$fileContents);
-        chmod(storage_path('app/'.$nuevo_archivo),0777);
+        chmod(storage_path('app/public/'.$nuevo_archivo),0777);
         $postulante->foto_editada = $nuevo_archivo;
         $postulante->foto_fecha_edicion = Carbon::now();
         $postulante->save();
