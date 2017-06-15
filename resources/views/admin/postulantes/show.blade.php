@@ -148,6 +148,18 @@
                                     </td>
                                     <td class="hidden-xs"> {{ $postulante->datos_aula_tres->codigo }} </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        Email
+                                    </td>
+                                    <td class="hidden-xs"> {{ $postulante->email }} </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Telefonos
+                                    </td>
+                                    <td class="hidden-xs"> {{ $postulante->telefono_celular.' / '.$postulante->telefono_fijo.' / '.$postulante->telefono_varios }} </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
