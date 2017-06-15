@@ -27,6 +27,7 @@
 			            <th> Paterno </th>
 			            <th> Materno </th>
 			            <th> Nombres </th>
+			            <th> Número de identificación </th>
 			            <th> Opciones </th>
 			        </tr>
 			    </thead>
@@ -37,6 +38,7 @@
 			            <td> {{ $item->paterno }} </td>
 			            <td> {{ $item->materno }} </td>
 			            <td> {{ $item->nombres }} </td>
+			            <td> {{ $item->identificacion }} </td>
 			            <td>{!!Form::boton('Ver',route('admin.pos.show',$item->id),'green-dark','fa fa-eye','btn-xs')!!}</td>
 			        </tr>
 				@endforeach
