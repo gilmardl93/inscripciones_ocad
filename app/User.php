@@ -56,19 +56,10 @@ class User extends Authenticatable
     {
         $rol = Catalogo::where('id',$value)->first();
         switch ($rol->nombre) {
-            case 'root':
-                $this->attributes['menu'] = 'menu.sider-admin';
+            case 'Alumno':
+                $this->attributes['menu'] = null;
                 break;
-            case 'Administrador':
-                $this->attributes['menu'] = 'menu.sider-admin';
-                break;
-            case 'Editor Foto':
-                $this->attributes['menu'] = 'menu.sider-admin';
-                break;
-            case 'Carga Pago':
-                $this->attributes['menu'] = 'menu.sider-admin';
-                break;
-            case 'Jefatura':
+            default:
                 $this->attributes['menu'] = 'menu.sider-admin';
                 break;
         }
