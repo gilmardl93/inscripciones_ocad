@@ -60,9 +60,21 @@
                         <table class="table table-bordered table-hover" id="Aulas">
                             <thead>
                                 <tr>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th colspan="2"> Día 01 </th>
+                                    <th colspan="2"> Día 02 </th>
+                                    <th colspan="2"> Día 03 </th>
+                                    <th>  </th>
+                                    <th>  </th>
+                                </tr>
+                                <tr>
                                     <th>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                            <input type="checkbox" class="group-checkable" data-set="#Aulas .checkboxes" />
                                             <span></span>
                                         </label>
                                     </th>
@@ -72,14 +84,34 @@
                                     <th> Capacidad </th>
                                     <th> Disponible </th>
                                     <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
                                     <th> Activo </th>
                                     <th> Opciones </th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th colspan="5" style="text-align:right">Total:&nbsp;&nbsp;</th>
-                                    <th colspan="4"></th>
+                                    <th>
+                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                            <input type="checkbox" class="group-checkable" data-set="#Aulas .checkboxes" />
+                                            <span></span>
+                                        </label>
+                                    </th>
+                                    <th> Orden </th>
+                                    <th> Sector </th>
+                                    <th> Codigo </th>
+                                    <th> Capacidad </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Activo </th>
+                                    <th> Opciones </th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -98,36 +130,14 @@
 
 @section('js-scripts')
 <script>
-$('#Aulas').dataTable({
+var table = $('#Aulas');
+table.dataTable({
     "language": {
         "emptyTable": "No hay datos disponibles",
         "info": "Mostrando _START_ a _END_ de _TOTAL_ filas",
-        "search": "Buscar Postulante :",
+        "search": "Buscar Aulas :",
         "lengthMenu": "_MENU_ registros"
     },
-    "footerCallback": function ( row, data, start, end, display ) {
-                var api = this.api(), data;
-
-                // Remove the formatting to get integer data for summation
-                var intVal = function ( i ) {
-                    return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '')*1 :
-                        typeof i === 'number' ?
-                            i : 0;
-                };
-
-                // Total over all pages
-                total = api
-                    .column( 5 )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-                // Update footer
-                $( api.column( 5 ).footer() ).html(
-                     total
-                );
-            },
     "bProcessing": true,
     "sAjaxSource": '{{ url('admin/lista-aulas-activas') }}',
     "pagingType": "bootstrap_full_number",
@@ -140,13 +150,13 @@ $('#Aulas').dataTable({
                     'targets':0,
                     'render': function ( data, type, row ) {
                         return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> \
-                                    <input name="idaulas[]" type="checkbox" class="group-checkable" value="'+data+'" /> \
+                                    <input name="idaulas[]" type="checkbox" class="checkboxes" value="'+data+'" /> \
                                     <span></span> \
                                 </label>';
                     }
                 },
                 {
-                    'targets':7,
+                    'targets':11,
                     'render': function ( data, type, row ) {
                         if (data) {
                             return '<a href="activar-aula/'+row.id+'" class="label label-sm label-info"> Activo </a>';
@@ -156,7 +166,7 @@ $('#Aulas').dataTable({
                     }
                 },
                 {
-                    'targets':8,
+                    'targets':12,
                     'render': function ( data, type, row ) {
                       return ' \
                       <a href="aulas/'+data+'/edit" title="Editar"class="btn btn-icon-only green-haze" ><i class="fa fa-edit"></i></a> \
@@ -171,13 +181,59 @@ $('#Aulas').dataTable({
             { "data": "sector","defaultContent": "" },
             { "data": "codigo","defaultContent": "" },
             { "data": "capacidad","defaultContent": "" },
-            { "data": "disponible","defaultContent": "" },
-            { "data": "asignado","defaultContent": "" },
+            { "data": "disponible_01","defaultContent": "" },
+            { "data": "asignado_01","defaultContent": "" },
+            { "data": "disponible_02","defaultContent": "" },
+            { "data": "asignado_02","defaultContent": "" },
+            { "data": "disponible_03","defaultContent": "" },
+            { "data": "asignado_03","defaultContent": "" },
             { "data": "activo","defaultContent": "" },
             { "data": "id","defaultContent": "" },
+
         ],
-    "order": [[2,"asc"],[1,"asc"],[3,"asc"]]
+        "order": [[2,"asc"],[1,"asc"],[3,"asc"]],
+        stateSave: true,
+        "initComplete": function() {
+                // Sector
+                this.api().column(2).every(function(){
+                    var column = this;
+                    var select = $('<select class="form-control input-sm"><option value="">Sector</option></select>')
+                        .appendTo( $(column.footer()).empty() )
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    } );
+                });
+            }
+
+
 });
+table.find('.group-checkable').change(function () {
+        var set = jQuery(this).attr("data-set");
+        var checked = jQuery(this).is(":checked");
+        jQuery(set).each(function () {
+            if (checked) {
+                $(this).prop("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).prop("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+    });
+
+table.on('change', 'tbody tr .checkboxes', function () {
+        $(this).parents('tr').toggleClass("active");
+    });
+
 </script>
 @stop
 
