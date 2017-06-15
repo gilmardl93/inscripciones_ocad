@@ -12,15 +12,13 @@ class PostulantesController extends Controller
     public function buscar(Request $request)
     {
         $name = strtoupper($request->input('name'));
-        $postulantes = Postulante::whereRaw("numero_identificacion||' '||paterno||' '||materno||nombres like '%$name%'")
-                                 ->paginate();
-
-        if($postulantes->count()>0){
+        $postulantes = Postulante::whereRaw("numero_identificacion||' '||clearstring(paterno)||' '||clearstring(materno)||clearstring(nombres) like '%$name%'")->paginate();
+        if($postulantes->total()>0){
             return view('admin.postulantes.index',compact('postulantes'));
         }else{
             $postulantes = [];
             Alert::danger('No hay coincidencias con su busqueda');
-            return view('admin.postulantes.index',compact('postulantes'));
+            return back();
         }
 
     }
