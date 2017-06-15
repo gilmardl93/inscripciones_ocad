@@ -36,7 +36,6 @@
 {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
 @endif
 @if (str_contains(Auth::user()->codigo_rol,['pago','admin']))
-{!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
 {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
 @endif
     </ul>
