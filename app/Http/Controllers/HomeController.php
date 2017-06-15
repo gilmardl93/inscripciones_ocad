@@ -27,15 +27,11 @@ class HomeController extends Controller
     public function index()
     {
         switch (Auth::user()->role->nombre) {
-            case 'root':
-                return view('admin.index');
-                break;
             case 'Alumno':
                 return view('index');
                 break;
-
             default:
-                return view('admin.index',compact('resumen','pagantes'));
+                return view('admin.index');
                 break;
         }
     }
