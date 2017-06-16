@@ -44,6 +44,7 @@ Route::resource('aulas', 'Aulas\AulasController',['names'=>'admin.aulas']);
 Route::get('lista-aulas', 'Aulas\AulasController@lista_aulas')->name('admin.lista.aulas');
 Route::get('lista-aulas-activas', 'Aulas\AulasController@lista_aulas_activas')->name('admin.lista.aulas.activas');
 Route::get('activar-aula/{aula}', 'Aulas\AulasController@activar')->name('admin.activar.aula');
+Route::get('habilitar-aula/{aula}', 'Aulas\AulasController@habilitar')->name('admin.habilitar.aula');
 Route::post('activar-aulas', 'Aulas\AulasController@activaraulas')->name('admin.activar.aulas');
 Route::post('habilitar-aulas', 'Aulas\AulasController@habilitaraulas')->name('admin.habilitar.aulas');
 Route::post('desactivar-aulas', 'Aulas\AulasController@desactivaraulas')->name('admin.desactivar.aulas');

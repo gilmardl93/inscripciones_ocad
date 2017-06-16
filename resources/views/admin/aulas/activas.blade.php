@@ -89,6 +89,7 @@
                                     <th> Disponible </th>
                                     <th> Asignado </th>
                                     <th> Activo </th>
+                                    <th> Habilitado </th>
                                     <th> Opciones </th>
                                 </tr>
                             </thead>
@@ -111,6 +112,7 @@
                                     <th> Disponible </th>
                                     <th> Asignado </th>
                                     <th> Activo </th>
+                                    <th> Habilitado </th>
                                     <th> Opciones </th>
                                 </tr>
                             </tfoot>
@@ -168,6 +170,16 @@ table.dataTable({
                 {
                     'targets':12,
                     'render': function ( data, type, row ) {
+                        if (data) {
+                            return '<a href="habilitar-aula/'+row.id+'" class="label label-sm label-info"> SI </a>';
+                        }else{
+                            return '<a href="habilitar-aula/'+row.id+'" class="label label-sm label-danger"> NO </a>';
+                        }
+                    }
+                },
+                {
+                    'targets':13,
+                    'render': function ( data, type, row ) {
                       return ' \
                       <a href="aulas/'+data+'/edit" title="Editar"class="btn btn-icon-only green-haze" ><i class="fa fa-edit"></i></a> \
                       <a href="delete-aulas/'+data+' " title="Eliminar"class="btn btn-icon-only red" ><i class="fa fa-trash"></i></a> \
@@ -188,6 +200,7 @@ table.dataTable({
             { "data": "disponible_03","defaultContent": "" },
             { "data": "asignado_03","defaultContent": "" },
             { "data": "activo","defaultContent": "" },
+            { "data": "habilitado","defaultContent": "" },
             { "data": "id","defaultContent": "" },
 
         ],
