@@ -94,7 +94,7 @@
 		    <tfoot>
 		        <tr>
 		            <th> Total </th>
-		            <th> {{ $Modalidades->total() }} </th>
+		            <th> {{ $Modalidades->sum('cantidad') }} </th>
 		        </tr>
 		    </tfoot>
 		    <tbody>
@@ -106,7 +106,6 @@
 			@endforeach
 		    </tbody>
 		</table>
-		{!! $Lista->links() !!}
 	</div><!--span-->
 </div><!--row-->
 <div class="row">
@@ -122,7 +121,7 @@
 		    <tfoot>
 		        <tr>
 		            <th> Total </th>
-		            <th> {{ $Pagos->total() }} </th>
+		            <th> {{ $Pagos->sum('cantidad') }} </th>
 		        </tr>
 		    </tfoot>
 		    <tbody>
@@ -134,7 +133,6 @@
 			@endforeach
 		    </tbody>
 		</table>
-		{!! $Lista->links() !!}
 	</div><!--span-->
 </div><!--row-->
 @stop

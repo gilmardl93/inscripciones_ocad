@@ -34,11 +34,11 @@ class EstadisticasController extends Controller
         $Modalidades = Postulante::select('m.nombre as modalidad',DB::raw('count(*) as cantidad'))
                             ->join('modalidad as m','m.id','=','postulante.idmodalidad')
                             ->groupBy('m.nombre')
-                            ->paginate();
+                            ->get();
         $Pagos = Recaudacion::select('s.descripcion as descripcion',DB::raw('count(*) as cantidad'))
                             ->join('servicio as s','s.codigo','=','recaudacion.servicio')
                             ->groupBy('s.descripcion')
-                            ->paginate();
+                            ->get();
     	return view('admin.estadisticas.index',compact('Inscritos','Lista','Pagantes','Modalidades','Pagos'));
     }
 }
