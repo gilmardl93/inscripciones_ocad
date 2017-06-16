@@ -48,7 +48,7 @@ class AulasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AulaRequest $request)
+    public function store(CreateAulaRequest $request)
     {
         Aula::create($request->all());
         Alert::success('Aula Registrada con exito');
