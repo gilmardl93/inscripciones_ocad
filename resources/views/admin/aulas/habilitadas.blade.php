@@ -10,7 +10,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-cubes"></i>
-                    Gestion de Aulas
+                    Gestion de Aulas habilitadas
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse"> </a>
@@ -19,41 +19,7 @@
                 </div>
             </div>
             <div class="portlet-body">
-            {!! Form::open(['route'=>'admin.disponible.aulas','method'=>'POST']) !!}
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            {!!Form::label('lblSector', 'Sector');!!}
-                            {!!Form::select('sector', $sectores ,null , ['class'=>'form-control','placeholder'=>'Nombre del sector']);!!}
-                        </div>
-                    </div><!--span-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            {!!Form::label('lblDisponibilidad', 'Disponible');!!}
-                            {!!Form::text('disponible', null , ['class'=>'form-control','placeholder'=>'Disponibilidad del aula']);!!}
-                        </div>
-                    </div><!--span-->
-                </div><!--row-->
-                {!!Form::enviar('Guardar')!!}
-                {!!Form::back(route('admin.aulas.index'))!!}
-                {!!Form::boton('Ordenar aulas',route('admin.ordenar.aulas'),'blue-madison','fa fa-arrows-v')!!}
-                {!!Form::boton('aulas habilitadas',route('admin.activas.habilitadas'),'yellow','fa fa-check')!!}
-            {!! Form::close() !!}
-            <div class="row">
-                <div class="col-md-4">
-                     <h4 class="block">Resumen</h4>
-                        <ul class="list-group">
-                            @foreach ($resumen as $item)
-                                <li class="list-group-item"> {{ $item->sector }}
-                                    <span class="badge badge-info"> {{ $item->cnt }} </span>
-                                </li>
-                            @endforeach
-                                <li class="list-group-item"> Total
-                                    <span class="badge ">  {{ $resumen->sum('cnt')}} </span>
-                                </li>
-                        </ul>
-                </div><!--span-->
-            </div><!--row-->
+                {!!Form::back(route('admin.activas.aulas'))!!}
             <p></p>
                 <div class="row">
                     <div class="col-md-12">
@@ -147,7 +113,7 @@ table.dataTable({
         "lengthMenu": "_MENU_ registros"
     },
     "bProcessing": true,
-    "sAjaxSource": '{{ url('admin/lista-aulas-activas') }}',
+    "sAjaxSource": '{{ url('admin/lista-aulas-habilitadas') }}',
     "pagingType": "bootstrap_full_number",
     "columnDefs": [
                 {  // set default column settings

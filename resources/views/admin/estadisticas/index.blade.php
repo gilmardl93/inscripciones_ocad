@@ -12,10 +12,60 @@
 		            <th> Cantidad </th>
 		        </tr>
 		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Fecha registro </th>
+		            <th> {{ Totales('Inscritos') }} </th>
+		        </tr>
+		    </tfoot>
 		    <tbody>
 			@foreach ($Lista as $item)
 		        <tr >
 		            <td> {{ $item->fecha_registro }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Lista->links() !!}
+	</div><!--span-->
+	<div class="col-md-3">
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Fecha de Pago </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Fecha de Pago </th>
+		            <th> {{ Totales('Pagantes') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Pagantes as $item)
+		        <tr >
+		            <td> {{ $item->fecha_pago }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Lista->links() !!}
+	</div><!--span-->
+	<div class="col-md-3">
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Modalidad </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+			@foreach ($Modalidades as $item)
+		        <tr >
+		            <td> {{ $item->modalidad }} </td>
 		            <td> {{ $item->cantidad }} </td>
 		        </tr>
 			@endforeach

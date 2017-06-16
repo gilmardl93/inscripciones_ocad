@@ -50,17 +50,25 @@ Route::group(['namespace'=>'Fotos'], function() {
  * Aulas
  */
 Route::resource('aulas', 'Aulas\AulasController',['names'=>'admin.aulas']);
+Route::get('editar-aulas-activas/{id}/edit','Aulas\AulasController@editaraulaactiva')->name('admin.aulas.activas.editar');
+Route::put('actualizar-aulas-activas/{id}','Aulas\AulasController@actualizaraulaactiva')->name('admin.aulas.activas.actualizar');
+
 Route::get('lista-aulas', 'Aulas\AulasController@lista_aulas')->name('admin.lista.aulas');
 Route::get('lista-aulas-activas', 'Aulas\AulasController@lista_aulas_activas')->name('admin.lista.aulas.activas');
+Route::get('lista-aulas-habilitadas', 'Aulas\AulasController@lista_aulas_habilitadas')->name('admin.lista.aulas.habilitadas');
+
 Route::get('activar-aula/{aula}', 'Aulas\AulasController@activar')->name('admin.activar.aula');
 Route::get('habilitar-aula/{aula}', 'Aulas\AulasController@habilitar')->name('admin.habilitar.aula');
 Route::post('activar-aulas', 'Aulas\AulasController@activaraulas')->name('admin.activar.aulas');
 Route::post('habilitar-aulas', 'Aulas\AulasController@habilitaraulas')->name('admin.habilitar.aulas');
 Route::post('desactivar-aulas', 'Aulas\AulasController@desactivaraulas')->name('admin.desactivar.aulas');
 Route::get('delete-aulas/{aulas}', 'Aulas\AulasController@delete')->name('admin.delete.aulas');
-Route::get('aulas-activas', 'Aulas\AulasController@activas')->name('admin.activas.aulas');
 Route::get('ordenar-aulas', 'Aulas\AulasController@ordenar')->name('admin.ordenar.aulas');
 Route::post('disponible-aulas', 'Aulas\AulasController@disponible')->name('admin.disponible.aulas');
+
+Route::get('aulas-activas', 'Aulas\AulasController@activas')->name('admin.activas.aulas');
+Route::get('aulas-habilitadas', 'Aulas\AulasController@habilitadas')->name('admin.activas.habilitadas');
+
 
 /**
  * Secuencia

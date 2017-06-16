@@ -367,6 +367,9 @@ if (! function_exists('Totales')) {
             case 'Inscritos':
                 $cantidad = Postulante::Activos()->Isnull(0)->count();
                 break;
+            case 'Pagantes':
+                $cantidad = Postulante::where('pago',1)->Activos()->Isnull(0)->count();
+                break;
 
             default:
                 # code...

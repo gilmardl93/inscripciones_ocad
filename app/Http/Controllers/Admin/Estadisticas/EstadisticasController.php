@@ -17,6 +17,16 @@ class EstadisticasController extends Controller
     						->groupBy('fecha_registro')
     						->orderBy('fecha_registro','desc')
     						->paginate();
-    	return view('admin.estadisticas.index',compact('Lista'));
+        $Pagantes = Postulante::select('fecha_pago',DB::raw('count(*) as cantidad'))
+                            ->where('pago',1)
+                            ->groupBy('fecha_pago')
+                            ->orderBy('fecha_pago','desc')
+                            ->paginate();
+        $Modalidades = Postulante::select('m.nombre as modalidad',DB::raw('count(*) as cantidad'))
+                            ->join('modalidad as m','m.id','=','postulante.idmodalidad')
+                            ->groupBy('m.nombre')
+                            ->paginate();
+
+    	return view('admin.estadisticas.index',compact('Lista','Pagantes','Modalidades'));
     }
 }

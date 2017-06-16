@@ -89,6 +89,17 @@ class AulasController extends Controller
         $aula = Aula::find($id);
         return view('admin.aulas.edit',compact('aula'));
     }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editaraulaactiva($id)
+    {
+        $aula = Aula::find($id);
+        return view('admin.aulas.activas.edit',compact('aula'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -105,6 +116,21 @@ class AulasController extends Controller
         $aula->save();
         Alert::success('Aula actualizada con exito');
         return redirect()->route('admin.aulas.index');
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function actualizaraulaactiva(Request $request, $id)
+    {
+        $aula = Aula::find($id);
+        $aula->fill($request->all());
+        $aula->save();
+        Alert::success('Aula actualizada con exito');
+        return redirect()->route('admin.activas.aulas');
     }
 
     /**
@@ -127,6 +153,12 @@ class AulasController extends Controller
     public function lista_aulas_activas()
     {
         $Lista = Aula::Activas(1)->get();
+        $res['data'] = $Lista;
+        return $res;
+    }
+    public function lista_aulas_habilitadas()
+    {
+        $Lista = Aula::Activas(1)->where('habilitado',1)->get();
         $res['data'] = $Lista;
         return $res;
     }
@@ -162,5 +194,9 @@ class AulasController extends Controller
                         ->orderBy('sector')
                         ->get();
         return view('admin.aulas.activas',compact('resumen'));
+    }
+    public function habilitadas()
+    {
+        return view('admin.aulas.habilitadas');
     }
 }
