@@ -9,7 +9,6 @@ class Universidad extends Model
     protected $table = 'universidad';
     protected $fillable = ['codigo','nombre','idubigeo','idpais','activo'];
     public $timestamps = false;
-    protected $connection = 'recursos';
     /**
     * Atributos Descripcion Ubigeo
     */

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Estadisticas;
 
 use App\Http\Controllers\Controller;
 use App\Models\Postulante;
+use App\Models\Recaudacion;
 use DB;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,10 @@ class EstadisticasController extends Controller
                             ->join('modalidad as m','m.id','=','postulante.idmodalidad')
                             ->groupBy('m.nombre')
                             ->paginate();
-
-    	return view('admin.estadisticas.index',compact('Inscritos','Lista','Pagantes','Modalidades'));
+        $Pagos = Recaudacion::select('s.descripcion as descripcion',DB::raw('count(*) as cantidad'))
+                            ->join('servicio as s','s.codigo','=','recaudacion.servicio')
+                            ->groupBy('s.descripcion')
+                            ->paginate();
+    	return view('admin.estadisticas.index',compact('Inscritos','Lista','Pagantes','Modalidades','Pagos'));
     }
 }

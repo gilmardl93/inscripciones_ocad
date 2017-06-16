@@ -27,6 +27,7 @@ class FichaController extends Controller
     public function index($id = null)
     {
         $postulante = Postulante::Usuario()->first();
+
         if (isset($postulante)) {
             $correcto_foto = false;
             $correcto_datos_p = false;
@@ -87,13 +88,13 @@ class FichaController extends Controller
 
             if($correcto_foto && $correcto_datos_p && $correcto_datos_f && $correcto_datos_e && $correcto_pagos){
                 #Si los datos son correctos muestro el formulario de conformidad
-
                 if ($postulante->datos_ok)return view('ficha.index',compact('id'));
                 else return view('ficha.confirmacion',compact('id'));
+
+            }else{
+                return view('ficha.bloqueo',compact('msj'));
             }
 
-        }else{
-            return view('ficha.bloqueo');
         }
 
     }
@@ -119,7 +120,7 @@ class FichaController extends Controller
      public function pdf($id = null)
     {
         if (isset($id)) {
-    	   $postulante = Postulante::find($id);
+           $postulante = Postulante::find($id);
         } else {
            $postulante = Postulante::Usuario()->first();
         }
@@ -271,7 +272,7 @@ class FichaController extends Controller
             PDF::Cell(170,5,'DECLARACIÓN JURADA',0,0,'C');
             PDF::SetXY(5,203);
             PDF::SetFont('helvetica','',11);
-            $texto = "Declaro bajo juramento que toda la información registrada es auténtica, y que la imagen subida al sistema es mi foto actual. En caso de faltar a la verdad perderé mis derechos de participante sometiéndome a las sanciones reglamentarias y legales que correspondan. Asimismo, declaro no tener antecedentes policiales, autorizando a la Oficina Central de Admisión OCAD-UNI el uso de mis datos personales que libremente proporciono, para los fines que involucran las actividades propias de la OCAD-UNI, y la publicación de los resultados de la prueba rendida en todo medio de comunicación. Declaro haber leído y conocer el reglamento del $evaluacion->nombre.";
+            $texto = "Declaro bajo juramento que toda la información registrada es auténtica, y que la imagen subida al sistema es mi foto actual. En caso de faltar a la verdad perderé mis derechos de participante sometiéndome a las sanciones reglamentarias y legales que correspondan. Asimismo, declaro no tener antecedentes policiales, autorizando a la Oficina Central de Admisión OCAD-UNI el uso de mis datos personales que libremente proporciono, para los fines que involucran las actividades propias de la OCAD-UNI, y la publicación en todo medio de comunicación de los resultados de las pruebas rendidas. Declaro haber leído y conocer el reglamento del $evaluacion->nombre.";
             PDF::MultiCell(155,5,$texto,1,'J',false);
 
             #
@@ -289,7 +290,7 @@ class FichaController extends Controller
 
             PDF::Output(public_path('storage/tmp/').'Ficha_'.$postulante->numero_identificacion.'.pdf','FI');
         }else{
-            Alert::warning('Debe cargar su foto tamaño pasaporte, para que podamos verificar y mostrar su ficha');
+            //dd('Todavia no se puede visualizar la ficha');
         }//fin if
     }
 }
