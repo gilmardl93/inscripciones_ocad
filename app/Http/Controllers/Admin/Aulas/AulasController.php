@@ -63,7 +63,6 @@ class AulasController extends Controller
             'disponible_01'=>$data['disponible'],
             'disponible_02'=>$data['disponible'],
             'disponible_03'=>$data['disponible'],
-            'disponible_voca'=>$data['disponible'],
             ]);
         return back();
     }

@@ -68,6 +68,7 @@
                                     <th colspan="2"> Día 01 </th>
                                     <th colspan="2"> Día 02 </th>
                                     <th colspan="2"> Día 03 </th>
+                                    <th colspan="2"> Voca </th>
                                     <th>  </th>
                                     <th>  </th>
                                 </tr>
@@ -82,6 +83,8 @@
                                     <th> Sector </th>
                                     <th> Codigo </th>
                                     <th> Capacidad </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
                                     <th> Disponible </th>
                                     <th> Asignado </th>
                                     <th> Disponible </th>
@@ -105,6 +108,8 @@
                                     <th> Sector </th>
                                     <th> Codigo </th>
                                     <th> Capacidad </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
                                     <th> Disponible </th>
                                     <th> Asignado </th>
                                     <th> Disponible </th>
@@ -158,7 +163,7 @@ table.dataTable({
                     }
                 },
                 {
-                    'targets':11,
+                    'targets':13,
                     'render': function ( data, type, row ) {
                         if (data) {
                             return '<a href="activar-aula/'+row.id+'" class="label label-sm label-info"> Activo </a>';
@@ -168,7 +173,7 @@ table.dataTable({
                     }
                 },
                 {
-                    'targets':12,
+                    'targets':14,
                     'render': function ( data, type, row ) {
                         if (data) {
                             return '<a href="habilitar-aula/'+row.id+'" class="label label-sm label-info"> SI </a>';
@@ -178,7 +183,7 @@ table.dataTable({
                     }
                 },
                 {
-                    'targets':13,
+                    'targets':15,
                     'render': function ( data, type, row ) {
                       return ' \
                       <a href="aulas/'+data+'/edit" title="Editar"class="btn btn-icon-only green-haze" ><i class="fa fa-edit"></i></a> \
@@ -199,6 +204,8 @@ table.dataTable({
             { "data": "asignado_02","defaultContent": "" },
             { "data": "disponible_03","defaultContent": "" },
             { "data": "asignado_03","defaultContent": "" },
+            { "data": "disponible_voca","defaultContent": "" },
+            { "data": "asignado_voca","defaultContent": "" },
             { "data": "activo","defaultContent": "" },
             { "data": "habilitado","defaultContent": "" },
             { "data": "id","defaultContent": "" },
@@ -225,7 +232,92 @@ table.dataTable({
                         select.append( '<option value="'+d+'">'+d+'</option>' )
                     } );
                 });
-            }
+            },
+        "footerCallback": function ( row, data, start, end, display ) {
+                var api = this.api(), data;
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+                // Total over this page
+                Capacidad = api
+                    .column( 4, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                // Total de aulas Disponibles para el dia 1
+                Disponible1 = api
+                    .column( 5, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                // Total de aulas asignadas para el dia 1
+                Asignado1 = api
+                    .column( 6, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                // Total de aulas Disponibles para el dia 2
+                Disponible2 = api
+                    .column( 7, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                // Total de aulas asignadas para el dia 2
+                Asignado2 = api
+                    .column( 8, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                // Total de aulas Disponibles para el dia 3
+                Disponible3 = api
+                    .column( 9, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                // Total de aulas asignadas para el dia 3
+                Asignado3 = api
+                    .column( 10, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                // Total de aulas Disponibles para el voca
+                DisponibleVoca = api
+                    .column( 11, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+                // Total de aulas asignadas para el dia Voca
+                AsignadoVoca = api
+                    .column( 12, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                // Update footer
+                $( api.column( 4 ).footer() ).html(Capacidad);
+                $( api.column( 5 ).footer() ).html(Disponible1);
+                $( api.column( 6 ).footer() ).html(Asignado1);
+                $( api.column( 7 ).footer() ).html(Disponible2);
+                $( api.column( 8 ).footer() ).html(Asignado2);
+                $( api.column( 9 ).footer() ).html(Disponible3);
+                $( api.column( 10).footer() ).html(Asignado3);
+                $( api.column( 11).footer() ).html(DisponibleVoca);
+                $( api.column( 12).footer() ).html(AsignadoVoca);
+            },
 
 
 });
