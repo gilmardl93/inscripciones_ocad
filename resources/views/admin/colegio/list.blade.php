@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-@include('alerts.errors')
-{!! Alert::render() !!}
 <div class="row">
 	<div class="col-md-12">
 		<!-- BEGIN Portlet PORTLET-->
@@ -20,12 +18,23 @@
         <div class="portlet-body">
 		{!!Form::botonmodal('Crear Colegio','#CreateColegio','green-meadow','fa fa-plus')!!}
         <p></p>
-        {!! Form::open(['route'=>'admin.colegios.show','method'=>'POST']) !!}
-            <div class="form-group form-group-lg">
-            {!!Field::select('idcolegio',null,['label'=>'Buscar Colegio']);!!}
+            <div class="table-response">
+
+                <table class="table table-striped table-bordered table-hover Colegios">
+                    <thead>
+                        <tr>
+                            <th> Codigo </th>
+                            <th> Nombre </th>
+                            <th> Ubigeo </th>
+                            <th> Gestion </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
-            {!!Form::enviar('Ver')!!}
-        {!! Form::close() !!}
         </div>
     </div>
     <!-- END Portlet PORTLET-->
@@ -91,62 +100,6 @@ $(function(){
         minimumInputLength: 3,
     });
     $.fn.modal.Constructor.prototype.enforceFocus = function() {};
-
-    $("#idcolegio").select2({
-        width:'auto',
-        ajax: {
-            url: '{{ url("colegio") }}',
-            dataType: 'json',
-            delay: 250,
-            data: function(params) {
-                return {
-                    varschool: params.term // search term
-                };
-            },
-            processResults: function(data) {
-                // parse the results into the format expected by Select2.
-                // since we are using custom formatting functions we do not need to
-                // alter the remote JSON data
-                return {
-                    results: data
-                };
-            },
-            cache: true
-        },
-        placeholder : 'Seleccione su colegio',
-        minimumInputLength: 3,
-        templateResult: formatSchool,
-        templateSelection: formatSchoolSelection,
-        escapeMarkup: function(markup) {
-            return markup;
-        } // let our custom formatter work
-    });
-    function formatSchool(school){
-        if (school.loading) return school.text; //Sin esta columna no carga los items dentro de los campo array
-
-        var localidad = school.distrito;
-        if (localidad != null) {
-            var lbl_ubigeo = 'Distrito';
-            var descripcion_ubigeo = localidad.descripcion;
-        }else{
-            var lbl_ubigeo = 'Pais';
-            var descripcion_ubigeo = school.paises.nombre;
-        }
-        console.log(school.paises.nombre);
-        var markup="<div class='select2-result-repository clearfix'>" +
-        "<div class='select2-result-repository__title'>" + school.text + "</div>" +
-        "<div class='select2-result-repository__description'> " + lbl_ubigeo + " : " + descripcion_ubigeo + "</div>" +
-        "<div class='select2-result-repository__description'> Gestion : " + school.gestion + "</div>" +
-        "<div class='select2-result-repository__statistics'>" +
-        "</div>"+
-        "</div>";
-        return markup;
-
-    }
-    function formatSchoolSelection(school){
-        var markup =  school.text;
-        return markup;
-    }
 });
 
 

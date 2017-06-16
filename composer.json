@@ -9,8 +9,8 @@
         "laravel/framework": "5.3.*",
         "styde/html": "~1.0",
         "elibyy/tcpdf-laravel": "5.3.*",
-        "barryvdh/laravel-debugbar": "^2.4",
-        "rap2hpoutre/laravel-log-viewer": "^0.10.2"
+        "rap2hpoutre/laravel-log-viewer": "^0.10.2",
+         "barryvdh/laravel-debugbar": "^2.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -71,6 +71,9 @@
                     <a href="#tab_1_11" data-toggle="tab" aria-expanded="true"> Datos del Postulante </a>
                 </li>
                 <li>
+                    <a href="#tab_1_22" data-toggle="tab" aria-expanded="true"> Ficha </a>
+                </li>
+                <li>
                     <a href="#tab_1_23" data-toggle="tab" aria-expanded="true"> Usuario </a>
                 </li>
                 <li>
@@ -165,6 +168,9 @@
                     </div>
                 </div>
                 <!--tab-pane-->
+                <div class="tab-pane" id="tab_1_22">
+                <iframe src="{{route('ficha.pdf',$postulante->id)}}" width="100%" height="900px" scrolling="auto"></iframe>
+                </div>
                 <!--tab-pane-->
                 <div class="tab-pane" id="tab_1_23">
                     <div class="tab-pane active" id="tab_1_1_1">

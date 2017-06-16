@@ -15,7 +15,7 @@
 		    </thead>
 		    <tfoot>
 		        <tr>
-		            <th> Fecha registro </th>
+		            <th> Total </th>
 		            <th> {{ Totales('Preinscritos') }} </th>
 		        </tr>
 		    </tfoot>
@@ -41,7 +41,7 @@
 		    </thead>
 		    <tfoot>
 		        <tr>
-		            <th> Fecha registro </th>
+		            <th> Total </th>
 		            <th> {{ Totales('Inscritos') }} </th>
 		        </tr>
 		    </tfoot>
@@ -67,7 +67,7 @@
 		    </thead>
 		    <tfoot>
 		        <tr>
-		            <th> Fecha de Pago </th>
+		            <th> Total </th>
 		            <th> {{ Totales('Pagantes') }} </th>
 		        </tr>
 		    </tfoot>
@@ -91,10 +91,44 @@
 		            <th> Cantidad </th>
 		        </tr>
 		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ $Modalidades->total() }} </th>
+		        </tr>
+		    </tfoot>
 		    <tbody>
 			@foreach ($Modalidades as $item)
 		        <tr >
 		            <td> {{ $item->modalidad }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Lista->links() !!}
+	</div><!--span-->
+</div><!--row-->
+<div class="row">
+	<div class="col-md-3">
+		<h3>Pagos</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> descripcion </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ $Pagos->total() }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Pagos as $item)
+		        <tr >
+		            <td> {{ $item->descripcion }} </td>
 		            <td> {{ $item->cantidad }} </td>
 		        </tr>
 			@endforeach
