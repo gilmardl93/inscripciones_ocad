@@ -1,5 +1,5 @@
 <div class="page-footer">
-    <div class="page-footer-inner"> 2017 &copy; Modulo de Simulacro
+    <div class="page-footer-inner"> 2017 &copy; Modulo de Admisión
        | lmayta@admisionuni.edu.pe
     </div>
     <div class="scroll-to-top">

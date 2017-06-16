@@ -79,3 +79,10 @@ Route::group(['namespace'=>'Mensajes'], function() {
 Route::group(['namespace'=>'Padron'], function() {
 	Route::get('padron','PadronController@index')->name('admin.padron.index');
 });
+
+/**
+ * Estadisticas
+ */
+Route::group(['namespace'=>'Estadisticas'], function() {
+	Route::get('estadisticas','EstadisticasController@index')->name('admin.estadisticas.index');
+});

@@ -100,9 +100,9 @@ class AulasController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $aula = Aula::find($id);
-        $aula->fill($request->all());
+        $data = $request->all();
+        $aula->capacidad = $data['capacidad'];
         $aula->save();
         Alert::success('Aula actualizada con exito');
         return redirect()->route('admin.aulas.index');

@@ -53,7 +53,7 @@
                     {!!Field::select('idtipoidentificacion',$identificacion,['label'=>'Escoger Tipo de identificación (*)','empty'=>'Escoger tipo de identificacion']);!!}
                 </div><!--span-->
                 <div class="col-md-6">
-                    {!!Field::text('numero_identificacion',null,['label'=>'Ingresar numero de identificación (*)','placeholder'=>'Ingresar numero de identificacion']);!!}
+                    {!!Field::text('numero_identificacion',null,['label'=>'Ingresar numero de identificación (*)','placeholder'=>'Ingresar numero de identificación']);!!}
                 </div><!--span-->
             </div><!--row-->
             <div class="row">
@@ -72,15 +72,15 @@
                     {!!Field::select('idsexo', $sexo, ['label'=>'Sexo del postulante (*)','empty'=>'Sexo del postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-3">
-                    {!!Field::text('telefono_celular', null, ['label'=>'Celular del postulante (*)','placeholder'=>'Telefono celular del postulante']);!!}
+                    {!!Field::text('telefono_celular', null, ['label'=>'Celular del postulante (*)','placeholder'=>'Teléfono celular del postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-3">
-                    {!!Field::text('telefono_fijo', null, ['label'=>'Telefono fijo del postulante (*)','placeholder'=>'Telefono fijo del postulante']);!!}
+                    {!!Field::text('telefono_fijo', null, ['label'=>'Telefono fijo del postulante (*)','placeholder'=>'Teléfono fijo del postulante']);!!}
                 </div><!--span-->
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::select('idpais', $pais, 1, ['label'=>'Pais donde vive el postulante (*)','empty'=>'Pais donde vive el postulante']);!!}
+                    {!!Field::select('idpais', $pais, 1, ['label'=>'País donde vive el postulante (*)','empty'=>'País donde vive el postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-6 Distrito">
                     <div class="form-group">
@@ -100,7 +100,7 @@
             </div><!--row-->
             <div class="row Distrito">
                 <div class="col-md-12">
-                    {!!Field::text('direccion', null, ['label'=>'Direccion donde vive el postulante (*)','placeholder'=>'Direccion donde vive el postulante']);!!}
+                    {!!Field::text('direccion', null, ['label'=>'Dirección donde vive el postulante (*)','placeholder'=>'Dirección donde vive el postulante']);!!}
                 </div><!--span-->
             </div><!--row-->
             <div class="row ">
@@ -113,7 +113,7 @@
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::select('idpaisnacimiento', $pais, 1, ['label'=>'Pais donde nacio el postulante (*)','empty'=>'Pais donde nacio el postulante']);!!}
+                    {!!Field::select('idpaisnacimiento', $pais, 1, ['label'=>'País donde nacio el postulante (*)','empty'=>'País donde nacio el postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-6 DistritoNacimiento">
                     <div class="form-group">
@@ -132,10 +132,10 @@
                         </div>
                     </div><!--span-->
                     <div class="col-md-6">
-                        {!!Field::text('direccion_provincia', ['label'=>'Direccion de provincia del postulante ','placeholder'=>'Direccion de provincia del postulante']);!!}
+                        {!!Field::text('direccion_provincia', ['label'=>'Dirección de provincia del postulante ','placeholder'=>'Dirección de provincia del postulante']);!!}
                     </div><!--span-->
                     <div class="col-md-6">
-                        {!!Field::text('telefono_provincia', ['label'=>'Telefono de provincia del postulante ','placeholder'=>'Telefono de provincia del postulante']);!!}
+                        {!!Field::text('telefono_provincia', ['label'=>'Teléfono de provincia del postulante ','placeholder'=>'Teléfono de provincia del postulante']);!!}
                     </div><!--span-->
                 </div><!--row-->
             </div>

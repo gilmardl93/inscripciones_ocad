@@ -201,6 +201,29 @@ if (! function_exists('NumeroInscripcion')) {
      */
     function NumeroInscripcion($primerdigito,$id)
     {
+        switch ($primerdigito) {
+            case 'i':
+                $primerdigito = 1;
+                break;
+            case 'ii':
+                $primerdigito = 2;
+                break;
+            case 'iii':
+                $primerdigito = 3;
+                break;
+            case 'iv':
+                $primerdigito = 4;
+                break;
+            case 'v':
+                $primerdigito = 5;
+                break;
+            case 'vi':
+                $primerdigito = 6;
+                break;
+            case 'vii':
+                $primerdigito = 7;
+                break;
+        }
         $numero = $primerdigito.str_pad($id, 4, '0', STR_PAD_LEFT);
         $letra = '';
         $suma = 0;
@@ -328,6 +351,29 @@ if (! function_exists('PagoProspecto')) {
 
         if(str_contains($pagos,'475'))return true;
         else return false;
+    }
+}
+/**
+ * Pregunta si pago el prospecto
+ */
+if (! function_exists('Totales')) {
+    /**
+     * funcion que retorna el prefijo para nombres de archivos
+     * @return [type] [description]
+     */
+    function Totales($nombre)
+    {
+        switch ($nombre) {
+            case 'Inscritos':
+                $cantidad = Postulante::Activos()->Isnull(0)->count();
+                break;
+
+            default:
+                # code...
+                break;
+        }
+        if($cantidad>0) return $cantidad;
+        return 0;
     }
 }
 

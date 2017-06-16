@@ -6,7 +6,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">FORMATO DE PAGO AL NOMBRE DEL POSUTLANTE</span>
+                <span class="caption-subject theme-font bold uppercase">FORMATO DE PAGO A NOMBRE DEL postulante</span>
             </div>
             <div class="actions">
                 {!!Form::back(route('pagos.index'))!!}
@@ -14,7 +14,7 @@
         </div>
         <div class="form-body ">
             <div class="Pulsear">
-               <h1>una vez realizado el pago en el banco y/o en la OCAD esperar a que este sea validado por nuestro sistema este proceso puede durar 120 minutos </br>
+               <h1>Una vez realizado el pago en el banco y/o en la OCAD, esperar a que este sea validado por nuestro sistema. Este proceso puede durar 120 minutos </br>
                </h1>
             </div>
             <p></p>
