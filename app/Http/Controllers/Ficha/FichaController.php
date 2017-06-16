@@ -89,7 +89,7 @@ class FichaController extends Controller
                 #Si los datos son correctos muestro el formulario de conformidad
 
                 if ($postulante->datos_ok)return view('ficha.index',compact('id'));
-                else return view('ficha.confirmar',compact('id'));
+                else return view('ficha.confirmacion',compact('id'));
             }
 
         }else{
