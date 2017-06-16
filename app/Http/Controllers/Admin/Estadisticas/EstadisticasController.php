@@ -11,6 +11,14 @@ class EstadisticasController extends Controller
 {
    public function index()
     {
+        $Inscritos = Postulante::select('fecha_conformidad',DB::raw('count(*) as cantidad'))
+                            ->where('datos_ok',1)
+                            ->IsNull(0)
+                            ->Activos()
+                            ->groupBy('fecha_conformidad')
+                            ->orderBy('fecha_conformidad','desc')
+                            ->paginate();
+
     	$Lista = Postulante::select('fecha_registro',DB::raw('count(*) as cantidad'))
     						->IsNull(0)
     						->Activos()
@@ -27,6 +35,6 @@ class EstadisticasController extends Controller
                             ->groupBy('m.nombre')
                             ->paginate();
 
-    	return view('admin.estadisticas.index',compact('Lista','Pagantes','Modalidades'));
+    	return view('admin.estadisticas.index',compact('Inscritos','Lista','Pagantes','Modalidades'));
     }
 }
