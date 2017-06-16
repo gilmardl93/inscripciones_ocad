@@ -140,6 +140,15 @@ class AulasController extends Controller
         Alert::success('Se realizo el proceso');
         return back();
     }
+    public function habilitar($id)
+    {
+        $aula = Aula::find($id);
+        $aula->habilitado = !$aula->habilitado;
+        $aula->save();
+
+        Alert::success('Se realizo el proceso');
+        return back();
+    }
     public function delete($id)
     {
         Aula::destroy($id);
