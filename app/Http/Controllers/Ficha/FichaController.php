@@ -9,6 +9,9 @@ use App\Models\Postulante;
 use App\Models\Proceso;
 use App\Models\Recaudacion;
 use App\Models\Servicio;
+use App\User;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
 use Styde\Html\Facades\Alert;
@@ -83,16 +86,33 @@ class FichaController extends Controller
             }
 
             if($correcto_foto && $correcto_datos_p && $correcto_datos_f && $correcto_datos_e && $correcto_pagos){
-                #Si los datos son correctos muestro l aficha
-                #Asigno Aulas
-                #Asigno codigo
+                #Si los datos son correctos muestro el formulario de conformidad
 
-                return view('ficha.index',compact('id'))
-            }else return view('ficha.bloqueo',compact('msj'));
-
+                if ($postulante->datos_ok)return view('ficha.index',compact('id'));
+                else return view('ficha.confirmar',compact('id'));
+            }
 
         }else{
             return view('ficha.bloqueo');
+        }
+
+    }
+    public function confirmar(Request $request)
+    {
+        if (Auth::attempt(['dni' => $request->get('dni'), 'password' => $request->get('password')])) {
+            $postulante = Postulante::Usuario()->first();
+            $postulante->datos_ok=true;
+            $postulante->fecha_conformidad=Carbon::now();
+            $postulante->save();
+            #Asigno Aulas
+            Postulante::AsignarAula($postulante->id);
+            #Asigno codigo
+            Postulante::AsignarCodigo($postulante->id,$postulante->canal,$postulante->codigo_modalidad);
+            $id = $request->get('id');
+            return view('ficha.index',compact('id'));
+        }else{
+            Alert::danger('Su clave o DNI no es correcto');
+            return back();
         }
 
     }
@@ -170,22 +190,25 @@ class FichaController extends Controller
                 PDF::Cell(110,5,$postulante->nombre_especialidad2,0,0,'L');
             }
             #AULAS
-            PDF::SetXY(18,120);
-            PDF::SetFont('helvetica','',11);
-            PDF::Cell(60,5,'Aulas :',0,0,'R');
-            PDF::SetFont('helvetica','B',10);
-            PDF::SetXY(78,120);
+            PDF::SetXY(10,120);
+            PDF::SetFont('helvetica','',20);
+            PDF::Cell(20,5,'Aulas :',0,0,'R');
+            PDF::SetFont('helvetica','B',20);
+            PDF::SetXY(35,120);
             PDF::SetFillColor(0, 0, 0, 12);
-            PDF::Cell(30,7,$postulante->datos_aula_uno->codigo,0,0,'C',1,'',1);
+            PDF::Cell(40,7,'LU 07:'.$postulante->datos_aula_uno->codigo,0,0,'C',1,'',1);
             #
-            PDF::SetXY(110,120);
-            PDF::Cell(30,7,$postulante->datos_aula_dos->codigo,0,0,'C',1,'',1);
+            PDF::SetXY(80,120);
+            PDF::Cell(40,7,'MI 07:'.$postulante->datos_aula_dos->codigo,0,0,'C',1,'',1);
             #
-            PDF::SetXY(142,120);
-            PDF::Cell(30,7,$postulante->datos_aula_tres->codigo,0,0,'C',1,'',1);
+            PDF::SetXY(125,120);
+            PDF::Cell(40,7,'VI 11:'.$postulante->datos_aula_tres->codigo,0,0,'C',1,'',1);
             #
-            PDF::SetXY(174,120);
-            PDF::Cell(30,7,$postulante->datos_aula_voca->codigo,0,0,'C',1,'',1);
+            if($postulante->codigo_especialidad=='A1'){
+                PDF::SetXY(168,120);
+                PDF::Cell(40,7,'VOCA: 07'.$postulante->datos_aula_voca->codigo,0,0,'C',1,'',1);
+            }
+            PDF::SetFont('helvetica','B',12);
             #MENSAJE
             PDF::SetFillColor(255);
             PDF::SetTextColor(255);

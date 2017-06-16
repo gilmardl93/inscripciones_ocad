@@ -31,4 +31,25 @@ class Aula extends Model
     public function scopeActivas($cadenaSQL,$estado = true){
     	return $cadenaSQL->where('activo',$estado);
     }
+    /**
+    * Devuelve los valores Activos
+    * @param  [type]  [description]
+    * @return [type]            [description]
+    */
+    public function scopeObtenerAula($cadenaSQL,$dia){
+        if ($dia=='voca') {
+            return $cadenaSQL->select('id')
+                            ->where('activo',true)
+                            ->where('habilitado',true)
+                            ->where('disponible_voca','>',0)
+                            ->inRandomOrder();
+        } else {
+            return $cadenaSQL->select('id')
+                            ->where('activo',true)
+                            ->where('habilitado',true)
+                            ->where('disponible_0'.$dia,'>',0)
+                            ->inRandomOrder();
+        }
+
+    }
 }

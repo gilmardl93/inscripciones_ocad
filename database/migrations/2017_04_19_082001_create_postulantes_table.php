@@ -60,7 +60,9 @@ class CreatePostulantesTable extends Migration
             $table->integer('idaulavoca')->nullable();
             $table->boolean('anulado')->default(false);
             $table->boolean('datos_ok')->default(false);
+            $table->boolean('pago')->default(false);
             $table->date('fecha_registro')->nullable();
+            $table->date('fecha_conformidad')->nullable();
             $table->integer('idusuario')->nullable();
             $table->timestamps();
             $table->foreign('idevaluacion')->references('id')->on('evaluacion');

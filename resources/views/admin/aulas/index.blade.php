@@ -51,6 +51,19 @@
                         <table class="table table-bordered table-hover" id="Aulas">
                             <thead>
                                 <tr>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th colspan="2"> Día 01 </th>
+                                    <th colspan="2"> Día 02 </th>
+                                    <th colspan="2"> Día 03 </th>
+                                    <th colspan="2"> Vocacional </th>
+                                    <th>  </th>
+                                    <th>  </th>
+                                </tr>
+                                <tr>
                                     <th>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                             <input type="checkbox" class="group-checkable" data-set="#Aulas .checkboxes" />
@@ -63,10 +76,40 @@
                                     <th> Capacidad </th>
                                     <th> Disponible </th>
                                     <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
                                     <th> Activo </th>
                                     <th> Opciones </th>
                                 </tr>
                             </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>
+                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                            <input type="checkbox" class="group-checkable" data-set="#Aulas .checkboxes" />
+                                            <span></span>
+                                        </label>
+                                    </th>
+                                    <th> Orden </th>
+                                    <th> Sector </th>
+                                    <th> Codigo </th>
+                                    <th> Capacidad </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Disponible </th>
+                                    <th> Asignado </th>
+                                    <th> Activo </th>
+                                    <th> Opciones </th>
+                                </tr>
+                            </tfoot>
                             <tbody>
                             </tbody>
                         </table>
@@ -109,7 +152,7 @@ table.dataTable({
                     }
                 },
                 {
-                    'targets':7,
+                    'targets':13,
                     'render': function ( data, type, row ) {
                         if (data) {
                             return '<a href="activar-aula/'+row.id+'" class="label label-sm label-info"> Activo </a>';
@@ -119,7 +162,7 @@ table.dataTable({
                     }
                 },
                 {
-                    'targets':8,
+                    'targets':14,
                     'render': function ( data, type, row ) {
                       return ' \
                       <a href="aulas/'+data+'/edit" title="Editar"class="btn btn-icon-only green-haze" ><i class="fa fa-edit"></i></a> \
@@ -134,8 +177,14 @@ table.dataTable({
             { "data": "sector","defaultContent": "" },
             { "data": "codigo","defaultContent": "" },
             { "data": "capacidad","defaultContent": "" },
-            { "data": "disponible","defaultContent": "" },
-            { "data": "asignado","defaultContent": "" },
+            { "data": "disponible_01","defaultContent": "" },
+            { "data": "asignado_01","defaultContent": "" },
+            { "data": "disponible_02","defaultContent": "" },
+            { "data": "asignado_02","defaultContent": "" },
+            { "data": "disponible_03","defaultContent": "" },
+            { "data": "asignado_03","defaultContent": "" },
+            { "data": "disponible_voca","defaultContent": "" },
+            { "data": "asignado_voca","defaultContent": "" },
             { "data": "activo","defaultContent": "" },
             { "data": "id","defaultContent": "" },
 
@@ -165,8 +214,6 @@ table.dataTable({
 
 
 });
-
-
 table.find('.group-checkable').change(function () {
         var set = jQuery(this).attr("data-set");
         var checked = jQuery(this).is(":checked");

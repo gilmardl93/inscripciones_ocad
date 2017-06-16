@@ -17,7 +17,7 @@ class Postulante extends Model
             'fecha_nacimiento','idpaisnacimiento','idubigeonacimiento',
             'idubigeoprovincia','direccion_provincia','telefono_provincia',
             'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha_carga','foto_fecha_rechazo','foto_fecha_edicion',
-            'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario','inicio_estudios','fin_estudios'];
+            'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario','inicio_estudios','fin_estudios','pago','fecha_conformidad'];
 
     /**
      * Opciones del select de Inicio de secundaria
@@ -88,6 +88,14 @@ class Postulante extends Model
     public function getCodigoModalidadAttribute()
     {
         $modalidad = Modalidad::find($this->idmodalidad);
+        return $modalidad->codigo;
+    }
+    /**
+    * Atributos Codigo Modalidad 2
+    */
+    public function getCodigoModalidad2Attribute()
+    {
+        $modalidad = Modalidad::find($this->idmodalidad2);
         return $modalidad->codigo;
     }
     /**
@@ -176,6 +184,15 @@ class Postulante extends Model
     {
         $especialidad = Especialidad::find($this->idespecialidad);
         return $especialidad->nombre;
+    }
+    /**
+    * Atributo Canal
+    */
+    public function getCanalAttribute()
+    {
+        $especialidad = Especialidad::find($this->idespecialidad);
+
+        return $especialidad->canal;
     }
     /**
     * Atributos Codigo Especialidad
@@ -631,66 +648,37 @@ class Postulante extends Model
      * Operaciones estaticas
      * @param [type] $data [description]
      */
-    public static function AsignarCodigo($data)
+    public static function AsignarCodigo($id,$canal,$codigo_modalidad)
     {
-        $secuencia = Secuencia::all()->first();
-        foreach ($data as $key => $item) {
-            $numero = DB::select("SELECT nextval('$secuencia->nombre')");
-            $numero = $numero[0]->nextval;
-            $codigo = NumeroInscripcion(8,$numero);
-            Postulante::where('id',$item['idpostulante'])->update(['codigo'=>$codigo, 'pago'=>true]);
-        }
+        if($codigo_modalidad == 'E1TI') $canal = 'VII';
+        $seq = strtolower($canal);
+        $numero = DB::select("SELECT nextval('canal_".$seq."_seq')");
+        $numero = $numero[0]->nextval;
+        $codigo = NumeroInscripcion($seq,$numero);
+        Postulante::where('id',$id)->whereNull('codigo')->update(['codigo'=>$codigo, 'pago'=>true]);
     }
 
-    public static function AsignarAula($data)
+    public static function AsignarAula($id)
     {
-        foreach ($data as $key => $item) {
-            $postulante = Postulante::where('id',$item['idpostulante'])->first();
-            $sede = Catalogo::where('id',$postulante->idsede)->first();
-
-            if ($sede->nombre == 'Lima') {
-                $aula = Aula::select('id')
-                                ->where('sector','<>','HYO')
-                                ->where('activo',true)
-                                ->where('habilitado',true)
-                                ->where('disponible','>',0)
-                                ->inRandomOrder()
-                                ->first();
-            } else {
-                $aula = Aula::select('id')
-                                ->where('sector','HYO')
-                                ->where('activo',true)
-                                ->where('habilitado',true)
-                                ->where('disponible','>',0)
-                                ->inRandomOrder()
-                                ->first();
-            }
-
-
-            if (isset($aula)) {
-                Aula::where('id',$aula->id)->increment('asignado');
-                Aula::where('id',$aula->id)->decrement('disponible');
-                Postulante::where('id',$item['idpostulante'])->update(['idaula'=>$aula->id]);
-            }else{
-                $aula = Aula::select('id')
-                            ->where('activo',true)
-                            ->where('disponible','>',0)
-                            ->orderBy('orden')
-                            ->take(3)
-                            ->get();
-                Aula::whereIn('id',$aula->toArray())->update(['habilitado'=>true]);
-
-                $aula = Aula::select('id')
-                            ->where('activo',true)
-                            ->where('habilitado',true)
-                            ->where('disponible','>',0)
-                            ->inRandomOrder()
-                            ->first();
-                Aula::where('id',$aula->id)->increment('asignado');
-                Aula::where('id',$aula->id)->decrement('disponible');
-                Postulante::where('id',$item['idpostulante'])->update(['idaula'=>$aula->id]);
-
-            }
+        $aula1 = Aula::ObtenerAula(1)->first();
+        if (Postulante::where('id',$id)->whereNull('idaula1')->update(['idaula1'=>$aula1->id])) {
+            Aula::where('id',$aula1->id)->decrement('disponible_01');
+            Aula::where('id',$aula1->id)->increment('asignado_01');
+        }
+        $aula2 = Aula::ObtenerAula(2)->first();
+        if (Postulante::where('id',$id)->whereNull('idaula2')->update(['idaula2'=>$aula2->id])) {
+            Aula::where('id',$aula2->id)->decrement('disponible_02');
+            Aula::where('id',$aula2->id)->increment('asignado_02');
+        }
+        $aula3 = Aula::ObtenerAula(3)->first();
+        if (Postulante::where('id',$id)->whereNull('idaula3')->update(['idaula3'=>$aula3->id])) {
+            Aula::where('id',$aula3->id)->decrement('disponible_03');
+            Aula::where('id',$aula3->id)->increment('asignado_03');
+        }
+        $voca = Aula::ObtenerAula('voca')->first();
+        if (Postulante::where('id',$id)->whereNull('idaulavoca')->where('idespecialidad',1)->update(['idaulavoca'=>$voca->id])) {
+            Aula::where('id',$voca->id)->decrement('disponible_voca');
+            Aula::where('id',$voca->id)->increment('asignado_voca');
         }
     }
 

@@ -16,7 +16,7 @@
         </div>
         <div class="form-body ">
             <dl>
-                <dt>Observacion</dt>
+                <dt>Observación</dt>
                 <dd>Tus nombres y apellidos deben coincidir con el DNI del postulante, los campos con asterisco son obligatorios.</dd>
             </dl>
             <div class="row">
@@ -38,13 +38,13 @@
                     </div>
                 </div><!--span-->
             </div><!--row-->
-            <h3>Modalidad de Postulación segun el reglamento</h3>
+            <h3>Modalidad de Postulación según el reglamento</h3>
                 <div class="row">
                     <div class="col-md-6">
-                        {!!Field::select('idmodalidad',$modalidad,['label'=>'Escoger Modalidad','empty'=>'Escoger modalidad de postulacion']);!!}
+                        {!!Field::select('idmodalidad',$modalidad,['label'=>'Escoger Modalidad (*)','empty'=>'Escoger modalidad de postulacion']);!!}
                     </div><!--span-->
                     <div class="col-md-6">
-                        {!!Field::select('idespecialidad',$especialidad,['label'=>'Escoger Especialidad','empty'=>'Escoger especialidad de postulacion']);!!}
+                        {!!Field::select('idespecialidad',$especialidad,['label'=>'Escoger Especialidad (*)','empty'=>'Escoger especialidad de postulacion']);!!}
                     </div><!--span-->
                 </div><!--row-->
                 <div class="widget-thumb bordered bg-green cepreuni">
@@ -62,10 +62,10 @@
                         </div><!--span-->
                     </div><!--row-->
                 </div>
-            <h3>Institución de educativa del postulante</h3>
+            <h3>Institución Educativa del postulante</h3>
                 <dl>
                     <dt>Observación</dt>
-                    <dd>Queda bajo responsabilidad del postulante seleccionar la institución educativa de donde procede, todo cambio de colegio incurrirá en un nuevo pago sin lugar a reembolso Art. 13 Reglamento de Admisión</dd>
+                    <dd>Queda bajo responsabilidad del postulante seleccionar la Institución Educativa de donde procede, <strong>todo cambio de colegio incurrirá en un nuevo pago sin lugar a reembolso Art. 13 Reglamento de Admisión.</strong></dd>
                 </dl>
                 <div class="row">
                     <div class="col-md-6 Colegio">
@@ -112,7 +112,7 @@ $(".cepreuni").hide();
             data: {idmodalidad: idmodalidad},
         })
         .done(function(modalidad) {
-            /(*)Muestra Colegio o universidad segun la modalidad correspondiente(*)/
+            /*Muestra Colegio o universidad segun la modalidad correspondiente*/
             if (modalidad.colegio) {
                 $(".Colegio").show();
                 $(".Universidad").hide();
@@ -120,7 +120,7 @@ $(".cepreuni").hide();
                 $(".Colegio").hide();
                 $(".Universidad").show();
             }
-            /(*)Muestra la segunda opcion del cepre UNI(*)/
+            /*Muestra la segunda opcion del cepre UNI*/
             if (modalidad.codigo == 'ID-CEPRE') {
                 $(".cepreuni").show();
             }else{

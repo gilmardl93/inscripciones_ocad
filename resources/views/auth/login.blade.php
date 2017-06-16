@@ -4,7 +4,7 @@
 @include('alerts.errors')
 {!! Alert::render() !!}
     <div id="form-opcion">
-    Bienvenido al Examen de admisión de la UNI, para ingresar debe crear una cuenta, si ya la creo haga click al boton ya tengo cuenta
+    Bienvenido al Examen de admisión de la UNI, para ingresar debe crear una cuenta, si ya la creo haga click al botón ya tengo cuenta
     <p></p>
     {!!Form::boton('Crear cuenta','javascript:;','green','fa fa-plus','',['id'=>'registrar'])!!}
     {!!Form::boton('Ya tengo cuenta','javascript:;','green','fa fa-send','',['id'=>'logear'])!!}
@@ -37,14 +37,14 @@
 {!! Form::open(['url'=>'register','method'=>'POST','id'=>'form-register']) !!}
     <h3 class="form-title font-green">Crear Cuenta</h3>
     <div class="form-group">
-            {!! Form::label('lblDNI', 'Ingrese el numero de DNI del postulante no del apoderado', []) !!}
+            {!! Form::label('lblDNI', 'Ingrese el número de DNI del postulante no del apoderado', []) !!}
             <div class="input-icon right ">
             <i class="fa fa-envelope"></i>
             {!!Form::text('dni',old('dni'), ['class'=>'form-control','placeholder'=>'dni','maxlength'=>'8'])!!}
             </div>
     </div>
     <div class="form-group">
-            {!! Form::label('lblPassword', 'Genere su Clave (minimo de 6 digitos)', []) !!}
+            {!! Form::label('lblPassword', 'Genere su Clave (mínimo de 6 dígitos)', []) !!}
         <div class="input-icon right ">
             <i class="fa fa-lock"></i>
             {!!Form::password('password', ['class'=>'form-control','placeholder'=>'Clave'])!!}
@@ -89,5 +89,5 @@ $('#logear').click(function() {
 @stop
 
 @section('copyright')
-Oficina Central de Admision. Universidad Nacional de Ingeniería
+Oficina Central de Admisión. Universidad Nacional de Ingeniería
 @stop

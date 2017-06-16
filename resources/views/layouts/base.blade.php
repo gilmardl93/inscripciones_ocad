@@ -106,9 +106,9 @@
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
             <div class="page-footer-inner container-fluid container-lf-space">
-                <p class="page-footer-copyright"> Oficina Central de Admision OCAD
+                <p class="page-footer-copyright"> Oficina Central de Admisión OCAD
                     <a target="_blank" href="http://www.admision.uni.edu.pe">Admision - UNI</a> &nbsp;|&nbsp;
-                    <a href="http://www.uni.edu.pe" title="Universidad Nacional de Ingenieria" target="_blank">Universidad Nacional de Ingenieria</a>
+                    <a href="http://www.uni.edu.pe" title="Universidad Nacional de Ingenieria" target="_blank">Universidad Nacional de Ingeniería</a>
                 </p>
             </div>
             <div class="go2top">

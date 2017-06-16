@@ -16,11 +16,11 @@
         </div>
         <div class="form-body ">
             <ol>
-                <li>Datos: Deberás registrar los datos del postulante (no del apoderado), donde ingresaras Apellido paterno, apellido materno, nombres, modalidad, especialidad e institución educativa donde estudió el postulante</li>
-                <li>Pagos: Imprimirás los formatos de pago que el sistema genera según la modalidad que ha escogido para realizar el pago en el banco Scotiabak, Financiero, BCP</li>
+                <li>Datos: Deberás registrar los datos del <strong>postulante</strong> (no del apoderado), donde ingresarás apellido paterno, apellido materno, nombres, modalidad, especialidad e institución educativa donde estudió el postulante</li>
+                <li>Pagos: Imprimirás los formatos de pago que el sistema genera según la modalidad que ha escogido para realizar el pago en el banco Scotiabank, Financiero, BCP</li>
                 <li>Ficha: Imprimirás tu ficha de inscripción después de realizar el pago y que la foto haya sido verificada por la Oficina Central de Admisión</li>
             </ol>
-            Si tuviese alguna duda puedes hacer click al boton &nbsp<span class="label label-danger"> Ayuda </span>&nbsp que se encuentra a la derecha de la ventana y te aparecerán indicaciones para poder realizar la inscripción
+            Si tuvieses alguna duda puedes hacer click al botón &nbsp<span class="label label-danger"> Ayuda </span>&nbsp que se encuentra en la parte central derecha de la ventana y te aparecerán indicaciones para poder realizar la inscripción
         <p></p>
         <div class="col-md-3">
             <a class="dashboard-stat dashboard-stat-v2 blue" href="{{ route('datos.postulante.index') }}">

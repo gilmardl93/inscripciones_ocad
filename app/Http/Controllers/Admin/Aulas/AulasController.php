@@ -58,7 +58,13 @@ class AulasController extends Controller
     {
         $data = $request->all();
 
-        Aula::where('sector',$data['sector'])->Activas()->update(['disponible'=>$data['disponible']]);
+        Aula::where('sector',$data['sector'])->Activas()->update([
+            'capacidad'=>$data['disponible'],
+            'disponible_01'=>$data['disponible'],
+            'disponible_02'=>$data['disponible'],
+            'disponible_03'=>$data['disponible'],
+            'disponible_voca'=>$data['disponible'],
+            ]);
         return back();
     }
 
@@ -95,7 +101,8 @@ class AulasController extends Controller
     public function update(Request $request, $id)
     {
         $aula = Aula::find($id);
-        $aula->fill($request->all());
+        $data = $request->all();
+        $aula->capacidad = $data['capacidad'];
         $aula->save();
         Alert::success('Aula actualizada con exito');
         return redirect()->route('admin.aulas.index');
@@ -120,7 +127,7 @@ class AulasController extends Controller
     }
     public function lista_aulas_activas()
     {
-        $Lista = Aula::Activas()->get();
+        $Lista = Aula::Activas(1)->get();
         $res['data'] = $Lista;
         return $res;
     }
@@ -141,8 +148,8 @@ class AulasController extends Controller
     }
     public function activas()
     {
-        $resumen = Aula::select('sector',DB::raw("sum(disponible) as cnt"))
-                        ->Activas()
+        $resumen = Aula::select('sector',DB::raw("sum(capacidad) as cnt"))
+                        ->Activas(1)
                         ->groupBy('sector')
                         ->orderBy('sector')
                         ->get();
