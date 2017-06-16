@@ -61,6 +61,7 @@ class CreatePostulantesTable extends Migration
             $table->boolean('anulado')->default(false);
             $table->boolean('datos_ok')->default(false);
             $table->boolean('pago')->default(false);
+            $table->date('fecha_pago')->nullable();
             $table->date('fecha_registro')->nullable();
             $table->date('fecha_conformidad')->nullable();
             $table->integer('idusuario')->nullable();

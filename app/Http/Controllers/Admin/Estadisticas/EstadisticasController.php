@@ -17,6 +17,7 @@ class EstadisticasController extends Controller
     						->groupBy('fecha_registro')
     						->orderBy('fecha_registro','desc')
     						->paginate();
+        //$Pagantes = Postulante::
     	return view('admin.estadisticas.index',compact('Lista'));
     }
 }

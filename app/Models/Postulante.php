@@ -17,7 +17,7 @@ class Postulante extends Model
             'fecha_nacimiento','idpaisnacimiento','idubigeonacimiento',
             'idubigeoprovincia','direccion_provincia','telefono_provincia',
             'foto_cargada','foto_editada','foto_rechazada','foto_estado','foto_fecha_carga','foto_fecha_rechazo','foto_fecha_edicion',
-            'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario','inicio_estudios','fin_estudios','pago','fecha_conformidad'];
+            'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario','inicio_estudios','fin_estudios','pago','fecha_pago','fecha_conformidad'];
 
     /**
      * Opciones del select de Inicio de secundaria
@@ -655,7 +655,7 @@ class Postulante extends Model
         $numero = DB::select("SELECT nextval('canal_".$seq."_seq')");
         $numero = $numero[0]->nextval;
         $codigo = NumeroInscripcion($seq,$numero);
-        Postulante::where('id',$id)->whereNull('codigo')->update(['codigo'=>$codigo, 'pago'=>true]);
+        Postulante::where('id',$id)->whereNull('codigo')->update(['codigo'=>$codigo, 'pago'=>true,'fecha_pago'=>Carbon::now()]);
     }
 
     public static function AsignarAula($id)

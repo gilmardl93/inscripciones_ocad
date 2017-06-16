@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aula extends Model
 {
     protected $table = 'aula';
-    protected $fillable = ['orden','sector', 'codigo','capacidad','disponible','asignado','activo','habilitado'];
+    protected $guarded = [];
     public $timestamps = false;
     /**
      * Atributos sector
