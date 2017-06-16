@@ -5,6 +5,7 @@
 {!! Alert::render() !!}
 <div class="row">
 	<div class="col-md-3">
+		<h3>Preinscritos</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
@@ -15,7 +16,7 @@
 		    <tfoot>
 		        <tr>
 		            <th> Fecha registro </th>
-		            <th> {{ Totales('Inscritos') }} </th>
+		            <th> {{ Totales('Preinscritos') }} </th>
 		        </tr>
 		    </tfoot>
 		    <tbody>
@@ -30,6 +31,33 @@
 		{!! $Lista->links() !!}
 	</div><!--span-->
 	<div class="col-md-3">
+		<h3>Inscritos</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Fecha registro </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Fecha registro </th>
+		            <th> {{ Totales('Inscritos') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Inscritos as $item)
+		        <tr >
+		            <td> {{ $item->fecha_conformidad }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Lista->links() !!}
+	</div><!--span-->
+	<div class="col-md-3">
+		<h3>Pagantes</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
@@ -55,6 +83,7 @@
 		{!! $Lista->links() !!}
 	</div><!--span-->
 	<div class="col-md-3">
+		<h3>Por Modalidad</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>

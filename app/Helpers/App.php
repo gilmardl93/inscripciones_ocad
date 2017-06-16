@@ -364,11 +364,14 @@ if (! function_exists('Totales')) {
     function Totales($nombre)
     {
         switch ($nombre) {
-            case 'Inscritos':
+            case 'Preinscritos':
                 $cantidad = Postulante::Activos()->Isnull(0)->count();
                 break;
             case 'Pagantes':
                 $cantidad = Postulante::where('pago',1)->Activos()->Isnull(0)->count();
+                break;
+            case 'Inscritos':
+                $cantidad = Postulante::where('datos_ok',1)->Activos()->Isnull(0)->count();
                 break;
 
             default:
