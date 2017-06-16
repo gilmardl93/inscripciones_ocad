@@ -16,10 +16,12 @@ class DatoOkMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $datos = Postulante::Usuario()->Activos()->first()->datos_ok;
-        if($datos){
-            Alert::info('Usted ya no puede modificar sus datos');
-            return redirect()->route('home.index');
+        $datos = Postulante::where('numero_identificacion','41887192')->Activos()->first();
+        if(isset($datos)){
+            if($datos->datos_ok){
+                Alert::info('Usted ya no puede modificar sus datos');
+                return redirect()->route('home.index');
+            }
         }
         return $next($request);
     }
