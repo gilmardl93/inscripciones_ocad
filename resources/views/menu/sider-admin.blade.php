@@ -21,11 +21,12 @@
                     {!!Form::menu('Evaluacion',route('admin.evaluacion.index'))!!}
                 </ul>
             </li>
+            {!!Form::menu('Usuarios',route('admin.users.index'),'icon-users')!!}
             {!!Form::menu('Aulas',route('admin.aulas.index'),'fa fa-cubes')!!}
             <li class="heading">
                 <h3 class="uppercase">Modulos</h3>
             </li>
-            {!!Form::menu('Usuarios',route('admin.users.index'),'icon-users')!!}
+            {!!Form::menu('Usuarios',route('admin.usuarios.index'),'icon-users')!!}
             {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
             {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
             {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}

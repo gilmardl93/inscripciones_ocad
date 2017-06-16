@@ -1,6 +1,15 @@
 <?php
 
 Route::resource('users', 'UsersController',['names'=>'admin.users']);
+/**
+ * Control de usuarios
+ */
+Route::group(['namespace'=>'Usuarios'], function() {
+	Route::get('usuarios','UsuariosController@index')->name('admin.usuarios.index');
+	Route::get('editar-usuarios/{id}','UsuariosController@editar')->name('admin.usuarios.editar');
+	Route::post('buscar-usuarios','UsuariosController@search')->name('admin.usuarios.search');
+	Route::put('actualizar-usuarios/{id}','UsuariosController@update')->name('admin.usuarios.actualizar');
+});
 
 /**
  * Postulantes
