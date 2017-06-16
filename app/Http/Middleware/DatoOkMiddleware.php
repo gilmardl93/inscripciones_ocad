@@ -16,7 +16,7 @@ class DatoOkMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $datos = Postulante::where('numero_identificacion','41887192')->Activos()->first();
+        $datos = Postulante::Usuario()->Activos()->first();
         if(isset($datos)){
             if($datos->datos_ok){
                 Alert::info('Usted ya no puede modificar sus datos');
