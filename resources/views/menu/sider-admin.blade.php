@@ -26,7 +26,7 @@
             <li class="heading">
                 <h3 class="uppercase">Modulos</h3>
             </li>
-            {!!Form::menu('Usuarios',route('admin.usuarios.index'),'icon-users')!!}
+
             {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
             {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
             {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
@@ -39,6 +39,7 @@
 @if (str_contains(Auth::user()->codigo_rol,['pago','admin']))
 {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
 @endif
+{!!Form::menu('Usuarios',route('admin.usuarios.index'),'icon-users')!!}
     </ul>
     <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->
