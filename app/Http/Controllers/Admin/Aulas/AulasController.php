@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Aulas;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateAulaRequest;
 use App\Models\Aula;
 use DB;
 use Illuminate\Http\Request;
