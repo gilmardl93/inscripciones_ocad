@@ -27,7 +27,7 @@
                 <h3 class="uppercase">Modulos</h3>
             </li>
 
-            {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
+
             {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
             {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
             {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
@@ -40,6 +40,7 @@
 @endif
 {!!Form::menu('Usuarios',route('admin.usuarios.index'),'icon-users')!!}
 {!!Form::menu('Estadistica',route('admin.estadisticas.index'),'fa fa-bar-chart')!!}
+{!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
     </ul>
     <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->
