@@ -16,10 +16,10 @@
             Para realizar tu inscripción deberás seguir los siguientes pasos:
             <ol>
                 <li>Datos: Deberás registrar los datos del postulante (no del apoderado), donde ingresarás Apellido paterno, apellido materno, nombres, modalidad, especialidad e institución educativa donde estudió el postulante</li>
-                <li>Pagos: Imprimirás los FORMATO DE PAGO que el sistema genera según la modalidad que ha escogido para realizar el pago en el banco Scotiabak, Financiero, BCP</li>
+                <li>Pagos: Imprimirás los FORMATOS DE PAGO que el sistema genera según la modalidad que ha escogido para realizar el pago en el banco Scotiabak, Financiero, BCP</li>
                 <li>Ficha: Imprimirás tu ficha de inscripción después de realizar el pago y que la foto haya sido verificada por la Oficina Central de Admisión</li>
             </ol>
-            Si tuviese alguna duda puedes hacer click al boton &nbsp<span class="label label-danger"> Ayuda </span>&nbsp que se encuentra a la derecha de la ventana y te aparecerán indicaciones para poder realizar la inscripción
+            Si tuviese alguna duda puedes hacer click al botón <span class="label label-danger"> Ayuda </span> que se encuentra a la derecha de la ventana y te aparecerán indicaciones para poder realizar la inscripción
         </div>
     </div>
     <!-- END PORTLET-->

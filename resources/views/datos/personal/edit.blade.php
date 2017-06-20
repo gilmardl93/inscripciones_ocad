@@ -17,7 +17,7 @@
         <div class="form-body ">
             <dl>
                 <dt>Observación</dt>
-                <dd>Tus nombres y apellidos deben coincidir con el DNI del postulante, los campos con asterisco son obligatorios.</dd>
+                <dd>Los nombres y apellidos deben coincidir con el DNI del postulante, los campos con asterisco son obligatorios.</dd>
             </dl>
             <div class="row">
                 <div class="col-md-4">
