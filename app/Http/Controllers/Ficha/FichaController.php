@@ -205,7 +205,7 @@ class FichaController extends Controller
             PDF::Cell(40,7,'LU 07:'.$postulante->datos_aula_uno->codigo,0,0,'C',1,'',1);
             #
             PDF::SetXY(80,120);
-            PDF::Cell(40,7,'MI 07:'.$postulante->datos_aula_dos->codigo,0,0,'C',1,'',1);
+            PDF::Cell(40,7,'MI 09:'.$postulante->datos_aula_dos->codigo,0,0,'C',1,'',1);
             #
             PDF::SetXY(125,120);
             PDF::Cell(40,7,'VI 11:'.$postulante->datos_aula_tres->codigo,0,0,'C',1,'',1);
