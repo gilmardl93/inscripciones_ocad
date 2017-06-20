@@ -228,7 +228,7 @@ class FichaController extends Controller
             PDF::Cell(60,5,'Lugar de Nacimiento :',0,0,'R');
             PDF::SetXY(78,150);
             PDF::SetFont('helvetica','',10);
-            PDF::Cell(110,5,$postulante->descripcion_ubigeo,0,0,'L');
+            PDF::Cell(110,5,$postulante->descripcion_ubigeo_nacimiento,0,0,'L');
             #FECHA DE NACIMIENTO
             PDF::SetXY(18,155);
             PDF::SetFont('helvetica','B',11);
@@ -253,7 +253,7 @@ class FichaController extends Controller
             #
             PDF::SetXY(78,170);
             PDF::SetFont('helvetica','',10);
-            PDF::Cell(110,5,$postulante->descripcion_ubigeo_nacimiento,0,0,'L');
+            PDF::Cell(110,5,$postulante->descripcion_ubigeo,0,0,'L');
             #DOCUMENTO DE IDENTIDAD
             PDF::SetXY(18,175);
             PDF::SetFont('helvetica','B',11);
