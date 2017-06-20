@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="form-body ">
-        <h4><b>Estos son los pagos que se deben realizar debe imprimir todos los formatos de pago par aque pueda ir a cancelar a los bancos Sctoiabank, Financiero, BCP</b></h4>
+        <h4><b>Estos son los pagos que se deben realizar debe imprimir todos los formatos de pago par aque pueda ir a cancelar a los bancos Scotiabank, Financiero, BCP</b></h4>
             <div class="list-group">
                 <a href="{{ route('pagos.formato',$pagos['prospecto']) }}" class="list-group-item active">
                     <h4 class="list-group-item-heading">Prospecto de Admisión virtual</h4>

@@ -17,7 +17,7 @@
         <div class="form-body ">
             <ol>
                 <li>Datos: Deberás registrar los datos del <strong>postulante</strong> (no del apoderado), donde ingresarás apellido paterno, apellido materno, nombres, modalidad, especialidad e institución educativa donde estudió el postulante</li>
-                <li>Pagos: Imprimirás los FORMATO DE PAGO que el sistema genera según la modalidad que ha escogido para realizar el pago en el banco Scotiabank, Financiero, BCP</li>
+                <li>Pagos: Imprimirás los FORMATOS DE PAGO que el sistema genera según la modalidad que ha escogido para realizar el pago en el banco Scotiabank, Financiero, BCP</li>
                 <li>Ficha: Imprimirás tu ficha de inscripción después de realizar el pago y que la foto haya sido verificada por la Oficina Central de Admisión</li>
             </ol>
             Si tuvieses alguna duda puedes hacer click al botón &nbsp<span class="label label-danger"> Ayuda </span>&nbsp que se encuentra en la parte central derecha de la ventana y te aparecerán indicaciones para poder realizar la inscripción

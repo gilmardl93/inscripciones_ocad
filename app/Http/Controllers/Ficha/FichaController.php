@@ -83,9 +83,14 @@ class FichaController extends Controller
                     $correcto_pagos = false;
                     $servicio = Servicio::where('codigo',$item)->first();
                     $msj->push(['titulo'=>'Falta pago (Los pagos realizado el fin de semana se cargaran el primer día habil)','mensaje'=>'No esta registrado el pago de '.$servicio->descripcion.' por S/ '.$servicio->monto.' soles, si usted acaba de realizar el pago el sistema se actualizara en 2 horas, de lo contrario comuniquese con nosotros al correo informes@admisionuni.edu.pe']);
+                    break;
                 }
             }
+            if ($correcto_pagos) {
+                Postulante::where('id',$postulante->id)->update(['pago'=>true,'fecha_pago'=>Carbon::now()]);
+            }
 
+            #-------------------------------------------------------------------------------------------
             if($correcto_foto && $correcto_datos_p && $correcto_datos_f && $correcto_datos_e && $correcto_pagos){
                 #Si los datos son correctos muestro el formulario de conformidad
                 if ($postulante->datos_ok)return view('ficha.index',compact('id'));

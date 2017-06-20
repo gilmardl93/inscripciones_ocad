@@ -57,6 +57,32 @@
 		{!! $Lista->links() !!}
 	</div><!--span-->
 	<div class="col-md-3">
+		<h3>Pagantes</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Fecha Pago </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ Totales('Pagantes') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Pagantes as $item)
+		        <tr >
+		            <td> {{ $item->fecha_pago }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Pagantes->links() !!}
+	</div><!--span-->
+	<div class="col-md-3">
 		<h3>Por Modalidad</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
