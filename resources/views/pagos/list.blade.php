@@ -22,7 +22,7 @@
                 @if (isset($pagos['examen']))
                 <a href="{{ route('pagos.formato',$pagos['examen']) }}" class="list-group-item">
                     <h4 class="list-group-item-heading">Derecho de Examen</h4>
-                    <p class="list-group-item-text"> Es el pago por derecho de rendir examen. </p>
+                    <p class="list-group-item-text"> Es el pago por derecho a rendir el examen. </p>
                 </a>
                 @endif
                 @if (isset($pagos['vocacepre']))
