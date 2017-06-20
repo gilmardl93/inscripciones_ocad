@@ -90,22 +90,22 @@ $(".Colegio").hide();
 $(".Universidad").hide();
 $(".cepreuni").hide();
 
-    SelectModalidad($('#idmodalidad').val());
+    SelectModalidad($('#idmodalidad').val(),1);
 
 
 
     $("#idmodalidad").click(function(event) {
         var idmodalidad = $(this).val();
-        SelectModalidad(idmodalidad);
+        SelectModalidad(idmodalidad,1);
 
     });
     $("#idmodalidad2").click(function(event) {
         var idmodalidad = $(this).val();
-        SelectModalidad(idmodalidad);
+        SelectModalidad(idmodalidad,2);
 
     });
 
-    function SelectModalidad(idmodalidad) {
+    function SelectModalidad(idmodalidad,numero) {
         $.ajax({
             url: 'info-modalidad',
             dataType: 'json',
@@ -121,10 +121,12 @@ $(".cepreuni").hide();
                 $(".Universidad").show();
             }
             /*Muestra la segunda opcion del cepre UNI*/
-            if (modalidad.codigo == 'ID-CEPRE') {
-                $(".cepreuni").show();
-            }else{
-                $(".cepreuni").hide();
+            if (numero==1) {
+                if (modalidad.codigo == 'ID-CEPRE' && numero==1) {
+                    $(".cepreuni").show();
+                }else{
+                    $(".cepreuni").hide();
+                }
             }
 
 
