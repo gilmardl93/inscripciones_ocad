@@ -660,27 +660,31 @@ class Postulante extends Model
 
     public static function AsignarAula($id)
     {
-        $aula1 = Aula::ObtenerAula(1)->first();
-        if (isset($aula1)) {
-            if (Postulante::where('id',$id)->whereNull('idaula1')->update(['idaula1'=>$aula1->id])) {
-                Aula::where('id',$aula1->id)->decrement('disponible_01');
-                Aula::where('id',$aula1->id)->increment('asignado_01');
+        $postulante = Postulante::find($id);
+        if(!str_contains($postulante->codigo_modalidad,['E1TGU','E1TI'])){
+            $aula1 = Aula::ObtenerAula(1)->first();
+            if (isset($aula1)) {
+                if (Postulante::where('id',$id)->whereNull('idaula1')->update(['idaula1'=>$aula1->id])) {
+                    Aula::where('id',$aula1->id)->decrement('disponible_01');
+                    Aula::where('id',$aula1->id)->increment('asignado_01');
+                }
             }
-        }
-        $aula2 = Aula::ObtenerAula(2)->first();
-        if (isset($aula2)) {
-            if (Postulante::where('id',$id)->whereNull('idaula2')->update(['idaula2'=>$aula2->id])) {
-                Aula::where('id',$aula2->id)->decrement('disponible_02');
-                Aula::where('id',$aula2->id)->increment('asignado_02');
+            $aula2 = Aula::ObtenerAula(2)->first();
+            if (isset($aula2)) {
+                if (Postulante::where('id',$id)->whereNull('idaula2')->update(['idaula2'=>$aula2->id])) {
+                    Aula::where('id',$aula2->id)->decrement('disponible_02');
+                    Aula::where('id',$aula2->id)->increment('asignado_02');
+                }
             }
-        }
-        $aula3 = Aula::ObtenerAula(3)->first();
-        if (isset($aula3)) {
-            if (Postulante::where('id',$id)->whereNull('idaula3')->update(['idaula3'=>$aula3->id])) {
-                Aula::where('id',$aula3->id)->decrement('disponible_03');
-                Aula::where('id',$aula3->id)->increment('asignado_03');
+            $aula3 = Aula::ObtenerAula(3)->first();
+            if (isset($aula3)) {
+                if (Postulante::where('id',$id)->whereNull('idaula3')->update(['idaula3'=>$aula3->id])) {
+                    Aula::where('id',$aula3->id)->decrement('disponible_03');
+                    Aula::where('id',$aula3->id)->increment('asignado_03');
+                }
             }
-        }
+
+        }//fin del if
         $voca = Aula::ObtenerAula('voca')->first();
         if (isset($voca)) {
             if (Postulante::where('id',$id)->whereNull('idaulavoca')->where('idespecialidad',1)->update(['idaulavoca'=>$voca->id])) {
