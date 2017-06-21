@@ -292,7 +292,14 @@ class FichaController extends Controller
             PDF::Cell(70,5,'DNI del '.$persona.':','B',0,'L');
             #FOTO
             PDF::Image($postulante->mostrar_foto_editada,163,45,27);
+            #Mapa
+            PDF::AddPage('U','A4');
+            PDF::StartTransform();
+            PDF::Rotate(90,140,135);
+            PDF::Image(asset('assets/pages/img/mapa-uni.jpg'),0,0,270);
+            PDF::StopTransform();
 
+            #EXPORTO
             PDF::Output(public_path('storage/tmp/').'Ficha_'.$postulante->numero_identificacion.'.pdf','FI');
         }else{
             //dd('Todavia no se puede visualizar la ficha');
