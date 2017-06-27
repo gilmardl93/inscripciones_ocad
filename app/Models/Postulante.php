@@ -469,7 +469,9 @@ class Postulante extends Model
         $this->attributes['email'] = $value;
         User::where('id',Auth::user()->id)->update(['email'=>$value]);
     }
-
+    #################################
+    #SCOPES
+    #################################
     /**
     * Devuelve los valores Activos
     * @param  [type]  [description]
@@ -613,6 +615,15 @@ class Postulante extends Model
                              ->where('postulante.anulado',0);
         }
     }
+    /**
+    * Devuelve los valores Activos
+    * @param  [type]  [description]
+    * @return [type]            [description]
+    */
+    public function scopeDatosOk($cadenaSQL){
+        return $cadenaSQL->where('datos_ok',1);
+    }
+    ################################################################################33
     /**
      * Establecemos el la relacion con catalogo
      * @return [type] [description]
