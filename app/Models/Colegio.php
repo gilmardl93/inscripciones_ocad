@@ -14,7 +14,8 @@ class Colegio extends Model
     */
     public function getDescripcionUbigeoAttribute()
     {
-        $ubigeo = Ubigeo::find($this->idubigeo);
+        if(isset($this->idubigeo))$ubigeo = Ubigeo::find($this->idubigeo);
+        else $ubigeo = new Ubigeo(['descripcion'=>'---']);
         return $ubigeo->descripcion;
     }
     public function getGestionOptions()

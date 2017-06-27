@@ -32,8 +32,9 @@ class Complementario extends Model
     */
     public function getRenuncioAttribute()
     {
-    	if(isset($this->idrenuncia))$renuncia = Especialidad::find($this->keyfor);
-    	else $renuncia = new Especialidad(['nombre'=>'--']);
+    	if(isset($this->idrenuncia))$renuncia = Especialidad::find($this->idrenuncia);
+    	else $renuncia = new Especialidad(['nombre'=>'---']);
+
     	return $renuncia->nombre;
     }
     /**

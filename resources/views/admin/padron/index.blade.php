@@ -78,65 +78,66 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Lista as $padron)
-                        <tr>
-                            <td> {{ $padron->datos_evaluacion->codigo }} </td>
-                            <td> {{ $padron->datos_evaluacion->nombre }} </td>
-                            <td> {{ $padron->codigo }} </td>
-                            <td> {{ $padron->codigo_verificacion }} </td>
-                            <td> {{ $padron->paterno }} </td>
-                            <td> {{ $padron->materno }} </td>
-                            <td> {{ $padron->nombres }} </td>
-                            <td> {{ $padron->tipo_identificacion }} </td>
-                            <td> {{ $padron->numero_identificacion }} </td>
-                            <td> {{ $padron->email }} </td>
-                            <td> {{ $padron->talla }} </td>
-                            <td> {{ $padron->peso }} </td>
-                            <td> {{ $padron->sexo }} </td>
-                            <td> {{ $padron->telefono_celular }} </td>
-                            <td> {{ $padron->telefono_fijo }} </td>
-                            <td> {{ $padron->telefono_varios }} </td>
-                            <td> {{ $padron->nombre_modalidad }} </td>
-                            <td> {{ $padron->codigo_especialidad }} </td>
-                            <td> {{ $padron->nombre_especialidad }} </td>
-                            <td> {{ $padron->nombre_modalidad2 }} </td>
-                            <td> {{ $padron->codigo_especialidad2 }} </td>
-                            <td> {{ $padron->nombre_especialidad2 }} </td>
-                            <td> {{ $padron->descripcion_ubigeo }} </td>
-                            <td> {{ $padron->direccion }} </td>
-                            <td> {{ $padron->datos_colegio->nombre }} </td>
-                            <td> {{ $padron->datos_colegio->gestion }} </td>
-                            <td> {{ $padron->datos_colegio->descripcion_ubigeo }} </td>
-                            <td> {{ $padron->datos_universidad->nombre }} </td>
-                            <td> {{ $padron->inicio_estudios }} </td>
-                            <td> {{ $padron->fin_estudios }} </td>
-                            <td> {{ $padron->fecha_nacimiento }} </td>
-                            <td> {{ $padron->descripcion_ubigeo_nacimiento }} </td>
-                            <td> {{ $padron->descripcion_ubigeo_provincia }} </td>
-                            <td> {{ $padron->direccion_provincia }} </td>
-                            <td> {{ $padron->telefono_provincia }} </td>
-                            <td> {{ $padron->datos_aula_uno->sector }} </td>
-                            <td> {{ $padron->datos_aula_uno->codigo }} </td>
-                            <td> {{ $padron->datos_aula_dos->sector }} </td>
-                            <td> {{ $padron->datos_aula_dos->codigo }} </td>
-                            <td> {{ $padron->datos_aula_tres->sector }} </td>
-                            <td> {{ $padron->datos_aula_tres->codigo }} </td>
-                            <td> {{ $padron->datos_aula_voca->sector }} </td>
-                            <td> {{ $padron->datos_aula_voca->codigo }} </td>
-                            <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->razon }} @else --- @endif </td>
-                            <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->tipo_preparacion }} @else --- @endif </td>
-                            <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->mes }} @else --- @endif </td>
-                            <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->academia }} @else --- @endif </td>
-                            <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->numeroveces }} @else --- @endif </td>
-                            <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->renuncio }} @else --- @endif </td>
-                            <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->ingreso_economico }} @else --- @endif </td>
-                            <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->publicidad }} @else --- @endif </td>
-                            <td> {{ $padron->fecha_registro }} </td>
-                            <td> {!! $padron->estado_pago !!} </td>
+                        @foreach ($Lista->chunk(10) as $item)
+                            @foreach ($item as $padron)
+                                <tr>
+                                    <td> {{ $padron->datos_evaluacion->codigo }} </td>
+                                    <td> {{ $padron->datos_evaluacion->nombre }} </td>
+                                    <td> {{ $padron->codigo }} </td>
+                                    <td> {{ $padron->codigo_verificacion }} </td>
+                                    <td> {{ $padron->paterno }} </td>
+                                    <td> {{ $padron->materno }} </td>
+                                    <td> {{ $padron->nombres }} </td>
+                                    <td> {{ $padron->tipo_identificacion }} </td>
+                                    <td> {{ $padron->numero_identificacion }} </td>
+                                    <td> {{ $padron->email }} </td>
+                                    <td> {{ $padron->talla }} </td>
+                                    <td> {{ $padron->peso }} </td>
+                                    <td> {{ $padron->sexo }} </td>
+                                    <td> {{ $padron->telefono_celular }} </td>
+                                    <td> {{ $padron->telefono_fijo }} </td>
+                                    <td> {{ $padron->telefono_varios }} </td>
+                                    <td> {{ $padron->nombre_modalidad }} </td>
+                                    <td> {{ $padron->codigo_especialidad }} </td>
+                                    <td> {{ $padron->nombre_especialidad }} </td>
+                                    <td> {{ $padron->nombre_modalidad2 }} </td>
+                                    <td> {{ $padron->codigo_especialidad2 }} </td>
+                                    <td> {{ $padron->nombre_especialidad2 }} </td>
+                                    <td> {{ $padron->descripcion_ubigeo }} </td>
+                                    <td> {{ $padron->direccion }} </td>
+                                    <td> {{ $padron->datos_colegio->nombre }} </td>
+                                    <td> {{ $padron->datos_colegio->gestion }} </td>
+                                    <td> {{ $padron->datos_colegio->descripcion_ubigeo }} </td>
+                                    <td> {{ $padron->datos_universidad->nombre }} </td>
+                                    <td> {{ $padron->inicio_estudios }} </td>
+                                    <td> {{ $padron->fin_estudios }} </td>
+                                    <td> {{ $padron->fecha_nacimiento }} </td>
+                                    <td> {{ $padron->descripcion_ubigeo_nacimiento }} </td>
+                                    <td> {{ $padron->descripcion_ubigeo_provincia }} </td>
+                                    <td> {{ $padron->direccion_provincia }} </td>
+                                    <td> {{ $padron->telefono_provincia }} </td>
+                                    <td> {{ $padron->datos_aula_uno->sector }} </td>
+                                    <td> {{ $padron->datos_aula_uno->codigo }} </td>
+                                    <td> {{ $padron->datos_aula_dos->sector }} </td>
+                                    <td> {{ $padron->datos_aula_dos->codigo }} </td>
+                                    <td> {{ $padron->datos_aula_tres->sector }} </td>
+                                    <td> {{ $padron->datos_aula_tres->codigo }} </td>
+                                    <td> {{ $padron->datos_aula_voca->sector }} </td>
+                                    <td> {{ $padron->datos_aula_voca->codigo }} </td>
+                                    <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->razon }} @else --- @endif </td>
+                                    <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->tipo_preparacion }} @else --- @endif </td>
+                                    <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->mes }} @else --- @endif </td>
+                                    <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->academia }} @else --- @endif </td>
+                                    <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->numeroveces }} @else --- @endif </td>
+                                    <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->renuncio }} @else --- @endif </td>
+                                    <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->ingreso_economico }} @else --- @endif </td>
+                                    <td>@if (isset($padron->complementarios)) {{ $padron->complementarios->publicidad }} @else --- @endif </td>
+                                    <td> {{ $padron->fecha_registro }} </td>
+                                    <td> {!! $padron->estado_pago !!} </td>
 
-                        </tr>
-                        @endforeach
-
+                                </tr>
+                            @endforeach
+                        @endforeach {{-- Fin del chunk --}}
                     </tbody>
                 </table>
             </div>
