@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Pago;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\Cronograma;
+use App\Models\Descuento;
 use App\Models\Postulante;
 use App\Models\Servicio;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
-use Auth;
-use Alert;
 class PagoController extends Controller
 {
     public function index($id = null)
@@ -137,6 +138,12 @@ class PagoController extends Controller
         if (str_contains($postulante->codigo_modalidad, ['E1TG','E1TGU']))
             $pagos->put('examen',468);
 
+        #Descuentos por simulacro, semibeca o hijo de trabajador
+        $descuento = Descuento::where('dni',$postulante->numero_identificacion)->first();
+        if (isset($descuento)) {
+            $pagos->pull('examen');
+            if($descuento->tipo=='Parcial')$pagos->put('examen',$descuento->servicio);
+        }
         #Pago por examen vocacional---------------------------------------------------------------------------------------
         if (str_contains($postulante->codigo_modalidad, 'ID-CEPRE') && str_contains($postulante->codigo_especialidad, 'A1')){
             $pagos->put('vocacepre',516);

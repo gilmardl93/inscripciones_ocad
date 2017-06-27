@@ -19,6 +19,7 @@ Route::group(['namespace'=>'Postulantes'], function() {
 	Route::post('postulante','PostulantesController@store')->name('admin.pos.store');
 	Route::get('postulantes','PostulantesController@index')->name('admin.pos.index');
 	Route::get('postulantes/{id}','PostulantesController@show')->name('admin.pos.show');
+	Route::put('postulantes/{id}','PostulantesController@update')->name('admin.pos.update');
 	Route::get('postulantes-ficha/{id}','PostulantesController@ficha')->name('admin.pos.ficha');
 	Route::get('postulantes-pago/{id}','PostulantesController@pago')->name('admin.pos.pago');
 	Route::get('postulantes-lista','PostulantesController@lista')->name('admin.pos.list');
@@ -34,6 +35,9 @@ Route::group(['namespace'=>'Pagos'], function() {
 	Route::get('pagos-lista','PagosController@lista')->name('admin.pagos.list');
 	Route::post('pago-create','PagosController@pagocreate')->name('admin.pagos.create');
 	Route::get('recaudacion','PagosController@show')->name('admin.recaudacion');
+	#Servicios
+	Route::resource('servicios','ServiciosController',['names'=>'admin.servicios','only'=>['index','store','edit','update']]);
+	Route::get('activar-servicios/{id}','ServiciosController@activate')->name('admin.servicios.activate');
 
 });
 /**
@@ -103,4 +107,12 @@ Route::group(['namespace'=>'Padron'], function() {
  */
 Route::group(['namespace'=>'Estadisticas'], function() {
 	Route::get('estadisticas','EstadisticasController@index')->name('admin.estadisticas.index');
+});
+/**
+ * Descuentos
+ */
+Route::group(['namespace'=>'Descuentos'], function() {
+	Route::resource('descuentos','DescuentosController',['names'=>'admin.descuentos','only'=>['index','store','edit','update']]);
+	Route::get('activar-descuento/{id}','DescuentosController@activate')->name('admin.descuentos.activate');
+
 });

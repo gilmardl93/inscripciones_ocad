@@ -68,20 +68,23 @@
         <div class="tabbable-line tabbable-custom-profile">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#tab_1_11" data-toggle="tab" aria-expanded="true"> Datos del Postulante </a>
+                    <a href="#tab_1" data-toggle="tab" aria-expanded="true"> Datos del Postulante </a>
                 </li>
                 <li>
-                    <a href="#tab_1_22" data-toggle="tab" aria-expanded="true"> Ficha </a>
+                    <a href="#tab_5" data-toggle="tab" aria-expanded="true"> Editar Datos </a>
                 </li>
                 <li>
-                    <a href="#tab_1_23" data-toggle="tab" aria-expanded="true"> Usuario </a>
+                    <a href="#tab_2" data-toggle="tab" aria-expanded="true"> Ficha </a>
                 </li>
                 <li>
-                    <a href="#tab_1_24" data-toggle="tab" aria-expanded="true"> Cargar Foto </a>
+                    <a href="#tab_3" data-toggle="tab" aria-expanded="true"> Usuario </a>
+                </li>
+                <li>
+                    <a href="#tab_4" data-toggle="tab" aria-expanded="true"> Cargar Foto </a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="tab_1_11">
+                <div class="tab-pane active" id="tab_1">
                     <div class="portlet-body">
                         <table class="table table-striped table-bordered table-advance table-hover">
                             <thead>
@@ -168,11 +171,11 @@
                     </div>
                 </div>
                 <!--tab-pane-->
-                <div class="tab-pane" id="tab_1_22">
+                <div class="tab-pane" id="tab_2">
                 <iframe src="{{route('ficha.pdf',$postulante->id)}}" width="100%" height="900px" scrolling="auto"></iframe>
                 </div>
                 <!--tab-pane-->
-                <div class="tab-pane" id="tab_1_23">
+                <div class="tab-pane" id="tab_3">
                     <div class="tab-pane active" id="tab_1_1_1">
                     {!! Form::open(['route'=>'admin.pos.store','method'=>'POST']) !!}
                         <div class="col-md-4">
@@ -184,7 +187,7 @@
                     </div>
                 </div>
                 <!--tab-pane-->
-                <div class="tab-pane" id="tab_1_24">
+                <div class="tab-pane" id="tab_4">
                     <div class="tab-pane active" id="tab_1_1_1">
                     {!! Form::open(['route'=>'admin.pos.store','method'=>'POST']) !!}
                         <div class="col-md-4">
@@ -195,16 +198,86 @@
                     </div>
                 </div>
                 <!--tab-pane-->
+                <div class="tab-pane" id="tab_5">
+                    {!! Form::model($postulante,['route'=>['admin.pos.update',$postulante],'method'=>'PUT']) !!}
+                    <div class="row">
+                        <div class="col-md-2">
+                        {!! Field::text('fecha_nacimiento',['label'=>'Fecha de Nacimiento','placeholder'=>'Fecha de Nacimiento']) !!}
+                        </div><!--span-->
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {!!Form::label('lblDistrito', 'Distrito donde nacio el postulante');!!}
+                                {!!Form::select('idubigeonacimiento',UbigeoPersonal($postulante->idubigeonacimiento) ,null , ['class'=>'form-control Ubigeo']);!!}
+                            </div>
+                        </div><!--span-->
+                    </div><!--row-->
+                    {!!Form::enviar('Actualizar')!!}
+                    {!! Form::close() !!}
+                </div>
+                <!--tab-pane-->
             </div>
         </div>
     </div>
 </div>
 
 @stop
+@section('js-scripts')
+<script>
+$(document).ready(function() {
 
+    $(".Ubigeo").select2({
+        width:'auto',
+        allowClear: true,
+        ajax: {
+            url: '{{ url("ubigeo") }}',
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    varsearch: params.term // search term
+                };
+            },
+            processResults: function(data) {
+                // parse the results into the format expected by Select2.
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        placeholder : 'Seleccione el distrito del participante: ejemplo LIMA',
+        minimumInputLength: 3,
+        templateResult: format,
+        templateSelection: format,
+        escapeMarkup: function(markup) {
+            return markup;
+        } // let our custom formatter work
+    });
+    function format(res){
+        var markup=res.text;
+        return markup;
+
+    }
+
+
+});
+
+
+$(".Fecha").inputmask("y-m-d", {
+    "placeholder": "yyyy-mm-dd"
+});
+</script>
+@stop
 
 @section('plugins-styles')
 {!! Html::style(asset('assets/pages/css/profile-2.min.css')) !!}
+@stop
+@section('plugins-js')
+{!! Html::script(asset('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')) !!}
 @stop
 
 @section('menu-user')

@@ -20,6 +20,14 @@ class Postulante extends Model
             'idaula1','idaula2','idaula3','idaulavoca','anulado','datos_ok','fecha_registro','idusuario','inicio_estudios','fin_estudios','pago','fecha_pago','fecha_conformidad'];
 
     /**
+    * Atributos Tipo de Identificacion
+    */
+    public function getTipoIdentificacionAttribute()
+    {
+        $tipo = Catalogo::find($this->idtipoidentificacion);
+        return $tipo->nombre;
+    }
+    /**
      * Opciones del select de Inicio de secundaria
      * @return [type] [description]
      */
@@ -113,7 +121,7 @@ class Postulante extends Model
     {
         $modalidad = Modalidad::find($this->idmodalidad2);
         if(!isset($modalidad)){
-            $modalidad = new Modalidad(['nombre'=>'---']);
+            $modalidad = new Modalidad(['nombre'=>'---','gestion'=>'---']);
         }
         return $modalidad->nombre;
     }
@@ -174,8 +182,24 @@ class Postulante extends Model
     */
     public function getDatosColegioAttribute()
     {
-        $colegio = Colegio::find($this->idcolegio);
+        if (isset($this->idcolegio)) {
+            $colegio = Colegio::find($this->idcolegio);
+        }else{
+            $colegio = new Colegio(['nombre'=>'---']);
+        }
         return $colegio;
+    }
+    /**
+    * Atributos Datos Universidad
+    */
+    public function getDatosUniversidadAttribute()
+    {
+        if (isset($this->iduniversidad)) {
+            $universidad = Universidad::find($this->iduniversidad);
+        }else{
+            $universidad = new Universidad(['nombre'=>'---']);
+        }
+        return $universidad;
     }
     /**
     * Atributos Nombre Especialidad
@@ -230,8 +254,30 @@ class Postulante extends Model
     */
     public function getDescripcionUbigeoAttribute()
     {
-        $pais = Pais::find($this->idpais);
+        if (isset($this->idpais)) $pais = Pais::find($this->idpais);
+        else $pais = new Pais(['nombre'=>'---']);
+
         $ubigeo = Ubigeo::find($this->idubigeo);
+        $lugar = '';
+        if(is_null($ubigeo)){
+            $ubigeo = New Ubigeo(['descripcion'=>'']);
+            $lugar = $pais->nombre;
+        }else{
+            $lugar = $pais->nombre.'/'.$ubigeo->descripcion;
+            $lugar = str_replace('/',' / ',$lugar);
+        }
+
+        return $lugar;
+    }
+    /**
+    * Atributos Ubigeo Nacimiento
+    */
+    public function getDescripcionUbigeoNacimientoAttribute()
+    {
+        if (isset($this->idpaisnacimiento)) $pais = Pais::find($this->idpaisnacimiento);
+        else $pais = new Pais(['nombre'=>'---']);
+
+        $ubigeo = Ubigeo::find($this->idubigeonacimiento);
         $lugar = '';
         if(is_null($ubigeo)){
             $ubigeo = New Ubigeo(['descripcion'=>'']);
@@ -245,16 +291,18 @@ class Postulante extends Model
         return $lugar;
     }
     /**
-    * Atributos Ubigeo
+    * Atributos Ubigeo Provincia
     */
-    public function getDescripcionUbigeoNacimientoAttribute()
+    public function getDescripcionUbigeoProvinciaAttribute()
     {
-        $pais = Pais::find($this->idpaisnacimiento);
-        $ubigeo = Ubigeo::find($this->idubigeonacimiento);
+        if (isset($this->idpais)) $pais = Pais::find($this->idpais);
+        else $pais = new Pais(['nombre'=>'---']);
+
+        $ubigeo = Ubigeo::find($this->idubigeoprovincia);
         $lugar = '';
         if(is_null($ubigeo)){
             $ubigeo = New Ubigeo(['descripcion'=>'']);
-            $lugar = $pais->nombre;
+            $lugar = '---';
         }else{
 
             $lugar = $pais->nombre.'/'.$ubigeo->descripcion;
@@ -326,8 +374,10 @@ class Postulante extends Model
     */
     public function getSexoAttribute()
     {
-        $sexo = Catalogo::find($this->idsexo);
-        return $sexo->nombre;
+        if(isset($this->idsexo)){
+            $sexo = Catalogo::find($this->idsexo);
+            return $sexo->nombre;
+        }else return '--';
     }
     /**
     * Atributos Nombre Completo
@@ -510,10 +560,12 @@ class Postulante extends Model
     */
     public function scopePagoGestion($cadenaSQL,$ie=null,$gestion=null,$modalidad = null,$codesp=null)
     {
+        $dni_descuentos = Descuento::select('dni')->where('activo',1)->get();
         if($ie=='Colegio'){
             return $cadenaSQL->join('colegio as c','c.id','=','postulante.idcolegio')
                              ->join('modalidad as m','m.id','=','postulante.idmodalidad')
                              ->whereIn('m.codigo',$modalidad)
+                             ->whereNotIn('postulante.numero_identificacion',$dni_descuentos->toArray())
                              ->where('c.gestion',$gestion)
                              ->where('postulante.anulado',0);
         }elseif ($ie=='Universidad' && isset($modalidad)) {
@@ -521,24 +573,45 @@ class Postulante extends Model
                              ->join('modalidad as m','m.id','=','postulante.idmodalidad')
                              ->whereIn('m.codigo',$modalidad)
                              ->whereIn('u.gestion',$gestion)
+                             ->whereNotIn('postulante.numero_identificacion',$dni_descuentos->toArray())
                              ->where('postulante.anulado',0);
         }elseif (!isset($ie) && isset($modalidad)) {
             return $cadenaSQL->join('modalidad as m','m.id','=','postulante.idmodalidad')
                              ->whereIn('m.codigo',$modalidad)
+                             ->whereNotIn('postulante.numero_identificacion',$dni_descuentos->toArray())
                              ->where('postulante.anulado',0);
         }elseif (isset($codesp)) {
             return $cadenaSQL->join('especialidad as e',function($join){
                                 $join->on('postulante.idespecialidad','=','e.id')
                                      ->orOn('postulante.idespecialidad2','=','e.id');
                             })->where('e.codigo',$codesp)
+                             ->whereNotIn('postulante.numero_identificacion',$dni_descuentos->toArray())
                              ->where('postulante.anulado',0);
         }elseif (isset($codesp) && $modalidad=='ID-CEPRE') {
             return $cadenaSQL->join('especialidad as e',function($join){
                                 $join->on('postulante.idespecialidad','=','e.id')
                                      ->orOn('postulante.idespecialidad2','=','e.id');
                             })->where('e.codigo',$codesp)
+                             ->whereNotIn('postulante.numero_identificacion',$dni_descuentos->toArray())
                              ->where('postulante.anulado',0);
         };
+    }
+    /**
+    * Devuelve relacion de postulantes de un tipo de colegio y gestion
+    * @param  [type]  [description]
+    * @return [type]            [description]
+    */
+    public function scopePagoDescuentoGestion($cadenaSQL,$ie=null,$gestion=null,$modalidad = null,$codesp=null)
+    {
+        $dni_descuentos = Descuento::select('dni')->where('activo',1)->get();
+        if($ie=='Colegio'){
+            return $cadenaSQL->join('colegio as c','c.id','=','postulante.idcolegio')
+                             ->join('modalidad as m','m.id','=','postulante.idmodalidad')
+                             ->whereIn('m.codigo',$modalidad)
+                             ->whereIn('postulante.numero_identificacion',$dni_descuentos->toArray())
+                             ->where('c.gestion',$gestion)
+                             ->where('postulante.anulado',0);
+        }
     }
     /**
      * Establecemos el la relacion con catalogo
@@ -643,6 +716,14 @@ class Postulante extends Model
     public function Usuarios()
     {
         return $this->hasOne(User::class, 'id', 'idusuario');
+    }
+    /**
+     * Establecemos el la relacion con catalogo
+     * @return [type] [description]
+     */
+    public function Complementarios()
+    {
+        return $this->hasOne(Complementario::class,'idpostulante','id');
     }
     /**
      * Operaciones estaticas

@@ -39,9 +39,14 @@ class PostulantesController extends Controller
         Alert::success('Clave Actualizada con exito');
         return back();
     }
-
-
-
+    public function update(Request $request,$id)
+    {
+        $postulante = Postulante::find($id);
+        $postulante->fill($request->all());
+        $postulante->save();
+        Alert::success('Datos Actualizados con exito');
+        return back();
+    }
 
     public function index()
     {

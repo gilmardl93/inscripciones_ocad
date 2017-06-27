@@ -130,6 +130,7 @@ return [
         'idingresoeconomico'=>'ingreso economico',
         'idpublicidad'=>'publicidad',
         'file'=>'Foto',
+        'idservicio'=>'Servicio',
 
     ],
 
