@@ -30,4 +30,13 @@ class Servicio extends Model
     {
         return (int)$this->monto;
     }
+    /**
+    * Devuelve los valores Activos
+    * @param  [type]  [description]
+    * @return [type]            [description]
+    */
+    public function scopeActivo($cadenaSQL){
+        return $cadenaSQL->where('activo',1);
+    }
+
 }

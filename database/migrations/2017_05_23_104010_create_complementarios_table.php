@@ -29,7 +29,7 @@ class CreateComplementariosTable extends Migration
             $table->foreign('idrazon')->references('id')->on('catalogo');
             $table->foreign('idtipopreparacion')->references('id')->on('catalogo');
             $table->foreign('idacademia')->references('id')->on('catalogo');
-            $table->foreign('idrenuncia')->references('id')->on('catalogo');
+            $table->foreign('idrenuncia')->references('id')->on('especialidad');
             $table->foreign('idingresoeconomico')->references('id')->on('catalogo');
             $table->foreign('idpublicidad')->references('id')->on('catalogo');
         });

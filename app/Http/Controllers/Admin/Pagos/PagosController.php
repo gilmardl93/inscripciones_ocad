@@ -216,6 +216,12 @@ class PagosController extends Controller
             case '465':
                 $postulantes = Postulante::PagoGestion('Colegio',['Privada'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->get();
                 break;
+            case '466':
+                $postulantes = Postulante::PagoDescuentoGestion('Colegio',['Pública'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->Alfabetico()->get();
+                break;
+            case '467':
+                $postulantes = Postulante::PagoDescuentoGestion('Colegio',['Privada'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->get();
+                break;
             case '469':
                 $postulantes = Postulante::PagoGestion('Universidad',['Pública'],['E1TE'])->get();
                 break;

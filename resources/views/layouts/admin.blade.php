@@ -16,6 +16,8 @@
     <link href={{asset("assets/layouts/layout/css/layout.css")}} rel="stylesheet" type="text/css" />
     <link href={{asset("assets/layouts/layout/css/themes/darkblue.min.css")}} rel="stylesheet" type="text/css" id="style_color" />
     <link href={{asset("assets/layouts/layout/css/custom.min.css")}} rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -72,6 +74,8 @@
     <script src={{asset("assets/layouts/layout/scripts/layout.min.js")}} type="text/javascript"></script>
     <script src={{asset("assets/layouts/layout/scripts/demo.min.js")}} type="text/javascript"></script>
     <script src={{asset("assets/layouts/global/scripts/quick-sidebar.min.js")}} type="text/javascript"></script>
+    <script src={{asset("assets/global/plugins/select2/js/select2.full.min.js")}} type="text/javascript"></script>
+    <script src={{asset("assets/global/plugins/select2/js/i18n/es.js")}} type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
     @yield('js-scripts')
 </body>
