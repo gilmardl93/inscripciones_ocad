@@ -10,7 +10,7 @@ class PadronController extends Controller
 {
     public function index()
     {
-	    $Lista = Postulante::with('Complementarios')->Activos()->isNull(0)->get();
+	    $Lista = Postulante::DatosOk()->with('Complementarios')->Activos()->isNull(0)->get();
     	return view('admin.padron.index',compact('Lista'));
     }
 }
