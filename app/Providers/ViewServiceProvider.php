@@ -48,7 +48,8 @@ class ViewServiceProvider extends ServiceProvider
             AulasActivasSelectData::class
             );
         $this->app->make('view')->composer(
-            ['admin.colegio.index','datos.personal.index','datos.personal.edit','datos.secundarios.index'],
+            ['admin.colegio.index','datos.personal.index','datos.personal.edit','datos.secundarios.index',
+            'admin.universidad.index'],
             PaisSelectData::class
             );
         $this->app->make('view')->composer(
