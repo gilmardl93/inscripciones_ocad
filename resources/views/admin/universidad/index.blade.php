@@ -7,7 +7,7 @@
     <div class="portlet box green">
         <div class="portlet-title">
             <div class="caption">
-                <i class="fa fa-bank"></i>Colegios </div>
+                <i class="fa fa-bank"></i>Universidades </div>
             <div class="tools">
                 <a href="javascript:;" class="collapse"> </a>
                 <a class="reload actualizar"> </a>
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="portlet-body">
-		{!!Form::botonmodal('Crear Colegio','#CreateColegio','green-meadow','fa fa-plus')!!}
+		{!!Form::botonmodal('Crear Universidad','#CreateUniversidad','green-meadow','fa fa-plus')!!}
         <p></p>
             <div class="table-response">
 
@@ -27,6 +27,7 @@
                             <th> Nombre </th>
                             <th> Ubigeo </th>
                             <th> Gestion </th>
+                            <th> Pais </th>
 
                         </tr>
                     </thead>
@@ -40,7 +41,7 @@
     <!-- END Portlet PORTLET-->
 	</div><!--span-->
 </div><!--row-->
-@include('admin.colegio.modals.create')
+@include('admin.universidad.modals.create')
 @stop
 
 @section('js-scripts')
@@ -54,7 +55,7 @@ $(function(){
             "lengthMenu": "_MENU_ registros"
         },
         "bProcessing": true,
-        "sAjaxSource": '{{ url('admin/colegios-lista') }}',
+        "sAjaxSource": '{{ url('admin/universidad-lista') }}',
         "pagingType": "bootstrap_full_number",
         "columnDefs": [
                     {  // set default column settings
@@ -64,11 +65,16 @@ $(function(){
 
                 ],
         "columns": [
-                { "data": "codigo_modular","defaultContent": "" },
+                { "data": "codigo","defaultContent": "" },
                 { "data": "nombre","defaultContent": "" },
                 { "data": "distrito.descripcion","defaultContent": "" },
                 { "data": "gestion","defaultContent": "" },
+                { "data": "paises.nombre","defaultContent": "" },
             ],
+        "order": [
+                [1, "asc"]
+            ],
+        stateSave: true,
     });
 
     $(".actualizar").click(function(){
@@ -96,7 +102,7 @@ $(function(){
             },
             cache: true
         },
-        placeholder : 'Seleccione el distrito del colegio: ejemplo LIMA',
+        placeholder : 'Seleccione el distrito de la universidad: ejemplo LIMA',
         minimumInputLength: 3,
     });
     $.fn.modal.Constructor.prototype.enforceFocus = function() {};
@@ -145,7 +151,7 @@ $(function(){
 
 
 @section('title')
-Postulantes
+Universidades
 @stop
 @section('page-title')
 

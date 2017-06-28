@@ -43,6 +43,7 @@
 {!!Form::menu('Usuarios',route('admin.usuarios.index'),'icon-users')!!}
 {!!Form::menu('Estadistica',route('admin.estadisticas.index'),'fa fa-bar-chart')!!}
 {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
+{!!Form::menu('Universidad',route('admin.universidades.index'),'fa fa-bank')!!}
     </ul>
     <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->

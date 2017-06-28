@@ -10,6 +10,14 @@ class Universidad extends Model
     protected $fillable = ['codigo','nombre','idubigeo','idpais','activo'];
     public $timestamps = false;
     /**
+    * Atributos Pais
+    */
+    public function getPaisAttribute()
+    {
+        $pais = Pais::find($this->idpais);
+        return $pais->nombre;
+    }
+    /**
     * Atributos Descripcion Ubigeo
     */
     public function getDescripcionUbigeoAttribute()

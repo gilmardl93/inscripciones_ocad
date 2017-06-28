@@ -78,7 +78,7 @@
                     {!! Field::text('concurso',['label'=>'Concurso','placeholder'=>'Concurso']) !!}
                     {!! Field::text('dni',['label'=>'Número de DNI','placeholder'=>'Número de DNI']) !!}
                     {!! Field::select('tipo',['Total'=>'Total','Parcial'=>'Parcial'],['label'=>'Escoger tipo de descuento','empty'=>'Tipo descuento']) !!}
-                    {!! Field::select('idservicio',$servicios,['label'=>'Servicio','empty'=>'Servicio']) !!}
+                    {!! Field::select('idservicio',$servicio_descuento,['label'=>'Servicio','empty'=>'Servicio']) !!}
                     {!! Field::text('motivo',['label'=>'Motivo','placeholder'=>'Motivo']) !!}
             </div>
             <div class="modal-footer">
@@ -102,6 +102,7 @@ $('.Servicios').dataTable({
         "search": "Buscar :",
         "lengthMenu": "_MENU_ registros"
     },
+    stateSave: true,
 
 
 });

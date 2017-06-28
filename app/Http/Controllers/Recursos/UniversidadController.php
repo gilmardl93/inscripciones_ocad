@@ -43,7 +43,7 @@ class UniversidadController extends Controller
 
 
         #-------------------------------------------------------------------------------------
-        $universidad = Universidad::select('id','nombre as text','gestion','idubigeo','idpais')
+        $universidad = Universidad::select('id','codigo','nombre as text','gestion','idubigeo','idpais')
         					->with(['Distrito','Paises'])
                             ->where('codigo',$cond,$coduni)
         					->where('nombre','like',"%$name%")

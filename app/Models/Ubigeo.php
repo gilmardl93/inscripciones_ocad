@@ -18,7 +18,7 @@ class Ubigeo extends Model
     	$raw1 = DB::raw("SUBSTRING(codigo,5,2)");
     	return $cadenaSQL->select('id','descripcion as text')
                          ->where($raw1,'<>','00')
-                         ->where('nombre','like',"%$name%")
+                         ->whereRaw("clearstring(nombre) like '%$name%'")
                          ->orderBy('descripcion');
     }
 
