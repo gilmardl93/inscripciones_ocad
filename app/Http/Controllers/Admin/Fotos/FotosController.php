@@ -14,7 +14,7 @@ class FotosController extends Controller
     public function index()
     {
 
-    	$postulante = Postulante::where('foto_estado','CARGADO')->orderBy('foto_fecha_carga')->first();
+        $postulante = Postulante::where('foto_estado','CARGADO')->orderBy('foto_fecha_carga')->first();
         $resumen = Postulante::select('foto_estado',DB::raw('count(*) as cantidad'))->Activos()->groupBy('foto_estado')->get();
     	if(isset($postulante)){
            return view('admin.fotos.index',compact('postulante','resumen'));
@@ -48,7 +48,9 @@ class FotosController extends Controller
                 break;
 
             case '0':
-                if(!Storage::exists($nuevo_archivo_rechazo))Storage::copy($archivo, $nuevo_archivo_rechazo);
+                if (Storage::exists($archivo)) {
+                    if(!Storage::exists($nuevo_archivo_rechazo))Storage::copy($archivo, $nuevo_archivo_rechazo);
+                }
                 $postulante->foto_estado = 'RECHAZADO';
                 $postulante->foto_rechazada = $postulante->foto;
                 $postulante->foto_cargada = 'avatar/nofoto.jpg';
