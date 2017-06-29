@@ -92,6 +92,19 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'ventas' => [
+            'driver' => 'pgsql',
+            'host' => '192.168.1.3',
+            'port' => env('DB_PORT', '5432'),
+            'database' => 'Ventas',
+            'username' => 'postgres',
+            'password' => '58a93eafc72ed1453f3f3bf823c8c698',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
     ],
 
     /*

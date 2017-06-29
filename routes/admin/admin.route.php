@@ -41,6 +41,13 @@ Route::group(['namespace'=>'Pagos'], function() {
 
 });
 /**
+ * Ventanilla
+ */
+Route::group(['namespace'=>'Ventanilla'], function() {
+	Route::get('obten-pagos-ventanilla','VentanillaController@obtener')->name('admin.ventanilla.obtener');
+
+});
+/**
  * Fotos
  */
 Route::group(['namespace'=>'Fotos'], function() {
