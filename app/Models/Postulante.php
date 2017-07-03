@@ -496,7 +496,7 @@ class Postulante extends Model
     * @return [type]            [description]
     */
     public function scopeIsNull($cadenaSQL,$estado = 1){
-        return $cadenaSQL->where('anulado',$estado);
+        return $cadenaSQL->where('postulante.anulado',$estado);
     }
     /**
     * Devuelve los valores Activos
