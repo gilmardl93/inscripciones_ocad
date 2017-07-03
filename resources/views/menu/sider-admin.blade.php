@@ -30,12 +30,12 @@
 
 
             {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
-            {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
             {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
             {!!Form::menu('Descuento',route('admin.descuentos.index'),'fa fa-cut')!!}
 @endif
 @if (str_contains(Auth::user()->codigo_rol,['foto','admin']))
 {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
+{!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
 @endif
 @if (str_contains(Auth::user()->codigo_rol,['pago','admin']))
 {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}

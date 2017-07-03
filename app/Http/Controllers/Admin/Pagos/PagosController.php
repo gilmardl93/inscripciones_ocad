@@ -243,6 +243,9 @@ class PagosController extends Controller
             case '507':
                 $postulantes = Postulante::IsNull(0)->get();
                break;
+            case '521':
+                $postulantes = Postulante::PagoFormatoSemibeca()->IsNull(0)->get();
+               break;
             default:
                 $postulantes = collect([]);
                 break;
