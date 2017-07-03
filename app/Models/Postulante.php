@@ -404,7 +404,9 @@ class Postulante extends Model
     */
     public function getEdadAttribute()
     {
-        $edad = Carbon::createFromFormat('Y-m-d',$this->fecha_nacimiento)->age;
+        if(isset($this->fecha_nacimiento))$edad = Carbon::createFromFormat('Y-m-d',$this->fecha_nacimiento)->age;
+        else $edad = 0;
+
         return $edad;
     }
     /**
@@ -599,7 +601,7 @@ class Postulante extends Model
         };
     }
     /**
-    * Devuelve relacion de postulantes de un tipo de colegio y gestion
+    * Devuelve relacion de postulantes con descuento de un tipo de colegio y gestion
     * @param  [type]  [description]
     * @return [type]            [description]
     */
@@ -614,6 +616,16 @@ class Postulante extends Model
                              ->where('c.gestion',$gestion)
                              ->where('postulante.anulado',0);
         }
+    }
+    /**
+    * Devuelve relacion de postulantes que han solicitado semibeca
+    * @param  [type]  [description]
+    * @return [type]            [description]
+    */
+    public function scopePagoFormatoSemibeca($cadenaSQL)
+    {
+        $solicitantes = Solicitante::select('idpostulante')->get();
+        return $cadenaSQL->whereIn('postulante.id',$solicitantes->toArray());
     }
     /**
     * Devuelve los valores Activos
