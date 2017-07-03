@@ -208,37 +208,37 @@ class PagosController extends Controller
     {
         switch ($codigo) {
             case '475':
-                $postulantes = Postulante::Prospecto()->Alfabetico()->get();
+                $postulantes = Postulante::Prospecto()->IsNull(0)->Alfabetico()->get();
                 break;
             case '464':
-                $postulantes = Postulante::PagoGestion('Colegio',['Pública'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->Alfabetico()->get();
+                $postulantes = Postulante::PagoGestion('Colegio',['Pública'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->IsNull(0)->Alfabetico()->get();
                 break;
             case '465':
-                $postulantes = Postulante::PagoGestion('Colegio',['Privada'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->get();
+                $postulantes = Postulante::PagoGestion('Colegio',['Privada'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->IsNull(0)->get();
                 break;
             case '466':
-                $postulantes = Postulante::PagoDescuentoGestion('Colegio',['Pública'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->Alfabetico()->get();
+                $postulantes = Postulante::PagoDescuentoGestion('Colegio',['Pública'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->IsNull(0)->Alfabetico()->get();
                 break;
             case '467':
-                $postulantes = Postulante::PagoDescuentoGestion('Colegio',['Privada'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->get();
+                $postulantes = Postulante::PagoDescuentoGestion('Colegio',['Privada'],['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])->IsNull(0)->get();
                 break;
             case '469':
-                $postulantes = Postulante::PagoGestion('Universidad',['Pública'],['E1TE'])->get();
+                $postulantes = Postulante::PagoGestion('Universidad',['Pública'],['E1TE'])->IsNull(0)->get();
                 break;
             case '470':
-                $postulantes = Postulante::PagoGestion('Universidad',['Privada'],['E1TE'])->get();
+                $postulantes = Postulante::PagoGestion('Universidad',['Privada'],['E1TE'])->IsNull(0)->get();
                 break;
             case '468':
-                $postulantes = Postulante::PagoGestion('Universidad',['Pública','Privada'],['E1TG','E1TGU'])->get();
+                $postulantes = Postulante::PagoGestion('Universidad',['Pública','Privada'],['E1TG','E1TGU'])->IsNull(0)->get();
                break;
             case '473':
-                $postulantes = Postulante::PagoGestion(null,['Pública','Privada'],['E1DB','E1CD','E1CABI','E1CABC'])->get();
+                $postulantes = Postulante::PagoGestion(null,['Pública','Privada'],['E1DB','E1CD','E1CABI','E1CABC'])->IsNull(0)->get();
                break;
             case '474':
-                $postulantes = Postulante::PagoGestion(null,null,null,'A1')->get();
+                $postulantes = Postulante::PagoGestion(null,null,null,'A1')->IsNull(0)->get();
                break;
             case '516':
-                $postulantes = Postulante::PagoGestion(null,null,null,'A1')->get();
+                $postulantes = Postulante::PagoGestion(null,null,null,'A1')->IsNull(0)->get();
                break;
             case '507':
                 $postulantes = Postulante::IsNull(0)->get();
