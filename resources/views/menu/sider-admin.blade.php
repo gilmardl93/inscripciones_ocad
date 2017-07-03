@@ -33,16 +33,16 @@
             {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
             {!!Form::menu('Descuento',route('admin.descuentos.index'),'fa fa-cut')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['admin']))
+@if (str_contains(Auth::user()->codigo_rol,['admin','jefe']))
 {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['foto','admin']))
+@if (str_contains(Auth::user()->codigo_rol,['foto','admin','jefe']))
 {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['pago','admin']))
+@if (str_contains(Auth::user()->codigo_rol,['pago','admin','jefe']))
 {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['informes','admin']))
+@if (str_contains(Auth::user()->codigo_rol,['informes','admin','jefe']))
 {!!Form::menu('Usuarios',route('admin.usuarios.index'),'icon-users')!!}
 {!!Form::menu('Estadistica',route('admin.estadisticas.index'),'fa fa-bar-chart')!!}
 {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
