@@ -123,3 +123,10 @@ Route::group(['namespace'=>'Descuentos'], function() {
 	Route::get('activar-descuento/{id}','DescuentosController@activate')->name('admin.descuentos.activate');
 
 });
+/**
+ * Descuentos
+ */
+Route::group(['namespace'=>'Listados'], function() {
+	Route::get('listados','ListadosController@index')->name('admin.listados.index');
+
+});

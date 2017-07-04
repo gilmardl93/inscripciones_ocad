@@ -741,12 +741,20 @@ class Postulante extends Model
         return $this->hasOne(User::class, 'id', 'idusuario');
     }
     /**
-     * Establecemos el la relacion con catalogo
+     * Establecemos la relacion con la tabla de datos complementarios
      * @return [type] [description]
      */
     public function Complementarios()
     {
         return $this->hasOne(Complementario::class,'idpostulante','id');
+    }
+    /**
+     * Establecemos la relacion con la de proceso
+     * @return [type] [description]
+     */
+    public function Procesos()
+    {
+        return $this->hasOne(Proceso::class,'idpostulante','id');
     }
     /**
      * Operaciones estaticas

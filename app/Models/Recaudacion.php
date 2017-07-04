@@ -10,6 +10,13 @@ class Recaudacion extends Model
     protected $fillable = ['recibo', 'servicio', 'descripcion','monto','fecha','codigo','nombrecliente','idpostulante','banco','referencia'];
 
     /**
+     * Atributos Banco
+     */
+    public function setBancoAttribute($value)
+    {
+        $this->attributes['banco'] = strtoupper($value);
+    }
+    /**
     * Devuelve los valores Activos
     * @param  [type]  [description]
     * @return [type]            [description]

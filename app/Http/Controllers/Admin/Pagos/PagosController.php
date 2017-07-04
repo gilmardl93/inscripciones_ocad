@@ -87,12 +87,20 @@ class PagosController extends Controller
             $archivo = storage_path('app/pagos/financiero/').$nombre;
             $archivo = file($archivo);
             $banco = 'financiero';
-        }else{
+        }elseif (str_contains($nombre,'bcp')) {
+            $request->file('file')->storeAs('pagos/bcp',$nombre);
+            $archivo = storage_path('app/pagos/bcp/').$nombre;
+            $archivo = file($archivo);
+            $banco = 'bcp';
+        }elseif (str_contains($nombre,'P')){
             $request->file('file')->storeAs('pagos/scotiabank',$nombre);
             $archivo = storage_path('app/pagos/scotiabank/').$nombre;
             $archivo = file($archivo);
             $banco = 'scotiabank';
-    	}
+    	}else{
+            Alert::success('Este Archivo no es valido');
+            return back();
+        }
         #Preparo la data antes de subir a la DB
         $data = $this->PreparaData($archivo,$banco);
         #valido pagos
@@ -119,7 +127,21 @@ class PagosController extends Controller
             return back();
 
         } else {
-            Alert::danger('Error de Codigos')->items($error['data']);
+            switch ($error['tipo_error']) {
+                case 'Codigo':
+                    Alert::danger('Error de Codigos')->details('Los siguientes codigos no existen')->items($error['data']);
+                    break;
+                case 'Partida':
+                    Alert::danger('Error de Partida')
+                         ->details('El pago contiene una partida que no corresponde al monto pagado')
+                         ->items([
+                                 'codigo postulante: '.$error['codigo'],
+                                 'Servicio: '.$error['servicio'],
+                                 'Monto: '.$error['monto']
+                                 ]);
+                    break;
+
+            }
             return back();
         }
 
@@ -130,11 +152,28 @@ class PagosController extends Controller
         $postulantes = Postulante::select('numero_identificacion as codigo')
                                  ->whereIn('numero_identificacion',array_pluck($data,'codigo'))->IsNull(0)->pluck('codigo');
         $codigo = array_diff(array_pluck($data,'codigo'),$postulantes->toArray());
-        if(count($codigo)>0){
-            $collection = collect(['correcto'=>false,'data'=>$codigo]);
-        }else{
-            $collection = collect(['correcto'=>true,'data'=>$data]);
+
+        if(count($codigo)>0)$collection = collect(['correcto'=>false,'tipo_error'=>'Codigo','data'=>$codigo]);
+        else $collection = collect(['correcto'=>true,'data'=>$data]);
+
+        if(!$collection['correcto'])return $collection;
+
+        #Valido coherencia de partida y monto depositado
+        $servicios = Servicio::Activo()->get();
+
+        foreach ($data as $key => $item) {
+            $servicio = $servicios->where('codigo', $item['servicio'])->where('monto',$item['monto']);
+
+            if($servicio->count()==0){
+                $collection = collect([
+                                        'correcto'=>false,'tipo_error'=>'Partida',
+                                        'codigo'=>$item['codigo'],'servicio'=>$item['servicio'],'monto'=>$item['monto']
+                                        ]);
+                break;
+            }
         }
+        if(!$collection['correcto'])return $collection;
+
         return $collection;
     }
     public function PreparaData($archivo,$banco)
@@ -144,6 +183,28 @@ class PagosController extends Controller
         switch ($banco) {
             case 'financiero':
                 # code...
+                break;
+
+            case 'bcp':
+                $servicios = Servicio::Activo()->get();
+                foreach ($archivo as $key => $value) {
+                    if (substr($value, 0 ,1) == 'D') {
+                        $partida = (int)substr($value, 13 ,20);
+                        $servicio = $servicios->where('partida', $partida);
+                        $key = $servicio->keys()[0];
+
+                        $data[$i]['recibo'] = $servicio[$key]->codigo;
+                        $data[$i]['servicio'] = $servicio[$key]->codigo;
+                        $data[$i]['descripcion'] = $servicio[$key]->descripcion;
+                        $data[$i]['monto'] = (float)substr($value, 151 ,9)/100;
+                        $data[$i]['fecha'] = substr($value, 73 ,4).'-'.substr($value, 77 ,2).'-'.substr($value, 79 ,2);
+                        $data[$i]['codigo'] = substr($value, 113 ,8);
+                        $data[$i]['nombrecliente'] = substr($value, 113 ,8);
+                        $data[$i]['banco'] = $banco;
+                        $i++;
+                    }
+                }
+
                 break;
 
             default:
@@ -162,7 +223,6 @@ class PagosController extends Controller
                 }
                 break;
         }
-
         $recaudacion = Recaudacion::select('recibo')->pluck('recibo')->toArray();
         $diferencia = array_diff(array_pluck($data,'recibo'),$recaudacion);
         $diferencia = implode(",", $diferencia);

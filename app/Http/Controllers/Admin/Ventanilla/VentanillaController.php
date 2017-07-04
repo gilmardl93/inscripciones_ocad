@@ -19,6 +19,7 @@ class VentanillaController extends Controller
     	$pagos = Ventanilla::where('fecha',$date)->whereNotIn('recibo',$recibos)->get();
     	if(!$pagos->isEmpty()){
 	    	$contador = 0;
+	    	$sw = false;
 	    	foreach ($pagos as $key => $item) {
 	    		$postulante = Postulante::where('numero_identificacion',$item->codigo)->first();
 	    		if (!isset($postulante)) {

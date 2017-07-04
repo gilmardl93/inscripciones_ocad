@@ -43,7 +43,7 @@ class DatosComplementariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateComplementarioRequest $request, $id)
     {
         $complementarios = Complementario::find($id);
         $data = $request->all();
