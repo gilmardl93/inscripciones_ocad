@@ -23,18 +23,18 @@
         {!!Form::hidden('orden[0]', 0 );!!}
                 <div class="row">
                     <div class="col-md-4">
-                            {!!Field::text('paterno[0]', null , ['label'=>'Apellido Paterno del padre (*)','placeholder'=>'Apellido Paterno'])!!}
+                            {!!Field::text('paterno[0]', null , ['label'=>'Apellido Paterno del padre (*)','placeholder'=>'Apellido Paterno','maxlength'=>'25'])!!}
+                    </div><!--span-->
+                    <div class=>"col-md-4">
+                        {!!Field::text('materno[0]', null , ['label'=>>'Apellido Materno del padre (*)','placeholder'=>'Apellido Materno','maxlength'=>'25'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
-                        {!!Field::text('materno[0]', null , ['label'=>'Apellido Materno del padre (*)','placeholder'=>'Apellido Materno'])!!}
-                    </div><!--span-->
-                    <div class="col-md-4">
-                        {!!Field::text('nombres[0]', null , ['label'=>'Nombres del padre (*)','placeholder'=>'Nombres del Padre'])!!}
+                        {!!Field::text('nombres[0]', null , ['label'=>'Nombres del padre (*)','placeholder'=>'Nombres del Padre','maxlength'=>'50'])!!}
                     </div><!--span-->
                 </div><!--row-->
                 <div class="row">
                     <div class="col-md-4">
-                        {!!Field::text('dni[0]', null , ['label'=>'DNI del padre','placeholder'=>'DNI del Padre'])!!}
+                        {!!Field::text('dni[0]', null , ['label'=>'DNI del padre','placeholder'=>'DNI del Padre','maxlength'=>'10'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
                         {!!Field::text('direccion[0]', null , ['label'=>'Direccion del padre(*)','placeholder'=>'Direccion del Padre'])!!}
@@ -51,18 +51,18 @@
          {!!Form::hidden('orden[1]', 1 );!!}
                 <div class="row">
                     <div class="col-md-4">
-                            {!!Field::text('paterno[1]', null , ['label'=>'Apellido Paterno de la Madre (*)','placeholder'=>'Apellido Paterno'])!!}
+                            {!!Field::text('paterno[1]', null , ['label'=>'Apellido Paterno de la Madre (*)','placeholder'=>'Apellido Paterno','maxlength'=>'25'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
-                        {!!Field::text('materno[1]', null , ['label'=>'Apellido Materno de la Madre (*)','placeholder'=>'Apellido Materno'])!!}
+                        {!!Field::text('materno[1]', null , ['label'=>'Apellido Materno de la Madre (*)','placeholder'=>'Apellido Materno','maxlength'=>'25'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
-                        {!!Field::text('nombres[1]', null , ['label'=>'Nombres de la Madre (*)','placeholder'=>'Nombres de la Madre'])!!}
+                        {!!Field::text('nombres[1]', null , ['label'=>'Nombres de la Madre (*)','placeholder'=>'Nombres de la Madre','maxlength'=>'50'])!!}
                     </div><!--span-->
                 </div><!--row-->
                 <div class="row">
                     <div class="col-md-4">
-                        {!!Field::text('dni[1]', null , ['label'=>'DNI de la Madre (*)','placeholder'=>'DNI de la Madre'])!!}
+                        {!!Field::text('dni[1]', null , ['label'=>'DNI de la Madre (*)','placeholder'=>'DNI de la Madre','maxlength'=>'10'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
                         {!!Field::text('direccion[1]', null , ['label'=>'Direccion de la Madre (*)','placeholder'=>'Direccion de la Madre'])!!}
@@ -79,18 +79,18 @@
          {!!Form::hidden('orden[2]', 2 );!!}
                 <div class="row">
                     <div class="col-md-4">
-                            {!!Field::text('paterno[2]', null , ['label'=>'Apellido Paterno del apoderado (*)','placeholder'=>'Apellido Paterno del apoderado'])!!}
+                            {!!Field::text('paterno[2]', null , ['label'=>'Apellido Paterno del apoderado (*)','placeholder'=>'Apellido Paterno del apoderado','maxlength'=>'25'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
-                        {!!Field::text('materno[2]', null , ['label'=>'Apellido Materno del apoderado (*)','placeholder'=>'Apellido Materno del apoderado'])!!}
+                        {!!Field::text('materno[2]', null , ['label'=>'Apellido Materno del apoderado (*)','placeholder'=>'Apellido Materno del apoderado','maxlength'=>'25'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
-                        {!!Field::text('nombres[2]', null , ['label'=>'Nombres del apoderado (*)','placeholder'=>'Nombres del apoderado'])!!}
+                        {!!Field::text('nombres[2]', null , ['label'=>'Nombres del apoderado (*)','placeholder'=>'Nombres del apoderado','maxlength'=>'50'])!!}
                     </div><!--span-->
                 </div><!--row-->
                 <div class="row">
                     <div class="col-md-4">
-                        {!!Field::text('dni[2]', null , ['label'=>'DNI del apoderado (*)','placeholder'=>'DNI del apoderado'])!!}
+                        {!!Field::text('dni[2]', null , ['label'=>'DNI del apoderado (*)','placeholder'=>'DNI del apoderado','maxlength'=>'10'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
                         {!!Field::text('direccion[2]', null , ['label'=>'Direccion del apoderado (*)','placeholder'=>'Direccion del apoderado'])!!}

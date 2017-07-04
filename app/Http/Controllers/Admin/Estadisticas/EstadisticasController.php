@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Estadisticas;
 use App\Http\Controllers\Controller;
 use App\Models\Postulante;
 use App\Models\Recaudacion;
+use App\Models\Solicitante;
 use DB;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,7 @@ class EstadisticasController extends Controller
                             ->paginate();
         $Modalidades = Postulante::select('m.nombre as modalidad',DB::raw('count(*) as cantidad'))
                             ->join('modalidad as m','m.id','=','postulante.idmodalidad')
+                            ->IsNull(0)
                             ->groupBy('m.nombre')
                             ->paginate();
         $Pagos = Recaudacion::select('s.descripcion as descripcion',DB::raw('count(*) as cantidad'))
@@ -41,6 +43,8 @@ class EstadisticasController extends Controller
                             ->get();
         $Fotos = Postulante::select('foto_estado',DB::raw('count(*) as cantidad'))->Activos()->groupBy('foto_estado')->get();
 
-        return view('admin.estadisticas.index',compact('Inscritos','Lista','Pagantes','Modalidades','Pagos','Fotos'));
+        $Semibecas = Solicitante::select('otorga',DB::raw('count(*) as cantidad'))->Activo()->groupBy('otorga')->get();
+
+        return view('admin.estadisticas.index',compact('Inscritos','Lista','Pagantes','Modalidades','Pagos','Fotos','Semibecas'));
     }
 }

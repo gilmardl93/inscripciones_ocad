@@ -29,11 +29,9 @@ class RulesServiceProvider extends ServiceProvider
         $this->ValidaFechaInscripcion();
         $this->ValidaNumeroIdentificacion();
         $this->ValidaNumIdenUsuario();
-        $this->ValidaCodigoUsuarioPago();
         #Validacion de datos de familiares
         $this->DniSize();
         $this->DniNumeric();
-        #Valido datos para pagos
     }
 
     /**
@@ -94,10 +92,6 @@ class RulesServiceProvider extends ServiceProvider
 
 
         },"Uno de los DNI Ingresado contiene un caracter que no es numerico");
-    }
-    public function ValidaCodigoUsuarioPago()
-    {
-        # code...
     }
     /**
      * Valido la institucion educativa que requiere la modalidad

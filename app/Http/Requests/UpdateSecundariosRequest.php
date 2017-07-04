@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Pais;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 class UpdateSecundariosRequest extends FormRequest
@@ -24,7 +25,8 @@ class UpdateSecundariosRequest extends FormRequest
     public function rules()
     {
         $data = Request::all();
-        return [
+        $ubigeo_required = "'idubigeo'=> 'required'";
+        $validate =  [
             'email'=> 'required|email',
             'idsexo'=> 'required',
             'telefono_celular'=> 'required',
@@ -44,6 +46,14 @@ class UpdateSecundariosRequest extends FormRequest
             'fin_estudios'=>'required',
 
         ];
+        $pais = Pais::find($data['idpais']);
+        $pais_nacimiento = Pais::find($data['idpaisnacimiento']);
+
+        if($pais->codigo=='PE') $validate = array_add($validate,'idubigeo','required');
+        if($pais_nacimiento->codigo=='PE') $validate = array_add($validate,'idubigeonacimiento','required');
+
+
+        return $validate;
     }
     public function messages()
     {

@@ -27,29 +27,26 @@
             <li class="heading">
                 <h3 class="uppercase">Modulos</h3>
             </li>
-
-
-            {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
-            {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
             {!!Form::menu('Descuento',route('admin.descuentos.index'),'fa fa-cut')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['admin','jefe']))
+@if (str_contains(Auth::user()->codigo_rol,['admin','jefe','root']))
 {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['foto','admin','jefe']))
+@if (str_contains(Auth::user()->codigo_rol,['foto','admin','jefe','root']))
 {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['pago','admin','jefe']))
+@if (str_contains(Auth::user()->codigo_rol,['pago','admin','jefe','root']))
 {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['informes','admin','jefe']))
+@if (str_contains(Auth::user()->codigo_rol,['informes','admin','jefe','root']))
 {!!Form::menu('Usuarios',route('admin.usuarios.index'),'icon-users')!!}
 {!!Form::menu('Estadistica',route('admin.estadisticas.index'),'fa fa-bar-chart')!!}
 {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
 {!!Form::menu('Universidad',route('admin.universidades.index'),'fa fa-bank')!!}
+{!!Form::menu('Importa Pago',route('admin.ventanilla.obtener'),'fa fa-dollar')!!}
+{!!Form::menu('Listados',route('admin.listados.index'),'fa fa-users')!!}
 @endif
     </ul>
-    <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->
 </div>
 <!-- END SIDEBAR -->

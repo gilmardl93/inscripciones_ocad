@@ -155,6 +155,39 @@
 		</table>
 	</div><!--span-->
 </div><!--row-->
+<div class="row">
+	<div class="col-md-3">
+		<h3>Semibecas</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Evaluacion </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ $Semibecas->sum('cantidad') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Semibecas as $item)
+		        <tr >
+		            <td>
+						@if (isset($item->otorga))
+							{{ $item->otorga }}
+						@else
+							SOLICITANTES
+						@endif
+		            </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+	</div><!--span-->
+</div><!--row-->
 @stop
 
 

@@ -80,7 +80,7 @@
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::select('idpais', $pais, 1, ['label'=>'País donde vive el postulante (*)','empty'=>'País donde vive el postulante']);!!}
+                    {!!Field::select('idpais', $pais, null, ['label'=>'País donde vive el postulante (*)','empty'=>'País donde vive el postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-6 Distrito">
                     <div class="form-group">
@@ -95,7 +95,7 @@
                     {!!Field::text('fecha_nacimiento', null, ['class'=>'Fecha','label'=>'Fecha de nacimiento de postulante (año-mes-dia)(*)','placeholder'=>'fecha de nacimiento del postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-6">
-                    {!!Field::text('telefono_varios', null, ['label'=>'Otros telefonos de contacto ','placeholder'=>'Otros telefonos de contacto']);!!}
+                    {!!Field::text('telefono_varios', null, ['label'=>'Otros telefonos de contacto (*)','placeholder'=>'Otros telefonos de contacto']);!!}
                 </div><!--span-->
             </div><!--row-->
             <div class="row Distrito">
@@ -113,7 +113,7 @@
             </div><!--row-->
             <div class="row">
                 <div class="col-md-6">
-                    {!!Field::select('idpaisnacimiento', $pais, 1, ['label'=>'País donde nacio el postulante (*)','empty'=>'País donde nacio el postulante']);!!}
+                    {!!Field::select('idpaisnacimiento', $pais, null, ['label'=>'País donde nacio el postulante (*)','empty'=>'País donde nacio el postulante']);!!}
                 </div><!--span-->
                 <div class="col-md-6 DistritoNacimiento">
                     <div class="form-group">
