@@ -45,13 +45,6 @@
             </div>
             <p></p>
         {!! Form::close() !!}
-        <p></p>{{-- asset('/storage/carteras/UNIADMIS.txt') --}}
-        {!!Form::boton('Crear Cartera',route('admin.cartera.create'),'green-meadow','fa fa-file-image-o')!!}
-        {!!Form::boton('Descargar Cartera',route('admin.cartera.download'),'green-seagreen','fa fa-cloud-download')!!}
-        {!!Form::botonmodal('Crear Pago','#PagoCreate','blue','fa fa-plus')!!}
-        {!!Form::boton('Importar pagos de OCAD',route('admin.ventanilla.obtener'),'yellow','fa fa-cloud-upload')!!}
-        {!!Form::boton('Recaducacion',route('admin.recaudacion'),'red','fa fa-eye')!!}
-        <p></p>
         {!! Alert::render() !!}
         </div>
     </div>

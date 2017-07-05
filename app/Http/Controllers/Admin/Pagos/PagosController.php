@@ -251,23 +251,26 @@ class PagosController extends Controller
         Storage::disk('carteras')->delete($name);
 
         $servicios = Servicio::where('activo',1)->get();
-        foreach ($servicios as $key => $servicio) {
 
-            $postulantes = $this->PostulantesAPagar($servicio->codigo);
-            if($postulantes->count()>0){
-                $codigo_servicio = $servicio->codigo;
-                $codigo_cronograma = ($servicio->codigo=='507') ? 'INEX' : 'INSC' ;
+        foreach ($servicios->chunk(5) as $key => $items) {
+            foreach ($items as $key => $servicio) {
 
-                $param = $this->Parametros($postulantes,$codigo_servicio,$codigo_cronograma);
+                $postulantes = $this->PostulantesAPagar($servicio->codigo);
+                if($postulantes->count()>0){
+                    $codigo_servicio = $servicio->codigo;
+                    $codigo_cronograma = ($servicio->codigo=='507') ? 'INEX' : 'INSC' ;
 
-                Storage::disk('carteras')->append($name,$param['header']);
-                foreach ($postulantes as $key => $postulante) {
-                    $detalle = $this->ParametrosDetalle($postulante,$codigo_servicio,$codigo_cronograma);
-                    Storage::disk('carteras')->append($name, $detalle);
-                }
-                Storage::disk('carteras')->append($name, $param['footer']);
-            }//end if
-        }//end foreach
+                    $param = $this->Parametros($postulantes,$codigo_servicio,$codigo_cronograma);
+
+                    Storage::disk('carteras')->append($name,$param['header']);
+                    foreach ($postulantes as $key => $postulante) {
+                        $detalle = $this->ParametrosDetalle($postulante,$codigo_servicio,$codigo_cronograma);
+                        Storage::disk('carteras')->append($name, $detalle);
+                    }
+                    Storage::disk('carteras')->append($name, $param['footer']);
+                }//end if
+            }//end foreach
+        }
 
     	Alert::success('Cartera Creada con exito');
     	return back();

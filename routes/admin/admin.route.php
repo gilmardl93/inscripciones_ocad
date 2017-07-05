@@ -54,6 +54,7 @@ Route::group(['namespace'=>'Fotos'], function() {
 	Route::resource('fotos','FotosController',['names'=>'admin.fotos','only'=>['index','store','update']]);
 	Route::get('update/{postulante}/{estado}','FotosController@update')->name('admin.fotos.update');
 	Route::get('cargar-editado','FotosController@cargareditado')->name('admin.fotos.cargar');
+	Route::post('buscar-foto','FotosController@buscar')->name('admin.fotos.buscar');
 
 });
 

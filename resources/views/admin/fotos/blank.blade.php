@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="portlet-body">
-        {!! Form::open(['route'=>'admin.pagos.store','method'=>'POST']) !!}
+        {!! Form::open(['route'=>'admin.fotos.buscar','method'=>'POST']) !!}
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12">

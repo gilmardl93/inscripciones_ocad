@@ -13,7 +13,6 @@ class FotosController extends Controller
 {
     public function index()
     {
-
         $postulante = Postulante::where('foto_estado','CARGADO')->orderBy('foto_fecha_carga')->first();
         $resumen = Postulante::select('foto_estado',DB::raw('count(*) as cantidad'))->Activos()->groupBy('foto_estado')->get();
     	if(isset($postulante)){
@@ -22,6 +21,12 @@ class FotosController extends Controller
            Alert::success('No hay Foto por Editar');
            return view('admin.fotos.blank',compact('resumen'));
         }
+    }
+    public function buscar(Request $request)
+    {
+        $postulante = Postulante::where('numero_identificacion',$request->get('dni'))->first();
+        $resumen = Postulante::select('foto_estado',DB::raw('count(*) as cantidad'))->Activos()->groupBy('foto_estado')->get();
+        return view('admin.fotos.index',compact('postulante','resumen'));
     }
     public function update($id,$estado)
     {
