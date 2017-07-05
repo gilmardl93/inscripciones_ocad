@@ -132,11 +132,11 @@ $(function(){
             var lbl_ubigeo = 'Pais';
             var descripcion_ubigeo = school.paises.nombre;
         }
-        console.log(school.paises.nombre);
         var markup="<div class='select2-result-repository clearfix'>" +
         "<div class='select2-result-repository__title'>" + school.text + "</div>" +
         "<div class='select2-result-repository__description'> " + lbl_ubigeo + " : " + descripcion_ubigeo + "</div>" +
         "<div class='select2-result-repository__description'> Gestion : " + school.gestion + "</div>" +
+        "<div class='select2-result-repository__description'> Direccion : " + school.direccion + "</div>" +
         "<div class='select2-result-repository__statistics'>" +
         "</div>"+
         "</div>";
