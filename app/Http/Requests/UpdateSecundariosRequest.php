@@ -25,7 +25,6 @@ class UpdateSecundariosRequest extends FormRequest
     public function rules()
     {
         $data = Request::all();
-        $ubigeo_required = "'idubigeo'=> 'required'";
         $validate =  [
             'email'=> 'required|email',
             'idsexo'=> 'required',
@@ -46,11 +45,15 @@ class UpdateSecundariosRequest extends FormRequest
             'fin_estudios'=>'required',
 
         ];
-        $pais = Pais::find($data['idpais']);
-        $pais_nacimiento = Pais::find($data['idpaisnacimiento']);
+        if(is_numeric($data['idpais'])){
+            $pais = Pais::find($data['idpais']);
+            if($pais->codigo=='PE') $validate = array_add($validate,'idubigeo','required');
+        }
 
-        if($pais->codigo=='PE') $validate = array_add($validate,'idubigeo','required');
-        if($pais_nacimiento->codigo=='PE') $validate = array_add($validate,'idubigeonacimiento','required');
+        if (is_numeric($data['idpaisnacimiento'])) {
+            $pais_nacimiento = Pais::find($data['idpaisnacimiento']);
+            if($pais_nacimiento->codigo=='PE') $validate = array_add($validate,'idubigeonacimiento','required');
+        }
 
 
         return $validate;
