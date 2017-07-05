@@ -212,7 +212,7 @@ class FichaController extends Controller
             #
             if($postulante->codigo_especialidad=='A1'){
                 PDF::SetXY(168,120);
-                PDF::Cell(40,7,'VOCA: 07'.$postulante->datos_aula_voca->codigo,0,0,'C',1,'',1);
+                PDF::Cell(40,7,'VOCA: 05'.$postulante->datos_aula_voca->codigo,0,0,'C',1,'',1);
             }
             PDF::SetFont('helvetica','B',12);
             #MENSAJE
