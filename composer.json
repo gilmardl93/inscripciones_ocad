@@ -11,7 +11,8 @@
         "elibyy/tcpdf-laravel": "5.3.*",
         "rap2hpoutre/laravel-log-viewer": "^0.10.2",
          "barryvdh/laravel-debugbar": "^2.4",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "infobip/infobip-api-php-client": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

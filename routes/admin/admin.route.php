@@ -135,4 +135,6 @@ Route::group(['namespace'=>'Listados'], function() {
  */
 Route::group(['namespace'=>'Comunicacion'], function() {
 	Route::get('comunicacion','ComunicacionController@index')->name('admin.comunicacion.index');
+	Route::post('comunicacion-emails','ComunicacionController@emails')->name('admin.comunicacion.emails');
+	Route::post('comunicacion-sms','ComunicacionController@sms')->name('admin.comunicacion.sms');
 });

@@ -11,7 +11,7 @@
         {!!Form::menu('Escritorio',route('home.index'),'icon-home','start')!!}
 @if (str_contains(Auth::user()->codigo_rol,['root']))
             <li class="heading">
-                <h3 class="uppercase">Sistema</h3>
+                <h3 class="uppercase">System</h3>
             </li>
             <li class="nav-item  ">
                 {!!Form::menulink('Configuracion','#','fa fa-cogs')!!}
@@ -22,8 +22,18 @@
                 </ul>
             </li>
             {!!Form::menu('Usuarios',route('admin.users.index'),'icon-users')!!}
-            {!!Form::menu('Aulas',route('admin.aulas.index'),'fa fa-cubes')!!}
+            <li class="nav-item  ">
+                {!!Form::menulink('Aulas',route('admin.aulas.index'),'fa fa-cubes')!!}
+                <ul class="sub-menu">
+                    {!!Form::menu('Activas',route('admin.activas.aulas'))!!}
+                    {!!Form::menu('Habilitadas',route('admin.activas.habilitadas'))!!}
+                </ul>
+            </li>
             {!!Form::menu('Servicios',route('admin.servicios.index'),'fa fa-dollar')!!}
+            <li class="heading">
+                <h3 class="uppercase">IDENTIFICACION</h3>
+            </li>
+            {!!Form::menu('Ingresante','#','fa fa-graduation-cap')!!}
             <li class="heading">
                 <h3 class="uppercase">Modulos</h3>
             </li>
