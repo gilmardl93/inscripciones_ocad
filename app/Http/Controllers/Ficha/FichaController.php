@@ -199,20 +199,20 @@ class FichaController extends Controller
             PDF::SetXY(10,120);
             PDF::SetFont('helvetica','',20);
             PDF::Cell(20,5,'Aulas :',0,0,'R');
-            PDF::SetFont('helvetica','B',20);
+            PDF::SetFont('helvetica','B',17);
             PDF::SetXY(35,120);
             PDF::SetFillColor(0, 0, 0, 12);
-            PDF::Cell(40,7,'LU 07:'.$postulante->datos_aula_uno->codigo,0,0,'C',1,'',1);
+            PDF::Cell(40,7,'LU 07: '.$postulante->datos_aula_uno->codigo,0,0,'C',1,'',1);
             #
             PDF::SetXY(80,120);
-            PDF::Cell(40,7,'MI 09:'.$postulante->datos_aula_dos->codigo,0,0,'C',1,'',1);
+            PDF::Cell(40,7,'MI 09: '.$postulante->datos_aula_dos->codigo,0,0,'C',1,'',1);
             #
             PDF::SetXY(125,120);
-            PDF::Cell(40,7,'VI 11:'.$postulante->datos_aula_tres->codigo,0,0,'C',1,'',1);
+            PDF::Cell(40,7,'VI 11: '.$postulante->datos_aula_tres->codigo,0,0,'C',1,'',1);
             #
             if($postulante->codigo_especialidad=='A1'){
                 PDF::SetXY(168,120);
-                PDF::Cell(40,7,'VOCA: 05'.$postulante->datos_aula_voca->codigo,0,0,'C',1,'',1);
+                PDF::Cell(40,7,'VOCA 05: '.$postulante->datos_aula_voca->codigo,0,0,'C',1,'',1);
             }
             PDF::SetFont('helvetica','B',12);
             #MENSAJE
