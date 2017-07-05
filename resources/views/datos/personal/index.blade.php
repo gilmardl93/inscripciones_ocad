@@ -207,6 +207,7 @@ $(".cepreuni").hide();
         "<div class='select2-result-repository__title'>" + school.text + "</div>" +
         "<div class='select2-result-repository__description'> Distrito : " + school.distrito.descripcion + "</div>" +
         "<div class='select2-result-repository__description'> Gestion : " + school.gestion + "</div>" +
+        "<div class='select2-result-repository__description'> Direccion : " + school.direccion + "</div>" +
         "<div class='select2-result-repository__statistics'>" +
         "</div>"+
         "</div>";

@@ -124,9 +124,14 @@ Route::group(['namespace'=>'Descuentos'], function() {
 
 });
 /**
- * Descuentos
+ * Listados
  */
 Route::group(['namespace'=>'Listados'], function() {
 	Route::get('listados','ListadosController@index')->name('admin.listados.index');
-
+});
+/**
+ * Comunicacion
+ */
+Route::group(['namespace'=>'Comunicacion'], function() {
+	Route::get('comunicacion','ComunicacionController@index')->name('admin.comunicacion.index');
 });

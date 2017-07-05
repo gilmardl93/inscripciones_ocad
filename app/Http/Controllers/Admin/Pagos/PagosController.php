@@ -137,6 +137,7 @@ class PagosController extends Controller
                          ->items([
                                  'codigo postulante: '.$error['codigo'],
                                  'Servicio: '.$error['servicio'],
+                                 'Partida: '.$error['partida'],
                                  'Monto: '.$error['monto']
                                  ]);
                     break;
@@ -167,7 +168,7 @@ class PagosController extends Controller
             if($servicio->count()==0){
                 $collection = collect([
                                         'correcto'=>false,'tipo_error'=>'Partida',
-                                        'codigo'=>$item['codigo'],'servicio'=>$item['servicio'],'monto'=>$item['monto']
+                                        'codigo'=>$item['codigo'],'servicio'=>$item['servicio'],'monto'=>$item['monto'],'partida'=>$item['partida']
                                         ]);
                 break;
             }
@@ -191,7 +192,13 @@ class PagosController extends Controller
                     if (substr($value, 0 ,1) == 'D') {
                         $partida = (int)substr($value, 13 ,20);
                         $servicio = $servicios->where('partida', $partida);
-                        $key = $servicio->keys()[0];
+
+                        if(!$servicio->isEmpty()){
+                            $key = $servicio->keys()[0];
+                        }else{
+                            $key = 0;
+                            $servicio[$key] = new Servicio(['codigo'=>'No ubicado','descripcion'=>'---']);
+                        }
 
                         $data[$i]['recibo'] = $servicio[$key]->codigo;
                         $data[$i]['servicio'] = $servicio[$key]->codigo;
@@ -201,6 +208,7 @@ class PagosController extends Controller
                         $data[$i]['codigo'] = substr($value, 113 ,8);
                         $data[$i]['nombrecliente'] = substr($value, 113 ,8);
                         $data[$i]['banco'] = $banco;
+                        $data[$i]['partida'] = $partida;
                         $i++;
                     }
                 }

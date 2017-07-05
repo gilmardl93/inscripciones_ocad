@@ -31,11 +31,13 @@
                         <th> Celular </th>
                         <th> Telefono Fijo </th>
                         <th> Otro Telefono </th>
+                        <th> Fecha Preinscripcion </th>
                         <th> Datos Personales </th>
                         <th> Datos Familiares </th>
                         <th> Datos Encuesta </th>
                         <th> Foto Cargada </th>
-			            <th> Foto Rechazada </th>
+                        <th> Foto Rechazada </th>
+			            <th> Pago </th>
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -49,11 +51,23 @@
                         <td> {{ $item->telefono_celular }} </td>
                         <td> {{ $item->telefono_fijo }} </td>
                         <td> {{ $item->telefono_varios }} </td>
+                        <td> {{ $item->fecha_registro }} </td>
                         <td> {!! $item->procesos->personal !!} </td>
                         <td> {!! $item->procesos->familiar !!} </td>
                         <td> {!! $item->procesos->datos_encuesta !!} </td>
-                        <td> <img src="{{ $item->mostrar_foto_cargada }}" width="25px"> </td>
+                        <td>
+                            @if (!str_contains($item->mostrar_foto_cargada,'nofoto'))
+                                <img src="{{ $item->mostrar_foto_cargada }}" width="25px">
+                            @endif
+                        </td>
                         <td> <img src="{{ $item->mostrar_foto_rechazada }}" width="25px"> </td>
+                        <td>
+                            @if ($item->pago)
+                            <span class="label label-sm label-info"> SI </span>
+                            @else
+                            <span class="label label-sm label-danger"> NO </span>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
 			    </tbody>

@@ -28,6 +28,7 @@
                 <h3 class="uppercase">Modulos</h3>
             </li>
             {!!Form::menu('Descuento',route('admin.descuentos.index'),'fa fa-cut')!!}
+            {!!Form::menu('Comunicacion',route('admin.comunicacion.index'),'fa fa-share-alt')!!}
 @endif
 @if (str_contains(Auth::user()->codigo_rol,['admin','jefe','root']))
 {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
