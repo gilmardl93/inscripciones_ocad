@@ -25,7 +25,7 @@ class VentanillaController extends Controller
 
     public function obtener($fecha = null)
     {
-    	if (!isset($fecha)) $date = Carbon::now()->toDateString();
+    	if (isset($fecha)) $date = $fecha; else $date = Carbon::now()->toDateString();
 
     	$recibos = Recaudacion::select('recibo')->get()->toArray();
     	$pagos = Ventanilla::where('fecha',$date)->whereNotIn('recibo',$recibos)->get();
