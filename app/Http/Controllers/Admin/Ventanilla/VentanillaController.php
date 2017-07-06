@@ -21,6 +21,7 @@ class VentanillaController extends Controller
 	{
 		$date = Carbon::parse($request->get('fecha'))->toDateString();
 		$this->obtener($date);
+		return back();
 	}
 
     public function obtener($fecha = null)
