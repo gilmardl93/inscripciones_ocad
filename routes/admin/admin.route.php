@@ -26,6 +26,15 @@ Route::group(['namespace'=>'Postulantes'], function() {
 
 });
 /**
+ * Ingresantes
+ */
+Route::group(['namespace'=>'Ingresantes'], function() {
+	Route::resource('ingresantes', 'IngresantesController',['names'=>'admin.ingresantes','only'=>['index','show']]);
+	Route::post('ingresantes-search', 'IngresantesController@search')->name('admin.ingresantes.search');
+	Route::get('datos-pdf/{id?}','IngresantesController@pdfdatos')->name('admin.ingresantes.pdfdatos');
+
+});
+/**
  * Pagos
  */
 Route::group(['namespace'=>'Pagos'], function() {
@@ -38,12 +47,12 @@ Route::group(['namespace'=>'Pagos'], function() {
 	#Servicios
 	Route::resource('servicios','ServiciosController',['names'=>'admin.servicios','only'=>['index','store','edit','update']]);
 	Route::get('activar-servicios/{id}','ServiciosController@activate')->name('admin.servicios.activate');
-
 });
 /**
  * Ventanilla
  */
 Route::group(['namespace'=>'Ventanilla'], function() {
+	Route::resource('ventanilla','VentanillaController',['names'=>'admin.ventanilla','only'=>['index','store']]);
 	Route::get('obten-pagos-ventanilla','VentanillaController@obtener')->name('admin.ventanilla.obtener');
 
 });

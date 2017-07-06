@@ -119,6 +119,7 @@ class PagosController extends Controller
                         'codigo'=>$item['codigo'],
                         'nombrecliente'=>$item['nombrecliente'],
                         'banco'=>$item['banco'],
+                        'referencia'=>$item['referencia'],
                         ]);
                 }
             } else {
@@ -209,6 +210,7 @@ class PagosController extends Controller
                         $data[$i]['nombrecliente'] = substr($value, 113 ,8);
                         $data[$i]['banco'] = $banco;
                         $data[$i]['partida'] = $partida;
+                        $data[$i]['referencia'] = 'sucursal:'.substr($value, 178 ,6).'- operacion:'.substr($value, 184 ,6);
                         $i++;
                     }
                 }
@@ -226,6 +228,7 @@ class PagosController extends Controller
                         $data[$i]['codigo'] = substr($value, 40 ,8);
                         $data[$i]['nombrecliente'] = substr($value, 48 ,20);
                         $data[$i]['banco'] = $banco;
+                        $data[$i]['referencia'] = ' ';
                         $i++;
                     }
                 }

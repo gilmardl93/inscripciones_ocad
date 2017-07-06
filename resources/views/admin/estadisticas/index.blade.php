@@ -82,32 +82,68 @@
 		</table>
 		{!! $Pagantes->links() !!}
 	</div><!--span-->
+
+</div><!--row-->
+<div class="row">
 	<div class="col-md-3">
-		<h3>Por Modalidad</h3>
+		<h3>Preinscritos Provincias</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
-		            <th> Modalidad </th>
+		            <th> Fecha registro </th>
+		            <th> Region </th>
 		            <th> Cantidad </th>
 		        </tr>
 		    </thead>
 		    <tfoot>
 		        <tr>
+		            <th>  </th>
 		            <th> Total </th>
-		            <th> {{ $Modalidades->sum('cantidad') }} </th>
+		            <th> {{ Totales('Pre Provincia') }} </th>
 		        </tr>
 		    </tfoot>
 		    <tbody>
-			@foreach ($Modalidades as $item)
+			@foreach ($Preinscritos_provincia as $item)
 		        <tr >
-		            <td> {{ $item->modalidad }} </td>
+		            <td> {{ $item->fecha_registro }} </td>
+		            <td> {{ $item->region }} </td>
 		            <td> {{ $item->cantidad }} </td>
 		        </tr>
 			@endforeach
 		    </tbody>
 		</table>
-		{!! $Modalidades->links() !!}
+		{!! $Lista->links() !!}
 	</div><!--span-->
+	<div class="col-md-3">
+		<h3>Inscritos Provincia</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Fecha registro </th>
+		            <th> Region </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th>  </th>
+		            <th> Total </th>
+		            <th> {{ Totales('Ins Provincia') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Inscritos_provincia as $item)
+		        <tr >
+		            <td> {{ $item->fecha_conformidad }} </td>
+		            <td> {{ $item->region }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Lista->links() !!}
+	</div><!--span-->
+
 </div><!--row-->
 <div class="row">
 	<div class="col-md-3">
@@ -186,6 +222,32 @@
 			@endforeach
 		    </tbody>
 		</table>
+	</div><!--span-->
+		<div class="col-md-3">
+		<h3>Por Modalidad</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Modalidad </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ $Modalidades->sum('cantidad') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Modalidades as $item)
+		        <tr >
+		            <td> {{ $item->modalidad }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Modalidades->links() !!}
 	</div><!--span-->
 </div><!--row-->
 @stop

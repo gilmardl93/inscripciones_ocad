@@ -41,26 +41,65 @@
             </div>
             <!--end col-md-8-->
             <div class="col-md-4">
-                <div class="portlet sale-summary">
-                    <div class="portlet-title">
-                        <div class="caption font-red sbold"> Pagos Realizados </div>
-                        <div class="tools">
-                            <a class="reload" href="javascript:;" data-original-title="" title=""> </a>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet sale-summary">
+                            <div class="portlet-title">
+                                <div class="caption font-red sbold"> Pagos Realizados </div>
+                                <div class="tools">
+                                    <a class="reload" href="javascript:;" data-original-title="" title=""> </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <ul class="list-unstyled">
+                                    @foreach ($postulante->recaudaciones as $item)
+                                        <li>
+                                            <span class="sale-info"> {{ $item->fecha.' - '.$item->descripcion }}
+                                                <i class="fa fa-img-up"></i>
+                                            </span>
+                                            <span class="sale-num"> {{ $item->monto }} </span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="portlet-body">
-                        <ul class="list-unstyled">
-                            @foreach ($postulante->recaudaciones as $item)
-                                <li>
-                                    <span class="sale-info"> {{ $item->fecha.' - '.$item->descripcion }}
-                                        <i class="fa fa-img-up"></i>
-                                    </span>
-                                    <span class="sale-num"> {{ $item->monto }} </span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
+                    </div><!--span-->
+                </div><!--row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet sale-summary">
+                            <div class="portlet-title">
+                                <div class="caption font-red sbold"> Verificacion de datos </div>
+                                <div class="tools">
+                                    <a class="reload" href="javascript:;" data-original-title="" title=""> </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <span class="sale-info"> Lleno datos Personales
+                                            <i class="fa fa-img-up"></i>
+                                        </span>
+                                        <span class="sale-num"> {!! $postulante->procesos->personal !!} </span>
+                                    </li>
+                                    <li>
+                                        <span class="sale-info"> Lleno datos Familiares
+                                            <i class="fa fa-img-up"></i>
+                                        </span>
+                                        <span class="sale-num"> {!! $postulante->procesos->familiar !!} </span>
+                                    </li>
+                                    <li>
+                                        <span class="sale-info"> Lleno datos de Encuesta
+                                            <i class="fa fa-img-up"></i>
+                                        </span>
+                                        <span class="sale-num"> {!! $postulante->procesos->datos_encuesta !!} </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!--span-->
+                </div><!--row-->
+
             </div>
             <!--end col-md-4-->
         </div>
@@ -180,7 +219,7 @@
                     {!! Form::open(['route'=>'admin.pos.store','method'=>'POST']) !!}
                         <div class="col-md-4">
                         {!!Form::hidden('idpostulante', $postulante->id );!!}
-                        {!! Field::text('password',null,['label'=>'Calmbiar la contraseña del usuario']) !!}
+                        {!! Field::text('password',null,['label'=>'Cambiar la contraseña del usuario']) !!}
                         {!!Form::enviar('Actualizar')!!}
                         </div>
                     {!! Form::close() !!}

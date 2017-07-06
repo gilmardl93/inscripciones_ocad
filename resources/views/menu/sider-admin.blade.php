@@ -33,7 +33,9 @@
             <li class="heading">
                 <h3 class="uppercase">IDENTIFICACION</h3>
             </li>
-            {!!Form::menu('Ingresante','#','fa fa-graduation-cap')!!}
+            {!!Form::menu('Etiquetas','#','fa fa-sticky-note-o')!!}
+            {!!Form::menu('Ingresante',route('admin.ingresantes.index'),'fa fa-graduation-cap')!!}
+            {!!Form::menu('Constancias','#','fa fa-file-pdf-o')!!}
             <li class="heading">
                 <h3 class="uppercase">Modulos</h3>
             </li>
@@ -54,7 +56,7 @@
 {!!Form::menu('Estadistica',route('admin.estadisticas.index'),'fa fa-bar-chart')!!}
 {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}
 {!!Form::menu('Universidad',route('admin.universidades.index'),'fa fa-bank')!!}
-{!!Form::menu('Importa Pago',route('admin.ventanilla.obtener'),'fa fa-dollar')!!}
+{!!Form::menu('Importa Pago',route('admin.ventanilla.index'),'fa fa-dollar')!!}
 {!!Form::menu('Listados',route('admin.listados.index'),'fa fa-users')!!}
 @endif
     </ul>

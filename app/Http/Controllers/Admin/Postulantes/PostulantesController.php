@@ -24,7 +24,7 @@ class PostulantesController extends Controller
     }
     public function show($id)
     {
-        $postulante = Postulante::with(['Recaudaciones','Usuarios'])->find($id);
+        $postulante = Postulante::with(['Recaudaciones','Usuarios','Procesos'])->find($id);
         return view('admin.postulantes.show',compact('postulante'));
     }
     public function store(Request $request)
