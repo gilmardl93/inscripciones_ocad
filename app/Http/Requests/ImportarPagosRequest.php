@@ -24,7 +24,7 @@ class ImportarPagosRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fecha'=>'required'
         ];
     }
 }

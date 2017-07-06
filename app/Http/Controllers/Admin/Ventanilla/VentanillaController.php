@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Admin\Ventanilla;
 
+use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImportarPagosRequest;
 use App\Models\Postulante;
 use App\Models\Recaudacion;
 use App\Models\Ventanilla;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Alert;
 use DB;
+use Illuminate\Http\Request;
 class VentanillaController extends Controller
 {
 	public function index()
 	{
 		return view('admin.ventanilla.index');
 	}
-	public function store(Request $request)
+	public function store(ImportarPagosRequest $request)
 	{
 		$date = Carbon::parse($request->get('fecha'))->toDateString();
 		$this->obtener($date);

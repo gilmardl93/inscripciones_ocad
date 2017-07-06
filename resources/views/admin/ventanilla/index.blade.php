@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+@include('alerts.errors')
 <div class="row">
 	<div class="col-md-12">
 	<!-- BEGIN Portlet PORTLET-->
@@ -23,7 +24,7 @@
                         {!! Form::label('lblFecha', 'Escoger Fecha', ['class'=>'form-group']) !!}
                     </div>
                     <div class="col-md-4">
-                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
                             <input type="text" class="form-control" name="fecha">
                             <span class="input-group-btn">
                                 <button class="btn default" type="button">
