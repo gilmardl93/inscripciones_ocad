@@ -373,6 +373,14 @@ if (! function_exists('Totales')) {
             case 'Inscritos':
                 $cantidad = Postulante::where('datos_ok',1)->Activos()->Isnull(0)->count();
                 break;
+            case 'Pre Provincia':
+                $cantidad = DB::select('SELECT sum(cantidad) as suma FROM EST_PRE_INS_REGION');
+                $cantidad = $cantidad[0]->suma;
+                break;
+            case 'Ins Provincia':
+                $cantidad = DB::select('SELECT sum(cantidad) as suma FROM EST_INS_REGION');
+                $cantidad = $cantidad[0]->suma;
+                break;
 
             default:
                 # code...

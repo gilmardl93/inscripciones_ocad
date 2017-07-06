@@ -361,6 +361,7 @@ class Postulante extends Model
 
         return $foto;
     }
+
     /**
     * Atributos Grado
     */
@@ -471,9 +472,9 @@ class Postulante extends Model
         $this->attributes['email'] = $value;
         User::where('id',Auth::user()->id)->update(['email'=>$value]);
     }
-    #################################
+    #####################################################################################################################################################################
     #SCOPES
-    #################################
+    #####################################################################################################################################################################
     /**
     * Devuelve los valores Activos
     * @param  [type]  [description]
@@ -635,7 +636,7 @@ class Postulante extends Model
     public function scopeDatosOk($cadenaSQL){
         return $cadenaSQL->where('datos_ok',1);
     }
-    ################################################################################33
+    ################################################################################
     /**
      * Establecemos el la relacion con catalogo
      * @return [type] [description]
@@ -755,6 +756,14 @@ class Postulante extends Model
     public function Procesos()
     {
         return $this->hasOne(Proceso::class,'idpostulante','id');
+    }
+    /**
+     * Establecemos la relacion con la de proceso
+     * @return [type] [description]
+     */
+    public function Ingresantes()
+    {
+        return $this->hasOne(Ingresante::class,'idpostulante','id');
     }
     /**
      * Operaciones estaticas

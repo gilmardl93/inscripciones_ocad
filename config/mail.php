@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'support@admisionuni.edu.pe',
-        'name' => 'Support OCAD',
+        'address' => 'noreply@admisionuni.edu.pe',
+        'name' => 'Oficina Central de Admisión',
     ],
 
     /*

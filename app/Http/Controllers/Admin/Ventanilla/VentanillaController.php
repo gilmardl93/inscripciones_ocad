@@ -12,9 +12,20 @@ use Alert;
 use DB;
 class VentanillaController extends Controller
 {
-    public function obtener()
+	public function index()
+	{
+		return view('admin.ventanilla.index');
+	}
+	public function store(Request $request)
+	{
+		$date = Carbon::parse($request->get('fecha'))->toDateString();
+		$this->obtener($date);
+	}
+
+    public function obtener($fecha = null)
     {
-    	$date = Carbon::now()->toDateString();
+    	if (!isset($fecha)) $date = Carbon::now()->toDateString();
+
     	$recibos = Recaudacion::select('recibo')->get()->toArray();
     	$pagos = Ventanilla::where('fecha',$date)->whereNotIn('recibo',$recibos)->get();
     	if(!$pagos->isEmpty()){
@@ -53,12 +64,5 @@ class VentanillaController extends Controller
     	}//end if
 
     	return back();
-    }
-    public function CreaJS()
-    {
-    	$query = "numero_identificacion||'-'||clearstring(paterno)||' '||clearstring(materno)||','||clearstring(nombres) as nombres";
-    	$pagantes = Postulante::select(DB::raw($query))->Alfabetico()->Pagantes()->get();
-    	dd($pagantes->toArray());
-
     }
 }

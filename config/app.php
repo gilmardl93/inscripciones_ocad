@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Oficina Central de Admision',
+    'name' => 'Oficina Central de Admisión',
 
     /*
     |--------------------------------------------------------------------------

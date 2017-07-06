@@ -25,7 +25,7 @@
                     <div class="col-md-4">
                             {!!Field::text('paterno[0]', null , ['label'=>'Apellido Paterno del padre (*)','placeholder'=>'Apellido Paterno','maxlength'=>'25'])!!}
                     </div><!--span-->
-                    <div class=>"col-md-4">
+                    <div class="col-md-4">
                         {!!Field::text('materno[0]', null , ['label'=>'Apellido Materno del padre (*)','placeholder'=>'Apellido Materno','maxlength'=>'25'])!!}
                     </div><!--span-->
                     <div class="col-md-4">
