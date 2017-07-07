@@ -9,7 +9,7 @@
     <div class="portlet light tasks-widget widget-comments">
         <div class="portlet-title margin-bottom-20">
             <div class="caption caption-md font-red-sunglo">
-                <span class="caption-subject theme-font bold uppercase">foto del postulante tamaño carné</span>
+                <span class="caption-subject theme-font bold uppercase">foto del postulante tamaño pasaporte</span>
             </div>
         </div>
         <div class="portlet-body overflow-h">

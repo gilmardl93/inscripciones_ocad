@@ -10,7 +10,31 @@ class Ingresante extends Model
     protected $table = 'ingresante';
     protected $guarded = [];
     public $timestamps = false;
-        /**
+    /**
+    * Atributos Facultad
+    */
+    public function getFacultadAttribute()
+    {
+        $facultad = Facultad::find($this->idfacultad);
+        return $facultad->nombre;
+    }
+    /**
+    * Atributos especialidad
+    */
+    public function getEspecialidadAttribute()
+    {
+        $especialidad = Especialidad::find($this->idespecialidad);
+        return $especialidad->nombre;
+    }
+    /**
+    * Atributos Modalidad
+    */
+    public function getModalidadAttribute()
+    {
+        $modalidad = Modalidad::find($this->idmodalidad);
+        return $modalidad->nombre;
+    }
+    /**
     * Atributos Foto Ingresante
     */
     public function getFotoAttribute()
@@ -28,7 +52,16 @@ class Ingresante extends Model
     public function getHuellaAttribute()
     {
     	$postulante = Postulante::find($this->idpostulante);
-        $huella = 'huella/'.$postulante->numero_identificacion.'.bmp';
+        $huellabmp = 'huella/'.$postulante->numero_identificacion.'.bmp';
+        $huella = 'huella/'.$postulante->numero_identificacion.'.jpg';
+
+
+        if(Storage::exists('public/'.$huellabmp) && !Storage::exists('public/'.$huella)){
+            #convierto
+            exec('convert '.public_path('storage/'.$huellabmp).' '.public_path('storage/'.$huella));
+            #elimino
+            Storage::delete('public/'.$huellabmp);
+        }
         if(Storage::exists('public/'.$huella))$imagen = asset('/storage/'.$huella);
         else $imagen = false;
 
@@ -40,7 +73,7 @@ class Ingresante extends Model
     public function getFirmaAttribute()
     {
     	$postulante = Postulante::find($this->idpostulante);
-        $firma = 'firma/'.$postulante->numero_identificacion.'.bmp';
+        $firma = 'firma/'.$postulante->numero_identificacion.'.jpg';
         if(Storage::exists('public/'.$firma))$imagen = asset('/storage/'.$firma);
         else $imagen = false;
 

@@ -102,6 +102,7 @@
 
             </div>
             <!--end col-md-4-->
+            <p><h2><strong>Fecha de Registro :</strong> {{ $postulante->fecha_registro }}</h2></p>
         </div>
         <!--end row-->
         <div class="tabbable-line tabbable-custom-profile">

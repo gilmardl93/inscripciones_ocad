@@ -19,24 +19,24 @@ class EstadisticasController extends Controller
                             ->Activos()
                             ->groupBy('fecha_conformidad')
                             ->orderBy('fecha_conformidad','desc')
-                            ->paginate();
+                            ->paginate(10);
 
     	$Lista = Postulante::select('fecha_registro',DB::raw('count(*) as cantidad'))
     						->IsNull(0)
     						->Activos()
     						->groupBy('fecha_registro')
     						->orderBy('fecha_registro','desc')
-    						->paginate();
+    						->paginate(10);
         $Pagantes = Postulante::select('fecha_pago',DB::raw('count(*) as cantidad'))
                             ->where('pago',1)
                             ->groupBy('fecha_pago')
                             ->orderBy('fecha_pago','desc')
-                            ->paginate();
+                            ->paginate(10);
         $Modalidades = Postulante::select('m.nombre as modalidad',DB::raw('count(*) as cantidad'))
                             ->join('modalidad as m','m.id','=','postulante.idmodalidad')
                             ->IsNull(0)
                             ->groupBy('m.nombre')
-                            ->paginate();
+                            ->paginate(10);
         $Pagos = Recaudacion::select('s.descripcion as descripcion',DB::raw('count(*) as cantidad'))
                             ->join('servicio as s','s.codigo','=','recaudacion.servicio')
                             ->groupBy('s.descripcion')

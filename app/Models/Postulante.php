@@ -91,6 +91,17 @@ class Postulante extends Model
         return $ie->gestion;
     }
     /**
+    * Atributos Gestion IE
+    */
+    public function getInstitucionEducativaAttribute()
+    {
+        $modalidad = Modalidad::find($this->idmodalidad);
+        if ($modalidad->colegio) $ie = Colegio::find($this->idcolegio);
+        else $ie = Universidad::find($this->iduniversidad);
+
+        return $ie->nombre;
+    }
+    /**
     * Atributos Codigo Modalidad
     */
     public function getCodigoModalidadAttribute()
@@ -369,6 +380,17 @@ class Postulante extends Model
     {
         $grado = Catalogo::find($this->idgrado);
         return $grado->nombre;
+    }
+    /**
+    * Atributos Sexo
+    */
+    public function getPrefijoSexoAttribute()
+    {
+        if(isset($this->idsexo)){
+            $sexo = Catalogo::find($this->idsexo);
+            $prefijo = ($sexo->nombre=='Masculino') ? 'El Sr.' : 'La Srta.' ;
+            return $prefijo;
+        }else return '--';
     }
     /**
     * Atributos Sexo

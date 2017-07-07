@@ -112,7 +112,7 @@
 			@endforeach
 		    </tbody>
 		</table>
-		{!! $Lista->links() !!}
+		{!! $Preinscritos_provincia->links() !!}
 	</div><!--span-->
 	<div class="col-md-3">
 		<h3>Inscritos Provincia</h3>
@@ -141,7 +141,7 @@
 			@endforeach
 		    </tbody>
 		</table>
-		{!! $Lista->links() !!}
+		{!! $Inscritos_provincia->links() !!}
 	</div><!--span-->
 
 </div><!--row-->

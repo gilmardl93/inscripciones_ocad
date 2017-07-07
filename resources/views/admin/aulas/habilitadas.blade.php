@@ -130,6 +130,16 @@ table.dataTable({
                     }
                 },
                 {
+                    'targets':[5,7,9,11],
+                    'render': function ( data, type, row, meta ) {
+                        if (data<20) {
+                            return '<span class="label label-danger"> '+data+' </span>';
+                        }else{
+                            return data;
+                        }
+                    }
+                },
+                {
                     'targets':13,
                     'render': function ( data, type, row ) {
                         if (data) {
