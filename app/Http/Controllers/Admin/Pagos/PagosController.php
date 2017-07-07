@@ -82,7 +82,7 @@ class PagosController extends Controller
             $archivo = file($archivo);
             $banco = 'scotiabank';
 
-        }elseif (str_contains($nombre,'Pagos')) {
+        }elseif (str_contains($nombre,'ConsMov')) {
             $request->file('file')->storeAs('pagos/financiero',$nombre);
             $archivo = storage_path('app/pagos/financiero/').$nombre;
             $archivo = file($archivo);
@@ -184,7 +184,50 @@ class PagosController extends Controller
         $data = [];
         switch ($banco) {
             case 'financiero':
-                # code...
+                $servicios = Servicio::Activo()->get();
+                foreach ($archivo as $key => $value) {
+                    if (strlen(trim($value)) > 0 ) {
+                        $operacion = substr(trim(strtok($value, "\t")), -6);
+                        $recibo = substr(trim(strtok("\t")),-8);
+                        $tmp = trim(strtok("\t"));
+                        $tmp = trim(strtok("\t"));
+                        $banco = trim(strtok("\t"));
+                        $tmp = trim(strtok("\t"));
+                        $tmp = trim(strtok("\t"));
+                        $dni = trim(strtok("\t"));
+                        $cliente = trim(strtok("\t"));
+                        $monto = trim(strtok("\t"));
+                        $tmp = trim(strtok("\t"));
+                        $tmp = trim(strtok("\t"));
+                        $fecha = trim(strtok("\t"));
+                        $tmp = trim(strtok("\t"));
+                        $tmp = trim(strtok("\t"));
+                        $tmp = trim(strtok("\t"));
+                        $descripcion_banco = trim(strtok("\t"));
+
+                        $partida = trim(strtok($descripcion_banco,"|"));
+
+                        $servicio = $servicios->where('partida', $partida);
+
+                        if(!$servicio->isEmpty()){
+                            $key = $servicio->keys()[0];
+                        }else{
+                            $key = 0;
+                            $servicio[$key] = new Servicio(['codigo'=>'No ubicado','descripcion'=>'---']);
+                        }
+                        $data[$i]['recibo'] = $servicio[$key]->codigo.$dni;
+                        $data[$i]['servicio'] = $servicio[$key]->codigo;
+                        $data[$i]['descripcion'] = $servicio[$key]->descripcion;
+                        $data[$i]['monto'] = (float)$monto/100;
+                        $data[$i]['fecha'] = str_replace('/','-',$fecha);
+                        $data[$i]['codigo'] = $dni;
+                        $data[$i]['nombrecliente'] = $cliente;
+                        $data[$i]['banco'] = $banco;
+                        $data[$i]['partida'] = $partida;
+                        $data[$i]['referencia'] = 'recibo:'.$recibo.'- operacion:'.$operacion;
+                        $i++;
+                    }
+                }
                 break;
 
             case 'bcp':
@@ -201,7 +244,7 @@ class PagosController extends Controller
                             $servicio[$key] = new Servicio(['codigo'=>'No ubicado','descripcion'=>'---']);
                         }
 
-                        $data[$i]['recibo'] = $servicio[$key]->codigo;
+                        $data[$i]['recibo'] = $servicio[$key]->codigo.substr($value, 113 ,8);
                         $data[$i]['servicio'] = $servicio[$key]->codigo;
                         $data[$i]['descripcion'] = $servicio[$key]->descripcion;
                         $data[$i]['monto'] = (float)substr($value, 151 ,9)/100;
