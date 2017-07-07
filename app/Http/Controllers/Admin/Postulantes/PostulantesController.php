@@ -12,6 +12,7 @@ class PostulantesController extends Controller
     public function buscar(Request $request)
     {
         $name = strtoupper($request->input('name'));
+        $name = trim($name);
         $postulantes = Postulante::whereRaw("numero_identificacion||' '||clearstring(paterno)||' '||clearstring(materno)||clearstring(nombres) like '%$name%'")->paginate();
         if($postulantes->total()>0){
             return view('admin.postulantes.index',compact('postulantes'));
