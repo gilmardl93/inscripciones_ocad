@@ -90,22 +90,13 @@
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
-		            <th> Fecha registro </th>
 		            <th> Region </th>
 		            <th> Cantidad </th>
 		        </tr>
 		    </thead>
-		    <tfoot>
-		        <tr>
-		            <th>  </th>
-		            <th> Total </th>
-		            <th> {{ Totales('Pre Provincia') }} </th>
-		        </tr>
-		    </tfoot>
 		    <tbody>
 			@foreach ($Preinscritos_provincia as $item)
 		        <tr >
-		            <td> {{ $item->fecha_registro }} </td>
 		            <td> {{ $item->region }} </td>
 		            <td> {{ $item->cantidad }} </td>
 		        </tr>
@@ -119,22 +110,13 @@
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
-		            <th> Fecha registro </th>
 		            <th> Region </th>
 		            <th> Cantidad </th>
 		        </tr>
 		    </thead>
-		    <tfoot>
-		        <tr>
-		            <th>  </th>
-		            <th> Total </th>
-		            <th> {{ Totales('Ins Provincia') }} </th>
-		        </tr>
-		    </tfoot>
 		    <tbody>
 			@foreach ($Inscritos_provincia as $item)
 		        <tr >
-		            <td> {{ $item->fecha_conformidad }} </td>
 		            <td> {{ $item->region }} </td>
 		            <td> {{ $item->cantidad }} </td>
 		        </tr>

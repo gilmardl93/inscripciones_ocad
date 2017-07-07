@@ -45,8 +45,12 @@ class EstadisticasController extends Controller
 
         $Semibecas = Solicitante::select('otorga',DB::raw('count(*) as cantidad'))->Activo()->groupBy('otorga')->get();
 
-        $Preinscritos_provincia = DB::table('est_pre_ins_region')->paginate(10);
-        $Inscritos_provincia = DB::table('est_ins_region')->paginate(10);
+        $Preinscritos_provincia = DB::table('est_pre_ins_region')
+                                    ->select('region',DB::raw("sum(cantidad) as cantidad"))
+                                    ->groupBy('region')->paginate(10);
+        $Inscritos_provincia = DB::table('est_ins_region')
+                                    ->select('region',DB::raw("sum(cantidad) as cantidad"))
+                                    ->groupBy('region')->paginate(10);
 
         return view('admin.estadisticas.index',compact('Inscritos','Lista','Pagantes','Modalidades','Pagos','Fotos','Semibecas','Preinscritos_provincia','Inscritos_provincia'));
     }
