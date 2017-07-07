@@ -32,6 +32,7 @@ Route::group(['namespace'=>'Ingresantes'], function() {
 	Route::resource('ingresantes', 'IngresantesController',['names'=>'admin.ingresantes','only'=>['index','show']]);
 	Route::post('ingresantes-search', 'IngresantesController@search')->name('admin.ingresantes.search');
 	Route::get('datos-pdf/{id?}','IngresantesController@pdfdatos')->name('admin.ingresantes.pdfdatos');
+	Route::get('constancia-pdf/{id?}','IngresantesController@pdfconstancia')->name('admin.ingresantes.pdfconstancia');
 
 });
 /**

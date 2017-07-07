@@ -10,6 +10,22 @@ class Familiar extends Model
     protected $guarded = [];
     public $timestamps = false;
 
+    /**
+    * Atributos Nombre Completo
+    */
+    public function getNombreCompletoAttribute()
+    {
+        $nombre = $this->paterno.'-'.$this->materno.','.$this->nombres;
+        return $nombre;
+    }
+    /**
+    * Atributos Nombre Completo
+    */
+    public function getApoderadoAttribute()
+    {
+        $nombre = $this->paterno.'-'.$this->materno.','.$this->nombres.'/'.$this->dni.'/'.$this->telefonos;
+        return $nombre;
+    }
     public static function Actualizar($data)
     {
     	Familiar::where('id',$data['id'][0])->update([

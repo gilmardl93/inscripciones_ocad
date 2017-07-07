@@ -90,14 +90,14 @@
                     <a href="#tab_2" data-toggle="tab" aria-expanded="true"> Ficha </a>
                 </li>
                 <li>
-                    <a href="#tab_3" data-toggle="tab" aria-expanded="true"> Usuario </a>
+                    <a href="#tab_3" data-toggle="tab" aria-expanded="true"> Constancia </a>
                 </li>
                 <li>
                     <a href="#tab_4" data-toggle="tab" aria-expanded="true"> Cargar Foto </a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="tab_1">
+                <div class="tab-pane " id="tab_1">
                     <iframe src="{{route('admin.ingresantes.pdfdatos',$postulante->id)}}" width="100%" height="900px" scrolling="auto"></iframe>
                 </div>
                 <!--tab-pane-->
@@ -106,14 +106,8 @@
                 </div>
                 <!--tab-pane-->
                 <div class="tab-pane" id="tab_3">
-                    <div class="tab-pane active" id="tab_1_1_1">
-                    {!! Form::open(['route'=>'admin.pos.store','method'=>'POST']) !!}
-                        <div class="col-md-4">
-                        {!!Form::hidden('idpostulante', $postulante->id );!!}
-                        {!! Field::text('password',null,['label'=>'Cambiar la contraseña del usuario']) !!}
-                        {!!Form::enviar('Actualizar')!!}
-                        </div>
-                    {!! Form::close() !!}
+                    <div class="tab-pane " id="tab_3">
+                    <iframe src="{{route('admin.ingresantes.pdfconstancia',$postulante->id)}}" width="100%" height="900px" scrolling="auto"></iframe>
                     </div>
                 </div>
                 <!--tab-pane-->
