@@ -46,7 +46,7 @@
                                 <img src="{{ $postulante->ingresantes->firma }}" alt="" style="width: 100%; height: 300px;">
                             </a>
                             <div class="caption">
-                                <h3>Frima Ingresante</h3>
+                                <h3>Firma Ingresante</h3>
                             </div>
                         </div>
                     </div><!--span-->
