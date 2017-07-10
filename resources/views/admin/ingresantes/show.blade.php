@@ -4,6 +4,7 @@
 @section('content')
 {!! Alert::render() !!}
 @include('alerts.errors')
+@include('alerts.errors')
 <div class="row">
     <div class="col-md-12">
         <div class="row">
@@ -84,7 +85,7 @@
                     <a href="#tab_1" data-toggle="tab" aria-expanded="true"> Datos del Postulante </a>
                 </li>
                 <li>
-                    <a href="#tab_5" data-toggle="tab" aria-expanded="true"> Editar Datos </a>
+                    <a href="#tab_5" data-toggle="tab" aria-expanded="true"> Editar Datos Postulante </a>
                 </li>
                 <li>
                     <a href="#tab_2" data-toggle="tab" aria-expanded="true"> Ficha </a>
@@ -92,33 +93,45 @@
                 <li>
                     <a href="#tab_3" data-toggle="tab" aria-expanded="true"> Constancia </a>
                 </li>
-                <li>
-                    <a href="#tab_4" data-toggle="tab" aria-expanded="true"> Cargar Foto </a>
-                </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane " id="tab_1">
+                <div class="tab-pane active" id="tab_1">
                     <iframe src="{{route('admin.ingresantes.pdfdatos',$postulante->id)}}" width="100%" height="900px" scrolling="auto"></iframe>
                 </div>
                 <!--tab-pane-->
                 <div class="tab-pane" id="tab_2">
-                <iframe src="{{route('ficha.pdf',$postulante->id)}}" width="100%" height="900px" scrolling="auto"></iframe>
+                    <iframe src="{{route('ficha.pdf',$postulante->id)}}" width="100%" height="900px" scrolling="auto"></iframe>
                 </div>
                 <!--tab-pane-->
                 <div class="tab-pane" id="tab_3">
-                    <div class="tab-pane " id="tab_3">
+                    @if (str_contains($ingresante->codigo_modalidad,['E1TE','E1TG','E1TGU']))
+                        {!! Form::model($ingresante,['route'=>['admin.ingresantes.update',$ingresante],'method'=>'PUT']) !!}
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {!! Field::text('facultad_procedencia',['label'=>'Facultad de Procedencia','placeholder'=>'Facultad de Procedencia']) !!}
+                                </div><!--span-->
+                                <div class="col-md-3">
+                                    {!! Field::text('titulo',['label'=>'Titulo Obtenido','placeholder'=>'Titulo Obtenido']) !!}
+                                </div><!--span-->
+                                @if (str_contains($ingresante->codigo_modalidad,['E1TE']))
+                                    <div class="col-md-3">
+                                        {!! Field::text('grado',['label'=>'Grado Obtenido','placeholder'=>'Grado Obtenido']) !!}
+                                    </div><!--span-->
+                                    <div class="col-md-3">
+                                        {!! Field::text('numero_creditos',['label'=>'Numero de Creditos','placeholder'=>'Numero de creditos']) !!}
+                                    </div><!--span-->
+                                @endif
+                            </div><!--row-->
+                            {!!Form::enviar('Actualzar')!!}
+                        {!! Form::close() !!}
+                        <p></p>
+                    @endif
                     <iframe src="{{route('admin.ingresantes.pdfconstancia',$postulante->id)}}" width="100%" height="900px" scrolling="auto"></iframe>
-                    </div>
                 </div>
                 <!--tab-pane-->
                 <div class="tab-pane" id="tab_4">
                     <div class="tab-pane active" id="tab_1_1_1">
-                    {!! Form::open(['route'=>'admin.pos.store','method'=>'POST']) !!}
-                        <div class="col-md-4">
-                        {!!Form::hidden('idpostulante', $postulante->id );!!}
 
-                        </div>
-                    {!! Form::close() !!}
                     </div>
                 </div>
                 <!--tab-pane-->

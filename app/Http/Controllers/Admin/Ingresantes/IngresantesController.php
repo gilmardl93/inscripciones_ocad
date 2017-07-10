@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin\Ingresantes;
 
 use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateIngresanteRequest;
 use App\Models\Evaluacion;
 use App\Models\Familiar;
+use App\Models\Ingresante;
 use App\Models\Postulante;
 use Illuminate\Http\Request;
 use PDF;
+use Validator;
 class IngresantesController extends Controller
 {
     public function index()
@@ -18,15 +21,51 @@ class IngresantesController extends Controller
     }
     public function search(Request $request)
     {
-    	$Lista = Postulante::has('ingresantes')->where('numero_identificacion','like','%'.$request->get('dni').'%')->get();
-    	if ($Lista->count()==0) Alert::warning('No existe este DNI como ingresante');
+        $rules = array (
+                'dni' => 'required'
+        );
+        $validator = Validator::make ( $request->all(), $rules );
+        if ($validator->fails()) {
+            return [
+                   'errors' => $validator->getMessageBag()->toArray()
+                    ];
+        }else {
+            $name = strtoupper(trim($request->dni));
+    	    $Lista = Postulante::has('ingresantes')
+                               ->whereRaw("numero_identificacion||' '||clearstring(paterno)||' '||clearstring(materno)||clearstring(nombres) like '%$name%'")
+                               ->get();
+            if ($Lista->count()==0) {
+                return[
+                    'errors'=> ['dni'=>'El numero de DNI ingresado no existe']
+                ];
+            } else {
+                return response ()->json ( $Lista );
+            }
 
-    	return view('admin.ingresantes.index',compact('Lista'));
+        }
+    	//if ($Lista->count()==0) Alert::warning('No existe este DNI como ingresante');
+    	//return view('admin.ingresantes.index',compact('Lista'));
     }
     public function show($id)
     {
     	$postulante = Postulante::with('ingresantes')->find($id);
-    	return view('admin.ingresantes.show',compact('postulante'));
+        $ingresante = Ingresante::where('idpostulante',$postulante->id)->first();
+    	return view('admin.ingresantes.show',compact('postulante','ingresante'));
+    }
+    public function update(UpdateIngresanteRequest $request,$id)
+    {
+        $data = $request->all();
+        if(empty($data['numero_creditos']))$data['numero_creditos']=0;
+
+        $ingresante = Ingresante::find($id);
+        $ingresante->fill($data);
+        $ingresante->save();
+        return back();
+    }
+    public function control()
+    {
+        $Lista = [];
+        return view('admin.ingresantes.control_entrega',compact('Lista'));
     }
     public function pdfdatos($id)
     {
@@ -43,12 +82,12 @@ class IngresantesController extends Controller
         PDF::SetFont('helvetica','',22);
         PDF::Cell(170,15,"DATOS GENERALES DEL INGRESANTE",0,0,'C');
         #FOTO POSTULANTE
-        PDF::Image($postulante->mostrar_foto_editada,20,35,27);
+        PDF::Image($postulante->mostrar_foto_editada,20,35,25,35);
         PDF::SetXY(20,70);
         PDF::SetFont('helvetica','',8);
         PDF::Cell(25,5,'POSTULANTE:',1,0,'C');
         #FOTO INGRESANTE
-        PDF::Image($postulante->ingresantes->foto,50,35,27);
+        PDF::Image($postulante->ingresantes->foto,50,35,25,35);
         PDF::SetXY(50,70);
         PDF::SetFont('helvetica','',8);
         PDF::Cell(25,5,'INGRESANTE:',1,0,'C');
@@ -208,12 +247,12 @@ class IngresantesController extends Controller
         PDF::Cell(80,5,'OBSERVACIONES:',0,0,'L');
         #
         PDF::Rect(20, $y+85, 170, 30);
-        ##HUELLA INGRESANTE
-        PDF::Image($postulante->ingresantes->huella,20,$y+120,27);
+        #HUELLA INGRESANTE
+        PDF::Image($postulante->ingresantes->huella,20,$y+120,25,35);
         PDF::SetXY(20,$y+155);
         PDF::SetFont('helvetica','',8);
         PDF::Cell(25,5,'HUELLA DIGITAL',1,0,'C');
-        ##HUELLA MANUAL INGRESANTE
+        #FIRMA INGRESANTE
         PDF::Image($postulante->ingresantes->firma,55,$y+120,27);
         PDF::SetXY(55,$y+155);
         PDF::SetFont('helvetica','',8);
@@ -247,11 +286,37 @@ class IngresantesController extends Controller
         $postulante = Postulante::find($id);
         $evaluacion = Evaluacion::Activo()->first();
         PDF::SetTitle(' CONSTANCIA DEL INGRESANTE');
-
-        PDF::SetAutoPageBreak(false);
         PDF::AddPage('U','A4');
-        PDF::Image($postulante->ingresantes->foto,162, 88, 24, 33);
+        PDF::SetAutoPageBreak(false);
+        $this->ReportFotoConstancia($postulante);
         #DUPLICADO DE CONSTANCIA
+        $this->ReportConstancia($postulante,$evaluacion);
+        #EXPORTO
+        PDF::Output(public_path('storage/tmp/').'Expediente_'.$postulante->numero_identificacion.'.pdf','FI');
+    }
+    public function pdfconstancias()
+    {
+        $ingresantes = Postulante::has('ingresantes')->get();
+        $evaluacion = Evaluacion::Activo()->first();
+        PDF::SetTitle(' CONSTANCIAs DE INGRESANTES');
+        PDF::SetAutoPageBreak(false);
+        foreach ($ingresantes as $key => $ingresante) {
+            $this->ReportConstancia($ingresante,$evaluacion);
+        }
+        PDF::Output(public_path('storage/tmp/').'Constancias.pdf','F');
+        $headers = [];
+        return response()->download(
+                storage_path('app/public/tmp/Constancias.pdf'),
+                null,
+                $headers
+            );
+    }
+    public function ReportFotoConstancia($postulante)
+    {
+        PDF::Image($postulante->ingresantes->foto,162, 88, 24, 33);
+    }
+    public function ReportConstancia($postulante,$evaluacion)
+    {
         #FONDO
         PDF::AddPage('U','A4');
         PDF::Image(asset('assets/pages/img/constancia.png'),0,0,210,297,'', '', '', false, 300, '', false, false, 0);
@@ -324,9 +389,6 @@ class IngresantesController extends Controller
         );
         // CODE 39 - ANSI MH10.8M-1983 - USD-3 - 3 of 9.
         PDF::write1DBarcode($postulante->numero_identificacion, 'C39', '', '', '', 18, 0.4, $style, 'N');
-
-        #EXPORTO
-        PDF::Output(public_path('storage/tmp/').'Constancia_'.$postulante->numero_identificacion.'.pdf','FI');
     }
 
 }

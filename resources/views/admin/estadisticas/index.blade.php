@@ -5,87 +5,6 @@
 {!! Alert::render() !!}
 <div class="row">
 	<div class="col-md-3">
-		<h3>Preinscritos</h3>
-		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
-		    <thead>
-		        <tr>
-		            <th> Fecha registro </th>
-		            <th> Cantidad </th>
-		        </tr>
-		    </thead>
-		    <tfoot>
-		        <tr>
-		            <th> Total </th>
-		            <th> {{ Totales('Preinscritos') }} </th>
-		        </tr>
-		    </tfoot>
-		    <tbody>
-			@foreach ($Lista as $item)
-		        <tr >
-		            <td> {{ $item->fecha_registro }} </td>
-		            <td> {{ $item->cantidad }} </td>
-		        </tr>
-			@endforeach
-		    </tbody>
-		</table>
-		{!! $Lista->links() !!}
-	</div><!--span-->
-	<div class="col-md-3">
-		<h3>Inscritos</h3>
-		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
-		    <thead>
-		        <tr>
-		            <th> Fecha registro </th>
-		            <th> Cantidad </th>
-		        </tr>
-		    </thead>
-		    <tfoot>
-		        <tr>
-		            <th> Total </th>
-		            <th> {{ Totales('Inscritos') }} </th>
-		        </tr>
-		    </tfoot>
-		    <tbody>
-			@foreach ($Inscritos as $item)
-		        <tr >
-		            <td> {{ $item->fecha_conformidad }} </td>
-		            <td> {{ $item->cantidad }} </td>
-		        </tr>
-			@endforeach
-		    </tbody>
-		</table>
-		{!! $Lista->links() !!}
-	</div><!--span-->
-	<div class="col-md-3">
-		<h3>Pagantes</h3>
-		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
-		    <thead>
-		        <tr>
-		            <th> Fecha Pago </th>
-		            <th> Cantidad </th>
-		        </tr>
-		    </thead>
-		    <tfoot>
-		        <tr>
-		            <th> Total </th>
-		            <th> {{ Totales('Pagantes') }} </th>
-		        </tr>
-		    </tfoot>
-		    <tbody>
-			@foreach ($Pagantes as $item)
-		        <tr >
-		            <td> {{ $item->fecha_pago }} </td>
-		            <td> {{ $item->cantidad }} </td>
-		        </tr>
-			@endforeach
-		    </tbody>
-		</table>
-		{!! $Pagantes->links() !!}
-	</div><!--span-->
-
-</div><!--row-->
-<div class="row">
-	<div class="col-md-3">
 		<h3>Preinscritos Provincias</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
@@ -125,55 +44,6 @@
 		</table>
 		{!! $Inscritos_provincia->links() !!}
 	</div><!--span-->
-
-</div><!--row-->
-<div class="row">
-	<div class="col-md-3">
-		<h3>Pagos</h3>
-		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
-		    <thead>
-		        <tr>
-		            <th> descripcion </th>
-		            <th> Cantidad </th>
-		        </tr>
-		    </thead>
-		    <tfoot>
-		        <tr>
-		            <th> Total </th>
-		            <th> {{ $Pagos->sum('cantidad') }} </th>
-		        </tr>
-		    </tfoot>
-		    <tbody>
-			@foreach ($Pagos as $item)
-		        <tr >
-		            <td> {{ $item->descripcion }} </td>
-		            <td> {{ $item->cantidad }} </td>
-		        </tr>
-			@endforeach
-		    </tbody>
-		</table>
-	</div><!--span-->
-	<div class="col-md-3">
-		<h3>Fotos</h3>
-		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
-		    <thead>
-		        <tr>
-		            <th> descripcion </th>
-		            <th> Cantidad </th>
-		        </tr>
-		    </thead>
-		    <tbody>
-			@foreach ($Fotos as $item)
-		        <tr >
-		            <td> {{ $item->foto_estado }} </td>
-		            <td> {{ $item->cantidad }} </td>
-		        </tr>
-			@endforeach
-		    </tbody>
-		</table>
-	</div><!--span-->
-</div><!--row-->
-<div class="row">
 	<div class="col-md-3">
 		<h3>Semibecas</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
@@ -205,8 +75,134 @@
 		    </tbody>
 		</table>
 	</div><!--span-->
-		<div class="col-md-3">
-		<h3>Por Modalidad</h3>
+	<div class="col-md-3">
+		<h3>Fotos</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> descripcion </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+			@foreach ($Fotos as $item)
+		        <tr >
+		            <td> {{ $item->foto_estado }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+	</div><!--span-->
+</div><!--row-->
+<div class="row">
+	<div class="col-md-4">
+		<h3>Preinscritos</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Fecha registro </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ Totales('Preinscritos') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Lista as $item)
+		        <tr >
+		            <td> {{ $item->fecha_registro }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Lista->links() !!}
+	</div><!--span-->
+	<div class="col-md-4">
+		<h3>Inscritos</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Fecha registro </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ Totales('Inscritos') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Inscritos as $item)
+		        <tr >
+		            <td> {{ $item->fecha_conformidad }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Lista->links() !!}
+	</div><!--span-->
+	<div class="col-md-4">
+		<h3>Pagantes</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Fecha Pago </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ Totales('Pagantes') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Pagantes as $item)
+		        <tr >
+		            <td> {{ $item->fecha_pago }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $Pagantes->links() !!}
+	</div><!--span-->
+</div><!--row-->
+<div class="row">
+	<div class="col-md-6">
+		<h3>Pagos</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> descripcion </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ $Pagos->sum('cantidad') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($Pagos as $item)
+		        <tr >
+		            <td> {{ $item->descripcion }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+	</div><!--span-->
+	<div class="col-md-6">
+		<h3>Pre Inscritos Por Modalidad</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>

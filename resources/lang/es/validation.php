@@ -131,6 +131,7 @@ return [
         'idpublicidad'=>'publicidad',
         'file'=>'Foto',
         'idservicio'=>'Servicio',
+        'numero_creditos'=>'Numero de creditos'
 
     ],
 

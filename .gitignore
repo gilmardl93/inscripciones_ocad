@@ -3,6 +3,7 @@
 /storage/debugbar
 /vendor
 /.idea
+.phpintel
 Homestead.json
 Homestead.yaml
 .env
