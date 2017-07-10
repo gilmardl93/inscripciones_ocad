@@ -62,7 +62,7 @@ $("#Buscar").click(function(event) {
         },
     })
     .success(function(data) {
-        if ((data.errors)) {console.log(data);
+        if ((data.errors)) {
                 $('.alert').removeClass('hidden');
                 $('.detalle').text(data.errors.dni);
             } else {

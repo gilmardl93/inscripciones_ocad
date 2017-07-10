@@ -10,7 +10,7 @@
         "styde/html": "~1.0",
         "elibyy/tcpdf-laravel": "5.3.*",
         "rap2hpoutre/laravel-log-viewer": "^0.10.2",
-         "barryvdh/laravel-debugbar": "^2.4",
+        "barryvdh/laravel-debugbar": "^2.4",
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {

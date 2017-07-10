@@ -29,10 +29,12 @@ Route::group(['namespace'=>'Postulantes'], function() {
  * Ingresantes
  */
 Route::group(['namespace'=>'Ingresantes'], function() {
-	Route::resource('ingresantes', 'IngresantesController',['names'=>'admin.ingresantes','only'=>['index','show']]);
+	Route::resource('ingresantes', 'IngresantesController',['names'=>'admin.ingresantes','only'=>['index','show','update']]);
 	Route::post('ingresantes-search', 'IngresantesController@search')->name('admin.ingresantes.search');
 	Route::get('datos-pdf/{id?}','IngresantesController@pdfdatos')->name('admin.ingresantes.pdfdatos');
 	Route::get('constancia-pdf/{id?}','IngresantesController@pdfconstancia')->name('admin.ingresantes.pdfconstancia');
+	Route::get('constancias','IngresantesController@pdfconstancias')->name('admin.ingresantes.constancias');
+	Route::get('control-entrega','IngresantesController@control')->name('admin.ingresantes.control');
 
 });
 /**

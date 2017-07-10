@@ -36,7 +36,7 @@ class EstadisticasController extends Controller
                             ->join('modalidad as m','m.id','=','postulante.idmodalidad')
                             ->IsNull(0)
                             ->groupBy('m.nombre')
-                            ->paginate(10);
+                            ->paginate(5);
         $Pagos = Recaudacion::select('s.descripcion as descripcion',DB::raw('count(*) as cantidad'))
                             ->join('servicio as s','s.codigo','=','recaudacion.servicio')
                             ->groupBy('s.descripcion')

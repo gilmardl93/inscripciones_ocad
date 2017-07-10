@@ -187,8 +187,8 @@ table.dataTable({
                     'targets':15,
                     'render': function ( data, type, row ) {
                       return ' \
-                      <a href="editar-aulas-activas/'+data+'/edit" title="Editar"class="btn btn-icon-only green-haze" ><i class="fa fa-edit"></i></a> \
-                      <a href="delete-aulas/'+data+' " title="Eliminar"class="btn btn-icon-only red" ><i class="fa fa-trash"></i></a> \
+                      <a href="editar-aulas-activas/'+data+'/edit" title="Editar"class="btn btn-xs green-haze" ><i class="fa fa-edit"></i></a> \
+                      <a href="delete-aulas/'+data+' " title="Eliminar"class="btn btn-xs red" ><i class="fa fa-trash"></i></a> \
                       ';
                     }
                 }
