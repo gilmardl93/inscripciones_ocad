@@ -242,6 +242,11 @@
                     {!! Form::model($postulante,['route'=>['admin.pos.update',$postulante],'method'=>'PUT']) !!}
                     <div class="row">
                         <div class="col-md-2">
+                        {!! Field::text('datos_ok',['label'=>'Habilitar modificacion de datos','placeholder'=>'Habilitar modificacion de datos']) !!}
+                        </div><!--span-->
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col-md-2">
                         {!! Field::text('fecha_nacimiento',['label'=>'Fecha de Nacimiento','placeholder'=>'Fecha de Nacimiento']) !!}
                         </div><!--span-->
                     </div><!--row-->

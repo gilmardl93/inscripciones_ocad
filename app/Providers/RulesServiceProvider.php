@@ -162,13 +162,16 @@ class RulesServiceProvider extends ServiceProvider
     {
 
         Validator::extend('valida_cod_cepre', function ($attribute, $value, $parameters, $validator)  {
-
-            $modalidad = Modalidad::find($parameters[0]);
-            if ($modalidad->codigo =='ID-CEPRE') {
-                $cepre = Validacion::where('codigo',$value)->Activos()->first();
-                return !is_null($cepre);
-            } else {
-                return true;
+            if(isset($parameters[0])){
+                $modalidad = Modalidad::find($parameters[0]);
+                if ($modalidad->codigo =='ID-CEPRE') {
+                    $cepre = Validacion::where('codigo',$value)->Activos()->first();
+                    return !is_null($cepre);
+                } else {
+                    return true;
+                }
+            }else{
+                return false;
             }
 
 

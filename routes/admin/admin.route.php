@@ -34,7 +34,8 @@ Route::group(['namespace'=>'Ingresantes'], function() {
 	Route::get('datos-pdf/{id?}','IngresantesController@pdfdatos')->name('admin.ingresantes.pdfdatos');
 	Route::get('constancia-pdf/{id?}','IngresantesController@pdfconstancia')->name('admin.ingresantes.pdfconstancia');
 	Route::get('constancias','IngresantesController@pdfconstancias')->name('admin.ingresantes.constancias');
-	Route::get('control-entrega','IngresantesController@control')->name('admin.ingresantes.control');
+	#Control de entreda
+	Route::resource('control', 'ControlConstanciasController',['names'=>'admin.ingresantes.control','only'=>['index','store']]);
 
 });
 /**

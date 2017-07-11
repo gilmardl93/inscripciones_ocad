@@ -16,9 +16,9 @@ class ModalidadTableSeeder extends Seeder
         Modalidad::create(['codigo' => 'E1DPA','nombre'=>'EXTRAORDINARIO1 - DOS PRIMEROS ALUMNOS','modalidad2'=>'ID-CEPRE','colegio'=>true]);
         Modalidad::create(['codigo' => 'E1DCAN','nombre'=>'EXTRAORDINARIO1 - DEPORTISTAS CALIFICADOS DE ALTO NIVEL','modalidad2'=>'ID-CEPRE','colegio'=>true]);
         Modalidad::create(['codigo' => 'E1DB','nombre'=>'EXTRAORDINARIO1 - DIPLOMADOS CON BACHILLERATO','modalidad2'=>'ID-CEPRE','colegio'=>true]);
-        Modalidad::create(['codigo' => 'E1TG','nombre'=>'EXTRAORDINARIO1 - TITULADOS O GRADUADOS','modalidad2'=>'ID-CEPRE','colegio'=>false]);
-        Modalidad::create(['codigo' => 'E1TGU','nombre'=>'EXTRAORDINARIO1 - TITULADO O GRADUADO UNI','modalidad2'=>'ID-CEPRE','colegio'=>false]);
-        Modalidad::create(['codigo' => 'E1TE','nombre'=>'EXTRAORDINARIO1 - TRASLADO EXTERNO','modalidad2'=>'ID-CEPRE','colegio'=>false]);
+        Modalidad::create(['codigo' => 'E1TG','nombre'=>'EXTRAORDINARIO1 - TITULADOS O GRADUADOS','modalidad2'=>'ID-CEPRE','colegio'=>false,'reglamento'=>'Se aplican los artículos 77°, 78° y 79° del Reglamento de Admisión']);
+        Modalidad::create(['codigo' => 'E1TGU','nombre'=>'EXTRAORDINARIO1 - TITULADO O GRADUADO UNI','modalidad2'=>'ID-CEPRE','colegio'=>false,'reglamento'=>'Se aplican los artículos 77°, 78° y 79° del Reglamento de Admisión']);
+        Modalidad::create(['codigo' => 'E1TE','nombre'=>'EXTRAORDINARIO1 - TRASLADO EXTERNO','modalidad2'=>'ID-CEPRE','colegio'=>false,'reglamento'=>'Se aplican los artículos 77° y 78° del Reglamento de Admisión']);
         Modalidad::create(['codigo' => 'E1CD','nombre'=>'EXTRAORDINARIO1 - CONVENIO DIPLOMATICO','modalidad2'=>'ID-CEPRE','colegio'=>true]);
         Modalidad::create(['codigo' => 'E1CABI','nombre'=>'EXTRAORDINARIO1 - CONVENIO ANDRES BELLO (iniciar estudios)','modalidad2'=>'ID-CEPRE','colegio'=>true]);
         Modalidad::create(['codigo' => 'E1CABC','nombre'=>'EXTRAORDINARIO1 - CONVENIO ANDRES BELLO (continuar estudios)','modalidad2'=>'ID-CEPRE','colegio'=>false]);
@@ -28,7 +28,7 @@ class ModalidadTableSeeder extends Seeder
         Modalidad::create(['codigo' => 'E1PDC','nombre'=>'EXTRAORDINARIO1 - PERSONAS CON DISCAPACIDAD (continuar estudios)','modalidad2'=>'ID-CEPRE','colegio'=>false]);
         Modalidad::create(['codigo' => 'E1TI','nombre'=>'EXTRAORDINARIO1 - TRASLADO INTERNO','modalidad2'=>'ID-CEPRE','colegio'=>false]);
         Modalidad::create(['codigo' => 'ID-CEPRE','nombre'=>'EXTRAORDINARIO2 – INGRESO DIRECTO CEPRE','colegio'=>true]);
-        Modalidad::create(['codigo' => 'IEN-UNI','nombre'=>'EXTRAORDINARIO2 – INGRESO ESCOLAR NACIONAL','colegio'=>false]);
+        Modalidad::create(['codigo' => 'IEN','nombre'=>'EXTRAORDINARIO2 – INGRESO ESCOLAR NACIONAL','colegio'=>false]);
 
 
     }

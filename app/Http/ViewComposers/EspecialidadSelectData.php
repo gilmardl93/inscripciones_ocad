@@ -10,6 +10,7 @@ class EspecialidadSelectData
 	public function compose(View $view)
 	{
 		$especialidad = Especialidad::Activo()->orderBy('nombre')->pluck('nombre','id')->toarray();
-		$view->with(compact('especialidad'));
+		$especialidad_edit = ['' => 'Seleccionar Especialidad']+Especialidad::Activo()->orderBy('nombre')->pluck('nombre','id')->toarray();
+		$view->with(compact('especialidad','especialidad_edit'));
 	}
 }

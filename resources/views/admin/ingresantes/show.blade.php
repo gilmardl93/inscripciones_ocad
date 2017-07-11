@@ -110,15 +110,16 @@
                                 <div class="col-md-3">
                                     {!! Field::text('facultad_procedencia',['label'=>'Facultad de Procedencia','placeholder'=>'Facultad de Procedencia']) !!}
                                 </div><!--span-->
-                                <div class="col-md-3">
-                                    {!! Field::text('titulo',['label'=>'Titulo Obtenido','placeholder'=>'Titulo Obtenido']) !!}
-                                </div><!--span-->
                                 @if (str_contains($ingresante->codigo_modalidad,['E1TE']))
                                     <div class="col-md-3">
-                                        {!! Field::text('grado',['label'=>'Grado Obtenido','placeholder'=>'Grado Obtenido']) !!}
+                                        {!! Field::text('numero_creditos',['label'=>'Numero de Creditos','placeholder'=>'Numero de creditos']) !!}
+                                    </div><!--span-->
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Field::text('titulo',['label'=>'Titulo Obtenido','placeholder'=>'Titulo Obtenido']) !!}
                                     </div><!--span-->
                                     <div class="col-md-3">
-                                        {!! Field::text('numero_creditos',['label'=>'Numero de Creditos','placeholder'=>'Numero de creditos']) !!}
+                                        {!! Field::text('grado',['label'=>'Grado Obtenido','placeholder'=>'Grado Obtenido']) !!}
                                     </div><!--span-->
                                 @endif
                             </div><!--row-->

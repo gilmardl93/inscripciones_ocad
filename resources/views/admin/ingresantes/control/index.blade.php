@@ -11,13 +11,21 @@
         <div class="search-bar bordered">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="input-group">
-                        {!!Form::token();!!}
-                        <input type="text" class="form-control" placeholder="Buscar Ingresantes" name="dni" id="dni">
-                        <span class="input-group-btn">
-                            <button class="btn green-soft uppercase bold" type="submit" id="Buscar">Buscar </button>
-                        </span>
-                    </div>
+                    {!!Form::token();!!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {!! Field::text('dni',['label'=>'Ingresar el DNI del ingresante a registrar','placeholder'=>'Ingresar DNI']) !!}
+                        </div><!--span-->
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!! Field::select('estado_constancia',['NO VINO'=>'NO VINO','ENTREGADO'=>'ENTREGADO','RETENIDO'=>'RETENIDO'],['label'=>'Escoger Estado','empty'=>'Escoger Estado','class'=>'input-lg']) !!}
+                        </div><!--span-->
+                        <div class="col-md-6">
+                            {!! Field::text('dni',['label'=>'Ingresar el DNI del ingresante a registrar','placeholder'=>'Ingresar DNI','class'=>'']) !!}
+                        </div><!--span-->
+                    </div><!--row-->
+                    <button class="btn green-soft uppercase bold" type="submit" id="Buscar">Buscar </button>
                 </div>
             </div>
         </div>
@@ -26,6 +34,8 @@
                 <thead class="bg-blue">
                     <tr>
                         <th> <a href="javascript:;">Ingresantes</a> </th>
+                        <th class="table-download"> <a href="javascript:;">Constancia</a> </th>
+                        <th class="table-download"> <a href="javascript:;">Fecha</a> </th>
                         <th class="table-download"> <a href="javascript:;">Foto</a> </th>
                     </tr>
                 </thead>
@@ -34,12 +44,12 @@
                     <tr>
                         <td class="table-title">
                             <h3>
-                                <a href="{{ route('admin.ingresantes.show',$item->id) }}">{{ $item->identificacion }}</a>
+                                <a href="{{ route('admin.ingresantes.show',$item->id) }}">{{ $item->numero_identificacion.'-'.$item->nombre_completo }}</a>
                             </h3>
-                            - Nombres:
-                                <a href="{{ route('admin.ingresantes.show',$item->id) }}">{{ $item->nombre_completo }}</a>
                         </td>
-                        <td class="table-download"> <img src="{{ $item->mostrar_foto_editada }}" width='50px'> </td>
+                        <td class="table-download"> {{ $item->ingresantes->estado_constancia }} </td>
+                        <td class="table-download"> {{ $item->ingresantes->fecha_constancia }} </td>
+                        <td class="table-download"> <img src="{{ $item->ingresantes->foto }}" width='50px'> </td>
                     </tr>
 
                     </tr>
@@ -55,15 +65,15 @@
 $(document).ready(function() {
 
     $("#dni").focus();
-    $("#Buscar").click(function(event) {
-        BuscarRegistro();
+    $("#Buscar").click(function() {
+        ListarConstancias();
     });
-    $("#dni").change(function(event) {
-        BuscarRegistro();
+    $("#dni").change(function() {
+        ListarConstancias();
     });
-    function BuscarRegistro() {
+    function ListarConstancias() {
         $.ajax({
-            url: '{{ url('admin/ingresantes-search/') }}',
+            url: '{{ url('admin/control/') }}',
             type: 'POST',
             data: {
                 _token: $('input[name=_token]').val(),
@@ -78,13 +88,13 @@ $(document).ready(function() {
                     $('.alert').remove();
                     $('.Items').empty();
                     data.forEach(function(item, index) {
-                    $('#Ingresante').append('<tr> <td class="table-descarga font-blue"><h3>'+
+                    $('#Ingresante').append('<tr> <td class="table-title"><h3>'+
                                     '<a href="{{ url("admin/ingresantes/") }}/'+item.id+'">'+
                                     item.numero_identificacion+' - '+
                                     item.paterno+' '+item.materno+' '+item.nombres+'</a></h3></td>'+
-                                    '<td class="table-download">'+
-                                    '<img src="{{ asset("storage/")}}/'+item.foto_editada+'" width="50px">'
-                                    +'</td>'
+                                    '<td class="table-download">'+item.ingresantes.estado_constancia   +'</td>'+
+                                    '<td class="table-download">'+item.ingresantes.fecha_constancia   +'</td>'+
+                                    '<td class="table-download"><img src="{{ asset("storage/fotoIng/") }}/'+item.numero_identificacion+'.jpg" width="50px"></td>'+
                                     +'</tr>');
                     });
                 }
@@ -97,6 +107,7 @@ $(document).ready(function() {
             console.log("complete");
         });
     }
+
 });
 
 </script>

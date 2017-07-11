@@ -36,23 +36,23 @@
             {!!Form::menu('Constancias',route('admin.ingresantes.constancias'),'fa fa-file-pdf-o')!!}
             {!!Form::menu('Etiquetas','#','fa fa-sticky-note-o')!!}
             {!!Form::menu('Ingresante',route('admin.ingresantes.index'),'fa fa-graduation-cap')!!}
-            {!!Form::menu('Control entrega',route('admin.ingresantes.control'),'fa fa-check-square-o')!!}
+            {!!Form::menu('Control entrega',route('admin.ingresantes.control.index'),'fa fa-check-square-o')!!}
             <li class="heading">
                 <h3 class="uppercase">Modulos</h3>
             </li>
             {!!Form::menu('Descuento',route('admin.descuentos.index'),'fa fa-cut')!!}
             {!!Form::menu('Comunicacion',route('admin.comunicacion.index'),'fa fa-share-alt')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['admin','jefe','root']))
+@if (str_contains(Auth::user()->codigo_rol,['admin','jefatura','root']))
 {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['foto','admin','jefe','root']))
+@if (str_contains(Auth::user()->codigo_rol,['foto','admin','jefatura','root']))
 {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['pago','admin','jefe','root']))
+@if (str_contains(Auth::user()->codigo_rol,['pago','admin','jefatura','root']))
 {!!Form::menu('Pagos',route('admin.pagos.index'),'fa fa-money')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['informes','admin','jefe','root']))
+@if (str_contains(Auth::user()->codigo_rol,['informes','admin','jefatura','root']))
 {!!Form::menu('Usuarios',route('admin.usuarios.index'),'icon-users')!!}
 {!!Form::menu('Estadistica',route('admin.estadisticas.index'),'fa fa-bar-chart')!!}
 {!!Form::menu('Colegio',route('admin.colegios.index'),'fa fa-bank')!!}

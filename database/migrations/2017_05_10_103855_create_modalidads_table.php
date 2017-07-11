@@ -20,6 +20,7 @@ class CreateModalidadsTable extends Migration
             $table->string('modalidad2',100)->nullable();
             $table->boolean('colegio')->default(true);
             $table->boolean('activo')->default(true);
+            $table->string('reglamento',200)->nullable();
         });
     }
 

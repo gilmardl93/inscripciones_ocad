@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Usuarios;
 
+use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUsuariosRequest;
 use App\User;
 use Illuminate\Http\Request;
-use Alert;
 class UsuariosController extends Controller
 {
     public function index()
@@ -24,7 +25,7 @@ class UsuariosController extends Controller
     	$user = User::findOrFail($id);
         return view('admin.usuarios.edit',compact('user'));
     }
-    public function update(Request $request, $id)
+    public function update(UpdateUsuariosRequest $request, $id)
     {
         $user = User::find($id);
         if ($request->has('password')) {

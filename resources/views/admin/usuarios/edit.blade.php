@@ -2,6 +2,7 @@
 
 @section('content')
 {!! Alert::render() !!}
+@include('alerts.errors')
 <div class="portlet box yellow-gold">
 	<div class="portlet-title">
 		<div class="caption"><i class="fa fa-gift"></i>Formulario de Usuarios </div>

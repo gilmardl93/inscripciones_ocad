@@ -43,6 +43,14 @@ class Ingresante extends Model
         return $modalidad->codigo;
     }
     /**
+    * Atributos reglamento de modalidad
+    */
+    public function getReglamentoModalidadAttribute()
+    {
+        $modalidad = Modalidad::find($this->idmodalidad);
+        return $modalidad->reglamento;
+    }
+    /**
     * Atributos Foto Ingresante
     */
     public function getFotoAttribute()

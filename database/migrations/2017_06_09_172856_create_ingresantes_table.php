@@ -21,7 +21,9 @@ class CreateIngresantesTable extends Migration
             $table->integer('idmodalidad')->nullable();
             $table->string('numero_constancia')->nullable();
             $table->decimal('nota_ingreso','10','3')->nullable();
+            $table->biginteger('merito')->nullable();
             $table->enum('estado_constancia',['NO VINO','ENTREGADO','RETENIDO'])->default('NO VINO');
+            $table->date('fecha_constancia')->nullable();
             $table->string('facultad_procedencia')->nullable();
             $table->string('grado')->nullable();
             $table->string('titulo')->nullable();

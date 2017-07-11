@@ -64,7 +64,7 @@
                             {!!Form::label('lblEnc2', 'Ingresé y renuncié:',['class'=>'pull-right']);!!}
                             </div><!--span-->
                             <div class="col-md-2">
-                            {!!Form::select('idrenuncia',$especialidad, null , ['class'=>'form-control col-md-','placeholder'=>'Especialidad']);!!}
+                            {!!Form::select('idrenuncia',$especialidad_edit, null , ['class'=>'form-control col-md-','placeholder'=>'Especialidad']);!!}
                             </div><!--span-->
                         </div>
                 </div><!--span-->
