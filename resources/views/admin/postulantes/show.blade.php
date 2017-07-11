@@ -240,11 +240,27 @@
                 <!--tab-pane-->
                 <div class="tab-pane" id="tab_5">
                     {!! Form::model($postulante,['route'=>['admin.pos.update',$postulante],'method'=>'PUT']) !!}
-                    <div class="row">
-                        <div class="col-md-2">
-                        {!! Field::text('datos_ok',['label'=>'Habilitar modificacion de datos','placeholder'=>'Habilitar modificacion de datos']) !!}
-                        </div><!--span-->
-                    </div><!--row-->
+                    @if (str_contains(Auth::user()->codigo_rol,['jefatura','root']))
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {!!Form::label('lblEdicion', 'Desea activar la edicion de datos',['class'=>'control-label col-md-2']);!!}
+                                    <div class="input-group col-md-10">
+                                        <div class="icheck-inline">
+                                            <label>
+                                                {!! Form::radio('datos_ok', 1) !!}
+                                                Si
+                                            </label>
+                                            <label>
+                                                {!! Form::radio('datos_ok', 0) !!}
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--span-->
+                        </div><!--row-->
+                    @endif
                     <div class="row">
                         <div class="col-md-2">
                         {!! Field::text('fecha_nacimiento',['label'=>'Fecha de Nacimiento','placeholder'=>'Fecha de Nacimiento']) !!}
@@ -308,6 +324,11 @@ $(document).ready(function() {
 
     }
 
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_minimal',
+        radioClass: 'iradio_minimal',
+        increaseArea: '20%' // optional
+    });
 
 });
 
@@ -320,9 +341,11 @@ $(".Fecha").inputmask("y-m-d", {
 
 @section('plugins-styles')
 {!! Html::style(asset('assets/pages/css/profile-2.min.css')) !!}
+{!! Html::style(asset('assets/global/plugins/icheck/skins/all.css')) !!}
 @stop
 @section('plugins-js')
 {!! Html::script(asset('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')) !!}
+{!! Html::script(asset('assets/global/plugins/icheck/icheck.min.js')) !!}
 @stop
 
 @section('menu-user')
