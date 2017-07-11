@@ -51,8 +51,10 @@
         {!!Form::botonmodal('Crear Pago','#PagoCreate','blue','fa fa-plus')!!}
         {!!Form::boton('Importar pagos de OCAD',route('admin.ventanilla.obtener'),'yellow','fa fa-cloud-upload')!!}
         {!!Form::boton('Recaducacion',route('admin.recaudacion'),'red','fa fa-eye')!!}
+        {!!Form::botonmodal('Intercambiar Pago','#PagoChange','blue-madison','fa fa-arrows-v')!!}
         <p></p>
         {!! Alert::render() !!}
+        @include('alerts.errors')
         </div>
     </div>
     <!-- END Portlet PORTLET-->
@@ -74,11 +76,46 @@
                 </div>
                 <div class="form-group">
                     {!!Form::label('lblBanco', 'Banco');!!}
-                    {!!Form::text('banco', 'Scotiabank' , ['class'=>'form-control','placeholder'=>'Numero de DNI']);!!}
+                    {!!Form::text('banco', 'Scotiabank' , ['class'=>'form-control','placeholder'=>'Banco']);!!}
+                </div>
+                <div class="form-group">
+                    {!!Form::label('lblServicio', 'Servicio');!!}
+                    {!!Form::select('servicio', $servicios,null , ['class'=>'form-control','placeholder'=>'Servicio']);!!}
                 </div>
                 <div class="form-group">
                     {!!Form::label('lblReferencia', 'Referencia');!!}
                     {!!Form::text('referencia', null , ['class'=>'form-control','placeholder'=>'Referencia del pago']);!!}
+                </div>
+            </div>
+            <div class="modal-footer">
+                {!!Form::enviar('Guardar')!!}
+            </div>
+            {!! Form::close() !!}
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="PagoChange" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Crea Pago</h4>
+            </div>
+            {!! Form::open(['route'=>'admin.pagos.change','method'=>'POST']) !!}
+            <div class="modal-body">
+                <div class="form-group">
+                    {!!Form::label('lblDNI', 'Numero de DNI');!!}
+                    {!!Form::text('codigo', null , ['class'=>'form-control','placeholder'=>'Numero de DNI','maxlength'=>'8']);!!}
+                </div>
+                <div class="form-group">
+                    {!!Form::label('lblServicio', 'Pago inicial');!!}
+                    {!!Form::select('servicio_ini', $servicios,null , ['class'=>'form-control','placeholder'=>'Servicio Inicial']);!!}
+                </div>
+                <div class="form-group">
+                    {!!Form::label('lblServicio', 'Pago final');!!}
+                    {!!Form::select('servicio_fin', $servicios,null , ['class'=>'form-control','placeholder'=>'Servicio Final']);!!}
                 </div>
             </div>
             <div class="modal-footer">

@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Http\Request;
 class PagoUnitarioRequest extends FormRequest
 {
     /**
@@ -24,7 +24,7 @@ class PagoUnitarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'codigo'=>'required|exists:postulante,dni|unique:recaudacion,codigo',
+            'codigo'=>'required|exists:postulante,numero_identificacion',
         ];
     }
     public function messages()

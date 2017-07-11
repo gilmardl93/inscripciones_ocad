@@ -47,6 +47,7 @@ Route::group(['namespace'=>'Pagos'], function() {
 	Route::get('download','PagosController@descarga')->name('admin.cartera.download');
 	Route::get('pagos-lista','PagosController@lista')->name('admin.pagos.list');
 	Route::post('pago-create','PagosController@pagocreate')->name('admin.pagos.create');
+	Route::post('pago-cambiar','PagosController@pagochange')->name('admin.pagos.change');
 	Route::get('recaudacion','PagosController@show')->name('admin.recaudacion');
 	#Servicios
 	Route::resource('servicios','ServiciosController',['names'=>'admin.servicios','only'=>['index','store','edit','update']]);

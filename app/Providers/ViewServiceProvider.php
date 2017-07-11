@@ -57,7 +57,7 @@ class ViewServiceProvider extends ServiceProvider
             TipoIdentificacionSelectData::class
             );
         $this->app->make('view')->composer(
-            ['admin.descuentos.index','admin.descuentos.edit'],
+            ['admin.descuentos.index','admin.descuentos.edit','admin.pagos.index'],
             ServicioSelectData::class
             );
     }

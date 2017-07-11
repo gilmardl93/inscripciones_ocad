@@ -15,7 +15,7 @@ use App\Models\Servicio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Storage;
-use Styde\Html\Facades\Alert;
+use Alert;
 use DB;
 use Validator;
 class PagosController extends Controller
@@ -43,20 +43,29 @@ class PagosController extends Controller
     }
     public function pagocreate(PagoUnitarioRequest $request)
     {
-        $servicio = Catalogo::table('SERVICIO')->first();
-        $pago = Recaudacion::where('codigo',$request->input('codigo'))->where('servicio',$servicio->nombre)->first();
-        $pos = Postulante::Activos()->where('dni',$request->input('codigo'))->first();
-        $ser = $servicio->nombre;
+        $servicio = Servicio::find($request->servicio);
+        $pos = Postulante::Activos()->where('numero_identificacion',$request->input('codigo'))->first();
+        $ser = $servicio->codigo;
         $cod = $request->input('codigo');
         $banco = $request->input('banco');
         $ref = $request->input('referencia');
         $des = $servicio->descripcion;
-        $mon = $servicio->valor;
+        $mon = $servicio->monto;
         $date = Carbon::now();
+        $recibo = $ser.$cod;
+        $validator = Validator::make(['recibo'=>$recibo], [
+            'recibo' => 'unique:recaudacion,recibo',
+        ],[
+            'recibo.unique'=>'Este pago ya ha sido registrado'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
 
         $pago = Recaudacion::create([
                             'servicio'=>$ser,
-                            'recibo'=>$ser.$cod,
+                            'recibo'=>$recibo,
                             'descripcion'=>$des,
                             'monto'=>$mon,
                             'fecha'=>$date,
@@ -66,7 +75,25 @@ class PagosController extends Controller
                             'referencia'=>$ref,
                             'idpostulante'=>$pos->id
                             ]);
-            return back();
+        Alert::success('Pago Registrado con exito');
+        return back();
+    }
+    public function pagochange(Request $request)
+    {
+        $servicio_ini = Servicio::find($request->servicio_ini);
+        $servicio_fin = Servicio::find($request->servicio_fin);
+        $recibo = $servicio_ini->codigo.$request->codigo;
+        $recibo_nuevo = $servicio_fin->codigo.$request->codigo;
+        $pos = Postulante::Activos()->where('numero_identificacion',$request->input('codigo'))->first();
+        Recaudacion::where('recibo',$recibo)->update([
+            'recibo'=>$recibo_nuevo,
+            'servicio'=>$servicio_fin->codigo,
+            'descripcion'=>$servicio_fin->descripcion,
+            'monto'=>$servicio_fin->monto,
+            ]);
+
+        Alert::success('Pago Registrado con exito');
+        return back();
     }
     public function store(PagosRequest $request)
     {
