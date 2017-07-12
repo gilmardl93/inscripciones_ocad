@@ -459,21 +459,21 @@ class Postulante extends Model
      */
     public function setPaternoAttribute($value)
     {
-        $this->attributes['paterno'] = mb_strtoupper($value, 'UTF-8');
+        $this->attributes['paterno'] = trim(mb_strtoupper($value, 'UTF-8'));
     }
     /**
      * Atributos Paterno
      */
     public function setMaternoAttribute($value)
     {
-        $this->attributes['materno'] = mb_strtoupper($value, 'UTF-8');
+        $this->attributes['materno'] = trim(mb_strtoupper($value, 'UTF-8'));
     }
     /**
      * Atributos Paterno
      */
     public function setNombresAttribute($value)
     {
-        $this->attributes['nombres'] = mb_strtoupper($value, 'UTF-8');
+        $this->attributes['nombres'] = trim(mb_strtoupper($value, 'UTF-8'));
     }
 
     /**

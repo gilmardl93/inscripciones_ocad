@@ -21,6 +21,14 @@ class Ingresante extends Model
     /**
     * Atributos especialidad
     */
+    public function getCodigoEspecialidadAttribute()
+    {
+        $especialidad = Especialidad::find($this->idespecialidad);
+        return $especialidad->codigo;
+    }
+    /**
+    * Atributos Codigo especialidad
+    */
     public function getEspecialidadAttribute()
     {
         $especialidad = Especialidad::find($this->idespecialidad);

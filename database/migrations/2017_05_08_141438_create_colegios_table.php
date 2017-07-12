@@ -15,7 +15,7 @@ class CreateColegiosTable extends Migration
     {
         Schema::create('colegio', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo_modular')->unique();
+            $table->string('codigo_modular');
             $table->string('anexo',2)->nullable();
             $table->string('nombre')->nullable();
             $table->string('nivel',50)->nullable();
@@ -32,6 +32,7 @@ class CreateColegiosTable extends Migration
             $table->boolean('activo')->nullable();
             $table->foreign('idubigeo')->references('id')->on('ubigeo');
             $table->foreign('idpais')->references('id')->on('pais');
+            $table->unique(['codigo_modular','anexo']);
         });
     }
 

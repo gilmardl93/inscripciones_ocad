@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Http\Request;
 class CreateColegioRequest extends FormRequest
 {
     /**
@@ -21,10 +21,12 @@ class CreateColegioRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
+        $codigo = $request->input('codigo_modular');
         return [
             'codigo_modular'=>'required',
+            'anexo'=>'required|unique_school:'.$codigo,
             'nombre'=>'required',
             'gestion'=>'required',
             'idpais'=>'required',

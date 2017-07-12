@@ -82,10 +82,10 @@
         <div class="tabbable-line tabbable-custom-profile">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#tab_1" data-toggle="tab" aria-expanded="true"> Datos del Postulante </a>
+                    <a href="#tab_1" data-toggle="tab" aria-expanded="true"> Datos del Ingresante </a>
                 </li>
                 <li>
-                    <a href="#tab_5" data-toggle="tab" aria-expanded="true"> Editar Datos Postulante </a>
+                    <a href="#tab_5" data-toggle="tab" aria-expanded="true"> Editar Datos Ingresante </a>
                 </li>
                 <li>
                     <a href="#tab_2" data-toggle="tab" aria-expanded="true"> Ficha </a>
@@ -138,6 +138,17 @@
                 <!--tab-pane-->
                 <div class="tab-pane" id="tab_5">
                     {!! Form::model($postulante,['route'=>['admin.pos.update',$postulante],'method'=>'PUT']) !!}
+                    <div class="row">
+                        <div class="col-md-2">
+                            {!! Field::text('paterno',['label'=>'Apellido Paterno','placeholder'=>'Apellido Paterno']) !!}
+                        </div><!--span-->
+                        <div class="col-md-2">
+                            {!! Field::text('materno',['label'=>'Apellido Materno','placeholder'=>'Apellido Materno']) !!}
+                        </div><!--span-->
+                        <div class="col-md-2">
+                            {!! Field::text('nombres',['label'=>'Nombres','placeholder'=>'Nombres']) !!}
+                        </div><!--span-->
+                    </div><!--row-->
                     <div class="row">
                         <div class="col-md-2">
                         {!! Field::text('fecha_nacimiento',['label'=>'Fecha de Nacimiento','placeholder'=>'Fecha de Nacimiento']) !!}

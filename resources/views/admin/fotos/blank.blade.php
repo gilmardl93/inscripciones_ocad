@@ -37,6 +37,7 @@
             <div class="row">
                 <div class="col-md-12">
                 {!!Form::boton('Cargar',route('admin.fotos.index'),'green-meadow','fa fa-cloud-download')!!}
+                {!!Form::boton('Fotos Rechazadas',route('admin.fotos.rechazadas'),'purple','fa fa-pdf-o','')!!}
                 </div>
             </div><!--row-->
             <p></p>

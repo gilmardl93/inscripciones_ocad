@@ -12,9 +12,7 @@ class ControlConstanciasController extends Controller
 {
     public function index()
     {
-        $Lista = Postulante::with('ingresantes')->whereHas('ingresantes', function ($query) {
-						    $query->where('estado_constancia', 'ENTREGADO');
-						})->get();
+        $Lista = Postulante::with('ingresantes')->Has('ingresantes')->get();
         if ($Lista->count()==0) $Lista = [];
 
         return view('admin.ingresantes.control.index',compact('Lista'));
@@ -32,10 +30,13 @@ class ControlConstanciasController extends Controller
         }else {
             $postulante = Postulante::where('numero_identificacion',$request->dni)->first();
             $date = Carbon::now();
-            Ingresante::where('idpostulante',$postulante->id)->update(['estado_constancia'=>'ENTREGADO','fecha_constancia'=>$date]);
-    	    $Lista = Postulante::with('ingresantes')->whereHas('ingresantes', function ($query) {
-                                    $query->where('estado_constancia', 'ENTREGADO');
-                                })->get();
+            Ingresante::where('idpostulante',$postulante->id)->update([
+                'estado_constancia'=>'ENTREGADO',
+                'fecha_constancia'=>$date,
+                'estado_constancia'=>$request->estado,
+                'observacion'=>$request->observacion
+                ]);
+    	    $Lista = Postulante::with('ingresantes')->Has('ingresantes')->get();
             if ($Lista->count()==0) {
                 return[
                     'errors'=> ['dni'=>'No constancias registradas']

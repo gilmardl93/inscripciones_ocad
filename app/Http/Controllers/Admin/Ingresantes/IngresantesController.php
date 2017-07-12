@@ -297,9 +297,9 @@ class IngresantesController extends Controller
             $muestra = false;
         }
         if ($muestra) {
-            #$this->ReportFotoConstancia($postulante);
+            $this->ReportFotoConstancia($postulante);
             #DUPLICADO DE CONSTANCIA
-            #$this->ReportConstancia($postulante,$evaluacion);
+            $this->ReportConstancia($postulante,$evaluacion);
             #EXPEDIENTE DE CONVALIDACION
             if (str_contains($postulante->ingresantes->codigo_modalidad,['E1TE','E1TG','E1TGU'])){
                 $this->ReportConvalidacion($postulante,$evaluacion);

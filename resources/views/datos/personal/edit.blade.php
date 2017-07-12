@@ -135,6 +135,7 @@ $(".cepreuni").hide();
 
     $("#idcolegio").select2({
         width:'auto',
+        allowClear: true,
         ajax: {
             url: '{{ url("colegio") }}',
             dataType: 'json',
@@ -165,6 +166,7 @@ $(".cepreuni").hide();
 
     $("#iduniversidad").select2({
         width:'auto',
+        allowClear: true,
         ajax: {
             url: '{{ url("universidad") }}',
             dataType: 'json',

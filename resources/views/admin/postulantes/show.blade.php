@@ -244,7 +244,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    {!!Form::label('lblEdicion', 'Desea activar la edicion de datos',['class'=>'control-label col-md-2']);!!}
+                                    {!!Form::label('lblEdicion', 'Se puede modificar datos',['class'=>'control-label col-md-2']);!!}
                                     <div class="input-group col-md-10">
                                         <div class="icheck-inline">
                                             <label>

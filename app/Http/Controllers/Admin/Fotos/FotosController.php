@@ -79,6 +79,10 @@ class FotosController extends Controller
         $postulante->foto_fecha_edicion = Carbon::now();
         $postulante->save();
     }
-
+    public function fotosrechazadas()
+    {
+        $Lista = Postulante::where('foto_estado','RECHAZADO')->get();
+        return view('admin.fotos.list',compact('Lista'));
+    }
 
 }
