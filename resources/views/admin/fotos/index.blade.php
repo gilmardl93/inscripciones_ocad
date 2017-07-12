@@ -42,6 +42,7 @@
                 {!!Form::boton('Aceptar',route('admin.fotos.update',[$postulante->id,1]),'blue','fa fa-check')!!}
                 {!!Form::boton('Rechazar',route('admin.fotos.update',[$postulante->id,0]),'red','fa fa-times')!!}
                 {!!Form::boton('Editar','#','dark','fa fa-edit','',['onclick'=>"return launchEditor('editableimage1','$postulante->mostrar_foto_cargada')"])!!}
+                {!!Form::boton('Fotos Rechazadas',route('admin.fotos.rechazadas'),'purple','fa fa-pdf-o','')!!}
             @endif
                 </div>
             </div><!--row-->

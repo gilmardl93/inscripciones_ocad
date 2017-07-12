@@ -34,7 +34,7 @@
                 <h3 class="uppercase">IDENTIFICACION</h3>
             </li>
             {!!Form::menu('Constancias',route('admin.ingresantes.constancias'),'fa fa-file-pdf-o')!!}
-            {!!Form::menu('Etiquetas','#','fa fa-sticky-note-o')!!}
+            {!!Form::menu('Etiquetas',route('admin.ingresantes.etiquetas'),'fa fa-sticky-note-o')!!}
             {!!Form::menu('Ingresante',route('admin.ingresantes.index'),'fa fa-graduation-cap')!!}
             {!!Form::menu('Control entrega',route('admin.ingresantes.control.index'),'fa fa-check-square-o')!!}
             <li class="heading">

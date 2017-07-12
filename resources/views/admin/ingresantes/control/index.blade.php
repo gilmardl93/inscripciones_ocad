@@ -19,13 +19,13 @@
                     </div><!--row-->
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::select('estado_constancia',['NO VINO'=>'NO VINO','ENTREGADO'=>'ENTREGADO','RETENIDO'=>'RETENIDO'],['label'=>'Escoger Estado','empty'=>'Escoger Estado','class'=>'input-lg']) !!}
+                            {!! Field::select('estado',['NO VINO'=>'NO VINO','ENTREGADO'=>'ENTREGADO','RETENIDO'=>'RETENIDO'],'ENTREGADO',['label'=>'Escoger Estado','empty'=>'Escoger Estado','class'=>'input-lg']) !!}
                         </div><!--span-->
                         <div class="col-md-6">
-                            {!! Field::text('dni',['label'=>'Ingresar el DNI del ingresante a registrar','placeholder'=>'Ingresar DNI','class'=>'']) !!}
+                            {!! Field::text('observacion',['label'=>'Puede colocar alguna observacion','placeholder'=>'Observacion']) !!}
                         </div><!--span-->
                     </div><!--row-->
-                    <button class="btn green-soft uppercase bold" type="submit" id="Buscar">Buscar </button>
+                    <button class="btn green-soft uppercase bold" type="submit" id="Buscar">Guardar </button>
                 </div>
             </div>
         </div>
@@ -36,6 +36,7 @@
                         <th> <a href="javascript:;">Ingresantes</a> </th>
                         <th class="table-download"> <a href="javascript:;">Constancia</a> </th>
                         <th class="table-download"> <a href="javascript:;">Fecha</a> </th>
+                        <th class="table-download"> <a href="javascript:;">Observacion</a> </th>
                         <th class="table-download"> <a href="javascript:;">Foto</a> </th>
                     </tr>
                 </thead>
@@ -49,9 +50,8 @@
                         </td>
                         <td class="table-download"> {{ $item->ingresantes->estado_constancia }} </td>
                         <td class="table-download"> {{ $item->ingresantes->fecha_constancia }} </td>
+                        <td class="table-download"> {{ $item->ingresantes->observacion }} </td>
                         <td class="table-download"> <img src="{{ $item->ingresantes->foto }}" width='50px'> </td>
-                    </tr>
-
                     </tr>
                 @endforeach
                 </tbody>
@@ -77,10 +77,12 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 _token: $('input[name=_token]').val(),
-                dni: $('input[name=dni]').val()
+                dni: $('#dni').val(),
+                estado: $('#estado').val(),
+                observacion: $('#observacion').val()
             },
         })
-        .success(function(data) {
+        .done(function(data) {
             if ((data.errors)) {
                     $('.alert').removeClass('hidden');
                     $('.detalle').text(data.errors.dni);
@@ -94,11 +96,18 @@ $(document).ready(function() {
                                     item.paterno+' '+item.materno+' '+item.nombres+'</a></h3></td>'+
                                     '<td class="table-download">'+item.ingresantes.estado_constancia   +'</td>'+
                                     '<td class="table-download">'+item.ingresantes.fecha_constancia   +'</td>'+
+                                    '<td class="table-download">'+item.ingresantes.observacion   +'</td>'+
                                     '<td class="table-download"><img src="{{ asset("storage/fotoIng/") }}/'+item.numero_identificacion+'.jpg" width="50px"></td>'+
                                     +'</tr>');
                     });
                 }
                 $("#dni").val ('');
+                $("#observacion").val ('');
+                $("#estado option[value='ENTREGADO']").attr("selected",true);
+                $("#estado option[value='NO VINO']").removeAttr("selected");
+                $("#estado option[value='RETENIDO']").removeAttr("selected");
+
+
         })
         .fail(function() {
             console.log("error");

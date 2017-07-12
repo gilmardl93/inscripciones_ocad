@@ -36,7 +36,9 @@ Route::group(['namespace'=>'Ingresantes'], function() {
 	Route::get('constancias','IngresantesController@pdfconstancias')->name('admin.ingresantes.constancias');
 	#Control de entreda
 	Route::resource('control', 'ControlConstanciasController',['names'=>'admin.ingresantes.control','only'=>['index','store']]);
-
+	#Etiquetas para folders
+	Route::get('ingresantes-etiquetas','EtiquetasController@index')->name('admin.ingresantes.etiquetas');
+	Route::get('ingresantes-etiquetas-pdf','EtiquetasController@pdf')->name('admin.ingresantes.etiquetas.pdf');
 });
 /**
  * Pagos
@@ -69,6 +71,7 @@ Route::group(['namespace'=>'Fotos'], function() {
 	Route::get('update/{postulante}/{estado}','FotosController@update')->name('admin.fotos.update');
 	Route::get('cargar-editado','FotosController@cargareditado')->name('admin.fotos.cargar');
 	Route::post('buscar-foto','FotosController@buscar')->name('admin.fotos.buscar');
+	Route::get('fotos-rechazadas','FotosController@fotosrechazadas')->name('admin.fotos.rechazadas');
 
 });
 

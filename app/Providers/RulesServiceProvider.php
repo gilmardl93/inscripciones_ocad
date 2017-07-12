@@ -3,14 +3,15 @@
 namespace App\Providers;
 
 use App\Models\Catalogo;
+use App\Models\Colegio;
 use App\Models\Cronograma;
 use App\Models\Modalidad;
 use App\Models\Postulante;
 use App\Models\Validacion;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
-use Auth;
 class RulesServiceProvider extends ServiceProvider
 {
     public $Mensaje;
@@ -22,6 +23,7 @@ class RulesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->RequiredSchool();
+        $this->UniqueSchool();
         $this->RequiredCodCepre();
         $this->RequiredModCepre();
         $this->RequiredEspCepre();
@@ -44,6 +46,16 @@ class RulesServiceProvider extends ServiceProvider
         //
     }
 
+    public function UniqueSchool()
+    {
+        Validator::extend('unique_school', function ($attribute, $value, $parameters, $validator) {
+
+            $colegio = Colegio::where('anexo',$value)->where('codigo_modular',$parameters[0])->get();
+
+            if ($colegio->isEmpty()) return true; else return false;
+
+        },"El colegio que desea ingresar ya existe");
+    }
     public function CodigoExist()
     {
         Validator::extend('codigo_exist', function ($attribute, $value, $parameters, $validator) {
@@ -139,21 +151,18 @@ class RulesServiceProvider extends ServiceProvider
      */
     public function RequiredSchool()
     {
-        $retmsj = '';
-        Validator::extend('required_ie', function ($attribute, $value, $parameters, $validator) use ($retmsj) {
+        Validator::extend('required_ie', function ($attribute, $value, $parameters, $validator) {
 
             $modalidad = Modalidad::find($value);
             $retval = false;
-            if ($modalidad->colegio && $parameters[0]>0) {
+            if ($modalidad->colegio && is_numeric($parameters[0])) {
                 $retval = true;
-                $retmsj = 'Colegio';
-            }elseif (!$modalidad->colegio && $parameters[1]>0) {
+            }elseif (!$modalidad->colegio && is_numeric($parameters[1])) {
                 $retval = true;
-                $retmsj = 'Universidad';
             }
 
             return $retval;
-        },"No escogio institución educativa $retmsj");
+        },"No escogio institución educativa ");
     }
     /**
      * Valido la institucion educativa que requiere la modalidad

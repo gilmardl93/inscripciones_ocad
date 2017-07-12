@@ -24,6 +24,7 @@ class CreateIngresantesTable extends Migration
             $table->biginteger('merito')->nullable();
             $table->enum('estado_constancia',['NO VINO','ENTREGADO','RETENIDO'])->default('NO VINO');
             $table->date('fecha_constancia')->nullable();
+            $table->mediumtext('observacion')->nullable();
             $table->string('facultad_procedencia')->nullable();
             $table->string('grado')->nullable();
             $table->string('titulo')->nullable();
