@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Datos;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DatosPersonalesRequest;
+use App\Models\Modalidad;
 use App\Models\Postulante;
 use Auth;
 use Carbon\Carbon;
@@ -86,6 +87,13 @@ class DatosPersonalesController extends Controller
     public function update(DatosPersonalesRequest $request, $id)
     {
         $data = $this->AnulaModalidad2($request);
+        $modalidad = Modalidad::find($data['idmodalidad']);
+
+        if ($modalidad->colegio) {
+            $data = array_except($data, ['iduniversidad']);
+        }else{
+            $data = array_except($data, ['idcolegio']);
+        }
 
         $postulante = Postulante::find($id);
         $postulante->fill($data);
