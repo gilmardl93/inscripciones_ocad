@@ -203,9 +203,18 @@ $(".cepreuni").hide();
     function formatSchool(school){
         if (school.loading) return school.text; //Sin esta columna no carga los items dentro de los campo array
 
+        var localidad = school.distrito;
+        if (localidad != null) {
+            var lbl_ubigeo = 'Distrito';
+            var descripcion_ubigeo = localidad.descripcion;
+        }else{
+            var lbl_ubigeo = 'Pais';
+            var descripcion_ubigeo = school.paises.nombre;
+        }
+
         var markup="<div class='select2-result-repository clearfix'>" +
         "<div class='select2-result-repository__title'>" + school.text + "</div>" +
-        "<div class='select2-result-repository__description'> Distrito : " + school.distrito.descripcion + "</div>" +
+       "<div class='select2-result-repository__description'> " + lbl_ubigeo + " : " + descripcion_ubigeo + "</div>" +
         "<div class='select2-result-repository__description'> Gestion : " + school.gestion + "</div>" +
         "<div class='select2-result-repository__description'> Direccion : " + school.direccion + "</div>" +
         "<div class='select2-result-repository__statistics'>" +
