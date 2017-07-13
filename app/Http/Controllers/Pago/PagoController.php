@@ -146,27 +146,27 @@ class PagoController extends Controller
         PDF::SetXY(78,40);
         PDF::SetFont('helvetica','B',10);
         PDF::Cell(110,5,'ADMISION-UNI',1,0,'L');
-        #CONCEPTO
+        #ETIQUETA NOMBRE DEL ALUMNO
         PDF::SetXY(18,45);
         PDF::SetFont('helvetica','B',11);
-        PDF::Cell(60,5,$lblconcepto,1,0,'R');
+        PDF::Cell(60,5,'DNI POSTULANTE',1,0,'R');
         PDF::SetXY(78,45);
         PDF::SetFont('helvetica','',11);
-        PDF::Cell(110,5,$lblservicio.$servicio->descripcion,1,0,'L');
+        PDF::Cell(110,5,$postulante->numero_identificacion,1,0,'L');
         #CODIGO CNE
         PDF::SetXY(18,50);
         PDF::SetFont('helvetica','B',11);
-        PDF::Cell(60,5,'DNI :',1,0,'R');
+        PDF::Cell(60,5,'Nombre del postulante :',1,0,'R');
         PDF::SetXY(78,50);
         PDF::SetFont('helvetica','',11);
-        PDF::Cell(110,5,$postulante->numero_identificacion,1,0,'L');
-        #ETIQUETA NOMBRE DEL ALUMNO
+        PDF::Cell(110,5,$postulante->nombre_completo,1,0,'L');
+        #CONCEPTO
         PDF::SetXY(18,55);
         PDF::SetFont('helvetica','B',11);
-        PDF::Cell(60,5,'Nombre del postulante :',1,0,'R');
+        PDF::Cell(60,5,$lblconcepto,1,0,'R');
         PDF::SetXY(78,55);
         PDF::SetFont('helvetica','',11);
-        PDF::Cell(110,5,$postulante->nombre_completo,1,0,'L');
+        PDF::Cell(110,5,$lblservicio.$servicio->descripcion,1,0,'L');
         #ETIQUETA IMPORTE
         PDF::SetXY(18,60);
         PDF::SetFont('helvetica','B',11);
