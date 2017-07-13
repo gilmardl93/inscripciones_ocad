@@ -29,6 +29,7 @@ class CreateAulasTable extends Migration
             $table->integer('asignado_voca')->default(0);
             $table->boolean('activo')->default(false);
             $table->boolean('habilitado')->default(false);
+            $table->boolean('especial')->default(false);
         });
     }
 
