@@ -25,6 +25,9 @@ class UpdateSecundariosRequest extends FormRequest
     public function rules()
     {
         $data = Request::all();
+        if (is_numeric($data['idtipoidentificacion'])) {
+            $valida_tipo_identificacion = '|num_ide_max:'.$data['idtipoidentificacion'].'|num_ide_usu';
+        }else $valida_tipo_identificacion='';
         $validate =  [
             'email'=> 'required|email',
             'idsexo'=> 'required',
@@ -35,7 +38,7 @@ class UpdateSecundariosRequest extends FormRequest
             'idpaisnacimiento'=> 'required',
             'idtipoidentificacion'=> 'required',
             'numero_identificacion'=> 'required|unique:postulante,numero_identificacion,'.$data['id'].
-                                      '|num_ide_max:'.$data['idtipoidentificacion'].'|num_ide_usu',
+                                      $valida_tipo_identificacion,
             'file'=> 'image|mimes:jpg,jpeg,png,',
             'talla'=>'required|numeric',
             'peso'=>'required|numeric',
@@ -54,6 +57,8 @@ class UpdateSecundariosRequest extends FormRequest
             $pais_nacimiento = Pais::find($data['idpaisnacimiento']);
             if($pais_nacimiento->codigo=='PE') $validate = array_add($validate,'idubigeonacimiento','required');
         }
+
+
 
 
         return $validate;
