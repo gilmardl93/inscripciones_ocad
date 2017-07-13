@@ -255,11 +255,11 @@
                                         <div class="icheck-inline">
                                             <label>
                                                 {!! Form::radio('datos_ok', 1) !!}
-                                                Si
+                                                No
                                             </label>
                                             <label>
                                                 {!! Form::radio('datos_ok', 0) !!}
-                                                No
+                                                Si
                                             </label>
                                         </div>
                                     </div>
