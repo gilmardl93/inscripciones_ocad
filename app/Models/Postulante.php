@@ -805,7 +805,7 @@ class Postulante extends Model
     {
         $postulante = Postulante::find($id);
         if(!str_contains($postulante->codigo_modalidad,['E1TGU','E1TI'])){
-            if (str_contains($postulante->codigo_modalidad,['E1CABC','E1TE','E1TG'])) {
+            if (str_contains($postulante->codigo_modalidad,['E1CABC','E1TE','E1TG','E1PDC','E1VTC'])) {
 
                 $aula1 = Aula::ObtenerAula(1,true)->first();
                 if (isset($aula1)) {
