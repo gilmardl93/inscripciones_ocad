@@ -814,14 +814,14 @@ class Postulante extends Model
                         Aula::where('id',$aula1->id)->increment('asignado_01');
                     }
                 }
-                $aula2 = Aula::ObtenerAula(1,true)->first();
+                $aula2 = Aula::ObtenerAula(2,true)->first();
                 if (isset($aula2)) {
                     if (Postulante::where('id',$id)->whereNull('idaula2')->update(['idaula2'=>$aula2->id])) {
                         Aula::where('id',$aula2->id)->decrement('disponible_02');
                         Aula::where('id',$aula2->id)->increment('asignado_02');
                     }
                 }
-                $aula3 = Aula::ObtenerAula(1,true)->first();
+                $aula3 = Aula::ObtenerAula(3,true)->first();
                 if (isset($aula3)) {
                     if (Postulante::where('id',$id)->whereNull('idaula3')->update(['idaula3'=>$aula3->id])) {
                         Aula::where('id',$aula3->id)->decrement('disponible_03');
