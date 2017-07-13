@@ -206,6 +206,12 @@
                                     </td>
                                     <td class="hidden-xs"> {{ $postulante->telefono_celular.' / '.$postulante->telefono_fijo.' / '.$postulante->telefono_varios }} </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        Institucion Educativa
+                                    </td>
+                                    <td class="hidden-xs"> {{ $postulante->institucion_educativa }} </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
