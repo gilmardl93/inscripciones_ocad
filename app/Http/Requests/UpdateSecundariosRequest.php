@@ -48,14 +48,18 @@ class UpdateSecundariosRequest extends FormRequest
             'fin_estudios'=>'required',
 
         ];
-        if(is_numeric($data['idpais'])){
-            $pais = Pais::find($data['idpais']);
-            if($pais->codigo=='PE') $validate = array_add($validate,'idubigeo','required');
-        }
+        if (array_key_exists('idpais',$data)) {
 
-        if (is_numeric($data['idpaisnacimiento'])) {
-            $pais_nacimiento = Pais::find($data['idpaisnacimiento']);
-            if($pais_nacimiento->codigo=='PE') $validate = array_add($validate,'idubigeonacimiento','required');
+            if(is_numeric($data['idpais'])){
+                $pais = Pais::find($data['idpais']);
+                if($pais->codigo=='PE') $validate = array_add($validate,'idubigeo','required');
+            }
+        }
+        if (array_key_exists('idpaisnacimiento',$data)) {
+            if (is_numeric($data['idpaisnacimiento'])) {
+                $pais_nacimiento = Pais::find($data['idpaisnacimiento']);
+                if($pais_nacimiento->codigo=='PE') $validate = array_add($validate,'idubigeonacimiento','required');
+            }
         }
 
 

@@ -88,7 +88,8 @@ class RulesServiceProvider extends ServiceProvider
 
             return $correcto;
 
-        },"Uno de los DNI Ingresado no tiene 8 digitos");
+        },"Uno de los DNI Ingresado no tiene 8 digitos o no has llenado los datos completo de
+        (Papá, Mamá o apoderado) los tres registros son obligatorios");
     }
     public function DniNumeric()
     {
@@ -103,7 +104,8 @@ class RulesServiceProvider extends ServiceProvider
             return $correcto;
 
 
-        },"Uno de los DNI Ingresado contiene un caracter que no es numerico");
+        },"Uno de los DNI Ingresado contiene un caracter que no es numerico o no has llenado los datos completo de
+        (Papá, Mamá o apoderado) los tres registros son obligatorios");
     }
     /**
      * Valido la institucion educativa que requiere la modalidad
