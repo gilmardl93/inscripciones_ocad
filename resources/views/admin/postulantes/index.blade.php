@@ -20,7 +20,7 @@
         <div class="portlet-body">
         <p></p>
         <p></p>
-			<table class="table table-bordered table-hover Recaudacion">
+			<table class="table table-bordered table-hover Postulantes">
 			    <thead>
 			        <tr>
 			            <th> Codigo </th>
@@ -44,7 +44,6 @@
 				@endforeach
 			    </tbody>
 			</table>
-            {!! $postulantes->links() !!}
         </div>
     </div>
     <!-- END Portlet PORTLET-->
@@ -52,6 +51,39 @@
 </div><!--row-->
 @stop
 
+@section('js-scripts')
+<script>
+$(function(){
+    $('.Postulantes').DataTable({
+        "language": {
+            "emptyTable": "No hay datos disponibles",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ filas",
+            "search": "Buscar Postulante :",
+            "lengthMenu": "_MENU_ registros"
+        },
+        stateSave: true,
+        "bProcessing": true,
+        "pagingType": "bootstrap_full_number",
+
+    });
+
+});
+
+</script>
+@stop
+
+
+@section('plugins-styles')
+{!! Html::style('assets/global/plugins/datatables/datatables.min.css') !!}
+{!! Html::style('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
+@stop
+
+@section('plugins-js')
+{!! Html::script('assets/global/plugins/jquery-ui/jquery-ui.min.js') !!}
+{!! Html::script('assets/global/scripts/datatable.js') !!}
+{!! Html::script('assets/global/plugins/datatables/datatables.min.js') !!}
+{!! Html::script('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
+@stop
 
 
 

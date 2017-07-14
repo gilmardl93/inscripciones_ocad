@@ -13,8 +13,8 @@ class PostulantesController extends Controller
     {
         $name = strtoupper($request->input('name'));
         $name = trim($name);
-        $postulantes = Postulante::whereRaw("numero_identificacion||' '||clearstring(paterno)||' '||clearstring(materno)||clearstring(nombres) like '%$name%'")->paginate();
-        if($postulantes->total()>0){
+        $postulantes = Postulante::whereRaw("numero_identificacion||' '||clearstring(paterno)||' '||clearstring(materno)||clearstring(nombres) like '%$name%'")->get();
+        if(!$postulantes->IsEmpty()){
             return view('admin.postulantes.index',compact('postulantes'));
         }else{
             $postulantes = [];
