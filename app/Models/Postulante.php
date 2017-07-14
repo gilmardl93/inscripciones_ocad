@@ -114,8 +114,10 @@ class Postulante extends Model
     */
     public function getCodigoModalidad2Attribute()
     {
-        $modalidad = Modalidad::find($this->idmodalidad2);
-        return $modalidad->codigo;
+        if(isset($this->idmodalidad2)){
+            $modalidad = Modalidad::find($this->idmodalidad2);
+            return $modalidad->codigo;
+        }else return '---';
     }
     /**
     * Atributos Nombre Modalidad
