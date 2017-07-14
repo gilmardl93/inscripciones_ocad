@@ -5,7 +5,7 @@
 {!! Alert::render() !!}
 <div class="row">
 	<div class="col-md-3">
-		<h3>Preinscritos Provincias</h3>
+		<h3>Preinscritos Lima + Provincias</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
@@ -13,6 +13,12 @@
 		            <th> Cantidad </th>
 		        </tr>
 		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ $Preinscritos_provincia->sum('cantidad') }} </th>
+		        </tr>
+		    </tfoot>
 		    <tbody>
 			@foreach ($Preinscritos_provincia as $item)
 		        <tr >
@@ -25,7 +31,7 @@
 		{!! $Preinscritos_provincia->links() !!}
 	</div><!--span-->
 	<div class="col-md-3">
-		<h3>Inscritos Provincia</h3>
+		<h3>Inscritos Lima + Provincia</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
@@ -33,6 +39,12 @@
 		            <th> Cantidad </th>
 		        </tr>
 		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ $Inscritos_provincia->sum('cantidad') }} </th>
+		        </tr>
+		    </tfoot>
 		    <tbody>
 			@foreach ($Inscritos_provincia as $item)
 		        <tr >
@@ -105,6 +117,7 @@
 		            <th> Cantidad </th>
 		        </tr>
 		    </thead>
+
 		    <tbody>
 		        <tr>
 		            <td> Preinscritos </td>
