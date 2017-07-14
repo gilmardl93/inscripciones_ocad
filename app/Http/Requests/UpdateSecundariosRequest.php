@@ -25,7 +25,7 @@ class UpdateSecundariosRequest extends FormRequest
     public function rules()
     {
         $data = Request::all();
-        if (is_numeric($data['idtipoidentificacion'])) {
+        if (array_key_exists('idtipoidentificacion',$data)) {
             $valida_tipo_identificacion = '|num_ide_max:'.$data['idtipoidentificacion'].'|num_ide_usu';
         }else $valida_tipo_identificacion='';
         $validate =  [
