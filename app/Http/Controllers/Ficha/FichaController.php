@@ -76,16 +76,17 @@ class FichaController extends Controller
             $pagos = $pagos->CalculoServicios();
             $recaudacion = Recaudacion::select('servicio','monto')->where('idpostulante',$postulante->id)->get();
             $pagos_realizados = $recaudacion->implode('servicio', ', ');
-
+            $debe = false;
             foreach ($pagos as $key => $item) {
                 if(str_contains($pagos_realizados,$item))$correcto_pagos = true;
                 else{
                     $correcto_pagos = false;
                     $servicio = Servicio::where('codigo',$item)->first();
                     $msj->push(['titulo'=>'Falta pago (Los pagos realizado el fin de semana se cargaran el primer día habil)','mensaje'=>'No esta registrado el pago de '.$servicio->descripcion.' por S/ '.$servicio->monto.' soles, si usted acaba de realizar el pago el sistema se actualizara en 2 horas, de lo contrario comuniquese con nosotros al correo informes@admisionuni.edu.pe']);
-                    break;
+                    $debe = true;
                 }
             }
+            $correcto_pagos = ($debe) ? false : true ;
             if ($correcto_pagos) {
                 Postulante::where('id',$postulante->id)->update(['pago'=>true,'fecha_pago'=>Carbon::now()]);
             }
