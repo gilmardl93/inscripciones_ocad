@@ -25,6 +25,12 @@
                     <p class="list-group-item-text"> Es el pago por derecho a rendir el examen. </p>
                 </a>
                 @endif
+                @if (isset($pagos['examen2']))
+                <a href="{{ route('pagos.formato',$pagos['examen2']) }}" class="list-group-item">
+                    <h4 class="list-group-item-heading">Derecho de Examen por segunda modalidad</h4>
+                    <p class="list-group-item-text"> Es el pago por derecho a rendir el examen. </p>
+                </a>
+                @endif
                 @if (isset($pagos['vocacepre']))
                     <a href="{{ route('pagos.formato',$pagos['vocacepre']) }}" class="list-group-item">
                         <h4 class="list-group-item-heading">Prueba de Aptitud Vocacional para arquitectura (CEPRE-UNI)</h4>
