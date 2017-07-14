@@ -280,6 +280,17 @@
                             </div>
                         </div><!--span-->
                     </div><!--row-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {!!Form::label('lblDistrito', 'Distrito de residencia del postulante');!!}
+                                {!!Form::select('idubigeo',UbigeoPersonal($postulante->idubigeo) ,null , ['class'=>'form-control Ubigeo']);!!}
+                            </div>
+                        </div><!--span-->
+                        <div class="col-md-8">
+                            {!! Field::text('direccion',['label'=>'Direccion de postulante','placeholder'=>'Direccion del postulante']) !!}
+                        </div><!--span-->
+                    </div><!--row-->
                     {!!Form::enviar('Actualizar')!!}
                     {!! Form::close() !!}
                 </div>
