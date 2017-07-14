@@ -46,7 +46,7 @@ class CreatePostulantesTable extends Migration
             $table->integer('idubigeonacimiento')->nullable();
             $table->integer('idubigeoprovincia')->nullable();
             $table->string('direccion_provincia')->nullable();
-            $table->string('telefono_provincia',30)->nullable();
+            $table->string('telefono_provincia',50)->nullable();
             $table->string('foto_cargada',200)->default('avatar/nofoto.jpg');
             $table->string('foto_editada',200)->nullable();
             $table->string('foto_rechazada',200)->nullable();
