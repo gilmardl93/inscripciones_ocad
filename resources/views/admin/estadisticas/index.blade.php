@@ -146,6 +146,29 @@
 		    </tbody>
 		</table>
 	</div><!--span-->
+	<div class="col-md-6">
+		<h3>Cepre UNI Modalidad</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Modalidad 1 </th>
+		            <th> Modalidad 2 </th>
+		            <th> Pago </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        @foreach ($CepreUniModalidad as $item)
+			        <tr >
+			            <td> {{ $item->modalidad1 }} </td>
+			            <td> {{ $item->modalidad2 }} </td>
+			            <td> {{ $item->pago }} </td>
+			            <td> {{ $item->cantidad }} </td>
+			        </tr>
+				@endforeach
+		    </tbody>
+		</table>
+	</div><!--span-->
 </div><!--row-->
 <div class="row">
 	<div class="col-md-4">

@@ -64,10 +64,11 @@ class EstadisticasController extends Controller
                                 ->IsNull(0)->where('datos_ok',1)->Activos()->get()->count();
         $CepreUniPagVoca = Postulante::where('idmodalidad',16)->where('idespecialidad',1)
                                 ->IsNull(0)->where('pago',1)->Activos()->get()->count();
+        $CepreUniModalidad = DB::table('est_cepre_modalidad')->get();
 
         return view('admin.estadisticas.index',compact(
             'Inscritos','Lista','Pagantes','Modalidades','Pagos','Fotos','Semibecas','Preinscritos_provincia','Inscritos_provincia',
-            'CepreUniPre','CepreUniIns','CepreUniPag','CepreUniPreVoca','CepreUniInsVoca','CepreUniPagVoca'
+            'CepreUniPre','CepreUniIns','CepreUniPag','CepreUniPreVoca','CepreUniInsVoca','CepreUniPagVoca','CepreUniModalidad'
             ));
     }
 }

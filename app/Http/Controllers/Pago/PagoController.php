@@ -69,6 +69,10 @@ class PagoController extends Controller
         if (str_contains($postulante->codigo_modalidad, ['E1DB','E1CABC','E1CD']))
             $pagos->put('examen',473);
 
+            #Se repite los pagos si es segunda modalidad
+            if (str_contains($postulante->codigo_modalidad2, ['E1DB','E1CABC','E1CD']))
+                $pagos->put('examen2',473);
+
         #Traslado Externo
         if (str_contains($postulante->codigo_modalidad, 'E1TE')
             && str_contains($postulante->gestion_ie,'Pública'))
@@ -77,10 +81,20 @@ class PagoController extends Controller
             && str_contains($postulante->gestion_ie,'Privada')) {
              $pagos->put('examen',470);
          }
-
+            #Se repite los pagos si es segunda modalidad
+            if (str_contains($postulante->codigo_modalidad2, 'E1TE')
+                && str_contains($postulante->gestion_ie,'Pública'))
+                $pagos->put('examen2',469);
+            elseif (str_contains($postulante->codigo_modalidad2, 'E1TE')
+                && str_contains($postulante->gestion_ie,'Privada')) {
+                 $pagos->put('examen2',470);
+             }
         #Titulado o graduado
         if (str_contains($postulante->codigo_modalidad, ['E1TG','E1TGU']))
             $pagos->put('examen',468);
+            #Se repite los pagos si es segunda modalidad
+            if (str_contains($postulante->codigo_modalidad2, ['E1TG','E1TGU']))
+                $pagos->put('examen2',468);
 
         #Descuentos por simulacro, semibeca o hijo de trabajador
         $descuento = Descuento::where('dni',$postulante->numero_identificacion)->first();
