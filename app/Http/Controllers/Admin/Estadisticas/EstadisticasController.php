@@ -54,6 +54,20 @@ class EstadisticasController extends Controller
                                     ->select('region',DB::raw("sum(cantidad) as cantidad"))
                                     ->groupBy('region')->paginate(10);
 
-        return view('admin.estadisticas.index',compact('Inscritos','Lista','Pagantes','Modalidades','Pagos','Fotos','Semibecas','Preinscritos_provincia','Inscritos_provincia'));
+        $CepreUniPre = Postulante::where('idmodalidad',16)->IsNull(0)->Activos()->get()->count();
+        $CepreUniIns = Postulante::where('idmodalidad',16)->IsNull(0)->where('datos_ok',1)->Activos()->get()->count();
+        $CepreUniPag = Postulante::where('idmodalidad',16)->IsNull(0)->where('pago',1)->Activos()->get()->count();
+
+        $CepreUniPreVoca = Postulante::where('idmodalidad',16)->where('idespecialidad',1)
+                                ->IsNull(0)->Activos()->get()->count();
+        $CepreUniInsVoca = Postulante::where('idmodalidad',16)->where('idespecialidad',1)
+                                ->IsNull(0)->where('datos_ok',1)->Activos()->get()->count();
+        $CepreUniPagVoca = Postulante::where('idmodalidad',16)->where('idespecialidad',1)
+                                ->IsNull(0)->where('pago',1)->Activos()->get()->count();
+
+        return view('admin.estadisticas.index',compact(
+            'Inscritos','Lista','Pagantes','Modalidades','Pagos','Fotos','Semibecas','Preinscritos_provincia','Inscritos_provincia',
+            'CepreUniPre','CepreUniIns','CepreUniPag','CepreUniPreVoca','CepreUniInsVoca','CepreUniPagVoca'
+            ));
     }
 }

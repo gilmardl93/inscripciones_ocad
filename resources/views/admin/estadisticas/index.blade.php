@@ -96,6 +96,58 @@
 	</div><!--span-->
 </div><!--row-->
 <div class="row">
+	<div class="col-md-3">
+		<h3>Cepre UNI</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Estado </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr>
+		            <td> Preinscritos </td>
+		            <td> {{ $CepreUniPre }} </td>
+		        </tr>
+		        <tr>
+		            <td> Pagantes </td>
+		            <td> {{ $CepreUniPag }} </td>
+		        </tr>
+		        <tr>
+		            <td> Inscritos </td>
+		            <td> {{ $CepreUniIns }} </td>
+		        </tr>
+		    </tbody>
+		</table>
+	</div><!--span-->
+	<div class="col-md-3">
+		<h3>Cepre UNI Vocacional</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Estado </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr>
+		            <td> Preinscritos </td>
+		            <td> {{ $CepreUniPreVoca }} </td>
+		        </tr>
+		        <tr>
+		            <td> Pagantes </td>
+		            <td> {{ $CepreUniPagVoca }} </td>
+		        </tr>
+		        <tr>
+		            <td> Inscritos </td>
+		            <td> {{ $CepreUniInsVoca }} </td>
+		        </tr>
+		    </tbody>
+		</table>
+	</div><!--span-->
+</div><!--row-->
+<div class="row">
 	<div class="col-md-4">
 		<h3>Preinscritos</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
