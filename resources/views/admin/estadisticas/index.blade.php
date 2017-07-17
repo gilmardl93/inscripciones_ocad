@@ -135,7 +135,7 @@
 		</table>
 	</div><!--span-->
 	<div class="col-md-3">
-		<h3> Vocacional</h3>
+		<h3>Cepre UNI Vocacional</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
