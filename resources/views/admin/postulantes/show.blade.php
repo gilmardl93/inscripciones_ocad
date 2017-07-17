@@ -269,6 +269,17 @@
                     @endif
                     <div class="row">
                         <div class="col-md-2">
+                            {!! Field::text('paterno',['label'=>'Apellido Paterno','placeholder'=>'Apellido Paterno']) !!}
+                        </div><!--span-->
+                        <div class="col-md-2">
+                            {!! Field::text('materno',['label'=>'Apellido Materno','placeholder'=>'Apellido Materno']) !!}
+                        </div><!--span-->
+                        <div class="col-md-2">
+                            {!! Field::text('nombres',['label'=>'Nombres','placeholder'=>'Nombres']) !!}
+                        </div><!--span-->
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col-md-2">
                         {!! Field::text('fecha_nacimiento',['label'=>'Fecha de Nacimiento','placeholder'=>'Fecha de Nacimiento']) !!}
                         </div><!--span-->
                     </div><!--row-->
