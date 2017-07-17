@@ -135,7 +135,7 @@
 		</table>
 	</div><!--span-->
 	<div class="col-md-3">
-		<h3>Cepre UNI Vocacional</h3>
+		<h3> Vocacional</h3>
 		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
 		    <thead>
 		        <tr>
@@ -155,6 +155,29 @@
 		        <tr>
 		            <td> Inscritos </td>
 		            <td> {{ $CepreUniInsVoca }} </td>
+		        </tr>
+		    </tbody>
+		</table>
+		<h3> Vocacional</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Estado </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr>
+		            <td> Preinscritos </td>
+		            <td> {{ $PreVoca }} </td>
+		        </tr>
+		        <tr>
+		            <td> Pagantes </td>
+		            <td> {{ $PagVoca }} </td>
+		        </tr>
+		        <tr>
+		            <td> Inscritos </td>
+		            <td> {{ $InsVoca }} </td>
 		        </tr>
 		    </tbody>
 		</table>
