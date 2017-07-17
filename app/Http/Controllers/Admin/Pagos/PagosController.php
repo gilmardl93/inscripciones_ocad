@@ -336,10 +336,13 @@ class PagosController extends Controller
                     $param = $this->Parametros($postulantes,$codigo_servicio,$codigo_cronograma);
 
                     Storage::disk('carteras')->append($name,$param['header']);
-                    foreach ($postulantes as $key => $postulante) {
-                        $detalle = $this->ParametrosDetalle($postulante,$codigo_servicio,$codigo_cronograma);
-                        Storage::disk('carteras')->append($name, $detalle);
+                    foreach ($postulantes->chunk(5) as $key => $Lista) {
+                        foreach ($Lista as $key => $postulante) {
+                            $detalle = $this->ParametrosDetalle($postulante,$codigo_servicio,$codigo_cronograma);
+                            Storage::disk('carteras')->append($name, $detalle);
+                        }
                     }
+
                     Storage::disk('carteras')->append($name, $param['footer']);
                 }//end if
             }//end foreach
