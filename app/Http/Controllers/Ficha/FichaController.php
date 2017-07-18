@@ -30,6 +30,7 @@ class FichaController extends Controller
 
         if (isset($postulante)) {
             $correcto_foto = false;
+            $correcto_datos_i = false;
             $correcto_datos_p = false;
             $correcto_datos_f = false;
             $correcto_datos_e = false;
@@ -53,6 +54,12 @@ class FichaController extends Controller
 
             #Valida datos adicionales----------------------------------------
             $proceso = Proceso::where('idpostulante',$postulante->id)->first();
+
+            if ($proceso->preinscripcion)$correcto_datos_i = true;
+            else {
+                $correcto_datos_i = false;
+                $msj->push(['titulo'=>'Faltan datos','mensaje'=>'Usted no ha ingresado sus datos de Preinscripcion']);
+            }
             if ($proceso->datos_personales)$correcto_datos_p = true;
             else {
                 $correcto_datos_p = false;
@@ -92,7 +99,7 @@ class FichaController extends Controller
             }
 
             #-------------------------------------------------------------------------------------------
-            if($correcto_foto && $correcto_datos_p && $correcto_datos_f && $correcto_datos_e && $correcto_pagos){
+            if($correcto_foto && $correcto_datos_i && $correcto_datos_p && $correcto_datos_f && $correcto_datos_e && $correcto_pagos){
                 #Si los datos son correctos muestro el formulario de conformidad
                 if ($postulante->datos_ok)return view('ficha.index',compact('id'));
                 else return view('ficha.confirmacion',compact('id'));
