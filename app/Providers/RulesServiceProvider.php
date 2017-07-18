@@ -7,6 +7,7 @@ use App\Models\Colegio;
 use App\Models\Cronograma;
 use App\Models\Modalidad;
 use App\Models\Postulante;
+use App\Models\SinVacante;
 use App\Models\Validacion;
 use Auth;
 use Carbon\Carbon;
@@ -31,6 +32,7 @@ class RulesServiceProvider extends ServiceProvider
         $this->ValidaFechaInscripcion();
         $this->ValidaNumeroIdentificacion();
         $this->ValidaNumIdenUsuario();
+        $this->ValidaVacantes();
         #Validacion de datos de familiares
         $this->DniSize();
         $this->DniNumeric();
@@ -46,13 +48,20 @@ class RulesServiceProvider extends ServiceProvider
         //
     }
 
+    public function ValidaVacantes()
+    {
+        Validator::extend('required_vacante', function ($attribute, $value, $parameters, $validator) {
+            $sin_vacante = SinVacante::where('idespecialidad',$value)->where('idmodalidad',$parameters[0])->get();
+            return $sin_vacante->IsEmpty();
+        },"No existe Vacante de esta especialidad en la modalidad que escogio");
+    }
     public function UniqueSchool()
     {
         Validator::extend('unique_school', function ($attribute, $value, $parameters, $validator) {
 
             $colegio = Colegio::where('anexo',$value)->where('codigo_modular',$parameters[0])->get();
 
-            if ($colegio->isEmpty()) return true; else return false;
+            return $colegio->IsEmpty();;
 
         },"El colegio que desea ingresar ya existe");
     }
