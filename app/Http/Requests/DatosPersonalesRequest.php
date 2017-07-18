@@ -38,7 +38,7 @@ class DatosPersonalesRequest extends FormRequest
                            '|required_mod_cepre:'.$idmodalidad2.
                            '|required_cod_cepre:'.$codigo.
                            '|required_esp_cepre:'.$especialidad2,
-            'idespecialidad'=>'required',
+            'idespecialidad'=>'required|required_vacante:'.$idmodalidad,
             'codigo_verificacion'=>'max:10|valida_cod_cepre:'.$idmodalidad,
         ];
     }
