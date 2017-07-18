@@ -11,6 +11,8 @@ class EspecialidadSelectData
 	{
 		$especialidad = Especialidad::Activo()->orderBy('nombre')->pluck('nombre','id')->toarray();
 		$especialidad_edit = ['' => 'Seleccionar Especialidad']+Especialidad::Activo()->orderBy('nombre')->pluck('nombre','id')->toarray();
+
+
 		$view->with(compact('especialidad','especialidad_edit'));
 	}
 }
