@@ -14,15 +14,22 @@ class Descuento extends Model
     */
     public function getServicioAttribute()
     {
-        $servicio = Servicio::find($this->idservicio);
-        return $servicio->codigo;
+        if(isset($this->idservicio)){
+            $servicio = Servicio::find($this->idservicio);
+            return $servicio->codigo;
+        }else return '--';
     }
     /**
     * Atributos Servicio
     */
     public function getDatosServicioAttribute()
     {
-    	$servicio = Servicio::find($this->idservicio);
+        if(isset($this->idservicio)){
+            $servicio = Servicio::find($this->idservicio);
+        }else {
+            $servicio = new Servicio(['codigo'=>'--','descripcion'=>'--','partida'=>'--','banco'=>'--','monto'=>0]);
+        }
+
     	return $servicio;
     }
 }
