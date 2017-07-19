@@ -41,7 +41,11 @@
             <h3>Modalidad de Postulación según el reglamento</h3>
                 <div class="row">
                     <div class="col-md-6">
+                    @if ($postulante->idmodalidad==16)
+                        {!!Field::select('idmodalidad',$modalidad2,['label'=>'Escoger Modalidad (*)','empty'=>'Escoger modalidad de postulacion']);!!}
+                    @else
                         {!!Field::select('idmodalidad',$modalidad,['label'=>'Escoger Modalidad (*)','empty'=>'Escoger modalidad de postulacion']);!!}
+                    @endif
                     </div><!--span-->
                     <div class="col-md-6">
                         {!!Field::select('idespecialidad',$especialidad,['label'=>'Escoger Especialidad (*)','empty'=>'Escoger especialidad de postulacion']);!!}
