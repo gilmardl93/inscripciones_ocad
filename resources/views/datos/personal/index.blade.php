@@ -38,7 +38,6 @@
                     </div>
                 </div><!--span-->
             </div><!--row-->
-
             <h3>Modalidad de Postulación según el reglamento</h3>
                 <div class="row">
                     <div class="col-md-6">
