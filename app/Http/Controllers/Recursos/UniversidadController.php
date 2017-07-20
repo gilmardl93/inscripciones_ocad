@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Recursos;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUniversidadRequest;
 use App\Models\Colegio;
 use App\Models\Modalidad;
 use App\Models\Universidad;
@@ -15,7 +16,7 @@ class UniversidadController extends Controller
     {
         return view('admin.universidad.index');
     }
-    public function store(Request $request)
+    public function store(CreateUniversidadRequest $request)
     {
         Universidad::create($request->all());
         Alert::success('Universidad Registrado con exito');
