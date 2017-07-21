@@ -97,7 +97,7 @@ class PagoController extends Controller
                 $pagos->put('examen2',468);
 
         #Descuentos por simulacro, semibeca o hijo de trabajador
-        $descuento = Descuento::where('dni',$postulante->numero_identificacion)->first();
+        $descuento = Descuento::where('dni',$postulante->numero_identificacion)->Activo()->first();
         if (isset($descuento)) {
             $pagos->pull('examen');
             if($descuento->tipo=='Parcial')$pagos->put('examen',$descuento->servicio);
