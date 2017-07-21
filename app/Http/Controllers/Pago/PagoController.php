@@ -57,20 +57,20 @@ class PagoController extends Controller
         #Pago por derecho de examen---------------------------------------------------------------------------------------
 
         #Modalidad Ordinario, Dos primeros alumnos, Deportisca calificado (Iniciar),Cepre Uni
-        if (str_contains($postulante->codigo_modalidad, ['O','E1DPA','E1DCAN','E1PDI','ID-CEPRE'])
+        if (str_contains($postulante->codigo_modalidad, ['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])
             && str_contains($postulante->gestion_ie,'Pública'))
             $pagos->put('examen',464);
-        elseif (str_contains($postulante->codigo_modalidad, ['O','E1DPA','E1DCAN','E1PDI','ID-CEPRE'])
+        elseif (str_contains($postulante->codigo_modalidad, ['O','E1DPA','E1DCAN','E1PDI','E1PDC','ID-CEPRE'])
             && str_contains($postulante->gestion_ie,'Privada')) {
             $pagos->put('examen',465);
          }
 
         #Diplomado con bachillerato, Andres bello (Continuar), convenio diplomatico
-        if (str_contains($postulante->codigo_modalidad, ['E1DB','E1CABC','E1CD']))
+        if (str_contains($postulante->codigo_modalidad, ['E1DB','E1CABC','E1CABI','E1CD']))
             $pagos->put('examen',473);
 
             #Se repite los pagos si es segunda modalidad
-            if (str_contains($postulante->codigo_modalidad2, ['E1DB','E1CABC','E1CD']))
+            if (str_contains($postulante->codigo_modalidad2, ['E1DB','E1CABC','E1CABI','E1CD']))
                 $pagos->put('examen2',473);
 
         #Traslado Externo
