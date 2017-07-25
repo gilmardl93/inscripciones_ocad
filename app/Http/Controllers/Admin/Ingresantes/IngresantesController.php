@@ -78,12 +78,14 @@ class IngresantesController extends Controller
         PDF::Image($postulante->mostrar_foto_editada,20,35,25,35);
         PDF::SetXY(20,70);
         PDF::SetFont('helvetica','',8);
-        PDF::Cell(25,5,'POSTULANTE:',1,0,'C');
+        PDF::Cell(25,5,'POSTULANTE',1,0,'C');
         #FOTO INGRESANTE
+        if($postulante->ingresantes->foto)
         PDF::Image($postulante->ingresantes->foto,50,35,25,35);
+        #
         PDF::SetXY(50,70);
         PDF::SetFont('helvetica','',8);
-        PDF::Cell(25,5,'INGRESANTE:',1,0,'C');
+        PDF::Cell(25,5,'INGRESANTE',1,0,'C');
         #
         PDF::SetXY(90,35);
         PDF::SetFont('helvetica','B',13);
@@ -241,12 +243,16 @@ class IngresantesController extends Controller
         #
         PDF::Rect(20, $y+85, 170, 30);
         #HUELLA INGRESANTE
+        if($postulante->ingresantes->huella)
         PDF::Image($postulante->ingresantes->huella,20,$y+120,25,35);
+
         PDF::SetXY(20,$y+155);
         PDF::SetFont('helvetica','',8);
         PDF::Cell(25,5,'HUELLA DIGITAL',1,0,'C');
         #FIRMA INGRESANTE
+        if($postulante->ingresantes->firma)
         PDF::Image($postulante->ingresantes->firma,55,$y+120,27);
+
         PDF::SetXY(55,$y+155);
         PDF::SetFont('helvetica','',8);
         PDF::Cell(30,5,'FIRMA',1,0,'C');
@@ -291,7 +297,7 @@ class IngresantesController extends Controller
             && isset($postulante->ingresantes->facultad_procedencia)
             && (isset($postulante->ingresantes->grado) || isset($postulante->ingresantes->titulo)))) {
             $muestra = true;
-        }elseif (str_contains($postulante->ingresantes->codigo_modalidad,['O','E1DPA','E1DB','E1CD','E1CABI','E1CABC','E1VTI','E1VTC','E1PDI','E1PDC','IEN'])) {
+        }elseif (str_contains($postulante->ingresantes->codigo_modalidad,['O','E1DPA','E1DB','E1CD','E1CABI','E1CABC','E1VTI','E1VTC','E1PDI','E1PDC','IEN','ID-CEPRE'])) {
             $muestra = true;
         }else{
             $muestra = false;
@@ -332,7 +338,7 @@ class IngresantesController extends Controller
     {
         PDF::AddPage('U','A4');
         PDF::SetAutoPageBreak(false);
-        PDF::Image($postulante->ingresantes->foto,162, 88, 24, 33);
+        PDF::Image($postulante->ingresantes->foto,164, 60, 26,34);
     }
     public function ReportConstancia($postulante,$evaluacion,$copia = true)
     {
