@@ -20,6 +20,7 @@
             </div>
             <div class="portlet-body">
                 {!!Form::back(route('admin.activas.aulas'))!!}
+                {!!Form::boton('Libera aulas Ingresantes',route('admin.liberar.aulas'),'yellow','fa fa-external-link')!!}
             <p></p>
                 <div class="row">
                     <div class="col-md-12">
