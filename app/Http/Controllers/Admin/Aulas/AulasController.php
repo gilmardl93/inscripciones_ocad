@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Aulas;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAulaRequest;
 use App\Models\Aula;
+use App\Models\Postulante;
 use DB;
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
@@ -55,6 +56,7 @@ class AulasController extends Controller
         Alert::success('Aula Registrada con exito');
         return back();
     }
+
     public function disponible(Request $request)
     {
         $data = $request->all();
@@ -68,15 +70,58 @@ class AulasController extends Controller
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function liberar()
     {
-        //
+        $ingresantes = Postulante::has('ingresantes')->where('idmodalidad',16)->get();
+        if (!$ingresantes->isEmpty()) {
+            #Dia 1
+            $ingresantes->sortBy('idaula1');
+            $dia1 = $ingresantes->where('idaula1','>',0)->groupBy('idaula1');
+            foreach ($dia1 as $key => $item) {
+                $ids = $item->implode('id',',');
+
+                $cantidad = count($item);
+                Postulante::whereIn('id',explode(',',$ids))->update(['idaula1'=>null]);
+                Aula::where('id',$key)->decrement('asignado_01',$cantidad);
+                Aula::where('id',$key)->increment('disponible_01',$cantidad);
+            }
+            #Dia 2
+            $ingresantes->sortBy('idaula2');
+            $dia2 = $ingresantes->where('idaula2','>',0)->groupBy('idaula2');
+            foreach ($dia2 as $key => $item) {
+                $ids = $item->implode('id',',');
+
+                $cantidad = count($item);
+                Postulante::whereIn('id',explode(',',$ids))->update(['idaula2'=>null]);
+                Aula::where('id',$key)->decrement('asignado_02',$cantidad);
+                Aula::where('id',$key)->increment('disponible_02',$cantidad);
+            }
+            #Dia 3
+            $ingresantes->sortBy('idaula3');
+            $dia3 = $ingresantes->where('idaula3','>',0)->groupBy('idaula3');
+            foreach ($dia3 as $key => $item) {
+                $ids = $item->implode('id',',');
+
+                $cantidad = count($item);
+                Postulante::whereIn('id',explode(',',$ids))->update(['idaula3'=>null]);
+                Aula::where('id',$key)->decrement('asignado_03',$cantidad);
+                Aula::where('id',$key)->increment('disponible_03',$cantidad);
+            }
+            #Voca
+            $ingresantes->sortBy('idaulavoca');
+            $voca = $ingresantes->where('idaulavoca','>',0)->groupBy('idaulavoca');
+            foreach ($voca as $key => $item) {
+                $ids = $item->implode('id',',');
+
+                $cantidad = count($item);
+                Postulante::whereIn('id',explode(',',$ids))->update(['idaulavoca'=>null]);
+                Aula::where('id',$key)->decrement('asignado_voca',$cantidad);
+                Aula::where('id',$key)->increment('disponible_voca',$cantidad);
+            }
+        }else{
+            Alert::success('No hay mas aulas que liberar');
+        }
+        return back();
     }
 
     /**
