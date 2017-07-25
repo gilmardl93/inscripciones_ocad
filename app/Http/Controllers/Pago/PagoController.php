@@ -107,10 +107,13 @@ class PagoController extends Controller
             $pagos->put('vocacepre',516);
         }
 
-        if (str_contains($postulante->codigo_modalidad, 'ID-CEPRE') && str_contains($postulante->codigo_especialidad, 'A1')){
+        if (!str_contains($postulante->codigo_modalidad, 'ID-CEPRE') && str_contains($postulante->codigo_especialidad, 'A1')){
             $pagos->put('voca',474);
         }
 
+        if (str_contains($postulante->codigo_especialidad2, 'A1')){
+            $pagos->put('voca',474);
+        }
         #Pago extemporaneo---------------------------------------------------------------------------------------------------
         $date = Carbon::now()->toDateString();
         $fecha_inicio = Cronograma::FechaInicio('INEX');
