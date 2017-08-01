@@ -107,7 +107,7 @@ class PagoController extends Controller
             $pagos->put('vocacepre',516);
         }
 
-        if (!str_contains($postulante->codigo_modalidad, 'ID-CEPRE') && str_contains($postulante->codigo_especialidad, 'A1')){
+        if (!str_contains($postulante->codigo_modalidad, ['ID-CEPRE','E1VTI','E1VTC']) && str_contains($postulante->codigo_especialidad, 'A1')){
             $pagos->put('voca',474);
         }
 
