@@ -93,8 +93,9 @@ class FichaController extends Controller
                     $debe = true;
                 }
             }
+
             $correcto_pagos = ($debe) ? false : true ;
-            if ($correcto_pagos) {
+            if ($correcto_pagos && !$postulante->pago) {
                 Postulante::where('id',$postulante->id)->update(['pago'=>true,'fecha_pago'=>Carbon::now()]);
             }
 
@@ -114,10 +115,13 @@ class FichaController extends Controller
     public function confirmar(Request $request)
     {
         if (Auth::attempt(['dni' => $request->get('dni'), 'password' => $request->get('password')])) {
+
             $postulante = Postulante::Usuario()->first();
-            $postulante->datos_ok=true;
-            $postulante->fecha_conformidad=Carbon::now();
-            $postulante->save();
+            if(!$postulante->datos_ok){
+                $postulante->datos_ok=true;
+                $postulante->fecha_conformidad=Carbon::now();
+                $postulante->save();
+            }
             #Asigno Aulas
             Postulante::AsignarAula($postulante->id);
             #Asigno codigo
