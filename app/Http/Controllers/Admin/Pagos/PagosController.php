@@ -83,10 +83,8 @@ class PagosController extends Controller
         $servicio_ini = Servicio::find($request->servicio_ini);
         $servicio_fin = Servicio::find($request->servicio_fin);
         $recibo = $servicio_ini->codigo.$request->codigo;
-        $recibo_nuevo = $servicio_fin->codigo.$request->codigo;
         $pos = Postulante::Activos()->where('numero_identificacion',$request->input('codigo'))->first();
         Recaudacion::where('recibo',$recibo)->update([
-            'recibo'=>$recibo_nuevo,
             'servicio'=>$servicio_fin->codigo,
             'descripcion'=>$servicio_fin->descripcion,
             'monto'=>$servicio_fin->monto,
