@@ -73,6 +73,8 @@ class PagoController extends Controller
             if (str_contains($postulante->codigo_modalidad2, ['E1DB','E1CABC','E1CABI','E1CD']))
                 $pagos->put('examen2',473);
 
+
+
         #Traslado Externo
         if (str_contains($postulante->codigo_modalidad, 'E1TE')
             && str_contains($postulante->gestion_ie,'Pública'))

@@ -100,6 +100,9 @@ Route::get('aulas-habilitadas', 'Aulas\AulasController@habilitadas')->name('admi
 
 Route::get('liberar-aulas', 'Aulas\AulasController@liberar')->name('admin.liberar.aulas');
 
+Route::post('asignar-aulas', 'Aulas\AulasController@asignar')->name('admin.asignar.aulas');
+
+
 /**
  * Secuencia
  */

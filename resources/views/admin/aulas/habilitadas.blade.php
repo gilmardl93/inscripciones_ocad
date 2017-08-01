@@ -21,6 +21,8 @@
             <div class="portlet-body">
                 {!!Form::back(route('admin.activas.aulas'))!!}
                 {!!Form::boton('Libera aulas Ingresantes',route('admin.liberar.aulas'),'yellow','fa fa-external-link')!!}
+                {!!Form::botonmodal('Asignar Aula','#AsignarAula','purple','fa fa-plus')!!}
+
             <p></p>
                 <div class="row">
                     <div class="col-md-12">
@@ -100,6 +102,26 @@
         </div>
         <!-- END Portlet PORTLET-->
     </div>
+</div>
+<div class="modal fade" id="AsignarAula" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Nuevo Personal</h4>
+            </div>
+            <div class="modal-body">
+            {!! Form::open(['route'=>'admin.asignar.aulas','method'=>'POST']) !!}
+                    {!! Field::text('dni',['label'=>'Ingrese numero de DNI','placeholder'=>'Ingrese numero de DNI']) !!}
+            </div>
+            <div class="modal-footer">
+                    {!!Form::enviar('Asignar')!!}
+            </div>
+            {!! Form::close() !!}
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
 @stop
 
