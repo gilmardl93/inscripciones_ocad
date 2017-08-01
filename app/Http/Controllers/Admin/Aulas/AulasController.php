@@ -124,6 +124,15 @@ class AulasController extends Controller
         return back();
     }
 
+    public function asignar(Request $request)
+    {
+
+        $postulante = Postulante::where('numero_identificacion',$request->input('dni'))->first();
+        #Asigno Aulas
+        Postulante::AsignarAula($postulante->id);
+        Alert::success('Aulas asignadas con exito');
+        return back();
+    }
     /**
      * Show the form for editing the specified resource.
      *
