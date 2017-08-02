@@ -386,7 +386,7 @@ class PagosController extends Controller
                break;
             case '507':
                 $extemporaneo = Cronograma::where('codigo','INEX')->first();
-                $postulantes = Postulante::IsNull(0)->where('fecha_registro','>',$extemporaneo->fecha_inicio)->get();
+                $postulantes = Postulante::IsNull(0)->where('fecha_registro','>=',$extemporaneo->fecha_inicio)->get();
                break;
             case '521':
                 $postulantes = Postulante::PagoFormatoSemibeca()->IsNull(0)->get();
