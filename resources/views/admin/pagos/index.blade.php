@@ -111,7 +111,7 @@
                 </div>
                 <div class="form-group">
                     {!!Form::label('lblServicio', 'Pago inicial');!!}
-                    {!!Form::select('servicio_ini', $servicios,null , ['class'=>'form-control','placeholder'=>'Servicio Inicial']);!!}
+                    {!!Form::select('servicio_ini', $servicios_total,null , ['class'=>'form-control','placeholder'=>'Servicio Inicial']);!!}
                 </div>
                 <div class="form-group">
                     {!!Form::label('lblServicio', 'Pago final');!!}
