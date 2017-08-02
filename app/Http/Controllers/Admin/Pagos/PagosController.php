@@ -334,20 +334,17 @@ class PagosController extends Controller
                     $param = $this->Parametros($postulantes,$codigo_servicio,$codigo_cronograma);
 
                     Storage::disk('carteras')->append($name,$param['header']);
-                    foreach ($postulantes->chunk(5) as $key => $Lista) {
-                        foreach ($Lista as $key => $postulante) {
-                            $detalle = $this->ParametrosDetalle($postulante,$codigo_servicio,$codigo_cronograma);
-                            Storage::disk('carteras')->append($name, $detalle);
-                        }
+                    foreach ($postulantes as $key => $postulante) {
+                        $detalle = $this->ParametrosDetalle($postulante,$codigo_servicio,$codigo_cronograma);
+                        Storage::disk('carteras')->append($name, $detalle);
                     }
-
                     Storage::disk('carteras')->append($name, $param['footer']);
                 }//end if
             }//end foreach
         }
 
-    	Alert::success('Cartera Creada con exito');
-    	return back();
+        Alert::success('Cartera Creada con exito');
+        return back();
     }
     public function PostulantesAPagar($codigo)
     {
@@ -386,7 +383,8 @@ class PagosController extends Controller
                 $postulantes = Postulante::PagoGestion(null,null,null,'A1')->IsNull(0)->get();
                break;
             case '507':
-                $postulantes = Postulante::IsNull(0)->get();
+                $extemporaneo = Cronograma::where('codigo','INEX')->first();
+                $postulantes = Postulante::IsNull(0)->where('fecha_registro','>',$extemporaneo->fecha_inicio)->get();
                break;
             case '521':
                 $postulantes = Postulante::PagoFormatoSemibeca()->IsNull(0)->get();
