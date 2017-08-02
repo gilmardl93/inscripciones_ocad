@@ -52,6 +52,16 @@ class EventServiceProvider extends ServiceProvider
             $postulante = Postulante::where('numero_identificacion',$recaudacion->codigo)->first();
             Recaudacion::where('id',$recaudacion->id)->update(['idpostulante'=>$postulante->id]);
         });
+        /**
+         * Actualiza el pago de prospecto
+         */
+        Recaudacion::created(function($recaudacion){
+            if ($recaudacion->servicio=='475') {
+                $postulante = Postulante::where('numero_identificacion',$recaudacion->codigo)->first();
+                Proceso::where('idpostulante',$postulante->id)->update(['pago_prospecto'=>true]);
+            }
+        });
+
 
     }
 }
