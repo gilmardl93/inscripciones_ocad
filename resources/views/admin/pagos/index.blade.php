@@ -115,7 +115,7 @@
                 </div>
                 <div class="form-group">
                     {!!Form::label('lblServicio', 'Pago final');!!}
-                    {!!Form::select('servicio_fin', $servicios,null , ['class'=>'form-control','placeholder'=>'Servicio Final']);!!}
+                    {!!Form::select('servicio_fin', $servicios_total,null , ['class'=>'form-control','placeholder'=>'Servicio Final']);!!}
                 </div>
             </div>
             <div class="modal-footer">
