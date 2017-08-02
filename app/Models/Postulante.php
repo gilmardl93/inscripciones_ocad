@@ -862,6 +862,10 @@ class Postulante extends Model
                 Aula::where('id',$voca->id)->decrement('disponible_voca');
                 Aula::where('id',$voca->id)->increment('asignado_voca');
             }
+            if (Postulante::where('id',$id)->whereNull('idaulavoca')->where('idespecialidad2',1)->update(['idaulavoca'=>$voca->id])) {
+                Aula::where('id',$voca->id)->decrement('disponible_voca');
+                Aula::where('id',$voca->id)->increment('asignado_voca');
+            }
         }
     }
 
