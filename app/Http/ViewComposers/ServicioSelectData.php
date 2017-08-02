@@ -10,11 +10,12 @@ class ServicioSelectData
 	public function compose(View $view)
 	{
 		$servicios = Servicio::Activo()->orderBy('descripcion')->pluck('descripcion','id')->toarray();
+		$servicios_total = Servicio::orderBy('descripcion')->pluck('descripcion','id')->toarray();
 		$servicio_descuento = Servicio::Activo()
 										->whereIn('codigo',['466','467'])
 										->orderBy('descripcion')
 										->pluck('descripcion','id')
 										->toarray();
-		$view->with(compact('servicios','servicio_descuento'));
+		$view->with(compact('servicios','servicio_descuento','servicios_total'));
 	}
 }
