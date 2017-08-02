@@ -96,8 +96,8 @@ class FichaController extends Controller
 
             $correcto_pagos = ($debe) ? false : true ;
 
-            if ($correcto_pagos ) {
-                Postulante::where('id',$postulante->id)->where('pago',0)->update(['pago'=>true,'fecha_pago'=>Carbon::now()]);
+            if ($correcto_pagos && !$postulante->pago) {
+                Postulante::where('id',$postulante->id)->update(['pago'=>true,'fecha_pago'=>Carbon::now()]);
             }
 
             #-------------------------------------------------------------------------------------------
