@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group">
                     {!!Form::label('lblServicio', 'Servicio');!!}
-                    {!!Form::select('servicio', $servicios,null , ['class'=>'form-control','placeholder'=>'Servicio']);!!}
+                    {!!Form::select('servicio', $servicios_total,null , ['class'=>'form-control','placeholder'=>'Servicio']);!!}
                 </div>
                 <div class="form-group">
                     {!!Form::label('lblReferencia', 'Referencia');!!}
