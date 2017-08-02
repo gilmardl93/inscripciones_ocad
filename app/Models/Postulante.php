@@ -800,7 +800,7 @@ class Postulante extends Model
         $numero = DB::select("SELECT nextval('canal_".$seq."_seq')");
         $numero = $numero[0]->nextval;
         $codigo = NumeroInscripcion($seq,$numero);
-        Postulante::where('id',$id)->whereNull('codigo')->update(['codigo'=>$codigo, 'pago'=>true,'fecha_pago'=>Carbon::now()]);
+        Postulante::where('id',$id)->whereNull('codigo')->update(['codigo'=>$codigo]);
     }
 
     public static function AsignarAula($id)
