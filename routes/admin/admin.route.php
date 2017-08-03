@@ -97,6 +97,7 @@ Route::post('disponible-aulas', 'Aulas\AulasController@disponible')->name('admin
 
 Route::get('aulas-activas', 'Aulas\AulasController@activas')->name('admin.activas.aulas');
 Route::get('aulas-habilitadas', 'Aulas\AulasController@habilitadas')->name('admin.activas.habilitadas');
+Route::get('aulas-control', 'Aulas\AulasController@control')->name('admin.activas.control');
 
 Route::get('liberar-aulas', 'Aulas\AulasController@liberar')->name('admin.liberar.aulas');
 

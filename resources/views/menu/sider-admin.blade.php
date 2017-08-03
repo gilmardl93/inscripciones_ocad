@@ -45,6 +45,7 @@
 @endif
 @if (str_contains(Auth::user()->codigo_rol,['admin','jefatura','root']))
 {!!Form::menu('Padron',route('admin.padron.index'),'fa fa-database')!!}
+{!!Form::menu('control Aulas',route('admin.activas.control'),'fa fa-cubes')!!}
 @endif
 @if (str_contains(Auth::user()->codigo_rol,['foto','admin','jefatura','root']))
 {!!Form::menu('Editar Fotos',route('admin.fotos.index'),'fa fa-file-image-o')!!}
