@@ -38,6 +38,13 @@ class EstadisticasController extends Controller
                             ->groupBy('m.nombre')
                             ->orderBy('m.nombre')
                             ->paginate(5);
+        $ModalidadesIns = Postulante::select('m.nombre as modalidad',DB::raw('count(*) as cantidad'))
+                            ->join('modalidad as m','m.id','=','postulante.idmodalidad')
+                            ->where('datos_ok',1)
+                            ->IsNull(0)
+                            ->groupBy('m.nombre')
+                            ->orderBy('m.nombre')
+                            ->paginate(5);
         $Pagos = Recaudacion::select('s.descripcion as descripcion',DB::raw('count(*) as cantidad'))
                             ->join('servicio as s','s.codigo','=','recaudacion.servicio')
                             ->groupBy('s.descripcion')
@@ -73,7 +80,7 @@ class EstadisticasController extends Controller
         return view('admin.estadisticas.index',compact(
             'Inscritos','Lista','Pagantes','Modalidades','Pagos','Fotos','Semibecas','Preinscritos_provincia','Inscritos_provincia',
             'CepreUniPre','CepreUniIns','CepreUniPag','CepreUniPreVoca','CepreUniInsVoca','CepreUniPagVoca','CepreUniModalidad',
-            'PreVoca','InsVoca','PagVoca'
+            'PreVoca','InsVoca','PagVoca','ModalidadesIns'
             ));
     }
 }
