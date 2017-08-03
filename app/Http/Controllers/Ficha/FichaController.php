@@ -223,7 +223,7 @@ class FichaController extends Controller
             PDF::SetXY(125,120);
             PDF::Cell(40,7,'VI 11: '.$postulante->datos_aula_tres->codigo,0,0,'C',1,'',1);
             #
-            if($postulante->codigo_especialidad=='A1'){
+            if($postulante->codigo_especialidad=='A1' || $postulante->codigo_especialidad2=='A1'){
                 PDF::SetXY(168,120);
                 PDF::Cell(40,7,'VOCA 05: '.$postulante->datos_aula_voca->codigo,0,0,'C',1,'',1);
             }
