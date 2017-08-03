@@ -338,6 +338,32 @@
 		</table>
 		{!! $Modalidades->links() !!}
 	</div><!--span-->
+	<div class="col-md-6">
+		<h3>Inscritos Por Modalidad</h3>
+		<table class="table table-bordered table-hover" data-toggle="table" data-pagination="true">
+		    <thead>
+		        <tr>
+		            <th> Modalidad </th>
+		            <th> Cantidad </th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		            <th> Total </th>
+		            <th> {{ $ModalidadesIns->sum('cantidad') }} </th>
+		        </tr>
+		    </tfoot>
+		    <tbody>
+			@foreach ($ModalidadesIns as $item)
+		        <tr >
+		            <td> {{ $item->modalidad }} </td>
+		            <td> {{ $item->cantidad }} </td>
+		        </tr>
+			@endforeach
+		    </tbody>
+		</table>
+		{!! $ModalidadesIns->links() !!}
+	</div><!--span-->
 </div><!--row-->
 @stop
 
