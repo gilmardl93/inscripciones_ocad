@@ -254,4 +254,8 @@ class AulasController extends Controller
     {
         return view('admin.aulas.habilitadas');
     }
+    public function control()
+    {
+        return view('admin.aulas.control');
+    }
 }
