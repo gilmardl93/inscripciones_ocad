@@ -29,6 +29,7 @@ class EstadisticasController extends Controller
     						->paginate(10);
         $Pagantes = Postulante::select('fecha_pago',DB::raw('count(*) as cantidad'))
                             ->where('pago',1)
+                            ->IsNull(0)
                             ->groupBy('fecha_pago')
                             ->orderBy('fecha_pago','desc')
                             ->paginate(10);
