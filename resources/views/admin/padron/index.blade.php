@@ -23,8 +23,7 @@
                     <thead>
                         <tr>
                             <th> Periodo </th>
-                            <th> Concurso </th>
-                            <th> Número Identificación </th>
+                            <th> Codigo </th>
                             <th> Codigo Verificación </th>
                             <th> Paterno </th>
                             <th> Materno </th>
@@ -82,7 +81,6 @@
                             @foreach ($item as $padron)
                                 <tr>
                                     <td> {{ $padron->datos_evaluacion->codigo }} </td>
-                                    <td> {{ $padron->datos_evaluacion->nombre }} </td>
                                     <td> {{ $padron->codigo }} </td>
                                     <td> {{ $padron->codigo_verificacion }} </td>
                                     <td> {{ $padron->paterno }} </td>
