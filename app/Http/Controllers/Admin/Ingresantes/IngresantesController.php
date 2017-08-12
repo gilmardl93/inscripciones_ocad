@@ -326,7 +326,7 @@ class IngresantesController extends Controller
                                    ->has('ingresantes')
                                    ->with('ingresantes')
                                    ->join('ingresante as i','i.idpostulante','=','postulante.id')
-                                   ->orderBy('i.numero_constancia')->get();
+                                   ->orderBy('i.id')->get();
         $evaluacion = Evaluacion::Activo()->first();
         PDF::SetTitle(' CONSTANCIAS DE INGRESANTES');
 
