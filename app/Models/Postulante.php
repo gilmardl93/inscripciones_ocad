@@ -375,14 +375,7 @@ class Postulante extends Model
         return $foto;
     }
 
-    /**
-    * Atributos Grado
-    */
-    public function getGradoAttribute()
-    {
-        $grado = Catalogo::find($this->idgrado);
-        return $grado->nombre;
-    }
+
     /**
     * Atributos Sexo
     */
