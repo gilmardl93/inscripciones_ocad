@@ -12,6 +12,7 @@ use App\Models\Postulante;
 use Illuminate\Http\Request;
 use PDF;
 use Validator;
+use DB;
 class IngresantesController extends Controller
 {
     public function index()
@@ -319,20 +320,41 @@ class IngresantesController extends Controller
     }
     public function pdfconstancias()
     {
-        $ingresantes = Postulante::has('ingresantes')->get();
+        $this->AsignaNumeroConstancia();
+
+        $ingresantes = Postulante::select('postulante.*','i.numero_constancia')
+                                   ->has('ingresantes')
+                                   ->with('ingresantes')
+                                   ->join('ingresante as i','i.idpostulante','=','postulante.id')
+                                   ->orderBy('i.numero_constancia')->get();
         $evaluacion = Evaluacion::Activo()->first();
-        PDF::SetTitle(' CONSTANCIAs DE INGRESANTES');
+        PDF::SetTitle(' CONSTANCIAS DE INGRESANTES');
+
         PDF::SetAutoPageBreak(false);
         foreach ($ingresantes as $key => $ingresante) {
             $this->ReportConstancia($ingresante,$evaluacion,false);
         }
         PDF::Output(public_path('storage/tmp/').'Constancias.pdf','F');
+
         $headers = [];
         return response()->download(
                 storage_path('app/public/tmp/Constancias.pdf'),
                 null,
                 $headers
             );
+    }
+    public function AsignaNumeroConstancia()
+    {
+        $ingresantes = Ingresante::whereNull('numero_constancia')->orderBy('id')->get();
+        if ($ingresantes->count()>0) {
+            foreach ($ingresantes as $key => $ingresante) {
+                $numero = DB::select("SELECT nextval('numero_constancia')");
+                $numero = $numero[0]->nextval;
+                $ingresante->numero_constancia=$numero;
+                $ingresante->save();
+            }
+        }
+
     }
     public function ReportFotoConstancia($postulante)
     {
@@ -350,7 +372,8 @@ class IngresantesController extends Controller
         #
         PDF::SetXY(161,96);
         PDF::SetFont('helvetica','B',18);
-        PDF::Cell(30,5,'N° '.$postulante->ingresantes->numero_constancia,0,0,'C');
+        $numero_constancia = pad($postulante->ingresantes->numero_constancia,4,'0','L');
+        PDF::Cell(30,5,'N° '.$numero_constancia,0,0,'C');
         #
         PDF::SetXY(15,105);
         PDF::SetFont('helvetica','',14);
