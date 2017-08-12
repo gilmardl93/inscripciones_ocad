@@ -103,4 +103,19 @@ class Ingresante extends Model
 
         return $imagen;
     }
+    /**
+    * Atributos NotaComa
+    */
+    public function getNotaComaAttribute()
+    {
+        return number_format($this->nota_ingreso, 2, ',', ' ');
+    }
+    /**
+    * Atributos NotaComa
+    */
+    public function getNotaEquivalenteAttribute()
+    {
+        $nota = ($this->nota_ingreso*100)/20;
+        return number_format($nota, 2, ',', ' ');
+    }
 }

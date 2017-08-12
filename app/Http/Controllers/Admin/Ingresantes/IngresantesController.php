@@ -394,11 +394,10 @@ class IngresantesController extends Controller
         #
         PDF::SetXY(15,145);
         PDF::SetFont('helvetica','',15);
-        $nota_equivalente = ($postulante->ingresantes->nota_ingreso*100)/20;
         $texto = 'Con '.$postulante->identificacion.', y número de inscripcion de postulante N° <b>'.$postulante->codigo.'</b> ';
         $texto .= 'Ingresó a la especialidad de <b>'.$postulante->ingresantes->especialidad.'</b> en la modalidad ';
         $texto .= '<b>'.$postulante->ingresantes->modalidad.'</b> del '.$evaluacion->nombre.', según consta en las actas correspondientes';
-        $texto .= ' de esta Oficina, con nota vigesimal de '.$postulante->ingresantes->nota_ingreso.' (equivalente a '.$nota_equivalente.' en escala centesimal)';
+        $texto .= ' de esta Oficina, con nota vigesimal de '.$postulante->ingresantes->nota_coma.' (equivalente a '.$postulante->ingresantes->nota_equivalente.' en escala centesimal)';
         PDF::MultiCell(180, 15, $texto, 1, 'J', 0, 1, '', '', true,0,true);
         #
         $y = 260;
