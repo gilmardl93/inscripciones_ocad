@@ -58,12 +58,10 @@
 {!!Form::menu('Importa Pago',route('admin.ventanilla.index'),'fa fa-dollar')!!}
 {!!Form::menu('Listados',route('admin.listados.index'),'fa fa-users')!!}
 @endif
-@if (str_contains(Auth::user()->codigo_rol,['ingreso','root']))
 {!!Form::menu('Constancias',route('admin.ingresantes.constancias'),'fa fa-file-pdf-o')!!}
 {!!Form::menu('Etiquetas',route('admin.ingresantes.etiquetas'),'fa fa-sticky-note-o')!!}
 {!!Form::menu('Ingresante',route('admin.ingresantes.index'),'fa fa-graduation-cap')!!}
 {!!Form::menu('Control entrega',route('admin.ingresantes.control.index'),'fa fa-check-square-o')!!}
-@endif
     </ul>
     <!-- END SIDEBAR MENU -->
 </div>
