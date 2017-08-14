@@ -30,9 +30,7 @@
                 </ul>
             </li>
             {!!Form::menu('Servicios',route('admin.servicios.index'),'fa fa-dollar')!!}
-            <li class="heading">
-                <h3 class="uppercase">IDENTIFICACION</h3>
-            </li>
+
 
             <li class="heading">
                 <h3 class="uppercase">Modulos</h3>
@@ -58,10 +56,15 @@
 {!!Form::menu('Importa Pago',route('admin.ventanilla.index'),'fa fa-dollar')!!}
 {!!Form::menu('Listados',route('admin.listados.index'),'fa fa-users')!!}
 @endif
+<li class="heading">
+    <h3 class="uppercase">IDENTIFICACION</h3>
+</li>
 {!!Form::menu('Constancias',route('admin.ingresantes.constancias'),'fa fa-file-pdf-o')!!}
 {!!Form::menu('Etiquetas',route('admin.ingresantes.etiquetas'),'fa fa-sticky-note-o')!!}
 {!!Form::menu('Ingresante',route('admin.ingresantes.index'),'fa fa-graduation-cap')!!}
 {!!Form::menu('Control entrega',route('admin.ingresantes.control.index'),'fa fa-check-square-o')!!}
+{!!Form::menu('Listado General',route('admin.ingresantes.listadogeneral'),'fa fa-file-pdf-o')!!}
+{!!Form::menu('Listado Firma',route('admin.ingresantes.listadofirma'),'fa fa-file-pdf-o')!!}
     </ul>
     <!-- END SIDEBAR MENU -->
 </div>

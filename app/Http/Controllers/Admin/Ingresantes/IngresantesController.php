@@ -9,10 +9,11 @@ use App\Models\Evaluacion;
 use App\Models\Familiar;
 use App\Models\Ingresante;
 use App\Models\Postulante;
+use App\Models\Recaudacion;
+use DB;
 use Illuminate\Http\Request;
 use PDF;
 use Validator;
-use DB;
 class IngresantesController extends Controller
 {
     public function index()
@@ -240,9 +241,20 @@ class IngresantesController extends Controller
         #
         PDF::SetXY(20,$y+80);
         PDF::SetFont('helvetica','',8);
+        PDF::Cell(80,5,'PAGOS:',0,0,'L');
+        #
+        $pagos = Recaudacion::select(DB::raw("descripcion||':'||monto as descripcion"))->where('idpostulante',$postulante->id)->get();
+        $lblpagos = $pagos->implode('descripcion', "\n" );
+
+        PDF::SetXY(100,$y+80);
+        PDF::SetFont('helvetica','',7);
+        PDF::MultiCell(95, 15, $lblpagos, 0, '', 0, 1, '', '', true);
+        #
+        PDF::SetXY(20,$y+95);
+        PDF::SetFont('helvetica','',8);
         PDF::Cell(80,5,'OBSERVACIONES:',0,0,'L');
         #
-        PDF::Rect(20, $y+85, 170, 30);
+        PDF::Rect(20, $y+95, 170, 30);
         #HUELLA INGRESANTE
         if($postulante->ingresantes->huella)
         PDF::Image($postulante->ingresantes->huella,20,$y+120,25,35);
@@ -326,6 +338,7 @@ class IngresantesController extends Controller
                                    ->has('ingresantes')
                                    ->with('ingresantes')
                                    ->join('ingresante as i','i.idpostulante','=','postulante.id')
+                                   ->where('i.idmodalidad',6)
                                    ->orderBy('i.id')->get();
         $evaluacion = Evaluacion::Activo()->first();
         PDF::SetTitle(' CONSTANCIAS DE INGRESANTES');
