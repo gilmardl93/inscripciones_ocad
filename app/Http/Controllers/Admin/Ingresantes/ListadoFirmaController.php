@@ -108,7 +108,7 @@ class ListadoFirmaController extends Controller
 
         }
 
-        PDF::Output(public_path('storage/tmp/')."listado_general.pdf",'FI');
+        PDF::Output(public_path('storage/tmp/')."listado_general_firma.pdf",'FI');
     }
     function TituloColumnas($facultad=null,$codes,$especialidad = null){
         $y=50;
