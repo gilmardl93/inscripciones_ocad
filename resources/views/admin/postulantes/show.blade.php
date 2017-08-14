@@ -246,7 +246,7 @@
                 <!--tab-pane-->
                 <div class="tab-pane" id="tab_5">
                     {!! Form::model($postulante,['route'=>['admin.pos.update',$postulante],'method'=>'PUT']) !!}
-                    @if (str_contains(Auth::user()->codigo_rol,['jefatura','root']))
+                    @if (str_contains(Auth::user()->codigo_rol,['jefatura','root','ingreso']))
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

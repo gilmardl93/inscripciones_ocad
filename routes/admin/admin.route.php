@@ -39,6 +39,12 @@ Route::group(['namespace'=>'Ingresantes'], function() {
 	#Etiquetas para folders
 	Route::get('ingresantes-etiquetas','EtiquetasController@index')->name('admin.ingresantes.etiquetas');
 	Route::get('ingresantes-etiquetas-pdf','EtiquetasController@pdf')->name('admin.ingresantes.etiquetas.pdf');
+	#Listado de Ingresantes
+	Route::get('listado-general','ListadoGeneralController@listadogeneral')->name('admin.ingresantes.listadogeneral');
+	Route::get('listado-general-pdf','ListadoGeneralController@listadogeneralpdf')->name('admin.ingresantes.listadogeneral.pdf');
+	Route::get('listado-firma','ListadoFirmaController@listadofirma')->name('admin.ingresantes.listadofirma');
+	Route::get('listado-firma-pdf','ListadoFirmaController@listadofirmapdf')->name('admin.ingresantes.listadofirma.pdf');
+
 });
 /**
  * Pagos

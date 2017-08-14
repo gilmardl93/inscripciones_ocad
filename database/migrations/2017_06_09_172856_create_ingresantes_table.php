@@ -29,6 +29,7 @@ class CreateIngresantesTable extends Migration
             $table->string('grado')->nullable();
             $table->string('titulo')->nullable();
             $table->integer('numero_creditos')->nullable();
+            $table->string('secuencia_identificacion')->nullable();
             $table->foreign('idpostulante')->references('id')->on('postulante');
             $table->foreign('idfacultad')->references('id')->on('facultad');
             $table->foreign('idespecialidad')->references('id')->on('especialidad');
