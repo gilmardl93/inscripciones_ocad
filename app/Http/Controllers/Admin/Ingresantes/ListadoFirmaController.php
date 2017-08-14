@@ -44,7 +44,30 @@ class ListadoFirmaController extends Controller
         $especialidad = $postulantes[0]->ingresantes->especialidad;
         $this->TituloColumnas($facultad,$codes,$especialidad);
         foreach ($postulantes as $key => $postulante) {
-        	if($i%$numMaxLineas==0 && $i!=0){
+            if($facultad != $postulante->ingresantes->facultad){
+                PDF::AddPage('U', 'A4');
+                Reportheader();
+                Reportfooter();
+                $facultad = $postulante->ingresantes->facultad;
+		        $codes = $postulante->ingresantes->codigo_especialidad;
+		        $especialidad = $postulante->ingresantes->especialidad;
+                $this->TituloColumnas($facultad,$codes,$especialidad);
+                $y = 0;
+                $i = 0;
+            }
+            if($especialidad != $postulante->ingresantes->especialidad){
+                PDF::AddPage('U', 'A4');
+                Reportheader();
+                Reportfooter();
+                $codes = $postulante->ingresantes->codigo_especialidad;
+                $especialidad = $postulante->ingresantes->especialidad;
+                $this->TituloColumnas($facultad,$codes,$especialidad);
+
+                $y = 0;
+                $i = 0;
+            }
+
+            if($i%$numMaxLineas==0 && $i!=0){
                 PDF::AddPage('U', 'A4');
                 Reportheader();
                 Reportfooter();
@@ -58,17 +81,6 @@ class ListadoFirmaController extends Controller
                 PDF::Cell(140, 10, '', 'B', 0, 'C');
             }
             #
-            if($facultad != $postulante->ingresantes->facultad){
-                PDF::AddPage('U', 'A4');
-                Reportheader();
-                Reportfooter();
-                $facultad = $postulante->ingresantes->facultad;
-		        $codes = $postulante->ingresantes->codigo_especialidad;
-		        $especialidad = $postulante->ingresantes->especialidad;
-                $this->TituloColumnas($facultad,$codes,$especialidad);
-                $y = 0;
-                $i = 0;
-            }
             #
             PDF::SetXY($x+10, $y*$altodecelda+$incremento);
             PDF::SetFont('helvetica', '', 10);
