@@ -64,7 +64,7 @@ class Ingresante extends Model
     public function getFotoAttribute()
     {
     	$postulante = Postulante::find($this->idpostulante);
-        $fotoing = 'fotoIng/'.$postulante->numero_identificacion.'.jpg';
+        $fotoing = 'fotoIng/'.$postulante->numero_identificacion.'.JPG';
         if(Storage::exists('public/'.$fotoing))$foto = asset('/storage/'.$fotoing);
         else $foto = false;
 
