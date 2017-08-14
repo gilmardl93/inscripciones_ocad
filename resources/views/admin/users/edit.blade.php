@@ -13,12 +13,12 @@
 					{!!Form::label('lblNombre', 'Nombre del usuario');!!}
 					{!!Form::text('dni', null , ['class'=>'form-control','placeholder'=>'Nombre del usuario']);!!}
 				</div>
-				@can('root',Auth::user())
+				@if (str_contains(Auth::user()->codigo_rol,['root']))
 					<div class="form-group">
 						{!!Form::label('lblRol', 'Rol');!!}
 						{!!Form::select('idrole',$roles,null, ['class'=>'form-control']);!!}
 					</div>
-				@endcan
+				@endif
 				<div class="form-group">
                     {!!Form::label('lblClave', 'Clave (Si no desea cambiar la clave deje este campo vacio)');!!}
                     {!!Form::password('password', ['class'=>'form-control']);!!}
