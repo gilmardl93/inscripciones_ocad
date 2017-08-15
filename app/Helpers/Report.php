@@ -48,14 +48,22 @@ if (! function_exists('Reportfooter')) {
      * Funcion que retorna el prefijo para nombres de archivos
      * @return [type] [description]
      */
-    function Reportfooter($codigo=null)
+    function Reportfooter($codigo=null,$orientacion='U')
     {
+        if ($orientacion=='U'){
+            $y=0;
+        }else {
+            $x=230;
+            $y=195;
+        }
+
+
         PDF::SetTextColor(0);
         PDF::SetLineWidth(0.5);
         PDF::SetFont('helvetica', '', 9);
-        PDF::Line(12,285,200,285);
-        PDF::SetXY(15,-28);
+        PDF::Line(12,$y,290,$y);
+        PDF::SetXY(15,15);
         //PDF::Text(55,285,$codigo);
-        PDF::Text(150,285,'Oficina Central de Admisión');
+        PDF::Text($x,$y,'Oficina Central de Admisión');
     }
 }

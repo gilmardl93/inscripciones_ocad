@@ -34,6 +34,13 @@ class CreateIngresantesTable extends Migration
             $table->foreign('idfacultad')->references('id')->on('facultad');
             $table->foreign('idespecialidad')->references('id')->on('especialidad');
             $table->foreign('idmodalidad')->references('id')->on('modalidad');
+            $table->decimal('e1','10','3')->nullable();
+            $table->decimal('e2','10','3')->nullable();
+            $table->decimal('e3','10','3')->nullable();
+            $table->decimal('n','10','3')->nullable();
+            $table->decimal('nv','10','3')->nullable();
+            $table->decimal('na','10','3')->nullable();
+
         });
     }
 

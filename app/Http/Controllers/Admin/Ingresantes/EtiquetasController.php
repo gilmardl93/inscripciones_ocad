@@ -32,7 +32,7 @@ class EtiquetasController extends Controller
 		$secuencia=0;
 
 
-        $postulantes = Postulante::with('ingresantes')->has('ingresantes')->get();
+        $postulantes = Postulante::with('ingresantes')->has('ingresantes')->whereIn('numero_identificacion',['72430674','77341542'])->get();
 
         foreach ($postulantes as $key => $postulante) {
 			if((($columnaActual==$numcolumnas-1)&&($lineaActual>$numlineas))||($pagina==0)){
