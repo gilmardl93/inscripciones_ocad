@@ -44,6 +44,8 @@ Route::group(['namespace'=>'Ingresantes'], function() {
 	Route::get('listado-general-pdf','ListadoGeneralController@listadogeneralpdf')->name('admin.ingresantes.listadogeneral.pdf');
 	Route::get('listado-firma','ListadoFirmaController@listadofirma')->name('admin.ingresantes.listadofirma');
 	Route::get('listado-firma-pdf','ListadoFirmaController@listadofirmapdf')->name('admin.ingresantes.listadofirma.pdf');
+	Route::get('listado-notas','ListadoNotasController@listadoNotas')->name('admin.ingresantes.listadonotas');
+	Route::get('listado-notas-pdf','ListadoNotasController@listadoNotaspdf')->name('admin.ingresantes.listadonotas.pdf');
 
 });
 /**

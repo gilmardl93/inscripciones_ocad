@@ -77,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Lista->chunk(10) as $item)
+                        @foreach ($Lista->chunk(100) as $item)
                             @foreach ($item as $padron)
                                 <tr>
                                     <td> {{ $padron->datos_evaluacion->codigo }} </td>
