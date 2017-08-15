@@ -310,7 +310,7 @@ class IngresantesController extends Controller
             && isset($postulante->ingresantes->facultad_procedencia)
             && (isset($postulante->ingresantes->grado) || isset($postulante->ingresantes->titulo)))) {
             $muestra = true;
-        }elseif (str_contains($postulante->ingresantes->codigo_modalidad,['O','E1DPA','E1DB','E1CD','E1CABI','E1CABC','E1VTI','E1VTC','E1PDI','E1PDC','IEN','ID-CEPRE'])) {
+        }elseif (str_contains($postulante->ingresantes->codigo_modalidad,['O','E1DPA','E1DB','E1CD','E1CABI','E1CABC','E1VTI','E1VTC','E1PDI','E1PDC','IEN','ID-CEPRE','E1DCAN'])) {
             $muestra = true;
         }else{
             $muestra = false;
@@ -338,7 +338,6 @@ class IngresantesController extends Controller
                                    ->has('ingresantes')
                                    ->with('ingresantes')
                                    ->join('ingresante as i','i.idpostulante','=','postulante.id')
-                                   ->where('i.idmodalidad',6)
                                    ->orderBy('i.id')->get();
         $evaluacion = Evaluacion::Activo()->first();
         PDF::SetTitle(' CONSTANCIAS DE INGRESANTES');

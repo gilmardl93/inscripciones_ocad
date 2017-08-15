@@ -65,6 +65,7 @@
 {!!Form::menu('Control entrega',route('admin.ingresantes.control.index'),'fa fa-check-square-o')!!}
 {!!Form::menu('Listado General',route('admin.ingresantes.listadogeneral'),'fa fa-file-pdf-o')!!}
 {!!Form::menu('Listado Firma',route('admin.ingresantes.listadofirma'),'fa fa-file-pdf-o')!!}
+{!!Form::menu('Listado Notas',route('admin.ingresantes.listadonotas'),'fa fa-file-pdf-o')!!}
     </ul>
     <!-- END SIDEBAR MENU -->
 </div>
