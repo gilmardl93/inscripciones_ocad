@@ -52,6 +52,7 @@ if (! function_exists('Reportfooter')) {
     {
         if ($orientacion=='U'){
             $y=0;
+            $x=230;
         }else {
             $x=230;
             $y=195;
