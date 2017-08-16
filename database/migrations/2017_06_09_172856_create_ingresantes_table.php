@@ -40,6 +40,8 @@ class CreateIngresantesTable extends Migration
             $table->decimal('n','10','3')->nullable();
             $table->decimal('nv','10','3')->nullable();
             $table->decimal('na','10','3')->nullable();
+            $table->boolean('etiqueta')->default(true);
+            $table->boolean('constancia')->default(true);
 
         });
     }
