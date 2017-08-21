@@ -510,6 +510,7 @@ class IngresantesController extends Controller
         if (str_contains($postulante->ingresantes->codigo_modalidad,'E1TE'))
         {
              PDF::MultiCell(50, 5, 'Nº de créditos aprobados', 0, 'L', 0, 0, 86, 70, true);
+             PDF::MultiCell(50, 5, $postulante->ingresantes->numero_creditos, 0, 'L', 0, 0, 125, 70, true);
         }
         else
         {
