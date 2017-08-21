@@ -516,11 +516,11 @@ class IngresantesController extends Controller
         {
             if (empty($postulante->ingresantes->titulo))
             {
-                PDF::MultiCell(100, 5, 'Grado académico', 0, 'L', 0, 0, 86, 70, true);
+                PDF::MultiCell(200, 5, 'Grado académico', 0, 'L', 0, 0, 86, 70, true);
             }
             else
             {
-                PDF::MultiCell(100, 5, 'Título profesional', 0, 'L', 0, 0, 86, 70, true);
+                PDF::MultiCell(200, 5, 'Título profesional', 0, 'L', 0, 0, 86, 70, true);
             }
         }
 
