@@ -535,6 +535,14 @@ class IngresantesController extends Controller
         PDF::MultiCell(100, 5, $postulante->nombre_completo, 0, 'L', 0, 0, 125, 52, true);
         PDF::MultiCell(100, 5, $postulante->institucion_educativa, 0, 'L', 0, 0, 125, 59, true);
         PDF::MultiCell(100, 5, $postulante->ingresantes->facultad_procedencia, 0, 'L', 0, 0, 125, 63, true);
+        if (empty($postulante->ingresantes->titulo))
+        {
+            PDF::MultiCell(50, 5, $postulante->ingresantes->grado, 0, 'L', 0, 0, 125, 70, true);
+        }
+        else
+        {
+            PDF::MultiCell(50, 5, $postulante->ingresantes->titulo, 0, 'L', 0, 0, 125, 70, true);
+        }
         PDF::MultiCell(100, 5, $postulante->ingresantes->facultad, 0, 'L', 0, 0, 125, 77, true);
         PDF::MultiCell(100, 5, $postulante->ingresantes->especialidad, 0, 'L', 0, 0, 125, 84, true);
         #
